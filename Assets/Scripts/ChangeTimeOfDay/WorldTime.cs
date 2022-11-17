@@ -1,8 +1,9 @@
 using System.Drawing;
 using UnityEngine;
 
-public class ChangeTimeOfDay : MonoBehaviour
+public class WorldTime : MonoBehaviour
 {
+    [Tooltip("Õףי ןמילט חאקול, ושו ןמילול")]
     [SerializeField] private Light directionalLight;
 
     [Header("Time of day color settings")]
