@@ -1,8 +1,9 @@
 using System.Drawing;
 using UnityEngine;
 
-public class ChangeTimeOfDay : MonoBehaviour
+public class WorldTime : MonoBehaviour
 {
+    [Tooltip("Õףי ןמילט חאקול, ושו ןמילול")]
     [SerializeField] private Light directionalLight;
 
     [Header("Time of day color settings")]
@@ -13,7 +14,7 @@ public class ChangeTimeOfDay : MonoBehaviour
 
     [Header("Time of day settings")]
     [Tooltip("Number of seconds in one day")]
-    [Range(0, 260)] public float timeDayInSeconds;
+    [Range(0, 260)] public static float timeDayInSeconds;
     [Tooltip("Time of day range")]
     [Range(0f, 1f)] public float timeProgress;
 
