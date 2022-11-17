@@ -1,57 +1,30 @@
 using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EventWheelController : MonoBehaviour
 {
-    [SerializeField] private Events events;
+    [Tooltip("This slider is the start time of an event once every half week.\r\nOne game week equals 1820 seconds")]
+    [SerializeField, Range(0, 910)] private float timeStartEvent;
+
+    private void Update()
+    {
+        timeStartEvent += Time.deltaTime;
+    }
 
     public void SelectRandomEvents()
     {
         int randomNum = Random.Range(1, 6);
 
-        RandomEvent(randomNum);
+        StartRandomEvent(randomNum);
     }
 
-    public void RandomEvent(int currenEvent)
+    public void StartRandomEvent(int currenEvent)
     {
-        switch (currenEvent)
+        if(WorldTime.timeDayInSeconds == timeStartEvent)
         {
-            case 1:
+            timeStartEvent = 0;
 
-                events.LittleRain();
-
-                break;
-
-            case 2:
-
-                events.ClearWeatherWithLittleCold();
-
-                break;
-
-            case 3:
-
-                events.StandartDay();
-
-                break;
-
-            case 4:
-
-                events.MineÑollapse();
-
-                break;
-            case 5:
-
-                events.ThunderstormWithHeavyRain();
-
-                break;
-
-            case 6:
-
-                events.Shtorm();
-
-                break;
+            //Äîïèñàòü ëîãèêó
         }
     }
 }
