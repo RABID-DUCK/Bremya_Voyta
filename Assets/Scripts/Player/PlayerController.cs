@@ -4,14 +4,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float vertical, horizontal;
-    private float mouseX, mouseY;
-    private float minAngle, maxAngle;
+    //private float mouseX, mouseY;
+    //private float minAngle, maxAngle;
 
     [Header("Скорость перемещения персонажа")]
     [SerializeField] private float speed = 7f;
+    [SerializeField] private float turningSpeed = 7f;
 
     [SerializeField] private PhotonView view;
-    
+
     [SerializeField] private float sensitivityMouse;
 
     [SerializeField] private GameObject camera;
@@ -32,25 +33,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         PlayerMov();
-        MouseTarget();
     }
     void PlayerMov()
     {
-        horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        horizontal = Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime;
         vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
-        transform.Translate(new Vector3(horizontal, 0, vertical));
-    }
-    void MouseTarget()
-    {
-        mouseX = Input.GetAxis("Mouse X") * sensitivityMouse * Time.fixedDeltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * sensitivityMouse * Time.fixedDeltaTime;
+        player.transform.Rotate(0, horizontal, 0);
+        transform.Translate(0, 0, vertical);
 
-        //camera.transform.rotation=Quaternion.Euler(-mouseY, mouseX, 0f);
-        //player.transform.rotation = Quaternion.Euler(0f, mouseX, 0f);
-
-        player.transform.Rotate(new Vector3(0, mouseX, 0));
-        
-        camera.transform.Rotate(new Vector3(-mouseY, 0, 0));
     }
 }
