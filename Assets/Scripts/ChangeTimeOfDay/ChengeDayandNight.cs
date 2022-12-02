@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class ChengeDayandNight : MonoBehaviour
+public class ChengeDayAndNight : MonoBehaviour
 {
     [SerializeField] private WorldTime worldTime;
 
