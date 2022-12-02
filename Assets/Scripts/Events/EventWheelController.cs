@@ -20,11 +20,11 @@ public class EventWheelController : MonoBehaviour
 
     public void StartRandomEvent(int currenEvent)
     {
-        if(WorldTime.timeDayInSeconds == timeStartEvent)
-        {
-            timeStartEvent = 0;
+        //if (WorldTime.timeDayInSeconds == timeStartEvent)
+        //{
+        //    timeStartEvent = 0;
 
-            //Дописать логику
-        }
+        //    Дописать логику
+        //}
     }
 }

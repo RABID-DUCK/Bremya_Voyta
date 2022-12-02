@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThunderstormWithHeavyRainEvent : MonoBehaviour
 {
-    [SerializeField] private WorldTime changeTimeOfDay;
+    [SerializeField] private ChengeDayandNight changeTimeOfDay;
 
     [Tooltip("The object of the particle system")]
     [SerializeField] private GameObject ThunderstormPS;

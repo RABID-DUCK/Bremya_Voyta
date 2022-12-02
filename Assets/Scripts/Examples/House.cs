@@ -14,7 +14,6 @@ public class House : MonoBehaviour
     private void OnMouseOver()
     {
         outline.enabled = true;
-        Debug.Log("ZALUPINSK");
     }
 
     private void OnMouseExit()

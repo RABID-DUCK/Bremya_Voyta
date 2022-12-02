@@ -5062,6 +5062,7 @@ Transform:
   - {fileID: 214438672}
   - {fileID: 1041550670}
   - {fileID: 879727180}
+  - {fileID: 1595287599}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11402,7 +11403,7 @@ GameObject:
   - component: {fileID: 879727180}
   - component: {fileID: 879727179}
   m_Layer: 0
-  m_Name: TimeManager
+  m_Name: ChangeDayAndNight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11420,6 +11421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1df12b3c22f238418cefb1498628737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldTime: {fileID: 1595287600}
   directionalLight: {fileID: 1404873623}
   directionalLightGradient:
     serializedVersion: 2
@@ -11479,8 +11481,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  timeProgress: 0.328
-  countOfDaysElapsed: 0
+  isChangeColorLight: 1
 --- !u!4 &879727180
 Transform:
   m_ObjectHideFlags: 0
@@ -22092,6 +22093,53 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1595287598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595287599}
+  - component: {fileID: 1595287600}
+  m_Layer: 0
+  m_Name: WorldTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1595287599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595287598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 115121579}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1595287600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595287598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b581c6e14b85d4480fec4852f1d991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeDayInSeconds: 39.8
+  timeProgress: 0
+  countOfDaysElapsed: 0
 --- !u!1 &1749230791
 GameObject:
   m_ObjectHideFlags: 0
