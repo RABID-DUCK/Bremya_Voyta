@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEditor;
+using UnityEngine;
 
 public class WorldTime : MonoBehaviour
 {
@@ -11,9 +13,23 @@ public class WorldTime : MonoBehaviour
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed;
 
+    public static event Action isDay;
+
+    public static event Action isNight;
+
     private void Update()
     {
         ChengeOfTime();
+
+        if (timeDayInSeconds == 40)
+        {
+            isDay?.Invoke();
+        }
+
+        if (timeDayInSeconds == 220)
+        {
+            isNight?.Invoke();
+        }
     }
 
     private void ChengeOfTime()

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class ChengeDayAndNight : MonoBehaviour
+public class ChangeDayAndNight : MonoBehaviour
 {
     [SerializeField] private WorldTime worldTime;
 
@@ -10,9 +10,9 @@ public class ChengeDayAndNight : MonoBehaviour
 
     [Header("Time of day color settings")]
     [Tooltip("Gradient of the day")]
-    [SerializeField] private Gradient directionalLightGradient;
+    public Gradient directionalLightGradient;
     [Tooltip("Gradient of the night")]
-    [SerializeField] private Gradient ambientLightGradient;
+    public Gradient ambientLightGradient;
 
     [Space, Tooltip("Can I change the color of the directional light or not?")]
     public bool isChangeColorLight = true;

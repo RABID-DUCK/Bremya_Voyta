@@ -8,13 +8,9 @@ public class LittleRainEvent : MonoBehaviour
 
     [SerializeField] private GameObject smallRainPS;
 
-    [SerializeField] private Light nightSpotLight; // При дожде данный свет должен быть тусклее, чем обычно!!!
+    [SerializeField] private Light directionalLight;
 
-    [Header("Day and night settings when it rains")]
-    [Tooltip("Gradient of the day")]
-    [SerializeField] private Gradient directionalLightGradient;
-    [Tooltip("Gradient of the night")]
-    [SerializeField] private Gradient ambientLightGradient;
+    [SerializeField] private Light nightSpotLight; // При дожде данный свет должен быть тусклее, чем обычно!!!
 
     //TODO: Нужно добавить звук дождя
 
@@ -34,7 +30,7 @@ public class LittleRainEvent : MonoBehaviour
 
     public void EffectOfEvent() // Реализовать логику эффекта от ивента!!!
     {
-
+        
     }
 
     public void RemoteEffectOfEvent() // Реализовать логику снятия эффекта!!!
