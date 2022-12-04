@@ -1,23 +1,82 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EventController : MonoBehaviour
 {
-    [Tooltip("This slider is the start time of an event once every half week.\r\nOne game week equals 1820 seconds")]
-    [SerializeField, Range(0, 910)] private float timeStartEvent;
+    [Header("Event controller settings")]
+    [SerializeField] private WorldTime worldTime;
 
-    public int countEvents;
+    public int firstNumberDay;
+    public int firstTimeForSelectEvent;
 
-    private int randomNumberEvent;
+    public int secondNumberDay;
+    public int secondTimeForSelectEvent;
 
-    private void Update()
+    private int randomEvent;
+
+    [Header("Events")]
+    [SerializeField] private LittleRainEvent littleRainEvent;
+    [SerializeField] private ClearWeatherWithLittleColdEvent clearWeatherWithLittleColdEvent;
+    [SerializeField] private Mine—ollapseEvent mine—ollapseEvent;
+    [SerializeField] private StandartDayEvent standartDayEvent;
+    [SerializeField] private StormEvent stormEvent;
+    [SerializeField] private ThunderstormWithHeavyRainEvent ThunderstormWithHeavyRainEvent;
+
+    public void SelectEventByTime()
     {
-        timeStartEvent += Time.deltaTime;
+        if(worldTime.countOfDaysElapsed == firstNumberDay &&
+            worldTime.timeDayInSeconds == firstTimeForSelectEvent)
+        {
+            SelectRandomEvent();
+
+            SelectEventByRandomizeNumber(randomEvent);
+        }
+
+        if(worldTime.countOfDaysElapsed == secondNumberDay &&
+            worldTime.timeDayInSeconds == firstTimeForSelectEvent)
+        {
+            SelectRandomEvent();
+
+            SelectEventByRandomizeNumber(randomEvent);
+        }
     }
 
-    private void SelectRandomEvent()
+    public void SelectRandomEvent()
     {
-        randomNumberEvent = Random.Range(0, countEvents);
+        randomEvent = 0;
+
+        randomEvent = Random.Range(0, 5);
+    }
+
+    public void SelectEventByRandomizeNumber(int randomNumberEvent)
+    {
+        switch (randomNumberEvent)
+        {
+            case 0:
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            case 6:
+
+                break;
+        }
+    }
+
+    public void RemoveEvent()
+    {
+
     }
 }

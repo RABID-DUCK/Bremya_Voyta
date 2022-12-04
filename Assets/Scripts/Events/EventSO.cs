@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EventSO : MonoBehaviour
+[CreateAssetMenu(fileName = "EventSO", menuName = "Events")]
+public class EventSO : ScriptableObject
 {
     [Header("Event data settings")]
 
