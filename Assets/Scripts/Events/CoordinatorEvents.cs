@@ -10,11 +10,11 @@ public class CoordinatorEvents : MonoBehaviour
     private Gradient standartDayGradient;
     private Gradient standartNightGradient;
 
-    [Header("Day and night settings when it rains")]
+    [Header("Gradient of day and night light during bad weather")]
     [Tooltip("Gradient of the day")]
-    public Gradient directionalLightGradient;
+    public Gradient dayLightGradient;
     [Tooltip("Gradient of the night")]
-    public Gradient ambientLightGradient;
+    public Gradient nightLightGradient;
 
     private void Start()
     {
@@ -23,5 +23,11 @@ public class CoordinatorEvents : MonoBehaviour
         standartNightGradient = changeDayAndNight.ambientLightGradient;
     }
 
-    
+    [ContextMenu("Added standart gradient settings")]
+    public void GetStandartGradientSettings()
+    {
+        dayLightGradient = standartDayGradient;
+
+        nightLightGradient = standartNightGradient;
+    }
 }

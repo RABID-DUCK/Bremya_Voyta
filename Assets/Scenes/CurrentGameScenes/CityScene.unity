@@ -5233,7 +5233,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1354665764}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &169984094
 MonoBehaviour:
@@ -10609,26 +10609,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1d370db18e46a43afd401ac25660a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldTime: {fileID: 0}
-  changeDayAndNight: {fileID: 0}
-  directionalLightGradient:
+  worldTime: {fileID: 1595287600}
+  changeDayAndNight: {fileID: 879727179}
+  dayLightGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
+    key0: {r: 0.16260235, g: 0.25345615, b: 0.3962264, a: 1}
+    key1: {r: 0.5849056, g: 0.27204528, b: 0.046902817, a: 1}
+    key2: {r: 0.5943396, g: 0.406325, b: 0.13176396, a: 0}
+    key3: {r: 0.6509434, g: 0.6412202, b: 0.59260416, a: 0}
+    key4: {r: 0.6509434, g: 0.6087242, b: 0.48206657, a: 0}
+    key5: {r: 0.754717, g: 0.49687234, b: 0.15307939, a: 0}
+    key6: {r: 0.6037736, g: 0.3380409, b: 0.1509434, a: 0}
+    key7: {r: 0.15881987, g: 0.25481337, b: 0.4056604, a: 0}
+    ctime0: 6554
+    ctime1: 9830
+    ctime2: 13107
+    ctime3: 16577
+    ctime4: 42791
+    ctime5: 46838
+    ctime6: 50886
+    ctime7: 55512
     atime0: 0
     atime1: 65535
     atime2: 0
@@ -10638,23 +10638,23 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 8
     m_NumAlphaKeys: 2
-  ambientLightGradient:
+  nightLightGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.1548594, g: 0.24138682, b: 0.3773585, a: 1}
+    key1: {r: 0.373576, g: 0.5338917, b: 0.6886792, a: 1}
+    key2: {r: 0.28875935, g: 0.41047347, b: 0.5943396, a: 0}
+    key3: {r: 0.15886436, g: 0.2511718, b: 0.3962264, a: 0}
+    key4: {r: 0.06666667, g: 0.33333334, b: 0.13333334, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
+    ctime1: 16191
+    ctime2: 43562
+    ctime3: 65535
+    ctime4: 65535
     ctime5: 0
     ctime6: 0
     ctime7: 0
@@ -10667,7 +10667,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
 --- !u!1 &390857628
 GameObject:
@@ -11783,9 +11783,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallRainSO: {fileID: 0}
-  smallRainPS: {fileID: 0}
-  directionalLight: {fileID: 0}
-  nightSpotLight: {fileID: 0}
+  smallRainPS: {fileID: 1365870802}
+  directionalLight: {fileID: 1404873623}
+  nightSpotLight: {fileID: 104235311}
 --- !u!1 &1041550668
 GameObject:
   m_ObjectHideFlags: 0
@@ -17176,8 +17176,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 989820647}
-  - {fileID: 169984093}
   - {fileID: 1440916632}
+  - {fileID: 169984093}
   - {fileID: 1136995792}
   - {fileID: 736321960}
   - {fileID: 424204934}
@@ -22358,7 +22358,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1354665764}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1440916633
 MonoBehaviour:
