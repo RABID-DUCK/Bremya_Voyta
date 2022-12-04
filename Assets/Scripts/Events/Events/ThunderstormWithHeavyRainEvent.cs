@@ -25,43 +25,38 @@ public class ThunderstormWithHeavyRainEvent : MonoBehaviour
         thunderTime += Time.deltaTime;
     }
 
-    public void StartSmallRain() // Этот метод нужно вызывать, при старте события!!!
+    private void CalcStartThunder() // Этот метод нужен для появления молнии.
+    {
+        int randomStartNum = Random.Range(1, 100);
+
+        if(thunderTime == randomStartNum)
+        {
+            StartThunder();
+
+            thunderTime = 0;
+        }
+    }
+
+    public void StartThunder() // Метод отвечающий за появление молнии.
     {
         ThunderstormPS.SetActive(true);
 
         EffectOfEvent();
     }
 
-    public void EndSmallRain() // Этот метод нужно вызывать, при конце события!!!
+    public void EndThunder() // Этот метод нужно вызывать, при конце события!!!
     {
         ThunderstormPS.SetActive(false);
 
         RemoteEffectOfEvent();
     }
 
-    public void CalcStartThunder() // Этот метод нужен для появления молнии.
-    {
-        int randomStartNum = Random.Range(1, 100);
-
-        if(thunderTime == randomStartNum)
-        {
-            Starthunder();
-
-            thunderTime = 0;
-        }
-    }
-
-    private void Starthunder() // Метод отвечающий за появление молнии.
+    public void EffectOfEvent() // Реализовать логику эффекта от ивента!!!
     {
 
     }
 
-    public void EffectOfEvent() // Реализовать логику эффекта от ивента.
-    {
-
-    }
-
-    public void RemoteEffectOfEvent() // Реализовать логику снятия эффекта.
+    public void RemoteEffectOfEvent() // Реализовать логику снятия эффекта!!!
     {
 
     }

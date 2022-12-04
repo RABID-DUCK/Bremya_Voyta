@@ -21,13 +21,31 @@ public class CoordinatorEvents : MonoBehaviour
         standartDayGradient = changeDayAndNight.directionalLightGradient;
 
         standartNightGradient = changeDayAndNight.ambientLightGradient;
+
+        EventController.GetNegativeWeather += CheckNegativeWeather;
     }
 
-    [ContextMenu("Added standart gradient settings")]
-    public void GetStandartGradientSettings()
+    public void CheckNegativeWeather(bool isNegativeWeather)
     {
-        dayLightGradient = standartDayGradient;
+        if (isNegativeWeather)
+        {
+            changeDayAndNight.directionalLightGradient = dayLightGradient;
 
-        nightLightGradient = standartNightGradient;
+            changeDayAndNight.ambientLightGradient = nightLightGradient;
+        }
+        else
+        {
+            changeDayAndNight.directionalLightGradient = standartDayGradient;
+
+            changeDayAndNight.ambientLightGradient = standartNightGradient;
+        }
     }
+
+    //[ContextMenu("Added standart gradient settings")]
+    //public void GetStandartGradientSettings()
+    //{
+    //    dayLightGradient = standartDayGradient;
+
+    //    nightLightGradient = standartNightGradient;
+    //}
 }

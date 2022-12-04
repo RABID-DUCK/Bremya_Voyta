@@ -14,9 +14,6 @@ public class ChangeDayAndNight : MonoBehaviour
     [Tooltip("Gradient of the night")]
     public Gradient ambientLightGradient;
 
-    [Space, Tooltip("Can I change the color of the directional light or not?")]
-    public bool isChangeColorLight = true;
-
     private Vector3 defaultAngles;
 
     private void Start()
@@ -26,10 +23,7 @@ public class ChangeDayAndNight : MonoBehaviour
 
     private void Update()
     {
-        if (isChangeColorLight)
-        {
-            ChangeGradientColorWithDayTime();
-        }
+        ChangeGradientColorWithDayTime();
     }
 
     private void ChangeGradientColorWithDayTime()

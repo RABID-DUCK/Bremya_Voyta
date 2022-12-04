@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 1}
+  m_AmbientSkyColor: {r: 0.4584482, g: 0.6623428, b: 0.9116411, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0039957035, g: 0.00021792634, b: 0.000000051515347, a: 1}
+  m_IndirectSpecularColor: {r: 0.43710324, g: 0.4848175, b: 0.56508553, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5059,11 +5059,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1173866870}
-  - {fileID: 214438672}
   - {fileID: 1041550670}
   - {fileID: 879727180}
   - {fileID: 1595287599}
   - {fileID: 272125888}
+  - {fileID: 791203321}
   - {fileID: 1354665764}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -10317,8 +10317,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 115121579}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &263455914
 GameObject:
@@ -10595,7 +10595,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272125889
 MonoBehaviour:
@@ -11407,6 +11407,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508a7751816bb724cbd8c0a501848610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &791203320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 791203321}
+  - component: {fileID: 791203322}
+  m_Layer: 0
+  m_Name: EventController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &791203321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791203320}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 115121579}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &791203322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791203320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28cbcb49e8e763a4c9fcc55a598ebe9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldTime: {fileID: 1595287600}
+  firstNumberDay: 2
+  firstTimeForSelectEvent: 180
+  secondNumberDay: 5
+  secondTimeForSelectEvent: 180
+  littleRainEvent: {fileID: 989820648}
+  clearWeatherWithLittleColdEvent: {fileID: 1136995793}
+  "mine\u0421ollapseEvent": {fileID: 736321961}
+  standartDayEvent: {fileID: 424204935}
+  stormEvent: {fileID: 169984094}
+  ThunderstormWithHeavyRainEvent: {fileID: 1440916633}
 --- !u!1 &811787406
 GameObject:
   m_ObjectHideFlags: 0
@@ -11722,7 +11777,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  isChangeColorLight: 1
 --- !u!4 &879727180
 Transform:
   m_ObjectHideFlags: 0
@@ -11736,7 +11790,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &989820646
 GameObject:
@@ -11782,10 +11836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e938ed5e38ec14ca33e9fae54e27dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallRainSO: {fileID: 0}
-  smallRainPS: {fileID: 1365870802}
-  directionalLight: {fileID: 1404873623}
-  nightSpotLight: {fileID: 104235311}
+  littleRainSO: {fileID: 11400000, guid: c3b347ab0e22f5a44ad279dfde7025bf, type: 2}
+  littleRainPS: {fileID: 1365870802}
 --- !u!1 &1041550668
 GameObject:
   m_ObjectHideFlags: 0
@@ -11832,7 +11884,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1095516245
 GameObject:
@@ -17196,7 +17248,7 @@ GameObject:
   - component: {fileID: 1365870804}
   - component: {fileID: 1365870803}
   m_Layer: 0
-  m_Name: SmallRain
+  m_Name: LittlleRain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22106,7 +22158,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 1}
+  m_Color: {r: 0.91381836, g: 0.87115353, b: 0.73115253, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -22164,7 +22216,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404873622}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
+  m_LocalRotation: {x: 0.49605733, y: 0.49605736, z: -0.43733335, w: 0.5626667}
   m_LocalPosition: {x: 7.246122, y: 92.5157, z: -10.598835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22818,7 +22870,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1595287600
 MonoBehaviour:
@@ -22833,8 +22885,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDayInSeconds: 111.7
-  timeProgress: 0
+  timeProgress: 0.48
   countOfDaysElapsed: 0
+--- !u!1 &1726442038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726442039}
+  m_Layer: 0
+  m_Name: ----------------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1726442039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726442038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749230791
 GameObject:
   m_ObjectHideFlags: 0
