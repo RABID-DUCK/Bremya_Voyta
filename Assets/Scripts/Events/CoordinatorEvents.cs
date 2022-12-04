@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Coordinator : MonoBehaviour
+public class CoordinatorEvents : MonoBehaviour
 {
     [Header("CoordinatorEvents settings")]
 
