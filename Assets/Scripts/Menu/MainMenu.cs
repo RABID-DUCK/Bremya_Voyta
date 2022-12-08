@@ -9,20 +9,24 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField] GameObject Menu;
-    [SerializeField] GameObject Room;
     [SerializeField] GameObject Loading;
     [SerializeField] GameObject Error;
     [SerializeField] TMP_Text ErrorText;
 
     private void Awake()
     {
-        PhotonNetwork.ConnectUsingSettings();
+        Loading.SetActive(true);
     }
 
-    public void Play()
+    private void Start()
     {
-        Loading.SetActive(true);
+        Menu.SetActive(true);
+        Loading.SetActive(false);
+    }
 
+    public override void OnConnectedToMaster()
+    {
+        base.OnConnectedToMaster();
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = false;
         roomOptions.MaxPlayers = 6;
@@ -36,8 +40,10 @@ public class MainMenu : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.CountOfPlayersInRooms < 6)
             {
-                PhotonNetwork.JoinRoom("Room");
-                SceneManager.LoadScene("Lobby");
+                if (PhotonNetwork.JoinRoom("Room"))
+                {
+                    SceneManager.LoadScene("Lobby");
+                }
             }
             else
             {
@@ -47,8 +53,20 @@ public class MainMenu : MonoBehaviourPunCallbacks
             }
         }
     }
-    
 
+    public void Play()
+    {
+        Menu.SetActive(false);
+        Loading.SetActive(true);
+
+        if(!PhotonNetwork.ConnectUsingSettings())
+        {
+            Menu.SetActive(true);
+            Error.SetActive(true);
+            ErrorText.text = "Не удалось подключиться к серверам!";
+        }
+
+    }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
