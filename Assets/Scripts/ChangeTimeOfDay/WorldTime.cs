@@ -17,6 +17,17 @@ public class WorldTime : MonoBehaviour
 
     public static event Action isNight;
 
+    public static event Action<int> getNumberDay;
+
+    public static event Action<float> getTimeInSeconds;
+
+    private void Start()
+    {
+        getNumberDay?.Invoke(countOfDaysElapsed);
+
+        getTimeInSeconds?.Invoke(timeDayInSeconds);
+    }
+
     private void Update()
     {
         ChengeOfTime();
@@ -49,6 +60,11 @@ public class WorldTime : MonoBehaviour
             timeProgress = 0f;
 
             countOfDaysElapsed++;
+
+            if (countOfDaysElapsed > 6)
+            {
+                countOfDaysElapsed = 0;
+            }
         }
     }
 }

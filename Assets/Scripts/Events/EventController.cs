@@ -1,3 +1,6 @@
+using Photon.Pun.Demo.Cockpit;
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EventController : MonoBehaviour
@@ -5,13 +8,26 @@ public class EventController : MonoBehaviour
     [Header("Event controller settings")]
     [SerializeField] private WorldTime worldTime;
 
+    [Space, Tooltip("First half of the week. The day the event is to take place")]
     public int firstNumberDay;
-    public int firstTimeForSelectEvent;
+    [Tooltip("First half of the week. Time when the event should take place")]
+    public float firstTimeForSelectEvent;
 
+    [Space, Tooltip("Second half of the week. The day the event is to take place")]
     public int secondNumberDay;
-    public int secondTimeForSelectEvent;
+    [Tooltip("Second half of the week. Time when the event should take place")]
+    public float secondTimeForSelectEvent;
 
     private int randomEvent;
+
+    private bool isNegativeWeather = false;
+
+    private int currentDay;
+    private float currentTimeInSeconds;
+
+    public static event Action<bool> GetNegativeWeather;
+
+    private event Action<int, float> CheckRemoveEvents;
 
     [Header("Events")]
     [SerializeField] private LittleRainEvent littleRainEvent;
@@ -21,18 +37,34 @@ public class EventController : MonoBehaviour
     [SerializeField] private StormEvent stormEvent;
     [SerializeField] private ThunderstormWithHeavyRainEvent ThunderstormWithHeavyRainEvent;
 
-    public void SelectEventByTime()
+    private void Start()
     {
-        if(worldTime.countOfDaysElapsed == firstNumberDay &&
-            worldTime.timeDayInSeconds == firstTimeForSelectEvent)
-        {
-            SelectRandomEvent();
+        GetNegativeWeather?.Invoke(isNegativeWeather);
 
-            SelectEventByRandomizeNumber(randomEvent);
-        }
+        WorldTime.getNumberDay += SetDay;
+        WorldTime.getTimeInSeconds += SetTimeInSeconds;
 
-        if(worldTime.countOfDaysElapsed == secondNumberDay &&
-            worldTime.timeDayInSeconds == firstTimeForSelectEvent)
+        CheckRemoveEvents?.Invoke(currentDay, currentTimeInSeconds);
+        CheckRemoveEvents += RemoveEvent;
+        CheckRemoveEvents += SelectEventByTime;
+    }
+
+    public void SetDay(int day)
+    {
+        currentDay = day;
+    }
+
+    public void SetTimeInSeconds(float timeInSeconds)
+    {
+        currentTimeInSeconds = timeInSeconds;
+    }
+
+    public void SelectEventByTime(int day, float timeInSeconds)
+    {
+        if(day == firstNumberDay &&
+            timeInSeconds == firstTimeForSelectEvent ||
+            day == secondNumberDay &&
+            timeInSeconds == firstTimeForSelectEvent)
         {
             SelectRandomEvent();
 
@@ -44,7 +76,7 @@ public class EventController : MonoBehaviour
     {
         randomEvent = 0;
 
-        randomEvent = Random.Range(0, 5);
+        randomEvent = UnityEngine.Random.Range(0, 5);
     }
 
     public void SelectEventByRandomizeNumber(int randomNumberEvent)
@@ -53,30 +85,71 @@ public class EventController : MonoBehaviour
         {
             case 0:
 
+                if(littleRainEvent != null)
+                {
+                    isNegativeWeather = true;
+
+                    littleRainEvent.StartSmallRain();
+                }
+
                 break;
             case 1:
+
+                if (ThunderstormWithHeavyRainEvent != null)
+                {
+                    isNegativeWeather = true;
+
+                    ThunderstormWithHeavyRainEvent.StartThunder();
+                }
 
                 break;
             case 2:
 
+                if (stormEvent != null)
+                {
+                    isNegativeWeather = true;
+
+
+                }
+
                 break;
             case 3:
+
+                if (clearWeatherWithLittleColdEvent != null)
+                {
+
+                }
 
                 break;
             case 4:
 
+                if (mineСollapseEvent != null)
+                {
+
+                }
+
                 break;
             case 5:
 
-                break;
-            case 6:
+                if (standartDayEvent != null)
+                {
+
+                }
 
                 break;
         }
     }
 
-    public void RemoveEvent()
+    public void RemoveEvent(int numDay, float time)
     {
+        if(numDay == firstNumberDay + 1 && time == 260 ||
+            numDay == secondNumberDay + 1 && time == 260)
+        {
+            isNegativeWeather = false;
 
+            littleRainEvent.EndSmallRain();
+            ThunderstormWithHeavyRainEvent.EndThunder();
+            //Докинуть методы, которые завершают ивенты
+        }
     }
 }
