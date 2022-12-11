@@ -40,8 +40,8 @@ public class EventController : MonoBehaviour
     {
         GetNegativeWeather?.Invoke(isNegativeWeather);
 
-        WorldTime.getNumberDay += SetDay;
-        WorldTime.getTimeInSeconds += SetTimeInSeconds;
+        WorldTime.GetNumberDay += SetDay;
+        WorldTime.GetTimeProgress += SetTimeInSeconds;
 
         CheckRemoveEvents?.Invoke(originalDay, originalTimeInSeconds);
         //CheckRemoveEvents += RemoveEvent;

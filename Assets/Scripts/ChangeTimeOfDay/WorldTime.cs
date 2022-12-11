@@ -1,69 +1,73 @@
 ﻿using System;
-using UnityEditor;
 using UnityEngine;
 
 public class WorldTime : MonoBehaviour
 {
     [Header("Time of day settings")]
-    [Tooltip("Number of seconds in one day")]
-    [Range(0, 260)] public float timeDayInSeconds;
+    [Tooltip("Number of seconds during the day")]
+    [Range(0, 180)] public float dayTimeInSeconds; // Количество секунд днем
+    [Tooltip("Number of seconds during the night")]
+    [Range(0, 80)] public float nightTimeInSeconds; // Количество секунд ночью
     [Tooltip("Time of day range")]
-    [Range(0f, 1f)] public float timeProgress;
+    [Range(0f, 1f)] public float timeProgress; // Игровой прогресс
 
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed;
 
-    public static event Action isDay;
+    public static event Action<int> GetNumberDay; // Число дня, который наступил. Счет идет до 6, потом обнуляется!!!
 
-    public static event Action isNight;
+    public static event Action<float> GetTimeProgress; // Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!!!
 
-    public static event Action<int> getNumberDay;
+    public static event Action<bool> GetTimeOfDay; // Взять время суток! Указываешь класс и название ивента, чтобы подвязаться к нему
 
-    public static event Action<float> getTimeInSeconds;
+    [HideInInspector] public bool CheckTimeOfDay; // true - День, false - Ночь!
 
     private void Start()
     {
-        getNumberDay?.Invoke(countOfDaysElapsed);
+        GetNumberDay?.Invoke(countOfDaysElapsed);
 
-        getTimeInSeconds?.Invoke(timeDayInSeconds);
+        GetTimeProgress?.Invoke(timeProgress);
+
+        CheckTimeOfDay = true;
     }
 
     private void Update()
     {
         ChengeOfTime();
-
-        if (timeDayInSeconds == 40)
-        {
-            isDay?.Invoke();
-        }
-
-        if (timeDayInSeconds == 220)
-        {
-            isNight?.Invoke();
-        }
     }
 
     private void ChengeOfTime()
     {
-        if (timeDayInSeconds == 0)
+        if (dayTimeInSeconds == 0)
         {
             print("There can't be 0 seconds in one day!!!");
         }
 
         if (Application.isPlaying)
         {
-            timeProgress += Time.deltaTime / timeDayInSeconds;
+            if (CheckTimeOfDay)
+            {
+                timeProgress += Time.deltaTime / dayTimeInSeconds;
+            }
+            else
+            {
+                timeProgress += Time.deltaTime / nightTimeInSeconds;
+            }
         }
 
         if (timeProgress > 1f)
         {
             timeProgress = 0f;
+            CheckTimeOfDay = !CheckTimeOfDay;
 
-            countOfDaysElapsed++;
-
-            if (countOfDaysElapsed > 6)
+            if (CheckTimeOfDay)
             {
-                countOfDaysElapsed = 0;
+                countOfDaysElapsed++;
+
+                if (countOfDaysElapsed > 6)
+                {
+                    countOfDaysElapsed = 0;
+                }
             }
         }
     }

@@ -1,5 +1,3 @@
-using Photon.Pun;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ThunderstormWithHeavyRainEvent : MonoBehaviour
