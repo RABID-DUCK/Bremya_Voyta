@@ -1,6 +1,5 @@
-using Photon.Pun.Demo.Cockpit;
 using System;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EventController : MonoBehaviour
@@ -11,19 +10,19 @@ public class EventController : MonoBehaviour
     [Space, Tooltip("First half of the week. The day the event is to take place")]
     public int firstNumberDay;
     [Tooltip("First half of the week. Time when the event should take place")]
-    public float firstTimeForSelectEvent;
+    public float firstGameProgress;
 
     [Space, Tooltip("Second half of the week. The day the event is to take place")]
     public int secondNumberDay;
     [Tooltip("Second half of the week. Time when the event should take place")]
-    public float secondTimeForSelectEvent;
+    public float secondGameProgress;
 
     private int randomEvent;
 
     private bool isNegativeWeather = false;
 
-    private int currentDay;
-    private float currentTimeInSeconds;
+    private int originalDay;
+    private float originalTimeInSeconds;
 
     public static event Action<bool> GetNegativeWeather;
 
@@ -44,27 +43,50 @@ public class EventController : MonoBehaviour
         WorldTime.getNumberDay += SetDay;
         WorldTime.getTimeInSeconds += SetTimeInSeconds;
 
-        CheckRemoveEvents?.Invoke(currentDay, currentTimeInSeconds);
-        CheckRemoveEvents += RemoveEvent;
-        CheckRemoveEvents += SelectEventByTime;
+        CheckRemoveEvents?.Invoke(originalDay, originalTimeInSeconds);
+        //CheckRemoveEvents += RemoveEvent;
+        //CheckRemoveEvents += SelectEventByTime;
     }
 
     public void SetDay(int day)
     {
-        currentDay = day;
+        originalDay = day;
     }
 
     public void SetTimeInSeconds(float timeInSeconds)
     {
-        currentTimeInSeconds = timeInSeconds;
+        originalTimeInSeconds = timeInSeconds;
     }
 
-    public void SelectEventByTime(int day, float timeInSeconds)
+    public void Update()
     {
-        if(day == firstNumberDay &&
-            timeInSeconds == firstTimeForSelectEvent ||
-            day == secondNumberDay &&
-            timeInSeconds == firstTimeForSelectEvent)
+        SelectEventByTime();
+
+        RemoveEvent();
+
+        List<GameObject> dfdf = new List<GameObject>();
+
+        int panelID = 0;
+
+        for (int i = 0; i < dfdf.Count; i++)
+        {
+            if(i == panelID)
+            {
+                dfdf[i].SetActive(true);
+            }
+            else
+            {
+                dfdf[i].SetActive(false);
+            }
+        }
+    }
+
+    public void SelectEventByTime(/*int day, float timeInSeconds*/)
+    {
+        if(worldTime.countOfDaysElapsed == firstNumberDay &&
+            worldTime.timeProgress == firstGameProgress ||
+            worldTime.countOfDaysElapsed == secondNumberDay &&
+            worldTime.timeProgress == firstGameProgress)
         {
             SelectRandomEvent();
 
@@ -140,10 +162,10 @@ public class EventController : MonoBehaviour
         }
     }
 
-    public void RemoveEvent(int numDay, float time)
+    public void RemoveEvent(/*int numDay, float time*/)
     {
-        if(numDay == firstNumberDay + 1 && time == 260 ||
-            numDay == secondNumberDay + 1 && time == 260)
+        if(worldTime.countOfDaysElapsed == firstNumberDay + 1 && worldTime.timeProgress == firstGameProgress ||
+            worldTime.countOfDaysElapsed == secondNumberDay + 1 && worldTime.timeProgress == secondGameProgress)
         {
             isNegativeWeather = false;
 
