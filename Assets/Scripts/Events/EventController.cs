@@ -84,9 +84,9 @@ public class EventController : MonoBehaviour
     public void SelectEventByTime(/*int day, float timeInSeconds*/)
     {
         if(worldTime.countOfDaysElapsed == firstNumberDay &&
-            worldTime.timeProgress == firstGameProgress ||
+            WorldTime.timeProgress == firstGameProgress ||
             worldTime.countOfDaysElapsed == secondNumberDay &&
-            worldTime.timeProgress == firstGameProgress)
+            WorldTime.timeProgress == firstGameProgress)
         {
             SelectRandomEvent();
 
@@ -164,8 +164,8 @@ public class EventController : MonoBehaviour
 
     public void RemoveEvent(/*int numDay, float time*/)
     {
-        if(worldTime.countOfDaysElapsed == firstNumberDay + 1 && worldTime.timeProgress == firstGameProgress ||
-            worldTime.countOfDaysElapsed == secondNumberDay + 1 && worldTime.timeProgress == secondGameProgress)
+        if(worldTime.countOfDaysElapsed == firstNumberDay + 1 && WorldTime.timeProgress == firstGameProgress ||
+            worldTime.countOfDaysElapsed == secondNumberDay + 1 && WorldTime.timeProgress == secondGameProgress)
         {
             isNegativeWeather = false;
 
