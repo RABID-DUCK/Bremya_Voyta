@@ -31,10 +31,14 @@ public class ChangeDayAndNight : MonoBehaviour
         if (WorldTime.CheckTimeOfDay)
         {
             ChangingGradientColorDay();
+
+            directionalLight.intensity = 1f;
         }
         else
         {
             ChangingGradientColorNught();
+
+            directionalLight.intensity = 0.2f;
         }
     }
 

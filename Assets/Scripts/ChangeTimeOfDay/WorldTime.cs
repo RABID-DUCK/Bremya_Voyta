@@ -5,11 +5,11 @@ public class WorldTime : MonoBehaviour
 {
     [Header("Time of day settings")]
     [Tooltip("Number of seconds during the day")]
-    [Range(0, 180)] public static float dayTimeInSeconds; // Количество секунд днем
+    public static float dayTimeInSeconds; // Количество секунд днем
     [Tooltip("Number of seconds during the night")]
-    [Range(0, 80)] public static float nightTimeInSeconds; // Количество секунд ночью
+    public static float nightTimeInSeconds; // Количество секунд ночью
     [Tooltip("Time of day range")]
-    [Range(0f, 1f)] public static float timeProgress; // Игровой прогресс
+    public static float timeProgress; // Игровой прогресс
 
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed;
@@ -20,15 +20,20 @@ public class WorldTime : MonoBehaviour
 
     public static event Action<bool> GetTimeOfDay; // Взять время суток! Указываешь класс и название ивента, чтобы подвязаться к нему
 
-    [HideInInspector] public static bool CheckTimeOfDay; // true - День, false - Ночь!
+    [HideInInspector] public static bool CheckTimeOfDay; // true - День, false - Ночь! НЕ ТРОГАТЬ БЛЯТЬ ЕБАЛ Я ТОГО РОТ, КТО ТРОНЕТ ЭТУ ПЕРЕННУЮ СУКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     private void Start()
     {
+        dayTimeInSeconds = 180f;
+        nightTimeInSeconds = 80f;
+        timeProgress = 0f;
+        CheckTimeOfDay = true;
+
         GetNumberDay?.Invoke(countOfDaysElapsed);
 
         GetTimeProgress?.Invoke(timeProgress);
 
-        CheckTimeOfDay = true;
+        GetTimeOfDay?.Invoke(CheckTimeOfDay);
     }
 
     private void Update()

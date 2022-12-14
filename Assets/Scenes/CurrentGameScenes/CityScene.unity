@@ -13666,7 +13666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1df12b3c22f238418cefb1498628737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldTime: {fileID: 1595287600}
   directionalLight: {fileID: 1404873623}
   dayGradient:
     serializedVersion: 2
@@ -15101,8 +15100,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -141.745, y: -125}
-  m_SizeDelta: {x: 283, y: 250}
+  m_AnchoredPosition: {x: -153, y: -143.76}
+  m_SizeDelta: {x: 326, y: 245.7064}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1209871194
 MonoBehaviour:
@@ -15126,7 +15125,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 1b887fd0083b6554b80868b01b980539, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -27694,11 +27693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b581c6e14b85d4480fec4852f1d991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayTimeInSeconds: 180
-  nightTimeInSeconds: 80
-  timeProgress: 0
   countOfDaysElapsed: 0
-  CheckTimeOfDay: 0
 --- !u!1 &1726442038
 GameObject:
   m_ObjectHideFlags: 0
