@@ -6,7 +6,7 @@ namespace Ekonomika.Dialog
     public class DialogPresenter : MonoBehaviour
     {
         public event Action OnReplica—hange;
-        public event Action OnDialogEnd;
+        public static event Action OnDialogEnd;
 
         public DialogData data { get; private set; }
         

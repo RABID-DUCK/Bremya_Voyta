@@ -44,8 +44,6 @@ public class EventController : MonoBehaviour
         WorldTime.GetTimeProgress += SetTimeInSeconds;
 
         CheckRemoveEvents?.Invoke(originalDay, originalTimeInSeconds);
-        //CheckRemoveEvents += RemoveEvent;
-        //CheckRemoveEvents += SelectEventByTime;
     }
 
     public void SetDay(int day)
@@ -127,36 +125,36 @@ public class EventController : MonoBehaviour
                 break;
             case 2:
 
-                if (stormEvent != null)
-                {
-                    isNegativeWeather = true;
+                //if (stormEvent != null)
+                //{
+                //    isNegativeWeather = true;
 
 
-                }
+                //}
 
                 break;
             case 3:
 
-                if (clearWeatherWithLittleColdEvent != null)
-                {
+                //if (clearWeatherWithLittleColdEvent != null)
+                //{
 
-                }
+                //}
 
                 break;
             case 4:
 
-                if (mine—ollapseEvent != null)
-                {
+                //if (mine—ollapseEvent != null)
+                //{
 
-                }
+                //}
 
                 break;
             case 5:
 
-                if (standartDayEvent != null)
-                {
+                //if (standartDayEvent != null)
+                //{
 
-                }
+                //}
 
                 break;
         }

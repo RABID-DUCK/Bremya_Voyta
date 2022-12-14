@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ekonomika.Dialog;
+using System;
 using UnityEngine;
 
 public class WorldTime : MonoBehaviour
@@ -13,6 +14,8 @@ public class WorldTime : MonoBehaviour
 
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed;
+
+    public bool IsStartTime;
 
     public static event Action<int> GetNumberDay; // Число дня, который наступил. Счет идет до 6, потом обнуляется!!!
 
@@ -34,11 +37,21 @@ public class WorldTime : MonoBehaviour
         GetTimeProgress?.Invoke(timeProgress);
 
         GetTimeOfDay?.Invoke(CheckTimeOfDay);
+
+        DialogPresenter.OnDialogEnd += StartTime;
+    }
+
+    public void StartTime()
+    {
+        IsStartTime = true;
     }
 
     private void Update()
     {
+        //if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
+        //{
         ChengeOfTime();
+        //}
     }
 
     private void ChengeOfTime()

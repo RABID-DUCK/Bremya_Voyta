@@ -2,51 +2,51 @@ using UnityEngine;
 
 public class ThunderstormWithHeavyRainEvent : MonoBehaviour
 {
-    [SerializeField] private ChangeDayAndNight changeTimeOfDay;
+    //[SerializeField] private ChangeDayAndNight changeTimeOfDay;
+
+    public EventSO ThunderSO;
 
     [Tooltip("The object of the particle system")]
     [SerializeField] private GameObject ThunderstormPS;
 
-    [Tooltip("Light from Lightning")]
-    [SerializeField] private Light lightThunder;
+    //[Tooltip("Light from Lightning")]
+    //[SerializeField] private Light lightThunder;
 
-    [Range(0,100), Tooltip("the amount of time in which the sound" +
-        "and light from the lightning will be reflected")]
-    [SerializeField] private float thunderTime;
+    //[Range(0,100), Tooltip("the amount of time in which the sound" +
+    //    "and light from the lightning will be reflected")]
+    //[SerializeField] private float thunderTime;
 
-    [SerializeField] private Light nightSpotLight; // ѕри грозе данный свет должен быть тусклее, чем обычно!!!
+    //[SerializeField] private Light nightSpotLight; // ѕри грозе данный свет должен быть тусклее, чем обычно!!!
 
     //TODO: Ќужно добавить звук ливн€ и грозы
 
-    private void Update()
-    {
-        thunderTime += Time.deltaTime;
-    }
+    //private void Update()
+    //{
+    //    thunderTime += Time.deltaTime;
+    //}
 
-    private void CalcStartThunder() // Ётот метод нужен дл€ по€влени€ молнии.
-    {
-        int randomStartNum = Random.Range(1, 100);
+    //private void CalcStartThunder() // Ётот метод нужен дл€ по€влени€ молнии.
+    //{
+    //    int randomStartNum = Random.Range(1, 100);
 
-        if(thunderTime == randomStartNum)
-        {
-            StartThunder();
-
-            thunderTime = 0;
-        }
-    }
+    //    if(thunderTime == randomStartNum)
+    //    {
+    //        StartThunder();
+    //    }
+    //}
 
     public void StartThunder() // ћетод отвечающий за по€вление молнии.
     {
         ThunderstormPS.SetActive(true);
 
-        EffectOfEvent();
+        //EffectOfEvent();
     }
 
     public void EndThunder() // Ётот метод нужно вызывать, при конце событи€!!!
     {
         ThunderstormPS.SetActive(false);
 
-        RemoteEffectOfEvent();
+        //RemoteEffectOfEvent();
     }
 
     public void EffectOfEvent() // –еализовать логику эффекта от ивента!!!
