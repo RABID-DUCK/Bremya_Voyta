@@ -1,18 +1,23 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class ChangeDayAndNight : MonoBehaviour
 {
-    [SerializeField] private WorldTime worldTime;
-
     [Tooltip("Directional light")]
     [SerializeField] private Light directionalLight;
 
-    [Header("Time of day color settings")]
-    [Tooltip("Gradient of the day")]
-    public Gradient directionalLightGradient;
-    [Tooltip("Gradient of the night")]
-    public Gradient ambientLightGradient;
+    [Header("Gradient time of day")]
+    [Tooltip("Gradient of light at day")]
+    public Gradient dayGradient;
+
+    [Tooltip("Gradient of light at night")]
+    public Gradient nightGradient;
+
+    [Header("Sky gradient settings")]
+    [Tooltip("A gradient that colors the sky of day")]
+    public Gradient daySkyGradient;
+
+    [Tooltip("A gradient that colors the sky of day")]
+    public Gradient nightSkyGradient;
 
     private Vector3 defaultAngles;
 
@@ -23,16 +28,37 @@ public class ChangeDayAndNight : MonoBehaviour
 
     private void Update()
     {
-        ChangeGradientColorWithDayTime();
+        if (WorldTime.CheckTimeOfDay)
+        {
+            ChangingGradientColorDay();
+
+            directionalLight.intensity = 1f;
+        }
+        else
+        {
+            ChangingGradientColorNught();
+
+            directionalLight.intensity = 0.2f;
+        }
     }
 
-    private void ChangeGradientColorWithDayTime()
+    private void ChangingGradientColorDay()
     {
-        directionalLight.color = directionalLightGradient.Evaluate(worldTime.timeProgress);
+        directionalLight.color = dayGradient.Evaluate(WorldTime.timeProgress);
 
-        RenderSettings.ambientLight = ambientLightGradient.Evaluate(worldTime.timeProgress);
+        RenderSettings.ambientLight = daySkyGradient.Evaluate(WorldTime.timeProgress);
 
-        directionalLight.transform.localEulerAngles = new Vector3(360f * worldTime.timeProgress - 90,
+        directionalLight.transform.localEulerAngles = new Vector3(180 * WorldTime.timeProgress,
+            defaultAngles.x, defaultAngles.z);
+    }
+
+    private void ChangingGradientColorNught()
+    {
+        directionalLight.color = nightGradient.Evaluate(WorldTime.timeProgress);
+
+        RenderSettings.ambientLight = nightSkyGradient.Evaluate(WorldTime.timeProgress);
+
+        directionalLight.transform.localEulerAngles = new Vector3(180 * WorldTime.timeProgress - 180,
             defaultAngles.x, defaultAngles.z);
     }
 }

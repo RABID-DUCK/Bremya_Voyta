@@ -100,6 +100,13 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void OpenChat()
     {
-        chatPanel.active = chatPanel.active == true ? false : true;
+        if (chatPanel.activeSelf)
+        {
+            chatPanel.SetActive(false);
+        }
+        else
+        {
+            chatPanel.SetActive(true);
+        }
     }
 }
