@@ -7,7 +7,7 @@ public class ArrowEventWheel : MonoBehaviour
 {
     [SerializeField] private RectTransform arrowRectTransform;
 
-    [SerializeField, Range(0, 1800)] private static float ArrowStroke;
+    [SerializeField, Range(0, 1800)] private static float arrowStroke;
 
     private Vector3 arrowRotation;
 
@@ -27,7 +27,14 @@ public class ArrowEventWheel : MonoBehaviour
     {
         //if (IsStartArrowStroke)  // Раскомментировать условие, когда подключите диалоговую систему
         //{
-        arrowRectTransform.rotation = Quaternion.Euler(arrowRotation.x, arrowRotation.y, arrowRotation.z = -ArrowStroke / 360);
+
+        if(arrowStroke == 1800)
+        {
+            arrowStroke = 0;
+        }
+
+        arrowRectTransform.Rotate(0, 0, -arrowStroke - 1 * Time.deltaTime);
+
         //}
     }
 }
