@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using System;
 using Random = UnityEngine.Random;
-using ExitGames.Client.Photon.StructWrapping;
-using OpenCover.Framework.Model;
 
 public class LobbyMenu : MonoBehaviourPunCallbacks
 {
@@ -24,9 +22,6 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     [Header("Элемент игрка в лобби")]
     [SerializeField] private PlayerItem playerItemPrefab;
     [SerializeField] private Transform playerItemParent;
-
-    [Header("Список рандомных ников")]
-    [SerializeField] private List<string> nick = new List<string> { "Jazz", "Alex", "Choon", "Jenorer", "Frin", "Qwano" };
 
     [Header("Элемент класса выбора")]
     [SerializeField] private GameObject charactersMenu;
@@ -45,17 +40,11 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        PhotonNetwork.LocalPlayer.NickName = CreateRandomName(PhotonNetwork.LocalPlayer);
         FillCharacters();
-        if (PhotonNetwork.IsMasterClient)
-        {
-            buttonStart.gameObject.SetActive(true);
-            buttonStart.interactable = false;
-        }
+        UpdatePlayerList();
     }
 
     private void FillCharacters() {
-        // |   Название   |   Описание   |   Действия 1   |   Действия 2   |   Локация 1   |   Локация 2   | 
 
         characterItemsList.Add(new CharacterItem
         {
@@ -183,31 +172,28 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
     }
 
-    public string CreateRandomName(Player _player)
+    public void StartGame()
     {
-        string _nick = _player.NickName;
-        if (_nick == null || _nick == "")
-        {
-             _nick = $"{nick[Random.Range(0, nick.Count)]} {Random.Range(0, 100)}";
-        }
-        return _nick;
+        SceneManager.LoadScene("Menu");
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        base.OnPlayerEnteredRoom(newPlayer);
         UpdatePlayerList();
+        print($"Игрок ({newPlayer}) зашёл.");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        base.OnPlayerLeftRoom(otherPlayer);
         UpdatePlayerList();
+        print($"Игрок ({otherPlayer}) вышел.");
     }
 
     public override void OnJoinedRoom()
     {
-        base.OnJoinedRoom();
         UpdatePlayerList();
+        print($"Вы ({PhotonNetwork.LocalPlayer}) создали/вошли в лобби.");
     }
 }
