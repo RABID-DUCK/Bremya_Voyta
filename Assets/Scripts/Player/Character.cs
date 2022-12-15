@@ -11,6 +11,11 @@ public class Character : MonoBehaviour
         public int coins;
 
         public int woodCount;
+        public int milkCount;
+        public int metallCount;
+        public int meatCount;
+        public int fishCount;
+        public int corratCount;
     }
 
     public CharacterInventory inventory;

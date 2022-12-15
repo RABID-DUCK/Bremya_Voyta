@@ -13,7 +13,7 @@ public class MarketView : MonoBehaviour
 
     public List<GameObject> marketPanels = new List<GameObject>();
 
-    public int panelId = 0;
+    [HideInInspector] public int panelId = 0;
     public event Action<int> selectPanelId;
 
     private void Start()
@@ -21,22 +21,23 @@ public class MarketView : MonoBehaviour
         btnMarketPlace.onClick.AddListener(SelectMarketPlacePanel);
         btnChangerPlace.onClick.AddListener(SelectChangerPlacePanel);
         btnStorePlace.onClick.AddListener(SelectStorePlacePanel);
-
-        selectPanelId?.Invoke(panelId);
-    }
-    public void SelectMarketPlacePanel()
-    {
-        panelId = 2;
-    }
-
-    public void SelectChangerPlacePanel()
-    {
-        panelId = 0;
     }
 
     public void SelectStorePlacePanel()
     {
-        panelId = 1;
+        panelId = 0;
+        selectPanelId?.Invoke(panelId);
     }
+    public void SelectChangerPlacePanel()
+    {
+        panelId = 1;
+        selectPanelId?.Invoke(panelId);
+    }
+
+    public void SelectMarketPlacePanel()
+    {
+        panelId = 2;
+        selectPanelId?.Invoke(panelId);
+    }  
 
 }

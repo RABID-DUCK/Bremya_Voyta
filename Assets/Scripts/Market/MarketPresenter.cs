@@ -18,7 +18,16 @@ public class MarketPresenter : MonoBehaviour
     private void SetPanelId(int panelId)
     {
         currentId = panelId;
-        Debug.Log("dasd");
+        for (int i = 0; i < marketView.marketPanels.Count; i++)
+        {
+            if (currentId == i) 
+            {
+                marketView.marketPanels[i].SetActive(true);
+            } 
+            else {
+                marketView.marketPanels[i].SetActive(false);
+            }
+        }
     }
 
     private void Update()
