@@ -1,3 +1,3 @@
-public class BerryPicker : Profession<BerryBush>
+public class BerryPicker : Profession<Glade>
 {
 }
