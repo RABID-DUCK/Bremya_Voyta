@@ -5,74 +5,80 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using Random = UnityEngine.Random;
+using UnityEngine.Video;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
-    [SerializeField] GameObject Menu;
-    [SerializeField] GameObject Loading;
-    [SerializeField] GameObject Error;
-    [SerializeField] TMP_Text ErrorText;
+    [Header("Свойства комнаты")]
+    [SerializeField] private GameObject Menu;
+    [SerializeField] private GameObject Loading;
+    [SerializeField] private GameObject Error;
+    [SerializeField] private TMP_Text ErrorText;
+    [SerializeField] private string RoomName = "Room";
+    [SerializeField] private VideoPlayer ScreenSaver;
 
-    private void Awake()
+    [Header("Список рандомных ников")]
+    [SerializeField] private List<string> nick = new List<string> { "Jazz", "Alex", "Choon", "Jenorer", "Frin", "Qwano" };
+
+    public void Awake()
     {
         Loading.SetActive(true);
     }
 
-    private void Start()
+    public void CreateRandomName(Player _player)
+    {
+        string _nick = _player.NickName;
+        if (_nick == null || _nick == "")
+        {
+            _nick = $"{nick[Random.Range(0, nick.Count)]} {Random.Range(0, 100)}";
+            _player.NickName = _nick;
+        };
+    }
+
+    public override void OnConnectedToMaster()
     {
         Menu.SetActive(true);
         Loading.SetActive(false);
     }
 
-    public override void OnConnectedToMaster()
+    public void Start()
     {
-        base.OnConnectedToMaster();
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.IsVisible = false;
-        roomOptions.MaxPlayers = 6;
+        PhotonNetwork.ConnectUsingSettings();
+    }
 
-        if (PhotonNetwork.CountOfRooms <= 0)
-        {
-            PhotonNetwork.CreateRoom("Room", roomOptions);
-            SceneManager.LoadScene("Lobby");
-        }
-        else
-        {
-            if (PhotonNetwork.CountOfPlayersInRooms < 6)
-            {
-                if (PhotonNetwork.JoinRoom("Room"))
-                {
-                    SceneManager.LoadScene("Lobby");
-                }
-            }
-            else
-            {
-                Loading.SetActive(false);
-                Error.SetActive(true);
-                ErrorText.text = "Лобби заполнено!";
-            }
-        }
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        print($"Выход {cause.ToString()}");
     }
 
     public void Play()
     {
+        if (!PhotonNetwork.IsConnected) return;
+
         Menu.SetActive(false);
         Loading.SetActive(true);
 
-        if(!PhotonNetwork.ConnectUsingSettings())
-        {
-            Menu.SetActive(true);
-            Error.SetActive(true);
-            ErrorText.text = "Не удалось подключиться к серверам!";
-        }
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.IsVisible = false;
+        roomOptions.MaxPlayers = 6;
 
+        CreateRandomName(PhotonNetwork.LocalPlayer);
+        PhotonNetwork.JoinOrCreateRoom(RoomName, roomOptions, TypedLobby.Default);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
+        Menu.SetActive(true);
+        Loading.SetActive(false);
         ErrorText.text = $"{returnCode} {message}";
         Error.SetActive(true);
-        Loading.SetActive(false);
     }
 
     public void Quit()

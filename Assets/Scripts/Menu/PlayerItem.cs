@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using System.Security.Cryptography;
 
 public class PlayerItem : MonoBehaviourPunCallbacks
 {
@@ -57,7 +55,6 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         phPlayer.SetCustomProperties(_CP);
 
         SetNick();
-        SetReady();
         SetCharacter(this);
 
         if (_player.IsLocal)
@@ -71,11 +68,6 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
             textButtonReady.color = Color.red;
             textButtonReady.text = "Не готов";
-        }
-        else
-        {
-            textButtonReadyOther.color = Color.red;
-            textButtonReadyOther.text = "Не готов";
         }
     }
 
@@ -110,9 +102,6 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         textButtonReady.color = boolReady ? Color.green : Color.red;
         textButtonReady.text = boolReady ? "Готов" : "Не готов";
 
-        Debug.Log(boolReady);
-
-
         _CP["Ready"] = boolReady;
         phPlayer.SetCustomProperties(_CP);
 
@@ -126,9 +115,9 @@ public class PlayerItem : MonoBehaviourPunCallbacks
             if (phPlayer.CustomProperties.ContainsKey("Ready"))
             {
                 boolReady = (bool)phPlayer.CustomProperties["Ready"];
+                textButtonReadyOther.color = boolReady ? Color.green : Color.red;
+                textButtonReadyOther.text = boolReady ? "Готов" : "Не готов";
             }
-            textButtonReadyOther.color = boolReady ? Color.green : Color.red;
-            textButtonReadyOther.text = boolReady ? "Готов" : "Не готов";
         }
     }
 
