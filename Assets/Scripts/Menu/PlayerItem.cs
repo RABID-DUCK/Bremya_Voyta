@@ -9,6 +9,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using System.Security.Cryptography;
 
 public class PlayerItem : MonoBehaviourPunCallbacks
 {
@@ -29,10 +30,15 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     [HideInInspector] public Player phPlayer;
     [HideInInspector] public int phId = -1;
 
-    [Space]
-    [SerializeField] bool boolReady;
+    [SerializeField] private bool boolReady;
 
     private ExitGames.Client.Photon.Hashtable _CP = new ExitGames.Client.Photon.Hashtable();
+
+    public void Set(UnityAction eventClick, LobbyMenu _lm)  // создаёт связь
+    {
+        buttonChange.onClick.AddListener(eventClick);
+        lm = _lm;
+    }
 
     public void SetPlayerInfo(Player _player)
     {
@@ -46,9 +52,14 @@ public class PlayerItem : MonoBehaviourPunCallbacks
             phId = phPlayer.ActorNumber;
         }
 
+        boolReady = false;
+        _CP["Ready"] = false;
+        phPlayer.SetCustomProperties(_CP);
+
         SetNick();
-        SetReady(phId, 0);
+        SetReady();
         SetCharacter(this);
+
         if (_player.IsLocal)
         {
             buttonChange.gameObject.SetActive(true);
@@ -57,6 +68,14 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
             buttonReady.gameObject.SetActive(true);
             buttonReadyOther.gameObject.SetActive(false);
+
+            textButtonReady.color = Color.red;
+            textButtonReady.text = "Не готов";
+        }
+        else
+        {
+            textButtonReadyOther.color = Color.red;
+            textButtonReadyOther.text = "Не готов";
         }
     }
 
@@ -65,57 +84,56 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         textPlayerName.text = phPlayer.NickName;
     }
 
-    public void SetCharacter(PlayerItem _player)
-    {
-        // изменение профессии
-    }
-
-    public void SetReady(PlayerItem _player)
-    {
-        if (photonView.IsMine)
-        {
-            
-        }
-        // готовность игрока
-    }
-
-    public void StartInputNick()
+    public void StartInputNick()    // включение кнопки применения ника
     {
         inputNickButton.interactable = true;
+        if (boolReady)
+        {
+            SetReadyButton();
+        }
     }
 
-    public void EndInputNick()
+    public void EndInputNick()      // применение ника и выключение кнопки
     {
         inputNickButton.interactable = false;
         if (inputNick.text != "")
         {
-            PhotonNetwork.LocalPlayer.NickName = inputNick.text;
+            phPlayer.NickName = inputNick.text;
             inputNick.text = "";
             lm.Send_Data("ReloadNick", phId);
         }
     }
 
-    public void SetReady(int _id, int _status)
+    public void SetReadyButton()
     {
-        bool _bool = _status == 0 ? false : true;
-        if (_id == phId)
+        boolReady = !boolReady;
+        textButtonReady.color = boolReady ? Color.green : Color.red;
+        textButtonReady.text = boolReady ? "Готов" : "Не готов";
+
+        Debug.Log(boolReady);
+
+
+        _CP["Ready"] = boolReady;
+        phPlayer.SetCustomProperties(_CP);
+
+        lm.Send_Data("ReloadReady", phId);
+    }
+
+    public void SetReady()
+    {
+        if (!phPlayer.IsLocal)
         {
-            // локальный игрок
-            textButtonReady.color = _bool ? Color.green : Color.red;
-            textButtonReady.text = _bool ? "Готов" : "Не готов";
-            lm.Send_Data("ReloadReady", _id, _bool);
-        }
-        else
-        {
-            // остальные игроки
-            textButtonReadyOther.color = _bool ? Color.green : Color.red;
-            textButtonReadyOther.text = _bool ? "Готов" : "Не готов";
+            if (phPlayer.CustomProperties.ContainsKey("Ready"))
+            {
+                boolReady = (bool)phPlayer.CustomProperties["Ready"];
+            }
+            textButtonReadyOther.color = boolReady ? Color.green : Color.red;
+            textButtonReadyOther.text = boolReady ? "Готов" : "Не готов";
         }
     }
 
-    public void Set(UnityAction eventClick, LobbyMenu _lm)
+    public void SetCharacter(PlayerItem _player)
     {
-        buttonChange.onClick.AddListener(eventClick);
-        lm = _lm;
+        // изменение профессии
     }
 }

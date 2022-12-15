@@ -8,19 +8,19 @@ public class CoordinatorEvents : MonoBehaviour
     [SerializeField] private ChangeDayAndNight changeDayAndNight;
 
     private Gradient standartDayGradient;
-    private Gradient standartNightGradient;
+    private Gradient standartSkyColor;
 
     [Header("Gradient of day and night light during bad weather")]
     [Tooltip("Gradient of the day")]
     public Gradient dayLightGradient;
     [Tooltip("Gradient of the night")]
-    public Gradient nightLightGradient;
+    public Gradient nightSkyColor;
 
     private void Start()
     {
-        standartDayGradient = changeDayAndNight.directionalLightGradient;
+        standartDayGradient = changeDayAndNight.dayGradient;
 
-        standartNightGradient = changeDayAndNight.ambientLightGradient;
+        standartSkyColor = changeDayAndNight.daySkyGradient;
 
         EventController.GetNegativeWeather += CheckNegativeWeather;
     }
@@ -29,15 +29,15 @@ public class CoordinatorEvents : MonoBehaviour
     {
         if (isNegativeWeather)
         {
-            changeDayAndNight.directionalLightGradient = dayLightGradient;
+            changeDayAndNight.dayGradient = dayLightGradient;
 
-            changeDayAndNight.ambientLightGradient = nightLightGradient;
+            changeDayAndNight.daySkyGradient = nightSkyColor;
         }
         else
         {
-            changeDayAndNight.directionalLightGradient = standartDayGradient;
+            changeDayAndNight.dayGradient = standartDayGradient;
 
-            changeDayAndNight.ambientLightGradient = standartNightGradient;
+            changeDayAndNight.daySkyGradient = standartSkyColor;
         }
     }
 
@@ -46,6 +46,6 @@ public class CoordinatorEvents : MonoBehaviour
     //{
     //    dayLightGradient = standartDayGradient;
 
-    //    nightLightGradient = standartNightGradient;
+    //    nightSkyColor = standartSkyColor;
     //}
 }

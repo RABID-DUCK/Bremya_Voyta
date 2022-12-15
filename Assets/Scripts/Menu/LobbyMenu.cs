@@ -103,7 +103,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     private int startInt = 0;
     private int limit = 3;
 
-    public void UpdateCharectersList(int pos)
+    public void UpdateCharectersList(int pos)   // создание/обновление профессий
     {
         if (pos == -1 && startInt <= 0 || pos == 1 && startInt >= characterItemsList.Count - limit)
         {
@@ -123,7 +123,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         }
     }
 
-    private void UpdatePlayerList()
+    private void UpdatePlayerList()     // создание/обновление игроков
     {
         foreach (PlayerItem item in playerItemsList)
         {
@@ -139,10 +139,8 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         foreach (KeyValuePair<int, Player> _player in PhotonNetwork.CurrentRoom.Players)
         {
             PlayerItem newPlayerItem = Instantiate(playerItemPrefab, playerItemParent);
-            newPlayerItem.SetPlayerInfo(_player.Value);
             newPlayerItem.Set(OpenOrCloseCharacters, this);
-
-            Debug.Log(_player.Key);
+            newPlayerItem.SetPlayerInfo(_player.Value);
 
             playerItemsList.Add(newPlayerItem);
         }
@@ -154,7 +152,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void ReloadNick(int _id)
+    public void ReloadNick(int _id)     // вызов метода обновления ника
     {
         PlayerItem _player = playerItemsList.FirstOrDefault(p => p.phId == _id);
         if (_player != null)
@@ -164,12 +162,12 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void ReloadReady(int _id, int _bool)
+    public void ReloadReady(int _id)    // вызов метода обновления готовности
     {
         PlayerItem _player = playerItemsList.FirstOrDefault(p => p.phId == _id);
         if (_player != null)
         {
-            _player.SetReady(_id, _bool);
+            _player.SetReady();
         }
     }
 
