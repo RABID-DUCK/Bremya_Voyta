@@ -66,7 +66,7 @@ public class MarketPlace : MonoBehaviour
         }
         else
         {
-            _charackter.inventory.metallCount += 1;
+            _charackter.inventory.ironCount += 1;
         }
         selectedButton?.Invoke(btn);
     }

@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2220119700152802986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064349183670878929}
+  - component: {fileID: 5588849741581396156}
+  - component: {fileID: 2905833119146292171}
+  - component: {fileID: 2733972157312690840}
+  m_Layer: 0
+  m_Name: Hunter_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064349183670878929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3726640710535111330}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5588849741581396156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1f2febc9d8c8e4f9a8d0d4d8e1758e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory:
+    coins: 0
+    woodCount: 0
+    berriesCount: 0
+    carrotCount: 0
+    milkCount: 0
+    coalCount: 0
+    ironCount: 0
+    meatCount: 0
+    fishCount: 0
+--- !u!114 &2905833119146292171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1649372bfc1a0354fadcc76ce338a875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2733972157312690840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10ecec8ad832c1419acaf0f6e94b58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1613028105592821418
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2064349183670878929}
+    m_Modifications:
+    - target: {fileID: 187108410881611275, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_Name
+      value: SK_femalehunter_2_model
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+--- !u!4 &3726640710535111330 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2726102188691600392, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+  m_PrefabInstance: {fileID: 1613028105592821418}
+  m_PrefabAsset: {fileID: 0}
