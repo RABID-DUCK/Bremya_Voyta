@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Character))]
-public abstract class Profession : MonoBehaviour
+public abstract class Profession<T> : MonoBehaviour where T : IClickableObject
 {
-    protected Character player;
+    private Character player;
 
     private void Awake()
     {
@@ -17,5 +17,11 @@ public abstract class Profession : MonoBehaviour
         player.OnGetWork -= Inject;
     }
 
-    protected abstract void Inject(Work work);
+    public void Inject(IClickableObject work)
+    {
+        if (Equals(work.GetType(), typeof(T)))
+        {
+            work.Exicute(player);
+        }
+    }
 }

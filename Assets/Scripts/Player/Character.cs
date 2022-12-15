@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public event Action<Work> OnGetWork;
+    public event Action<IClickableObject> OnGetWork;
 
     [Serializable]
     public struct CharacterInventory
@@ -11,11 +11,12 @@ public class Character : MonoBehaviour
         public int coins;
 
         public int woodCount;
+        public int berriesCount;
         public int milkCount;
         public int metallCount;
         public int meatCount;
         public int fishCount;
-        public int corratCount;
+        public int carrotCount;
     }
 
     public CharacterInventory inventory;
@@ -29,18 +30,18 @@ public class Character : MonoBehaviour
 
             if (Physics.Raycast(ray, out _hit, Mathf.Infinity))
             {
-                GetWork(_hit);
+                GetObject(_hit);
             }
         }
     }
 
-    private void GetWork(RaycastHit _hit)
+    private void GetObject(RaycastHit _hit)
     {
-        Work tempWork = _hit.collider.GetComponent<Work>();
+        IClickableObject click = _hit.collider.GetComponent<IClickableObject>();
 
-        if (tempWork)
+        if (click != null)
         {
-            OnGetWork?.Invoke(tempWork);
+            OnGetWork?.Invoke(click);
         }
     }
 }

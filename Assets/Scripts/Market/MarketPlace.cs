@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class MarketPlace : MonoBehaviour
 {
@@ -106,7 +105,7 @@ public class MarketPlace : MonoBehaviour
         }
         else
         {
-            _charackter.inventory.corratCount += 1;
+            _charackter.inventory.carrotCount += 1;
         }
         selectedButton?.Invoke(btn);
     }
