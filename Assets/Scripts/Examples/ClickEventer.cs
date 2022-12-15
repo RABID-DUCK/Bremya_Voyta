@@ -34,7 +34,7 @@ public class ClickEventer : MonoBehaviour
 
     public void ChooseBtnYes()
     {
-        SceneManager.LoadScene("InHome");
+        SceneManager.LoadScene(3);
     }
 
     public void ChooseBtnNo()
