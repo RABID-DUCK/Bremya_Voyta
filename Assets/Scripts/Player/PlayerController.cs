@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float vertical, horizontal;
+    Bed bed;
 
     [Header("Скорость перемещения персонажа")]
     [SerializeField] private float moveSpeed = 7f;
@@ -39,5 +40,9 @@ public class PlayerController : MonoBehaviour
 
         playerBody.transform.Rotate(0, horizontal, 0);
         transform.Translate(0, 0, vertical);
+    }
+    public void WindowSleep()
+    {
+
     }
 }

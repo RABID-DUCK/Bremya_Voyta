@@ -24,6 +24,11 @@ public class WorldTime : MonoBehaviour
     public static event Action<bool> GetTimeOfDay; // Взять время суток! Указываешь класс и название ивента, чтобы подвязаться к нему
 
     [HideInInspector] public static bool CheckTimeOfDay; // true - День, false - Ночь! НЕ ТРОГАТЬ БЛЯТЬ ЕБАЛ Я ТОГО РОТ, КТО ТРОНЕТ ЭТУ ПЕРЕННУЮ СУКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private void Awake()
+    {
+        CheckTimeOfDay = this;
+        DontDestroyOnLoad(this);
+    }
 
     private void Start()
     {
@@ -40,7 +45,6 @@ public class WorldTime : MonoBehaviour
 
         DialogPresenter.OnDialogEnd += StartTime;
     }
-
     public void StartTime()
     {
         IsStartTime = true;
@@ -52,6 +56,14 @@ public class WorldTime : MonoBehaviour
         //{
         ChengeOfTime();
         //}
+        if (CheckTimeOfDay)
+        {
+            Debug.Log("Day");
+        }
+        else
+        {
+            Debug.Log("night");
+        }
     }
 
     private void ChengeOfTime()
