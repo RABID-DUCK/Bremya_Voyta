@@ -15,7 +15,7 @@ public class SleepPanel : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject playerSleep;
     [SerializeField] private GameObject sleepWindow;
-    [SerializeField] private GameObject warningWindow;
+    //[SerializeField] private GameObject warningWindow;
 
     float notSleep=0;
     public void BtnYes()
@@ -46,7 +46,7 @@ public class SleepPanel : MonoBehaviour
             else if (notSleep >= 1)
             {
                 sleepWindow.SetActive(false);
-                warningWindow.SetActive(true);
+                //warningWindow.SetActive(true);
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -57,7 +57,7 @@ public class SleepPanel : MonoBehaviour
     }
     public void WarningBtnYes()
     {
-        warningWindow.SetActive(false);
+        //warningWindow.SetActive(false);
         playerSleep.SetActive(true);
         player.SetActive(false);
     }

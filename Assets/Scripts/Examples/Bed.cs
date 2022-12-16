@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Bed : MonoBehaviour
 {
@@ -27,9 +24,10 @@ public class Bed : MonoBehaviour
     {
         outline.enabled = false;
     }
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && transform.gameObject.tag == "Bed")
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
             RaycastHit hit;
