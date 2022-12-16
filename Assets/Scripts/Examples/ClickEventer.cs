@@ -1,4 +1,6 @@
 using Photon.Pun;
+using Photon.Realtime;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -6,9 +8,26 @@ using UnityEngine.SceneManagement;
 public class ClickEventer : MonoBehaviour
 {
     [SerializeField] GameObject popup;
+    [SerializeField] GameObject player;
 
+    private void Awake()
+    {
+        
+    }
 
-     void Update()
+    private void Start()
+    {
+/*        foreach (KeyValuePair<int, Player> _player in PhotonNetwork.CurrentRoom.Players)
+        {
+            PlayerItem newPlayerItem = Instantiate(player, spawnPosition);
+            newPlayerItem.Set(OpenOrCloseCharacters, this);
+            newPlayerItem.SetPlayerInfo(_player.Value);
+
+            playerItemsList.Add(newPlayerItem);
+        }*/
+    }
+
+    void Update()
     {
 
         if (Input.GetMouseButtonDown(0))
@@ -41,4 +60,6 @@ public class ClickEventer : MonoBehaviour
     {
         popup.SetActive(false);
     }
+    
+
 }

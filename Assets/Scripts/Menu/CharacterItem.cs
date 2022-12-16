@@ -25,6 +25,9 @@ public class CharacterItem : MonoBehaviour
 
     public void ChangeCharacter()
     {
-        
+/*        _CP["Ready"] = boolReady;
+        phPlayer.SetCustomProperties(_CP);
+
+        lm.Send_Data("ReloadReady", phId);*/
     }
 }
