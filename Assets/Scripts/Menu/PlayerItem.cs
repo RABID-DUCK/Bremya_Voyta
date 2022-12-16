@@ -28,7 +28,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     [HideInInspector] public Player phPlayer;
     [HideInInspector] public int phId = -1;
 
-    [SerializeField] private bool boolReady;
+    [SerializeField] public bool boolReady;
 
     private ExitGames.Client.Photon.Hashtable _CP = new ExitGames.Client.Photon.Hashtable();
 
@@ -55,7 +55,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         phPlayer.SetCustomProperties(_CP);
 
         SetNick();
-        SetCharacter(this);
+        SetCharacter();
 
         if (_player.IsLocal)
         {
@@ -121,7 +121,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         }
     }
 
-    public void SetCharacter(PlayerItem _player)
+    public void SetCharacter()
     {
         // изменение профессии
     }

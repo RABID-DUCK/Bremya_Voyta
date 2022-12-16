@@ -56,14 +56,14 @@ public class WorldTime : MonoBehaviour
         //{
         ChengeOfTime();
         //}
-        if (CheckTimeOfDay)
+/*        if (CheckTimeOfDay)
         {
             Debug.Log("Day");
         }
         else
         {
             Debug.Log("night");
-        }
+        }*/
     }
 
     private void ChengeOfTime()

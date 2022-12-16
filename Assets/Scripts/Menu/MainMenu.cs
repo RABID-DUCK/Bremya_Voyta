@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using System;
 using Random = UnityEngine.Random;
 using UnityEngine.Video;
+using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
@@ -18,9 +19,10 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Text ErrorText;
     [SerializeField] private string RoomName = "Room";
     [SerializeField] private VideoPlayer ScreenSaver;
+    [Range(0, 6), Tooltip("Кол-во человек в комнате")] public int countPlayerInRoom;
 
     [Header("Список рандомных ников")]
-    [SerializeField] private List<string> nick = new List<string> { "Jazz", "Alex", "Choon", "Jenorer", "Frin", "Qwano" };
+    [SerializeField, Tooltip("Список ников для игроков")] private List<string> nick = new List<string> { "Jazz", "Alex", "Choon", "Jenorer", "Frin", "Qwano" };
 
     public void Awake()
     {
@@ -62,7 +64,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = false;
-        roomOptions.MaxPlayers = 6;
+        roomOptions.MaxPlayers = (byte)countPlayerInRoom;
 
         CreateRandomName(PhotonNetwork.LocalPlayer);
         PhotonNetwork.JoinOrCreateRoom(RoomName, roomOptions, TypedLobby.Default);
