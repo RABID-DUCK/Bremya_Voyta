@@ -16,6 +16,14 @@ public class ExitRoom : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (outline != null) 
+        {
+            print("ne null;");
+        }
+        else
+        {
+            print("null");
+        }
         outline.enabled = true;
     }
 

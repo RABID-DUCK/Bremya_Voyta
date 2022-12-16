@@ -27,7 +27,7 @@ public class Bed : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && transform.gameObject.tag == "Bed")
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
             RaycastHit hit;
