@@ -9,22 +9,12 @@ public class ClickEventer : MonoBehaviour
 {
     [SerializeField] GameObject popup;
     [SerializeField] GameObject player;
+    [SerializeField] public GameObject[] Spawns;
 
     private void Awake()
     {
-        
-    }
-
-    private void Start()
-    {
-/*        foreach (KeyValuePair<int, Player> _player in PhotonNetwork.CurrentRoom.Players)
-        {
-            PlayerItem newPlayerItem = Instantiate(player, spawnPosition);
-            newPlayerItem.Set(OpenOrCloseCharacters, this);
-            newPlayerItem.SetPlayerInfo(_player.Value);
-
-            playerItemsList.Add(newPlayerItem);
-        }*/
+        Vector3 randomPositions = Spawns[Random.Range(0, Spawns.Length)].transform.localPosition;
+        PhotonNetwork.Instantiate(player.name, randomPositions, Quaternion.identity);
     }
 
     void Update()
