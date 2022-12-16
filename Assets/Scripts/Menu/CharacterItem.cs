@@ -23,11 +23,13 @@ public class CharacterItem : MonoBehaviour
     public List<bool> full = new List<bool>();
     public LobbyMenu lm;
 
+    private ExitGames.Client.Photon.Hashtable _CP = new ExitGames.Client.Photon.Hashtable();
+
     public void ChangeCharacter()
     {
-/*        _CP["Ready"] = boolReady;
-        phPlayer.SetCustomProperties(_CP);
+        _CP["Profession"] = Name;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
 
-        lm.Send_Data("ReloadReady", phId);*/
+        lm.Send_Data("ReloadCharacter", PhotonNetwork.LocalPlayer.ActorNumber);
     }
 }
