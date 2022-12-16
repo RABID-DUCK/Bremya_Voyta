@@ -35,11 +35,14 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMove()
     {
-        horizontal = Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime;
-        vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        if (PhotonNetwork.LocalPlayer.IsLocal)
+        {
+            horizontal = Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime;
+            vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-        playerBody.transform.Rotate(0, horizontal, 0);
-        transform.Translate(0, 0, vertical);
+            playerBody.transform.Rotate(0, horizontal, 0);
+            transform.Translate(0, 0, vertical);
+        }
     }
     public void WindowSleep()
     {
