@@ -22491,8 +22491,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Market, Assembly-CSharp
+      - m_Target: {fileID: 166551128}
+        m_TargetAssemblyTypeName: MarketPresenter, Assembly-CSharp
         m_MethodName: OpenMarketPanel
         m_Mode: 1
         m_Arguments:
@@ -27701,7 +27701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< Updated upstream
       value: 3.761686
+=======
+      value: 3.572125
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27709,7 +27713,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< Updated upstream
       value: -12.216132
+=======
+      value: -12.265371
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29301,7 +29309,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1592080176}
-  - component: {fileID: 1592080177}
   m_Layer: 7
   m_Name: MarketPlace
   m_TagString: Untagged
@@ -29335,26 +29342,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1592080177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592080175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3bd2b9cecffba04ab89056b93de23a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _charackter: {fileID: 0}
-  BuyMilk: {fileID: 0}
-  BuyWood: {fileID: 0}
-  BuyMetall: {fileID: 0}
-  BuyMeat: {fileID: 0}
-  BuyFish: {fileID: 0}
-  BuyCorrat: {fileID: 0}
-  btn: 0
 --- !u!1 &1594283926
 GameObject:
   m_ObjectHideFlags: 0
@@ -34527,7 +34514,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4869822351537468165}
   m_LocalRotation: {x: 0.32194144, y: -0.11986677, z: 0.041130293, w: 0.9382399}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 3.761686, y: 11.5211735, z: -12.216132}
+=======
+  m_LocalPosition: {x: 3.572125, y: 11.5211735, z: -12.265371}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
