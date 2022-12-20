@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         var h = -Input.GetAxis("Horizontal"); // AD
         var v = -Input.GetAxis("Vertical"); // WS
 
-
+        
         // Move player
         var right = transform.right * h;
         var forward = transform.forward * v;
