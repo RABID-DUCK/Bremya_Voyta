@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd67fee3d67c60141aeab6cd21a839ea, type: 3}
+  m_Name: Hunter
+  m_EditorClassIdentifier: 
+  nameCharacter: "\u041E\u0445\u043E\u0442\u043D\u0438\u043A"
+  description: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043E\u0445\u043E\u0442\u043D\u0438\u043A\u0430"
+  actions:
+  - "\u041E\u0445\u043E\u0442\u0430"
+  - "\u0420\u044B\u0431\u0430\u043B\u043A\u0430"
+  placesWork:
+  - "\u0421\u0442\u0435\u043F\u044C"
+  - "\u041F\u0440\u0443\u0434"
+  prefabs:
+  - {fileID: 187108410881611275, guid: 74483d1045c3c284aa102b62d871a14c, type: 3}
+  - {fileID: 187108410881611275, guid: 50136b7f88832054cb960f887ed2fe9f, type: 3}
+  avatars:
+  - {fileID: 21300000, guid: 9d7576eacc2dc6b4aa2a3f3dc97b2b53, type: 3}
+  - {fileID: 21300000, guid: 3bc0c1796243bc44d8c8312af838d540, type: 3}
+  full: 
+  countPlayers: 2

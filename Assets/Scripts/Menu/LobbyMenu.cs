@@ -1,15 +1,11 @@
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
-using TMPro;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using System.Linq;
-using System;
-using Random = UnityEngine.Random;
-using System.IO;
-using ExitGames.Client.Photon.StructWrapping;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LobbyMenu : MonoBehaviourPunCallbacks
 {
@@ -31,33 +27,9 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     [SerializeField] private CharacterItem characterItemPrefab;
     [SerializeField] private Transform characterItemParent;
 
-    [Header("Кол-во доступности игроков в класс")]
-    [Tooltip("Лесоруб")] [Range(0, 4)] public int countLumberjack = 2;
-    [SerializeField] private Sprite avatarLumberjack1;
-    [SerializeField] private GameObject prefabLumberjack1;
-    [SerializeField] private Sprite avatarLumberjack2;
-    [SerializeField] private GameObject prefabLumberjack2;
-
-    [Space, Tooltip("Фермер")] [Range(0, 4)] public int countFarmer = 2;
-    [SerializeField] private Sprite avatarFarmer1;
-    [SerializeField] private GameObject prefabFarmer1;
-    [SerializeField] private Sprite avatarFarmer2;
-    [SerializeField] private GameObject prefabFarmer2;
-
-    [Space, Tooltip("Шахтёр")] [Range(0, 4)] public int countMiner = 2;
-    [SerializeField] private Sprite avatarMiner1;
-    [SerializeField] private GameObject prefabMiner1;
-    [SerializeField] private Sprite avatarMiner2;
-    [SerializeField] private GameObject prefabMiner2;
-
-    [Space, Tooltip("Охотник")] [Range(0, 4)] public int countHunter = 2;
-    [SerializeField] private Sprite avatarHunter1;
-    [SerializeField] private GameObject prefabHunter1;
-    [SerializeField] private Sprite avatarHunter2;
-    [SerializeField] private GameObject prefabHunter2;
+    [SerializeField] private List<CharacterSO> listCharacters;
 
     private List<PlayerItem> playerItemsList = new List<PlayerItem>();
-    private List<CharacterItem> characterItemsList = new List<CharacterItem>();
 
     private void Awake()
     {
@@ -68,58 +40,9 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    private void FillCharacters() {
-        characterItemsList.Add(new CharacterItem
-        {
-            Name = "Лесоруб",
-            Desc = "Описание лесоруба",
-            Move1 = "Рубка деревьев",
-            Move2 = "Сбор ягод и грибов",
-            Locate1 = "Лес",
-            Locate2 = "Поляна",
-            avatars = { avatarLumberjack1, avatarLumberjack2 },
-            prefabs = { prefabLumberjack1, prefabLumberjack2 },
-            full = { false, false }
-        });
+    private void FillCharacters()
+    {
 
-        characterItemsList.Add(new CharacterItem
-        {
-            Name = "Фермер",
-            Desc = "Описание фермера",
-            Move1 = "Выращивание овощей",
-            Move2 = "Добыча молока",
-            Locate1 = "Грядка",
-            Locate2 = "Коровник",
-            avatars = { avatarFarmer1, avatarFarmer2 },
-            prefabs = { prefabFarmer1, prefabFarmer2 },
-            full = { false, false }
-        });
-
-        characterItemsList.Add(new CharacterItem
-        {
-            Name = "Шахтёр",
-            Desc = "Описание шахтёра",
-            Move1 = "Добыча угля",
-            Move2 = "Добыча металла",
-            Locate1 = "Шахта (с углём)",
-            Locate2 = "Шахта (с металлом)",
-            avatars = { avatarMiner1, avatarMiner2 },
-            prefabs = { prefabMiner1, prefabMiner2 },
-            full = { false, false }
-        });
-
-        characterItemsList.Add(new CharacterItem
-        {
-            Name = "Охотник",
-            Desc = "Описание охотника",
-            Move1 = "Охота",
-            Move2 = "Рыбалка",
-            Locate1 = "Степь",
-            Locate2 = "Пруд",
-            avatars = { avatarHunter1, avatarHunter2 },
-            prefabs = { prefabHunter1, prefabHunter2 },
-            full = { false, false }
-        });
 
         UpdateCharectersList(0);
     }
@@ -129,7 +52,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
 
     public void UpdateCharectersList(int pos)   // создание/обновление профессий
     {
-        if (pos == -1 && startInt <= 0 || pos == 1 && startInt >= characterItemsList.Count - limit)
+        if (pos == -1 && startInt <= 0 || pos == 1 && startInt >= listCharacters.Count - limit)
         {
             return;
         }
@@ -144,15 +67,20 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         for (int i = startInt; i < startInt + limit; i++)
         {
             CharacterItem newCharacterItem = Instantiate(characterItemPrefab, characterItemParent);
-            newCharacterItem.name = characterItemsList[i].Name;
-            newCharacterItem.Name = characterItemsList[i].Name;
-            newCharacterItem.Desc = characterItemsList[i].Desc;
-            newCharacterItem.Move1 = characterItemsList[i].Move1;
-            newCharacterItem.Move2 = characterItemsList[i].Move2;
-            newCharacterItem.Locate1 = characterItemsList[i].Locate1;
-            newCharacterItem.Locate2 = characterItemsList[i].Locate2;
-            newCharacterItem.countPlayers = characterItemsList[i].countPlayers;
-            newCharacterItem.avatarCharacter.sprite = characterItemsList[i].avatars[0];
+            newCharacterItem.characterSO = listCharacters[i];
+            newCharacterItem.avatarCharacter.sprite = listCharacters[i].avatars[0];
+            foreach (var (_filled, j) in listCharacters[i].full.Select((_filled, j) => (_filled, j)))
+            {
+                if (_filled)
+                {
+                    continue;
+                }
+                else
+                {
+                    newCharacterItem.avatarCharacter.sprite = listCharacters[i].avatars[j];
+                    break;
+                }
+            }
             newCharacterItem.lm = this;
         }
     }
