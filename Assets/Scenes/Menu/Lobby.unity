@@ -1488,26 +1488,11 @@ MonoBehaviour:
   charactersMenu: {fileID: 669905618}
   characterItemPrefab: {fileID: 3119736750805573851, guid: 34bd4318ffc864d47bac76bca4ba91f4, type: 3}
   characterItemParent: {fileID: 706990002}
-  countLumberjack: 2
-  avatarLumberjack1: {fileID: 21300000, guid: d9931acda2ba8c14593ec2a9006f59d8, type: 3}
-  prefabLumberjack1: {fileID: 315382485268062640, guid: fac3aeed742dc6c47b1d1c9ca12586d1, type: 3}
-  avatarLumberjack2: {fileID: 21300000, guid: 84f7bc13eb5d8df4ba056ba117fa634c, type: 3}
-  prefabLumberjack2: {fileID: 315382485268062640, guid: bbe4fadd0a119cc43956d4549065e5e3, type: 3}
-  countFarmer: 2
-  avatarFarmer1: {fileID: 21300000, guid: 559c35de2bf011044a68848a068ce8f6, type: 3}
-  prefabFarmer1: {fileID: 2034222575266473214, guid: 3c731bebf9c488243aff9428def2860b, type: 3}
-  avatarFarmer2: {fileID: 21300000, guid: 6e3d141721e82ae4eae33da156c4b1df, type: 3}
-  prefabFarmer2: {fileID: 2034222575266473214, guid: 685c3eff5569b4547b897087ce45b5aa, type: 3}
-  countMiner: 2
-  avatarMiner1: {fileID: 21300000, guid: 67e700548203a5b4d95467e5556e2206, type: 3}
-  prefabMiner1: {fileID: 1337730651412174358, guid: eef1e7105c959e34ca9ce92b38735a6e, type: 3}
-  avatarMiner2: {fileID: 21300000, guid: db65a3bd8fd71c243aae4171e7b9529d, type: 3}
-  prefabMiner2: {fileID: 1337730651412174358, guid: 5fbb4d82a8104fc44928408e494ca76f, type: 3}
-  countHunter: 2
-  avatarHunter1: {fileID: 21300000, guid: 9d7576eacc2dc6b4aa2a3f3dc97b2b53, type: 3}
-  prefabHunter1: {fileID: 2220119700152802986, guid: 0664d027f0748ca4e836f61c2edf06e6, type: 3}
-  avatarHunter2: {fileID: 21300000, guid: 3bc0c1796243bc44d8c8312af838d540, type: 3}
-  prefabHunter2: {fileID: 2220119700152802986, guid: 857c176d5d362414c8220a077b476b7b, type: 3}
+  listCharacters:
+  - {fileID: 11400000, guid: 975aec6e326a7f743929fd09e10cd3b8, type: 2}
+  - {fileID: 11400000, guid: c3b94e01147220943a4c363f8ccd0251, type: 2}
+  - {fileID: 11400000, guid: 93de5cfb53ed40649a12ad39bf5bf541, type: 2}
+  - {fileID: 11400000, guid: d08228a3adf04fd4bb121e3b43b4689a, type: 2}
 --- !u!4 &1052676744
 Transform:
   m_ObjectHideFlags: 0
