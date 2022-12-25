@@ -13,17 +13,30 @@ public class WorldTime : MonoBehaviour
     public static float timeProgress; // Игровой прогресс
 
     [Space, Tooltip("Count of days elapsed")]
-    public int countOfDaysElapsed;
+    public int countOfDaysElapsed; // Номер наступившего дня
 
-    public bool IsStartTime;
+    public bool IsStartTime; // Отвечает за включение времени
 
-    public static event Action<int> GetNumberDay; // Число дня, который наступил. Счет идет до 6, потом обнуляется!!!
+    /// <summary>
+    /// Число дня, который наступил. Счет идет до 6, потом обнуляется!
+    /// </summary>
+    public static event Action<int> GetNumberDay;
 
-    public static event Action<float> GetTimeProgress; // Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!!!
+    /// <summary>
+    /// Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!
+    /// </summary>
+    public static event Action<float> GetTimeProgress;
 
-    public static event Action<bool> GetTimeOfDay; // Взять время суток! Указываешь класс и название ивента, чтобы подвязаться к нему
+    /// <summary>
+    /// Взять время суток!
+    /// </summary>
+    public static event Action<bool> GetTimeOfDay;
 
-    [HideInInspector] public static bool CheckTimeOfDay; // true - День, false - Ночь! НЕ ТРОГАТЬ БЛЯТЬ ЕБАЛ Я ТОГО РОТ, КТО ТРОНЕТ ЭТУ ПЕРЕННУЮ СУКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// <summary>
+    /// true - День, false - Ночь!
+    /// </summary>
+    [HideInInspector] public static bool CheckTimeOfDay;
+
     private void Awake()
     {
         CheckTimeOfDay = this;
@@ -45,6 +58,7 @@ public class WorldTime : MonoBehaviour
 
         DialogPresenter.OnDialogEnd += StartTime;
     }
+
     public void StartTime()
     {
         IsStartTime = true;
@@ -56,14 +70,14 @@ public class WorldTime : MonoBehaviour
         //{
         ChengeOfTime();
         //}
-/*        if (CheckTimeOfDay)
-        {
-            Debug.Log("Day");
-        }
-        else
-        {
-            Debug.Log("night");
-        }*/
+        /*        if (CheckTimeOfDay)
+                {
+                    Debug.Log("Day");
+                }
+                else
+                {
+                    Debug.Log("night");
+                }*/
     }
 
     private void ChengeOfTime()

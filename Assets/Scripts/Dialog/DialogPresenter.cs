@@ -9,7 +9,7 @@ namespace Ekonomika.Dialog
         public static event Action OnDialogEnd;
 
         public DialogData data { get; private set; }
-        
+
         [SerializeField]
         private TextDialogView textDialogView;
 
