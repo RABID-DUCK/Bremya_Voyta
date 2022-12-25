@@ -1,8 +1,9 @@
 ﻿using Ekonomika.Dialog;
 using System;
 using UnityEngine;
+using Photon.Pun;
 
-public class WorldTime : MonoBehaviour
+public class WorldTime : MonoBehaviour, IPunObservable
 {
     [Header("Time of day settings")]
     [Tooltip("Number of seconds during the day")]
@@ -50,7 +51,7 @@ public class WorldTime : MonoBehaviour
         IsStartTime = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
         //{
@@ -77,11 +78,11 @@ public class WorldTime : MonoBehaviour
         {
             if (CheckTimeOfDay)
             {
-                timeProgress += Time.deltaTime / dayTimeInSeconds;
+                timeProgress += Time.fixedDeltaTime / dayTimeInSeconds;
             }
             else
             {
-                timeProgress += Time.deltaTime / nightTimeInSeconds;
+                timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
             }
         }
 
@@ -99,6 +100,20 @@ public class WorldTime : MonoBehaviour
                     countOfDaysElapsed = 0;
                 }
             }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting && PhotonNetwork.IsMasterClient)
+        {
+            stream.SendNext(timeProgress);
+            Debug.Log(timeProgress);
+        }
+        else if (stream.IsReading)
+        {
+            timeProgress = (float)stream.ReceiveNext();
+            Debug.Log("Reading: "+timeProgress);
         }
     }
 }
