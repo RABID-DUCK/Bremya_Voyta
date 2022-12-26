@@ -19,8 +19,6 @@ public class CharacterSO : ScriptableObject
     [Tooltip("Спрайты профессий\n\nЛучше располагайте аватары в той же последовательтности, что и префабы!")]
     public List<Sprite> avatars;
 
-    [HideInInspector] public List<bool> full;
+    public string[] full = new string[2] { "", "" };
     [Range(0, 4), Tooltip("Кол-во игроков на класс")] public int countPlayers = 2;
-
-    private ExitGames.Client.Photon.Hashtable _CP = new ExitGames.Client.Photon.Hashtable();
 }

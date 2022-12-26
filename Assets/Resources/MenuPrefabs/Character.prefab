@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}
+  m_sharedMaterial: {fileID: 747194865791565738, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -261,13 +261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c7b177c089e90498d9f545828a5459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnChange: {fileID: 4428065666482834890}
-  btnInfo: {fileID: 1606414070995914553}
+  buttonChange: {fileID: 4428065666482834890}
+  buttonChangeText: {fileID: 5580552970344900349}
+  buttonInfo: {fileID: 1606414070995914553}
   avatarCharacter: {fileID: 5459730897054969173}
-  avatars: []
-  prefabs: []
-  full: 
+  prefabCharacter: {fileID: 0}
   lm: {fileID: 0}
+  characterSO: {fileID: 0}
 --- !u!1 &5290179218865166551
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,8 +604,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0412\u044B\u0431\u0440\u0430\u0442\u044C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}
+  m_sharedMaterial: {fileID: 747194865791565738, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
