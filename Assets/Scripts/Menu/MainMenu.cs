@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         string _nick = _player.NickName;
         if (_nick == null || _nick == "")
         {
-            _nick = $"{nick[Random.Range(0, nick.Count)]} {Random.Range(0, 100)}";
+            _nick = $"{nick[Random.Range(0, nick.Count)]+Random.Range(0, 100)}";
             _player.NickName = _nick;
         };
     }

@@ -1,5 +1,10 @@
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,7 +13,7 @@ using UnityEngine.UI;
 public class PlayerItem : MonoBehaviourPunCallbacks
 {
     [Header("Элементы объекта")]
-    [SerializeField] Image imageAvatar;
+    public Image imageAvatar;
     [SerializeField] TMP_Text textPlayerName;
     [SerializeField] Button buttonChange;
     [SerializeField] TMP_InputField inputNick;
@@ -25,6 +30,8 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     [HideInInspector] public int phId = -1;
 
     [SerializeField] public bool boolReady;
+
+    private Regex r = new Regex("^[a-zA-Zа-яА-Я0-9]*$");
 
     private ExitGames.Client.Photon.Hashtable _CP = new ExitGames.Client.Photon.Hashtable();
 
@@ -50,9 +57,6 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         _CP["Ready"] = false;
         phPlayer.SetCustomProperties(_CP);
 
-        SetNick();
-        SetCharacter();
-
         if (_player.IsLocal)
         {
             buttonChange.gameObject.SetActive(true);
@@ -65,6 +69,8 @@ public class PlayerItem : MonoBehaviourPunCallbacks
             textButtonReady.color = Color.red;
             textButtonReady.text = "Не готов";
         }
+
+        SetNick();
     }
 
     public void SetNick()
@@ -86,9 +92,33 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         inputNickButton.interactable = false;
         if (inputNick.text != "")
         {
-            phPlayer.NickName = inputNick.text;
+            bool _bool = true;
+            foreach (KeyValuePair<int, Player> _player in PhotonNetwork.CurrentRoom.Players)
+            {
+                if (inputNick.text == _player.Value.NickName)
+                {
+                    _bool = false;
+                    break;
+                }
+            }
+
+            if (_bool)
+            {
+                if (r.IsMatch(inputNick.text))
+                {
+                    phPlayer.NickName = inputNick.text;
+                }
+                else
+                {
+                    lm.OpenError("Данный ник содержит недоступные символы!");
+                }
+            }
+            else
+            {
+                lm.OpenError("Данный ник уже использьзуется!");
+            }
+
             inputNick.text = "";
-            lm.Send_Data("ReloadNick", phId);
         }
     }
 
@@ -100,25 +130,12 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
         _CP["Ready"] = boolReady;
         phPlayer.SetCustomProperties(_CP);
-
-        lm.Send_Data("ReloadReady", phId);
     }
 
     public void SetReady()
     {
-        if (!phPlayer.IsLocal)
-        {
-            if (phPlayer.CustomProperties.ContainsKey("Ready"))
-            {
-                boolReady = (bool)phPlayer.CustomProperties["Ready"];
-                textButtonReadyOther.color = boolReady ? Color.green : Color.red;
-                textButtonReadyOther.text = boolReady ? "Готов" : "Не готов";
-            }
-        }
-    }
-
-    public void SetCharacter()
-    {
-        // изменение профессии
+        boolReady = (bool)phPlayer.CustomProperties["Ready"];
+        textButtonReadyOther.color = boolReady ? Color.green : Color.red;
+        textButtonReadyOther.text = boolReady ? "Готов" : "Не готов";
     }
 }

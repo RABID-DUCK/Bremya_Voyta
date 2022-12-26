@@ -26,5 +26,7 @@ MonoBehaviour:
   avatars:
   - {fileID: 21300000, guid: 9d7576eacc2dc6b4aa2a3f3dc97b2b53, type: 3}
   - {fileID: 21300000, guid: 3bc0c1796243bc44d8c8312af838d540, type: 3}
-  full: 
+  full:
+  - 
+  - 
   countPlayers: 2
