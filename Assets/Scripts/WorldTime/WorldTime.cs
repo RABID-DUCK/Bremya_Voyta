@@ -1,8 +1,9 @@
 ﻿using Ekonomika.Dialog;
 using System;
 using UnityEngine;
+using Photon.Pun;
 
-public class WorldTime : MonoBehaviour
+public class WorldTime : MonoBehaviour, IPunObservable
 {
     [Header("Time of day settings")]
     [Tooltip("Number of seconds during the day")]
@@ -13,17 +14,30 @@ public class WorldTime : MonoBehaviour
     public static float timeProgress; // Игровой прогресс
 
     [Space, Tooltip("Count of days elapsed")]
-    public int countOfDaysElapsed;
+    public int countOfDaysElapsed; // Номер наступившего дня
 
-    public bool IsStartTime;
+    public bool IsStartTime; // Отвечает за включение времени
 
-    public static event Action<int> GetNumberDay; // Число дня, который наступил. Счет идет до 6, потом обнуляется!!!
+    /// <summary>
+    /// Число дня, который наступил. Счет идет до 6, потом обнуляется!
+    /// </summary>
+    public static event Action<int> GetNumberDay;
 
-    public static event Action<float> GetTimeProgress; // Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!!!
+    /// <summary>
+    /// Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!
+    /// </summary>
+    public static event Action<float> GetTimeProgress;
 
-    public static event Action<bool> GetTimeOfDay; // Взять время суток! Указываешь класс и название ивента, чтобы подвязаться к нему
+    /// <summary>
+    /// Взять время суток!
+    /// </summary>
+    public static event Action<bool> GetTimeOfDay;
 
-    [HideInInspector] public static bool CheckTimeOfDay; // true - День, false - Ночь! НЕ ТРОГАТЬ БЛЯТЬ ЕБАЛ Я ТОГО РОТ, КТО ТРОНЕТ ЭТУ ПЕРЕННУЮ СУКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// <summary>
+    /// true - День, false - Ночь!
+    /// </summary>
+    [HideInInspector] public static bool CheckTimeOfDay;
+
     private void Awake()
     {
         CheckTimeOfDay = this;
@@ -45,25 +59,26 @@ public class WorldTime : MonoBehaviour
 
         DialogPresenter.OnDialogEnd += StartTime;
     }
+
     public void StartTime()
     {
         IsStartTime = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
         //{
         ChengeOfTime();
         //}
-/*        if (CheckTimeOfDay)
-        {
-            Debug.Log("Day");
-        }
-        else
-        {
-            Debug.Log("night");
-        }*/
+        /*        if (CheckTimeOfDay)
+                {
+                    Debug.Log("Day");
+                }
+                else
+                {
+                    Debug.Log("night");
+                }*/
     }
 
     private void ChengeOfTime()
@@ -77,11 +92,11 @@ public class WorldTime : MonoBehaviour
         {
             if (CheckTimeOfDay)
             {
-                timeProgress += Time.deltaTime / dayTimeInSeconds;
+                timeProgress += Time.fixedDeltaTime / dayTimeInSeconds;
             }
             else
             {
-                timeProgress += Time.deltaTime / nightTimeInSeconds;
+                timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
             }
         }
 
@@ -99,6 +114,20 @@ public class WorldTime : MonoBehaviour
                     countOfDaysElapsed = 0;
                 }
             }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting && PhotonNetwork.IsMasterClient)
+        {
+            stream.SendNext(timeProgress);
+            Debug.Log(timeProgress);
+        }
+        else if (stream.IsReading)
+        {
+            timeProgress = (float)stream.ReceiveNext();
+            Debug.Log("Reading: "+timeProgress);
         }
     }
 }

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 7e529c24717b1ed4ca68887c2d726390
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Bryndan Unifont
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 16cc53dacfa9ef044a1ae9d81c624fe5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
