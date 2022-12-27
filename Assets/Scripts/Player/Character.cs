@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        bool clickOnUi = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        
+        if (Input.GetMouseButtonDown(0) && clickOnUi)
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
             RaycastHit _hit;
