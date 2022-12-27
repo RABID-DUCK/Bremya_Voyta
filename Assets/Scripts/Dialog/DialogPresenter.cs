@@ -3,15 +3,24 @@ using UnityEngine;
 
 namespace Ekonomika.Dialog
 {
+    [RequireComponent(typeof(CanvasGroup), typeof(ShowCanvasGroup))]
     public class DialogPresenter : MonoBehaviour
     {
-        public event Action OnReplica—hange;
-        public static event Action OnDialogEnd;
+        public event Action OnDialogEnd;
+        public event Action OnReplicaChange;
 
         public DialogData data { get; private set; }
 
         [SerializeField]
         private TextDialogView textDialogView;
+
+        private ShowCanvasGroup showCanvasGroup;
+
+        private void Start()
+        {
+            showCanvasGroup = GetComponent<ShowCanvasGroup>();
+            showCanvasGroup.FastHide();
+        }
 
         public int currentReplica
         {
@@ -31,7 +40,7 @@ namespace Ekonomika.Dialog
                 {
                     if (data)
                     {
-                        OnReplica—hange?.Invoke();
+                        OnReplicaChange?.Invoke();
                         textDialogView.SetRepica(data.GetReplica(_currentReplica));
                     }
                 }
@@ -40,10 +49,11 @@ namespace Ekonomika.Dialog
 
         private int _currentReplica;
 
-        public void SetDialog(DialogData dialogData)
+        public void StartDialog(DialogData dialogData)
         {
             data = dialogData;
             currentReplica = 0;
+            showCanvasGroup.Show();
         }
 
         public void NextReplica()
@@ -58,8 +68,7 @@ namespace Ekonomika.Dialog
 
         private void EndDialog()
         {
-            //TODO
-
+            showCanvasGroup.Hide();
             OnDialogEnd?.Invoke();
         }
     }

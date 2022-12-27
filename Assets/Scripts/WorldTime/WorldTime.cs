@@ -1,5 +1,4 @@
-﻿using Ekonomika.Dialog;
-using System;
+﻿using System;
 using UnityEngine;
 using Photon.Pun;
 
@@ -57,7 +56,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
         GetTimeOfDay?.Invoke(CheckTimeOfDay);
 
-        DialogPresenter.OnDialogEnd += StartTime;
+        Coordinator.OnEndEducation += StartTime;
     }
 
     public void StartTime()
