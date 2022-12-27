@@ -314,9 +314,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d9931acda2ba8c14593ec2a9006f59d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71f6ca9c771cb2444bbb88c8e245c6ba, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1713,9 +1713,12 @@ MonoBehaviour:
   Room: {fileID: 852378720}
   ChangeRoom: {fileID: 669905618}
   Loading: {fileID: 1592702265}
+  buttonStart: {fileID: 668966538}
   Error: {fileID: 2052650339}
   ErrorText: {fileID: 993206265}
-  buttonStart: {fileID: 668966538}
+  characterInfoPanel: {fileID: 413125308}
+  characterInfoImage: {fileID: 95097655}
+  characterInfoText: {fileID: 1908223277}
   playerItemPrefab: {fileID: 322030864105421399, guid: 9e3c7419f286bf34aa08e59348825865, type: 3}
   playerItemParent: {fileID: 1054021055}
   charactersMenu: {fileID: 669905618}
@@ -2742,10 +2745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041B\u0435\u0441\u043E\u0440\u0443\u0431. \u0412 \u043E\u0441\u043D\u043E\u0432\u043D\u043E\u043C
-    \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0432 \u043B\u0435\u0441\u0443.
-    \u0417\u0430\u043D\u0438\u043C\u0430\u0435\u0442\u0441\u044F \u0434\u043E\u0431\u044B\u0447\u0435\u0439
-    \u0434\u043E\u0441\u043E\u043A \u0438 \u044F\u0433\u043E\u0434."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}
   m_sharedMaterial: {fileID: 747194865791565738, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}

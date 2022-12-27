@@ -18,9 +18,12 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject Room;
     [SerializeField] private GameObject ChangeRoom;
     [SerializeField] private GameObject Loading;
-    public GameObject Error;
-    public TMP_Text ErrorText;
     [SerializeField] private Button buttonStart;
+    [Space] public GameObject Error;
+    public TMP_Text ErrorText;
+    [Space] public GameObject characterInfoPanel;
+    public Image characterInfoImage;
+    public TMP_Text characterInfoText;
 
     [Header("Ёлемент игрка в лобби")]
     [SerializeField] private PlayerItem playerItemPrefab;

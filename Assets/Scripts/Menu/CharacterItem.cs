@@ -29,4 +29,11 @@ public class CharacterItem : MonoBehaviour
             }
         }
     }
+
+    public void OpenInfo()
+    {
+        lm.characterInfoImage.sprite = characterSO.avatars[0];
+        lm.characterInfoText.text = characterSO.description;
+        lm.characterInfoPanel.SetActive(true);
+    }
 }
