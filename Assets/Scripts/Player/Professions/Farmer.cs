@@ -1,3 +1,3 @@
-public class Farmer : Profession<Garden>
+public class Farmer : Profession<FarmerWork>
 {
 }

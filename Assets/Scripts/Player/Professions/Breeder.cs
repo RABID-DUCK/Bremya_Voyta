@@ -1,3 +1,3 @@
-public class Breeder : Profession<Cowshed>
+public class Breeder : Profession<BreederWork>
 {
 }

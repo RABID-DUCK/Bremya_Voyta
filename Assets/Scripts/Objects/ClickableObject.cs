@@ -8,6 +8,7 @@ public abstract class ClickableObject : MonoBehaviour, IClickableObject
     private void Start()
     {
         outline = GetComponent<Outline>();
+        outline.enabled = false;
     }
 
     private void OnMouseOver()

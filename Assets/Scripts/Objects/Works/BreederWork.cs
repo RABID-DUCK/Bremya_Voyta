@@ -1,7 +1,7 @@
-public class Forest : Work
+public class BreederWork : Work
 {
     protected override void WriteItemsInPlayerInventory(Character player, int itemsCount)
     {
-        player.inventory.woodCount += itemsCount;
+        player.inventory.milkCount += itemsCount;
     }
 }

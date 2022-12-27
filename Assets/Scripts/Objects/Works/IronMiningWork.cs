@@ -1,7 +1,7 @@
-public class Steppe : Work
+public class IronMiningWork : Work
 {
     protected override void WriteItemsInPlayerInventory(Character player, int itemsCount)
     {
-        player.inventory.meatCount += itemsCount;
+        player.inventory.ironCount += itemsCount;
     }
 }

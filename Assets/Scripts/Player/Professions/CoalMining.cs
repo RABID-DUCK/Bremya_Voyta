@@ -1,3 +1,3 @@
-public class CoalMining : Profession<CoalMine>
+public class CoalMining : Profession<CoalMiningWork>
 {
 }

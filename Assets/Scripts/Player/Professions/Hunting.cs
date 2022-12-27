@@ -1,3 +1,3 @@
-public class Hunting : Profession<Steppe>
+public class Hunting : Profession<HuntingWork>
 {
 }

@@ -1,3 +1,3 @@
-public class Fishing : Profession<Pond>
+public class Fishing : Profession<FishingWork>
 {
 }
