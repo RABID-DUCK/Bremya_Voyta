@@ -160,6 +160,7 @@ MonoBehaviour:
   photonView: {fileID: 0}
   sensitivityMouse: 0
   playerBody: {fileID: 2236728064655964504}
+  animator: {fileID: 0}
 --- !u!143 &760986789782853587
 CharacterController:
   m_ObjectHideFlags: 0
