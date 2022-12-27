@@ -26,9 +26,9 @@ public class EventController : MonoBehaviour
 
     public static event Action<bool> OnGetNegativeWeather;
 
-    public static event Action<EventSO> OnGetEventSO;
+    public static event Action<EventSO> OnGetEventSO = delegate { };
 
-    private event Action<int, float> CheckRemoveEvents;
+    public static event Action OnEndEvent = delegate { };
 
     [Header("Events")]
     [SerializeField] private LittleRainEvent littleRainEvent;
@@ -42,8 +42,6 @@ public class EventController : MonoBehaviour
     {
         WorldTime.GetNumberDay += SetDay;
         WorldTime.GetTimeProgress += SetTimeInSeconds;
-
-        CheckRemoveEvents?.Invoke(originalDay, originalTimeInSeconds);
     }
 
     public void SetDay(int day)
@@ -205,6 +203,8 @@ public class EventController : MonoBehaviour
             stormEvent.EndStormEvent();
             mine—ollapseEvent.EndMine—ollapseEvent();
             clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
+
+            OnEndEvent?.Invoke();
         }
     }
 }

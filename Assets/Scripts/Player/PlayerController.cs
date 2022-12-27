@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (moveDir.normalized.magnitude < 0.001f) return;
         var targetRot = Quaternion.LookRotation(moveDir, Vector3.up);
         playerBody.rotation = Quaternion.Slerp(playerBody.rotation, targetRot, turningSpeed * Time.deltaTime); // Smooth
-        Debug.Log(right + " " + forward + " mooove " + moveDir);
+        //Debug.Log(right + " " + forward + " mooove " + moveDir);
 
     }
     public void WindowSleep()
