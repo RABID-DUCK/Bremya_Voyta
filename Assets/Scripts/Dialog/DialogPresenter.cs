@@ -16,7 +16,7 @@ namespace Ekonomika.Dialog
 
         private ShowCanvasGroup showCanvasGroup;
 
-        private void Start()
+        private void Awake()
         {
             showCanvasGroup = GetComponent<ShowCanvasGroup>();
             showCanvasGroup.FastHide();
