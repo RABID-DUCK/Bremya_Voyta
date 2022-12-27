@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 8079040381702861655}
   - component: {fileID: 1195390877124627998}
   - component: {fileID: 1174940253046160823}
+  - component: {fileID: 4254685744062960582}
+  - component: {fileID: 971258292758000687}
+  - component: {fileID: 792016083245072081}
   m_Layer: 0
   m_Name: Hunter_1
   m_TagString: Untagged
@@ -81,6 +84,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10ecec8ad832c1419acaf0f6e94b58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4254685744062960582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &971258292758000687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeca157ff591bc44aa6129ae21e1d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  turningSpeed: 7
+  photonView: {fileID: 4254685744062960582}
+  sensitivityMouse: 0
+  playerBody: {fileID: 8951472732029915837}
+  animator: {fileID: 241325251892901908}
+--- !u!143 &792016083245072081
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &6480409910518326965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +199,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74483d1045c3c284aa102b62d871a14c, type: 3}
+--- !u!95 &241325251892901908 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6536506961653259937, guid: 74483d1045c3c284aa102b62d871a14c, type: 3}
+  m_PrefabInstance: {fileID: 6480409910518326965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8951472732029915837 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2726102188691600392, guid: 74483d1045c3c284aa102b62d871a14c, type: 3}
