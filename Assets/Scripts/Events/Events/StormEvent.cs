@@ -5,6 +5,8 @@ public class StormEvent : MonoBehaviour
     [Tooltip("Scriptable event object \"StormSO\"")]
     public EventSO StormSO;
 
+    [SerializeField] private WorkController workController;
+ 
     public void StartStormEvent()
     {
         StartStormEffect();
@@ -17,11 +19,15 @@ public class StormEvent : MonoBehaviour
 
     private void StartStormEffect()
     {
+        workController.OvverideLumberjackDropItems(1, 3);
+
         //TODO: Лес, -2шт. от макс. кол-ва.
     }
 
     private void EndStormEffect()
     {
+        workController.ReturnIronMiningDropItems();
+
         //TODO: Веруть на мэсто
     }
 }

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class ThunderstormWithHeavyRainEvent : MonoBehaviour
 {
-    //[SerializeField] private ChangeDayAndNight changeTimeOfDay;
-
     [Tooltip("Scriptable event object \"ThunderstormSO\"")]
     public EventSO ThunderSO;
 
@@ -16,6 +14,8 @@ public class ThunderstormWithHeavyRainEvent : MonoBehaviour
 
     [Tooltip("Light from Lightning")]
     [SerializeField] private Light spotLight;
+
+    [SerializeField] private WorkController workController;
 
     private bool IsStarted { get; set; }
     private float randomTimeStartLighting { get; set; }
@@ -36,6 +36,10 @@ public class ThunderstormWithHeavyRainEvent : MonoBehaviour
 
     private void StartThindershtormEffect()
     {
+        workController.OvverideFishingDropItems(1, 3);
+        workController.OvverideFarmerDropItems(1, 3);
+        workController.OvverideHuntingDropItems(1, 3);
+
         //TODO: Пруд, огород, Степь -2шт. от макс. кол-ва 
     }
 
@@ -52,6 +56,10 @@ public class ThunderstormWithHeavyRainEvent : MonoBehaviour
 
     private void EndThindershtormEffect()
     {
+        workController.ReturnFishingDropItems();
+        workController.ReturnFarmerDropItems();
+        workController.ReturnHuntingDropItems();
+
         //TODO: Вернуть к норме
     }
 
