@@ -2,25 +2,26 @@ using UnityEngine;
 
 public class ClearWeatherWithLittleColdEvent : MonoBehaviour
 {
-    [SerializeField] private Light nightSpotLight; // При эффекте холода данный свет должен быть более холодного оттенка!!!
+    [Tooltip("Scriptable event object \"ClearWeatherWithLittleColdSO\"")]
+    public EventSO ClearWeatherWithLittleColdSO;
 
     public void StartClearWeatherWithLittleCold() // Этот метод нужно вызывать, при старте события!!!
     {
+        StartClearWeatherWithLittleColdEffect();
+    }
 
+    private void StartClearWeatherWithLittleColdEffect() // Реализовать логику эффекта от ивента
+    {
+        //TODO: Пруд, + 3шт. от макс. кол-ва
     }
 
     public void EndClearWeatherWithLittleCold() // Этот метод нужно вызывать, при конце события!!!
     {
-
+        EndClearWeatherWithLittleColdEffect();
     }
 
-    public void EffectOfEvent() // Реализовать логику эффекта от ивента
+    private void EndClearWeatherWithLittleColdEffect() // Реализовать логику снятия эффекта
     {
-
-    }
-
-    public void RemoteEffectOfEvent() // Реализовать логику снятия эффекта
-    {
-
+        //TODO: Вернуть к норме
     }
 }

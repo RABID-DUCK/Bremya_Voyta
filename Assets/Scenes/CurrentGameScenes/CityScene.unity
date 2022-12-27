@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43710327, g: 0.4848175, b: 0.56508553, a: 1}
+  m_IndirectSpecularColor: {r: 0.43710324, g: 0.4848175, b: 0.56508553, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5794,7 +5794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf936870c3d6c504698c50fdd1790402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightSpotLight: {fileID: 0}
+  StormSO: {fileID: 11400000, guid: e38316f9ba9721549953bb0762590610, type: 2}
 --- !u!1 &171287016
 GameObject:
   m_ObjectHideFlags: 0
@@ -12964,6 +12964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a390c7d54ec994c8951bb35f837838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StandartDaySO: {fileID: 11400000, guid: b10089be2d04cd2459b9aabbf62ebe9a, type: 2}
 --- !u!1 &427831923
 GameObject:
   m_ObjectHideFlags: 0
@@ -15016,6 +15017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508a7751816bb724cbd8c0a501848610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "Mine\u0421ollapseSO": {fileID: 11400000, guid: 017fbff24d441d543a51da6120881dc6, type: 2}
 --- !u!1 &749979580
 GameObject:
   m_ObjectHideFlags: 0
@@ -16619,6 +16621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   littleRainSO: {fileID: 11400000, guid: c3b347ab0e22f5a44ad279dfde7025bf, type: 2}
   littleRainPS: {fileID: 1365870802}
+  directionalLight: {fileID: 1404873623}
 --- !u!1 &1008685821
 GameObject:
   m_ObjectHideFlags: 0
@@ -17418,7 +17421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd82e08a9630f54092c2cfb4715fe1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightSpotLight: {fileID: 0}
+  ClearWeatherWithLittleColdSO: {fileID: 11400000, guid: ab5bafe133cf4194a9f08a767da2bb49, type: 2}
 --- !u!1 &1139086998
 GameObject:
   m_ObjectHideFlags: 0
@@ -30429,6 +30432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThunderSO: {fileID: 11400000, guid: 055aa78f0b498f64592c2ef36ab5aa52, type: 2}
   ThunderstormPS: {fileID: 19356333}
+  directionalLight: {fileID: 1404873623}
+  spotLight: {fileID: 104235311}
 --- !u!1 &1452404209
 GameObject:
   m_ObjectHideFlags: 0

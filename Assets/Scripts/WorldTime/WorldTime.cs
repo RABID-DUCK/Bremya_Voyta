@@ -66,18 +66,10 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void FixedUpdate()
     {
-        //if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
-        //{
-        ChengeOfTime();
-        //}
-        /*        if (CheckTimeOfDay)
-                {
-                    Debug.Log("Day");
-                }
-                else
-                {
-                    Debug.Log("night");
-                }*/
+        if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
+        {
+            ChengeOfTime();
+        }
     }
 
     private void ChengeOfTime()
