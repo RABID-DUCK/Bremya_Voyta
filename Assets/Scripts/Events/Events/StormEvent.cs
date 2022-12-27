@@ -2,15 +2,33 @@ using UnityEngine;
 
 public class StormEvent : MonoBehaviour
 {
-    [SerializeField] private Light nightSpotLight; // Во время шторма данный свет должен быть тусклее, чем обычно!!!
+    [Tooltip("Scriptable event object \"StormSO\"")]
+    public EventSO StormSO;
 
-    public void StartStorm() // Этот метод нужно вызывать, при старте события!!!
+    [Header("Event Property Controller")]
+    [SerializeField] private WorkController workController;
+ 
+    public void StartStormEvent()
     {
-
+        StartStormEffect();
     }
 
-    public void EndStorm() // Этот метод нужно вызывать, при конце события!!!
+    public void EndStormEvent()
     {
+        EndStormEffect();
+    }
 
+    private void StartStormEffect()
+    {
+        workController.OvverideLumberjackDropItems(1, 3);
+
+        //TODO: Лес, -2шт. от макс. кол-ва.
+    }
+
+    private void EndStormEffect()
+    {
+        workController.ReturnIronMiningDropItems();
+
+        //TODO: Веруть на мэсто
     }
 }

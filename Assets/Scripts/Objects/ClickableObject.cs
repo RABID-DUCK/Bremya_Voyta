@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider), typeof(Outline))]
 public abstract class ClickableObject : MonoBehaviour, IClickableObject
@@ -8,11 +9,21 @@ public abstract class ClickableObject : MonoBehaviour, IClickableObject
     private void Start()
     {
         outline = GetComponent<Outline>();
+        outline.enabled = false;
     }
 
     private void OnMouseOver()
     {
-        outline.enabled = true;
+        bool clickOnUi = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        
+        if (!clickOnUi)
+        {
+            outline.enabled = true;
+        }
+        else
+        {
+            outline.enabled = false;
+        }
     }
 
     private void OnMouseExit()

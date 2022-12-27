@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private float vertical, horizontal;
     Bed bed;
     Vector3 test;
-    [Header("Скорость перемещения персонажа")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float turningSpeed = 7f;
 

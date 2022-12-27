@@ -1,8 +1,8 @@
-using Photon.Pun;
-using Photon.Chat;
-using UnityEngine;
-using TMPro;
 using ExitGames.Client.Photon;
+using Photon.Chat;
+using Photon.Pun;
+using TMPro;
+using UnityEngine;
 
 public class ChatManager : MonoBehaviour, IChatClientListener
 {
@@ -90,12 +90,12 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void SendButton()
     {
-        if (textMessage.text !="")
+        if (textMessage.text != "")
         {
             chatClient.PublishMessage("globalChat", textMessage.text);
             textMessage.text = "";
         }
-        
+
     }
 
     public void OpenChat()

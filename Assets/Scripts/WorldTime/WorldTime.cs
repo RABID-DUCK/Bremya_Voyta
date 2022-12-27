@@ -1,5 +1,4 @@
-﻿using Ekonomika.Dialog;
-using System;
+﻿using System;
 using UnityEngine;
 using Photon.Pun;
 
@@ -16,7 +15,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public bool IsStartTime; // Отвечает за включение времени
+    public static bool IsStartTime; // Отвечает за включение времени
 
     /// <summary>
     /// Число дня, который наступил. Счет идет до 6, потом обнуляется!
@@ -57,7 +56,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
         GetTimeOfDay?.Invoke(CheckTimeOfDay);
 
-        DialogPresenter.OnDialogEnd += StartTime;
+        Coordinator.OnEndEducation += StartTime;
     }
 
     public void StartTime()
@@ -67,18 +66,10 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void FixedUpdate()
     {
-        //if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
-        //{
-        ChengeOfTime();
-        //}
-        /*        if (CheckTimeOfDay)
-                {
-                    Debug.Log("Day");
-                }
-                else
-                {
-                    Debug.Log("night");
-                }*/
+        if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
+        {
+            ChengeOfTime();
+        }
     }
 
     private void ChengeOfTime()

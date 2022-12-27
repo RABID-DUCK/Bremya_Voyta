@@ -1,3 +1,3 @@
-public class Lumberjack : Profession<Forest>
+public class Lumberjack : Profession<LumberjackWork>
 {
 }

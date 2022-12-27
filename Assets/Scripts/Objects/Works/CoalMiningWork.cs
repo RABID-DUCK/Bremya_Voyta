@@ -1,7 +1,7 @@
-public class IronMine : Work
+public class CoalMiningWork : Work
 {
     protected override void WriteItemsInPlayerInventory(Character player, int itemsCount)
     {
-        player.inventory.ironCount += itemsCount;
+        player.inventory.coalCount += itemsCount;
     }
 }

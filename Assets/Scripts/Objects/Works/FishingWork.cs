@@ -1,4 +1,4 @@
-public class Pond : Work
+public class FishingWork : Work
 {
     protected override void WriteItemsInPlayerInventory(Character player, int itemsCount)
     {

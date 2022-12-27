@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EventSO", menuName = "Events")]
+[CreateAssetMenu(fileName = "EventSO", menuName = "EventSO")]
 public class EventSO : ScriptableObject
 {
     [Header("Event data settings")]
@@ -8,9 +8,9 @@ public class EventSO : ScriptableObject
     [Tooltip("The name of the event that will appear in the event panel")]
     public string eventName;
 
-    [Multiline(5), Tooltip("Description of the event that will appear in the event panel")]
+    [TextArea(5, 10), Tooltip("Description of the event that will appear in the event panel")]
     public string eventDescroption;
 
-    [Multiline(5), Tooltip("Description of the event property that will appear in the event panel")]
+    [TextArea(5, 10), Tooltip("Description of the event property that will appear in the event panel")]
     public string eventDescriptionProperties;
 }

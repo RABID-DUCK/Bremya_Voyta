@@ -22,7 +22,7 @@ public class CoordinatorEvents : MonoBehaviour
 
         standartSkyColor = changeDayAndNight.daySkyGradient;
 
-        EventController.GetNegativeWeather += CheckNegativeWeather;
+        EventController.OnGetWeather += CheckNegativeWeather;
     }
 
     public void CheckNegativeWeather(bool isNegativeWeather)
@@ -41,11 +41,11 @@ public class CoordinatorEvents : MonoBehaviour
         }
     }
 
-    //[ContextMenu("Added standart gradient settings")]
-    //public void GetStandartGradientSettings()
-    //{
-    //    dayLightGradient = standartDayGradient;
+    [ContextMenu("Added standart gradient settings")]
+    public void GetStandartGradientSettings()
+    {
+        dayLightGradient = standartDayGradient;
 
-    //    nightSkyColor = standartSkyColor;
-    //}
+        nightSkyColor = standartSkyColor;
+    }
 }

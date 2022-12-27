@@ -1,4 +1,4 @@
-public class Glade : Work
+public class BerryPickerWork : Work
 {
     protected override void WriteItemsInPlayerInventory(Character player, int itemsCount)
     {

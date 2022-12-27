@@ -2,13 +2,35 @@ using UnityEngine;
 
 public class MineСollapseEvent : MonoBehaviour
 {
-    public void StartMineСollapse() // Этот метод нужно вызывать, при старте события!!!
-    {
+    [Tooltip("Scriptable event object \"MineСollapseSO\"")]
+    public EventSO MineСollapseSO;
 
+    [Header("Event Property Controller")]
+    [SerializeField] private WorkController workController;
+
+    public void StartMineСollapseEvent() // Этот метод нужно вызывать, при старте события!!!
+    {
+        StartMineСollapseEffect();
     }
 
-    public void EndMineСollapse() // Этот метод нужно вызывать, при конце события!!!
+    private void StartMineСollapseEffect()
     {
+        workController.OvverideCoalMiningDropItems(1, 3);
+        workController.OvverideIronMiningDropItems(1, 3);
 
+        // TODO: копатель, - 2шт. от макс. кол-ва.
+    }
+
+    public void EndMineСollapseEvent() // Этот метод нужно вызывать, при конце события!!!
+    {
+        EndMineСollapseEffect();
+    }
+
+    private void EndMineСollapseEffect()
+    {
+        workController.ReturnCoalMiningDropItems();
+        workController.ReturnIronMiningDropItems();
+
+        // TODO: Вернуть назад
     }
 }
