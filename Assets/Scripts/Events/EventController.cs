@@ -205,8 +205,6 @@ public class EventController : MonoBehaviour
             stormEvent.EndStormEvent();
             mineСollapseEvent.EndMineСollapseEvent();
             clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
-
-            //Докинуть методы, которые завершают ивенты
         }
     }
 }

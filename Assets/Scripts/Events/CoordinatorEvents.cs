@@ -41,11 +41,11 @@ public class CoordinatorEvents : MonoBehaviour
         }
     }
 
-    //[ContextMenu("Added standart gradient settings")]
-    //public void GetStandartGradientSettings()
-    //{
-    //    dayLightGradient = standartDayGradient;
+    [ContextMenu("Added standart gradient settings")]
+    public void GetStandartGradientSettings()
+    {
+        dayLightGradient = standartDayGradient;
 
-    //    nightSkyColor = standartSkyColor;
-    //}
+        nightSkyColor = standartSkyColor;
+    }
 }
