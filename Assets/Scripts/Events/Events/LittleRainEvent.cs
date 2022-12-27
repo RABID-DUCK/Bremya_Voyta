@@ -12,6 +12,7 @@ public class LittleRainEvent : MonoBehaviour
     [Tooltip("General Directional light")]
     [SerializeField] private Light directionalLight;
 
+    [Header("Event Property Controller")]
     [SerializeField] private WorkController workController;
 
     //TODO: Нужно добавить звук дождя

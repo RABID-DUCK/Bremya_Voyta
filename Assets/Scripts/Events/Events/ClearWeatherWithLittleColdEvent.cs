@@ -5,6 +5,7 @@ public class ClearWeatherWithLittleColdEvent : MonoBehaviour
     [Tooltip("Scriptable event object \"ClearWeatherWithLittleColdSO\"")]
     public EventSO ClearWeatherWithLittleColdSO;
 
+    [Header("Event Property Controller")]
     [SerializeField] private WorkController workController;
 
     public void StartClearWeatherWithLittleCold() // Этот метод нужно вызывать, при старте события!!!

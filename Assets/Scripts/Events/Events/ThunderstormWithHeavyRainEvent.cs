@@ -15,6 +15,7 @@ public class ThunderstormWithHeavyRainEvent : MonoBehaviour
     [Tooltip("Light from Lightning")]
     [SerializeField] private Light spotLight;
 
+    [Header("Event Property Controller")]
     [SerializeField] private WorkController workController;
 
     private bool IsStarted { get; set; }

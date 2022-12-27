@@ -5,6 +5,7 @@ public class MineСollapseEvent : MonoBehaviour
     [Tooltip("Scriptable event object \"MineСollapseSO\"")]
     public EventSO MineСollapseSO;
 
+    [Header("Event Property Controller")]
     [SerializeField] private WorkController workController;
 
     public void StartMineСollapseEvent() // Этот метод нужно вызывать, при старте события!!!

@@ -5,6 +5,7 @@ public class StormEvent : MonoBehaviour
     [Tooltip("Scriptable event object \"StormSO\"")]
     public EventSO StormSO;
 
+    [Header("Event Property Controller")]
     [SerializeField] private WorkController workController;
  
     public void StartStormEvent()
