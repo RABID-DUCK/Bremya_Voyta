@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 7491666965203829562}
   - component: {fileID: 5462792588314357137}
   - component: {fileID: 1203812816696645020}
+  - component: {fileID: 2430984258520190928}
+  - component: {fileID: 8075161931574742004}
+  - component: {fileID: 7023537511748776931}
   m_Layer: 0
   m_Name: Farmer_1
   m_TagString: Untagged
@@ -51,11 +54,12 @@ MonoBehaviour:
     coins: 0
     woodCount: 0
     berriesCount: 0
+    carrotCount: 0
     milkCount: 0
-    metallCount: 0
+    coalCount: 0
+    ironCount: 0
     meatCount: 0
     fishCount: 0
-    carrotCount: 0
 --- !u!114 &5462792588314357137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +84,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0468c93169c3bc243af530954a1f8fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2430984258520190928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8075161931574742004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeca157ff591bc44aa6129ae21e1d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  turningSpeed: 7
+  photonView: {fileID: 2430984258520190928}
+  sensitivityMouse: 0
+  playerBody: {fileID: 8648209038860809687}
+  animator: {fileID: 6371907669187856014}
+--- !u!143 &7023537511748776931
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &6760346366049665503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,6 +199,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}
+--- !u!95 &6371907669187856014 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 413209046749398865, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}
+  m_PrefabInstance: {fileID: 6760346366049665503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8648209038860809687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2726102188691600392, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}

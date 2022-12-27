@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform playerBody;
 
+    [SerializeField] private Animator animator;
+
     private void Awake()
     {
         if (!photonView)
@@ -65,11 +67,11 @@ public class PlayerController : MonoBehaviour
         */
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
-            GetComponentInChildren<Animator>().Play("female_walk_anim");
+            animator.SetBool("walk", true);
         }
         else
         {
-            GetComponentInChildren<Animator>().Play("female_idle_anim");
+            animator.SetBool("walk", false);
         }
 
         var h = -Input.GetAxis("Horizontal"); // AD
