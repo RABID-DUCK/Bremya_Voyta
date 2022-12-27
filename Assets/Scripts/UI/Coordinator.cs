@@ -10,16 +10,26 @@ public class Coordinator : MonoBehaviour
     {
         marketController.OnOpenMarket += OpenMarketPanel;
         marketController.OnCloseMarket += CloseMarketPanel;
-        marketShowCanvasGroup.FastHide();
+
+        if(marketShowCanvasGroup != null)
+        {
+            marketShowCanvasGroup.FastHide();
+        }
     }
 
     private void OpenMarketPanel()
     {
-        marketShowCanvasGroup.Show();
+        if (marketShowCanvasGroup != null)
+        {
+            marketShowCanvasGroup.Show();
+        }
     }
 
     private void CloseMarketPanel()
     {
-        marketShowCanvasGroup.Hide();
+        if (marketShowCanvasGroup != null)
+        {
+            marketShowCanvasGroup.Hide();
+        }
     }
 }
