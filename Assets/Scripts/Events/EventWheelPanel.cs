@@ -4,7 +4,7 @@ using UnityEngine;
 public class EventWheelPanel : MonoBehaviour
 {
     [SerializeField] private GameObject eventWheelPanel;
-    ShowCanvasGroup showCanvasGroup;
+    [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;

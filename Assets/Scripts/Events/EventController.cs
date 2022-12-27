@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EventController : MonoBehaviour
@@ -24,7 +23,7 @@ public class EventController : MonoBehaviour
     private int originalDay;
     private float originalTimeInSeconds;
 
-    public static event Action<bool> OnGetNegativeWeather;
+    public static event Action<bool> OnGetWeather;
 
     public static event Action<EventSO> OnGetEventSO = delegate { };
 
@@ -42,6 +41,8 @@ public class EventController : MonoBehaviour
     {
         WorldTime.GetNumberDay += SetDay;
         WorldTime.GetTimeProgress += SetTimeInSeconds;
+
+        randomEvent = 6;
     }
 
     public void SetDay(int day)
@@ -59,41 +60,26 @@ public class EventController : MonoBehaviour
         SelectEventByTime();
 
         RemoveEvent();
-
-        List<GameObject> dfdf = new List<GameObject>();
-
-        int panelID = 0;
-
-        for (int i = 0; i < dfdf.Count; i++)
-        {
-            if(i == panelID)
-            {
-                dfdf[i].SetActive(true);
-            }
-            else
-            {
-                dfdf[i].SetActive(false);
-            }
-        }
     }
 
-    public void SelectEventByTime(/*int day, float timeInSeconds*/)
+    public void SelectEventByTime()
     {
-        if(worldTime.countOfDaysElapsed == firstNumberDay &&
+        if (WorldTime.IsStartTime)
+        {
+            if (worldTime.countOfDaysElapsed == firstNumberDay &&
             WorldTime.timeProgress == firstGameProgress ||
             worldTime.countOfDaysElapsed == secondNumberDay &&
             WorldTime.timeProgress == firstGameProgress)
-        {
-            SelectRandomEvent();
+            {
+                SelectRandomEvent();
 
-            SelectEventByRandomizeNumber(randomEvent);
+                SelectEventByRandomizeNumber(randomEvent);
+            }
         }
     }
 
     public void SelectRandomEvent()
     {
-        randomEvent = 0;
-
         randomEvent = UnityEngine.Random.Range(0, 5);
     }
 
@@ -103,13 +89,13 @@ public class EventController : MonoBehaviour
         {
             case 0:
 
-                if(littleRainEvent != null)
+                if (littleRainEvent != null)
                 {
                     IsNegativeWeather = true;
 
                     littleRainEvent.StartSmallRainEvent();
 
-                    OnGetNegativeWeather?.Invoke(IsNegativeWeather);
+                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(littleRainEvent.littleRainSO);
                 }
@@ -124,7 +110,7 @@ public class EventController : MonoBehaviour
 
                     ThunderstormWithHeavyRainEvent.StartThunderEvent();
 
-                    OnGetNegativeWeather?.Invoke(IsNegativeWeather);
+                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(ThunderstormWithHeavyRainEvent.ThunderSO);
                 }
@@ -139,7 +125,7 @@ public class EventController : MonoBehaviour
 
                     stormEvent.StartStormEvent();
 
-                    OnGetNegativeWeather?.Invoke(IsNegativeWeather);
+                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(stormEvent.StormSO);
                 }
@@ -154,7 +140,7 @@ public class EventController : MonoBehaviour
 
                     clearWeatherWithLittleColdEvent.StartClearWeatherWithLittleCold();
 
-                    OnGetNegativeWeather?.Invoke(IsNegativeWeather);
+                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(clearWeatherWithLittleColdEvent.ClearWeatherWithLittleColdSO);
                 }
@@ -169,7 +155,7 @@ public class EventController : MonoBehaviour
 
                     mineÑollapseEvent.StartMineÑollapseEvent();
 
-                    OnGetNegativeWeather?.Invoke(IsNegativeWeather);
+                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(mineÑollapseEvent.MineÑollapseSO);
                 }
@@ -182,7 +168,7 @@ public class EventController : MonoBehaviour
                 {
                     IsNegativeWeather = false;
 
-                    OnGetNegativeWeather?.Invoke(IsNegativeWeather);
+                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(standartDayEvent.StandartDaySO);
                 }
@@ -191,9 +177,9 @@ public class EventController : MonoBehaviour
         }
     }
 
-    public void RemoveEvent(/*int numDay, float time*/)
+    public void RemoveEvent()
     {
-        if(worldTime.countOfDaysElapsed == firstNumberDay + 1 && WorldTime.timeProgress == firstGameProgress ||
+        if (worldTime.countOfDaysElapsed == firstNumberDay + 1 && WorldTime.timeProgress == firstGameProgress ||
             worldTime.countOfDaysElapsed == secondNumberDay + 1 && WorldTime.timeProgress == secondGameProgress)
         {
             IsNegativeWeather = false;

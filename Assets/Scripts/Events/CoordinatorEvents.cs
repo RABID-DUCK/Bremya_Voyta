@@ -22,7 +22,7 @@ public class CoordinatorEvents : MonoBehaviour
 
         standartSkyColor = changeDayAndNight.daySkyGradient;
 
-        EventController.OnGetNegativeWeather += CheckNegativeWeather;
+        EventController.OnGetWeather += CheckNegativeWeather;
     }
 
     public void CheckNegativeWeather(bool isNegativeWeather)
