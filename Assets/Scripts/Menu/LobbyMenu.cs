@@ -6,11 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.Progress;
 
 public class LobbyMenu : MonoBehaviourPunCallbacks
 {
@@ -155,7 +152,6 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
                 {
                     if (_characterSO.full[j] == _player.Value.NickName)
                     {
-                        Debug.Log(_player.Value.CustomProperties);
                         _imagePlayer.imageAvatar.sprite = _characterSO.avatars[j];
                     }
                 }
@@ -215,7 +211,6 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
                 {
                     if (_nick == targetPlayer.NickName)
                     {
-                        Debug.Log($"{targetPlayer.NickName} убрал профессию {_itemCharacter.nameCharacter}");
                         _itemCharacter.full[j] = "";
                     }
                 }
@@ -224,7 +219,6 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
             CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _data[0]);
             _character.full[_idCh] = targetPlayer.NickName;
             _player.imageAvatar.sprite = _character.avatars[_idCh];
-            Debug.Log($"{targetPlayer.NickName} взял профессию {_character.nameCharacter}");
         }
 
         if (changedProps["Ready"] != null)

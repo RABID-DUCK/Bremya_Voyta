@@ -24,8 +24,8 @@ MonoBehaviour:
   - "\u041B\u0435\u0441"
   - "\u041F\u043E\u043B\u044F\u043D\u0430"
   prefabs:
-  - {fileID: 8384272584471384234, guid: d8563b9485175b04f8cd2c72f64c1b88, type: 3}
-  - {fileID: 8384272584471384234, guid: b01ba394634fd12429723033600c41f2, type: 3}
+  - {fileID: 315382485268062640, guid: a26e63580b03aa448b282e7af7222f22, type: 3}
+  - {fileID: 315382485268062640, guid: e1f6b36c9d4b7204aa04df09ebb94061, type: 3}
   avatars:
   - {fileID: 21300000, guid: d9931acda2ba8c14593ec2a9006f59d8, type: 3}
   - {fileID: 21300000, guid: 84f7bc13eb5d8df4ba056ba117fa634c, type: 3}
