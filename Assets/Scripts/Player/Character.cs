@@ -25,8 +25,8 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        bool clickOnUi = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
-        
+        bool clickOnUi = EventSystem.current != null && !EventSystem.current.IsPointerOverGameObject();
+
         if (Input.GetMouseButtonDown(0) && clickOnUi)
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));

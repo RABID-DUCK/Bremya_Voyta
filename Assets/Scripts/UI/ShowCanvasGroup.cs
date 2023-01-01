@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class ShowCanvasGroup : MonoBehaviour
 {
+    public event Action OnShowed;
+    public event Action OnHided;
+
     public CanvasGroup canvasGroup;
     public float speed = 2f;
 
@@ -15,6 +19,7 @@ public class ShowCanvasGroup : MonoBehaviour
     public void FastShow()
     {
         canvasGroup.alpha = 1;
+        OnShowed?.Invoke();
     }
 
     public void Hide()
@@ -26,6 +31,7 @@ public class ShowCanvasGroup : MonoBehaviour
     public void FastHide()
     {
         canvasGroup.alpha = 0;
+        OnHided?.Invoke();
     }
 
     private IEnumerator Open()
@@ -35,6 +41,8 @@ public class ShowCanvasGroup : MonoBehaviour
             canvasGroup.alpha += Time.deltaTime * speed;
             yield return new WaitForEndOfFrame();
         }
+
+        OnShowed?.Invoke();
     }
 
     private IEnumerator Close()
@@ -44,5 +52,7 @@ public class ShowCanvasGroup : MonoBehaviour
             canvasGroup.alpha -= Time.deltaTime * speed;
             yield return new WaitForEndOfFrame();
         }
+
+        OnHided?.Invoke();
     }
 }
