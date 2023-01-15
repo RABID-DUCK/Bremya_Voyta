@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2811236154774300029}
   - component: {fileID: 9015255267348121183}
   - component: {fileID: 5975140066188230760}
+  - component: {fileID: -5202064336154289641}
   m_Layer: 0
   m_Name: Lumberjack_2
   m_TagString: Untagged
@@ -51,11 +52,12 @@ MonoBehaviour:
     coins: 0
     woodCount: 0
     berriesCount: 0
+    carrotCount: 0
     milkCount: 0
-    metallCount: 0
+    coalCount: 0
+    ironCount: 0
     meatCount: 0
     fishCount: 0
-    carrotCount: 0
 --- !u!114 &9015255267348121183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +82,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e2ce2de08cf86428b7b4e782ac40be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5202064336154289641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315382485268062640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &3543355362568017413
 PrefabInstance:
   m_ObjectHideFlags: 0
