@@ -17,7 +17,7 @@ public class FastMenu : MonoBehaviour
     [SerializeField] private Button exitInMenuButton;
 
     [Header("Button of settings menu")]
-    [SerializeField] Button settingsMenuButton;
+    [SerializeField] Button settingsMenuBackButton;
 
     //[SerializeField] private ShowCanvasGroup showCanvasGroup;
 
@@ -37,7 +37,7 @@ public class FastMenu : MonoBehaviour
         settingsButton.onClick.AddListener(ShowSettingsMenu);
         exitInMenuButton.onClick.AddListener(ExitInMenu);
 
-        settingsMenuButton.onClick.AddListener(HideSettingsMenu);
+        settingsMenuBackButton.onClick.AddListener(HideSettingsMenu);
     }
 
     private void Update()
