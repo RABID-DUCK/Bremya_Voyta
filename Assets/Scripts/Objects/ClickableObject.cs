@@ -31,5 +31,5 @@ public abstract class ClickableObject : MonoBehaviour, IClickableObject
         outline.enabled = false;
     }
 
-    public abstract void Exicute(Character player);
+    public abstract void Execute(Character player);
 }

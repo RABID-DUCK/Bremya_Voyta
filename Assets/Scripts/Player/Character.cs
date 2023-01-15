@@ -1,11 +1,9 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour
 {
-    public event Action<IClickableObject> OnGetWork;
-
     [Serializable]
     public struct CharacterInventory
     {
@@ -23,29 +21,53 @@ public class Character : MonoBehaviour
 
     public CharacterInventory inventory;
 
-    private void Update()
+    private List<IProfession> professions = new List<IProfession>();
+    private ClickEventer clickEventer;
+
+    public bool Init { get; private set; }
+
+    private void Awake()
     {
-        bool clickOnUi = EventSystem.current != null && !EventSystem.current.IsPointerOverGameObject();
-
-        if (Input.GetMouseButtonDown(0) && clickOnUi)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
-            RaycastHit _hit;
-
-            if (Physics.Raycast(ray, out _hit, Mathf.Infinity))
-            {
-                GetObject(_hit);
-            }
-        }
+        GetComponents(professions);
+        InitializationPlayer(clickEventer);
     }
 
-    private void GetObject(RaycastHit _hit)
+    public void InitializationPlayer(ClickEventer clickEventer)
     {
-        IClickableObject click = _hit.collider.GetComponent<IClickableObject>();
-
-        if (click != null)
+        if (Init)
         {
-            OnGetWork?.Invoke(click);
+            this.clickEventer.OnClickWork -= GetObject;
+        }
+
+        InitPlayer(clickEventer);
+    }
+
+    private void InitPlayer(ClickEventer clickEventer)
+    {
+        this.clickEventer.OnClickWork += GetObject;
+        this.clickEventer = clickEventer;
+
+        Init = true;
+    }
+
+    private void GetObject(IWork clickableObject)
+    {
+        bool checkWork = true;
+        foreach (IProfession profession in professions)
+        {
+            if (profession.CheckProfessionObject(clickableObject))
+            {
+                // TODO: Add work dialog window.
+
+                clickableObject.Execute(this);
+                checkWork = false;
+                break;
+            }
+        }
+
+        if (checkWork)
+        {
+            // TODO: Add warning label.
         }
     }
 }

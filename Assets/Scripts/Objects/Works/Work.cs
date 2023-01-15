@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Work : ClickableObject
+public abstract class Work : ClickableObject, IWork
 {
     [SerializeField]
     private int standartMinDropItems = 3;
@@ -24,9 +24,15 @@ public abstract class Work : ClickableObject
         ovverideDropItems = false;
     }
 
-    public override void Exicute(Character player)
+    public override void Execute(Character player)
     {
+        ShowWork();
         WriteItemsInPlayerInventory(player, CalculateDropItems());
+    }
+
+    public void ShowWork()
+    {
+        // TODO: Show work animation.
     }
 
     protected abstract void WriteItemsInPlayerInventory(Character player, int itemsCount);

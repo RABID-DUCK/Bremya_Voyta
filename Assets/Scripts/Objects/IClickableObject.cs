@@ -1,4 +1,4 @@
 public interface IClickableObject
 {
-    public void Exicute(Character player);
+    public void Execute(Character player);
 }

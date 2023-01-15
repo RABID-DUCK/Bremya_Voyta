@@ -1,52 +1,44 @@
-using Photon.Pun;
-using Photon.Realtime;
-using System.Collections.Generic;
-using System.IO;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
-public class ClickEventer : MonoBehaviourPunCallbacks
+public class ClickEventer : MonoBehaviour
 {
-    [SerializeField] GameObject popup;
+    public event Action<IClickableObject> OnClickObject;
+    public event Action<IWork> OnClickWork;
 
-    private void CreateController()
+    private void Update()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Hunter_1"), Vector3.zero, Quaternion.identity);
-    }
+        bool clickOnUi = EventSystem.current != null && !EventSystem.current.IsPointerOverGameObject();
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && clickOnUi)
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
             RaycastHit _hit;
+
             if (Physics.Raycast(ray, out _hit, Mathf.Infinity))
             {
-                switch (_hit.transform.tag)
-                {
-                    case "House":
-                        {
-                            Debug.Log("dsad");
-                            popup.SetActive(true);
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                GetClickableObject(_hit);
             }
         }
     }
 
-    public void ChooseBtnYes()
+    private void GetClickableObject(RaycastHit _hit)
     {
-        SceneManager.LoadScene(3);
-    }
+        IClickableObject click = _hit.collider.GetComponent<IClickableObject>();
 
-    public void ChooseBtnNo()
-    {
-        popup.SetActive(false);
+        if (click != null)
+        {
+            switch (click)
+            {
+                default:
+                    OnClickObject?.Invoke(click);
+                    break;
+                
+                case IWork:
+                    OnClickWork?.Invoke((IWork)click);
+                    break;
+            }
+        }
     }
-    
-
 }
