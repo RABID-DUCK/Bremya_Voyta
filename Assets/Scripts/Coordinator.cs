@@ -6,6 +6,8 @@ public class Coordinator : MonoBehaviour
 {
     public static event Action OnEndEducation;
 
+    [SerializeField] private ClickEventer clickEventer;
+
     [Header("Start")]
     [SerializeField] private DialogData startDialogData;
     [SerializeField] private DialogPresenter dialogPresenter;
@@ -13,6 +15,8 @@ public class Coordinator : MonoBehaviour
     [Header("Market")]
     [SerializeField] private MarketController marketController;
     [SerializeField] private ShowCanvasGroup marketShowCanvasGroup;
+    
+    private Character player;
 
     private void Start()
     {
@@ -20,6 +24,27 @@ public class Coordinator : MonoBehaviour
         {
             dialogPresenter.OnDialogEnd += EndEducation;
             dialogPresenter.StartDialog(startDialogData);
+        }
+
+        clickEventer.OnClickObject += OnClickObject;
+    }
+
+    private void OnDestroy()
+    {
+        clickEventer.OnClickObject -= OnClickObject;
+    }
+
+    public void InitializationPlayer(Character player)
+    {
+        player.Initialization(clickEventer);
+        this.player = player;
+    }
+
+    private void OnClickObject(IClickableObject clickableObject)
+    {
+        if (player)
+        {
+            clickableObject.Execute(player);
         }
     }
 
