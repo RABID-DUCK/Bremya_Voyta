@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -5014552307457173840}
   - component: {fileID: -4119369670504101883}
   - component: {fileID: -5909371217332541196}
+  - component: {fileID: 8308012460848643073}
+  - component: {fileID: -8097367106301620455}
   m_Layer: 0
   m_Name: Farmer_1
   m_TagString: Untagged
@@ -128,7 +130,7 @@ MonoBehaviour:
   photonView: {fileID: 2430984258520190928}
   sensitivityMouse: 0
   playerBody: {fileID: 8648209038860809687}
-  animator: {fileID: 6371907669187856014}
+  animator: {fileID: 0}
 --- !u!143 &7023537511748776931
 CharacterController:
   m_ObjectHideFlags: 0
@@ -214,10 +216,50 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -5014552307457173840}
+  - {fileID: -4119369670504101883}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &8308012460848643073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeca157ff591bc44aa6129ae21e1d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  turningSpeed: 7
+  photonView: {fileID: 0}
+  sensitivityMouse: 0
+  playerBody: {fileID: 0}
+  animator: {fileID: 0}
+--- !u!95 &-8097367106301620455
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d64fdc9079831c409cbe177ef53d89b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6760346366049665503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,13 +315,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 413209046749398865, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}
---- !u!95 &6371907669187856014 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 413209046749398865, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}
+--- !u!1 &6866068756857640916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 187108410881611275, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}
   m_PrefabInstance: {fileID: 6760346366049665503}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &102659067524874748
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866068756857640916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d64fdc9079831c409cbe177ef53d89b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5422779008021001757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866068756857640916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &8648209038860809687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2726102188691600392, guid: 76fa88dfda547c948bd0991fb31788ba, type: 3}
