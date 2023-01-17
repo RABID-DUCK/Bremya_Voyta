@@ -4,6 +4,7 @@ using Photon.Pun;
 
 public class WorldTime : MonoBehaviour, IPunObservable
 {
+    // HELLO EBATERINA!!!
     [Header("Time of day settings")]
     [Tooltip("Number of seconds during the day")]
     public static float dayTimeInSeconds; // Количество секунд днем
