@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class UIController : MonoBehaviour
 {
     private const string dialogWindowPrefabName = "DialogWindow";
     private const string infoWindowPrefabName = "InfoWindow";
+    private const string videoWindowPrefabName = "VideoWindow";
 
     [SerializeField] private DialogWindow dialogWindowPrefab;
     private Transform canvasTransform;
@@ -55,5 +57,10 @@ public class UIController : MonoBehaviour
     public static void ShowOkInfo(string messageText, Action OnApplyCallback = null)
     {
         ShowInfo(messageText, "Îê", OnApplyCallback);
+    }
+
+    public static void ShowVideo(VideoClip video, Action OnEndVideo)
+    {
+        WindowManager.InitWindowPrefab<VideoWindow>(videoWindowPrefabName, instance.canvasTransform).ShowVideo(video, OnEndVideo);
     }
 }

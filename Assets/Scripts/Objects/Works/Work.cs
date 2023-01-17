@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.Video;
 
 public abstract class Work : ClickableObject, IWork
 {
+    [SerializeField]
+    private VideoClip workVideo;
+
     [SerializeField]
     private int standartMinDropItems = 3;
 
@@ -26,13 +30,15 @@ public abstract class Work : ClickableObject, IWork
 
     public override void Execute(Character player)
     {
-        ShowWork();
-        WriteItemsInPlayerInventory(player, CalculateDropItems());
+        UIController.ShowVideo(workVideo, () =>
+        {
+            WriteItemsInPlayerInventory(player, CalculateDropItems());
+        });
     }
 
     public void ShowWork()
     {
-        // TODO: Show work animation.
+
     }
 
     protected abstract void WriteItemsInPlayerInventory(Character player, int itemsCount);
