@@ -24,12 +24,28 @@ public class WarningSleepPanel : MonoBehaviour
         worldTime.GetTimeOfDay += ShowWarningSleepPanel;
     }
 
+    private void Update()
+    {
+        ShowWarningSleepPanel(worldTime.CheckTimeOfDay);
+    }
+
     public void ShowWarningSleepPanel(bool timeOfDay)
     {
-        warningSleepPanel.SetActive(true);
+        if (!timeOfDay)
+        {
+            warningSleepPanel.SetActive(true);
 
-        timeStart -= Time.deltaTime;
-        textTimer.text = ("Пора спать! У вас " + (Mathf.Round(timeStart).ToString()) + " секунд чтобы лечь спать!");
+            if(timeStart > 0)
+            {
+                timeStart -= Time.deltaTime;
+
+                textTimer.text = ("Пора спать! У вас " + (Mathf.Round(timeStart).ToString()) + " секунд чтобы лечь спать!");
+            }
+            else
+            {
+                IsSleep = true;
+            }
+        }
     }
 
     public void HideWarningSleepPanel()
