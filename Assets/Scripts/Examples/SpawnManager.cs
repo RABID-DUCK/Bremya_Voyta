@@ -11,6 +11,10 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject[] Spawns;
+<<<<<<< HEAD
+=======
+    [SerializeField] private CinemachineVirtualCamera _camera;
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
     private PhotonView _photonView;
     private LobbyMenu _lobbyMenu;
     [SerializeField] private List<CharacterSO> listCharacters;
@@ -28,6 +32,15 @@ public class SpawnManager : MonoBehaviourPunCallbacks
 
         CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _nameCh);
         string nameCharacter = _character.prefabs[_idCh].name;
+<<<<<<< HEAD
         PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), randomPositions, Quaternion.identity);
+=======
+        PhotonView newPlayer = PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), randomPositions, Quaternion.identity).GetPhotonView();
+        if (newPlayer.IsMine)
+        {
+            _camera.Follow = newPlayer.transform;
+            Debug.Log("PIZDA "+newPlayer);
+        }
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
     }
 }

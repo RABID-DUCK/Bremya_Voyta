@@ -13,6 +13,13 @@ GameObject:
   - component: {fileID: 1058867955903690433}
   - component: {fileID: 1374182010199526890}
   - component: {fileID: -455640115665914254}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1965953391757261617}
+  - component: {fileID: 5216500198046865331}
+  - component: {fileID: -3144844016084713426}
+  - component: {fileID: 5835964798416244611}
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_Layer: 0
   m_Name: Farmer_2
   m_TagString: Untagged
@@ -83,6 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-455640115665914254
+<<<<<<< HEAD
+=======
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,6 +113,159 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1965953391757261617
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+<<<<<<< HEAD
+=======
+--- !u!95 &5216500198046865331
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d64fdc9079831c409cbe177ef53d89b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-3144844016084713426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeca157ff591bc44aa6129ae21e1d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  turningSpeed: 7
+  photonView: {fileID: 0}
+  sensitivityMouse: 0
+  playerBody: {fileID: 0}
+  animator: {fileID: 0}
+--- !u!114 &5835964798416244611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034222575266473214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
+--- !u!1001 &4156447246915606220
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8987788779081202610}
+    m_Modifications:
+    - target: {fileID: 6321848278227406984, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406985, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_Name
+      value: CameraTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.037037034
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.037037037
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.037037037
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8918424
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 37.919273
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.45037377
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9382399
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.32194144
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.11986677
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.041130293
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 37.878
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -14.561
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
 --- !u!1001 &4752447543412527824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,5 +326,10 @@ PrefabInstance:
 --- !u!4 &7215077366289704664 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2726102188691600392, guid: c4c41ca8633afd3418f1b4a39168d506, type: 3}
+  m_PrefabInstance: {fileID: 4752447543412527824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8987788779081202610 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4417784505820539234, guid: c4c41ca8633afd3418f1b4a39168d506, type: 3}
   m_PrefabInstance: {fileID: 4752447543412527824}
   m_PrefabAsset: {fileID: 0}

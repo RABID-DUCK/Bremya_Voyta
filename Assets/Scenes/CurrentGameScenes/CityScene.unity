@@ -5378,7 +5378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8608422950976070386, guid: 8815a672047010f409adeddc6e841943, type: 3}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 2
+=======
+      value: 3
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
       objectReference: {fileID: 0}
     - target: {fileID: 8608422950976070386, guid: 8815a672047010f409adeddc6e841943, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5684,7 +5688,11 @@ Transform:
   - {fileID: 791203321}
   - {fileID: 1354665764}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 5
+=======
+  m_RootOrder: 6
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &138676255
 GameObject:
@@ -11340,7 +11348,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 9
+=======
+  m_RootOrder: 10
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226440736
 GameObject:
@@ -17574,7 +17586,11 @@ Transform:
   - {fileID: 946469920}
   - {fileID: 2005942809}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 4
+=======
+  m_RootOrder: 5
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963902061
 GameObject:
@@ -19455,6 +19471,15 @@ MonoBehaviour:
   - {fileID: 2108924978}
   - {fileID: 946469919}
   - {fileID: 2005942808}
+<<<<<<< HEAD
+=======
+  - {fileID: 1341504343}
+  - {fileID: 705709583}
+  - {fileID: 493582414}
+  - {fileID: 1205488521}
+  - {fileID: 1590130930}
+  _camera: {fileID: 6321848277602666299}
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   listCharacters:
   - {fileID: 11400000, guid: c3b94e01147220943a4c363f8ccd0251, type: 2}
   - {fileID: 11400000, guid: 93de5cfb53ed40649a12ad39bf5bf541, type: 2}
@@ -26466,7 +26491,11 @@ Transform:
   - {fileID: 1404873624}
   - {fileID: 104235312}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 7
+=======
+  m_RootOrder: 8
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1305875162
 GameObject:
@@ -34760,7 +34789,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 8
+=======
+  m_RootOrder: 9
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743794721
 GameObject:
@@ -34835,7 +34868,11 @@ Transform:
   - {fileID: 1365870805}
   - {fileID: 19356334}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 6
+=======
+  m_RootOrder: 7
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749607433
 GameObject:
@@ -42434,7 +42471,11 @@ Transform:
   - {fileID: 1771784709}
   - {fileID: 373539542}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 3
+=======
+  m_RootOrder: 4
+>>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8346253903269847939
 MeshRenderer:
