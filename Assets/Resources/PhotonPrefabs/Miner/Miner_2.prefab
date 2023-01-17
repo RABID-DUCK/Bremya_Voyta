@@ -13,12 +13,9 @@ GameObject:
   - component: {fileID: 772547197596250843}
   - component: {fileID: 2982760742753060940}
   - component: {fileID: -6789823808675086560}
-<<<<<<< HEAD
-=======
   - component: {fileID: -1569681471702221630}
   - component: {fileID: 7661413495109355732}
   - component: {fileID: -7530901645599697218}
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_Layer: 0
   m_Name: Miner_2
   m_TagString: Untagged
@@ -106,12 +103,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -7530901645599697218}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
-<<<<<<< HEAD
-=======
 --- !u!114 &-1569681471702221630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +167,6 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
 --- !u!1001 &5866120642488985164
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,13 +13,10 @@ GameObject:
   - component: {fileID: 1058867955903690433}
   - component: {fileID: 1374182010199526890}
   - component: {fileID: -455640115665914254}
-<<<<<<< HEAD
-=======
   - component: {fileID: 1965953391757261617}
   - component: {fileID: 5216500198046865331}
   - component: {fileID: -3144844016084713426}
   - component: {fileID: 5835964798416244611}
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_Layer: 0
   m_Name: Farmer_2
   m_TagString: Untagged
@@ -90,8 +87,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-455640115665914254
-<<<<<<< HEAD
-=======
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +109,6 @@ MonoBehaviour:
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &1965953391757261617
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,8 +130,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
-<<<<<<< HEAD
-=======
 --- !u!95 &5216500198046865331
 Animator:
   serializedVersion: 4
@@ -265,7 +257,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
 --- !u!1001 &4752447543412527824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,7 +312,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6532586228799142507, guid: c4c41ca8633afd3418f1b4a39168d506, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c4c41ca8633afd3418f1b4a39168d506, type: 3}
 --- !u!4 &7215077366289704664 stripped
 Transform:

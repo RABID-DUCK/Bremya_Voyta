@@ -12,12 +12,9 @@ GameObject:
   - component: {fileID: 5588849741581396156}
   - component: {fileID: 2905833119146292171}
   - component: {fileID: 2733972157312690840}
-<<<<<<< HEAD
-=======
   - component: {fileID: -8699301806090223540}
   - component: {fileID: 6419419521249769733}
   - component: {fileID: 3413648245437885182}
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_Layer: 0
   m_Name: Hunter_2
   m_TagString: Untagged
@@ -87,8 +84,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10ecec8ad832c1419acaf0f6e94b58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
 --- !u!114 &-8699301806090223540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +138,6 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters: []
   m_SynchronizeLayers: []
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
 --- !u!1001 &1613028105592821418
 PrefabInstance:
   m_ObjectHideFlags: 0

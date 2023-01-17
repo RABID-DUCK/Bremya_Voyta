@@ -17,10 +17,7 @@ GameObject:
   - component: {fileID: 792016083245072081}
   - component: {fileID: -3529330527568593150}
   - component: {fileID: -8475453314535627444}
-<<<<<<< HEAD
-=======
   - component: {fileID: 4458420234012548459}
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
   m_Layer: 0
   m_Name: Hunter_1
   m_TagString: Untagged
@@ -201,8 +198,6 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters: []
   m_SynchronizeLayers: []
-<<<<<<< HEAD
-=======
 --- !u!95 &4458420234012548459
 Animator:
   serializedVersion: 4
@@ -289,7 +284,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6321848278227406987, guid: 3da617e6bbfbeac4f948e25aed5f8e7d, type: 3}
   m_PrefabInstance: {fileID: 2037199110048676068}
   m_PrefabAsset: {fileID: 0}
->>>>>>> parent of be29d62 (Merge branch 'main' of https://github.com/RABID-DUCK/Bremya_Voyta)
 --- !u!1001 &6480409910518326965
 PrefabInstance:
   m_ObjectHideFlags: 0
