@@ -25,7 +25,7 @@ public class ArrowChange : MonoBehaviour
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
-        else if (worldTime.IsStartTime)
+        else if (worldTime.IsStartTime && !IsUseRotateArrowFromEventWheel)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
@@ -33,9 +33,7 @@ public class ArrowChange : MonoBehaviour
 
     public void RotateArrowTimeOfDay(RectTransform arrowRectTransform, float angleOffsetRotationArrow)
     {
-        //arrowRectTransform.Rotate(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
-
-        arrowRectTransform.localRotation = Quaternion.Euler(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
+        arrowRectTransform.Rotate(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
     }
 
     public void CalcAngleOffset(float timeRotationArrow)
