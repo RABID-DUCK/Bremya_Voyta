@@ -47,6 +47,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
         dayTimeInSeconds = 360f;
         nightTimeInSeconds = 60f;
         timeProgress = 0.2f;
+
         CheckTimeOfDay = true;
 
         GetNumberDay?.Invoke(countOfDaysElapsed);
@@ -65,7 +66,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void FixedUpdate()
     {
-        if (IsStartTime) // Раскомментировать условие, когда подключите диалоговую систему
+        if (IsStartTime)
         {
             ChengeOfTime();
         }
@@ -88,14 +89,14 @@ public class WorldTime : MonoBehaviour, IPunObservable
             {
                 timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
             }
-
-            print(timeProgress);
         }
 
         if (timeProgress > 1f)
         {
             timeProgress = 0f;
+
             CheckTimeOfDay = !CheckTimeOfDay;
+            GetTimeOfDay?.Invoke(CheckTimeOfDay);
 
             if (CheckTimeOfDay)
             {

@@ -2,48 +2,62 @@ using UnityEngine;
 
 public class ArrowChange : MonoBehaviour
 {
+    [Header("Time setting")]
     [SerializeField] private WorldTime worldTime;
 
     [SerializeField] private RectTransform arrowRectTransform;
 
-    public float timeRotationArrow;
-
-    public bool IsUseRotateArrowFromEventWheel;
+    [SerializeField] private bool IsUseRotateArrowFromEventWheel;
 
     private float angleOffsetRotationArrow;
 
-    private bool IsStartArrowStroke;
+    private float timeRotationArrow;
 
     private void Start()
     {
+        CalcTimeRotationArrow(timeRotationArrow);
+
         CalcAngleOffset(timeRotationArrow);
-        StartArrowStroke(IsStartArrowStroke);
     }
 
     private void Update()
     {
-        if(IsUseRotateArrowFromEventWheel && worldTime.CheckTimeOfDay && worldTime.IsStartTime)
+        if (IsUseRotateArrowFromEventWheel && worldTime.CheckTimeOfDay && worldTime.IsStartTime)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
-        else if(worldTime.IsStartTime)
+        else if (worldTime.IsStartTime)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
-    }
-
-    public void StartArrowStroke(bool IsStartArrowStroke)
-    {
-        IsStartArrowStroke = true;
     }
 
     public void RotateArrowTimeOfDay(RectTransform arrowRectTransform, float angleOffsetRotationArrow)
     {
-        arrowRectTransform.Rotate(0, 0, -angleOffsetRotationArrow * Time.deltaTime);
+        arrowRectTransform.Rotate(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
     }
 
     public void CalcAngleOffset(float timeRotationArrow)
     {
-        angleOffsetRotationArrow = 360 / timeRotationArrow;
+        if (IsUseRotateArrowFromEventWheel)
+        {
+            angleOffsetRotationArrow = 360 / timeRotationArrow;
+        }
+    }
+
+    public void CalcTimeRotationArrow(float timeRotationArrow)
+    {
+        if (IsUseRotateArrowFromEventWheel)
+        {
+            timeRotationArrow = (worldTime.dayTimeInSeconds + worldTime.nightTimeInSeconds) * 6;
+
+            print($"Секунд днем {worldTime.dayTimeInSeconds}, секунд ночью {worldTime.nightTimeInSeconds}");
+
+            print(arrowRectTransform);
+        }
+        else
+        {
+            timeRotationArrow = worldTime.dayTimeInSeconds + worldTime.nightTimeInSeconds;
+        }
     }
 }
