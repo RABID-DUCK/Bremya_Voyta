@@ -44,7 +44,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void Start()
     {
-        dayTimeInSeconds = 360f;
+        dayTimeInSeconds = 15f;
         nightTimeInSeconds = 60f;
         timeProgress = 0.2f;
 
