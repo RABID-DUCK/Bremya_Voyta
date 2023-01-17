@@ -36,5 +36,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
             _camera.Follow = newPlayer.transform;
             sceneCoordinator.InitializationPlayer(newPlayer.GetComponent<Character>());
         }
+
+        PhotonNetwork.AutomaticallySyncScene = false;
     }
 }
