@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17309213, g: 0.2163364, b: 0.29834357, a: 1}
+  m_IndirectSpecularColor: {r: 0.43710327, g: 0.4848175, b: 0.56508553, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19722,6 +19722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f33aad8cc98114b99eba76159a8f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickEventer: {fileID: 1173866869}
   startDialogData: {fileID: 11400000, guid: 62aef92f74b186a4381ee604738bdf83, type: 2}
   dialogPresenter: {fileID: 1599129250}
   marketController: {fileID: 166551129}

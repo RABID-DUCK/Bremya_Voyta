@@ -1,23 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class House : MonoBehaviour
+public class House : ClickableObject
 {
-    Outline outline;
-
-    void Start()
+    public override void Execute(Character player)
     {
-        outline = transform.gameObject.GetComponent<Outline>();
-    }
-
-    private void OnMouseOver()
-    {
-        outline.enabled = true;
-    }
-
-    private void OnMouseExit()
-    {
-        outline.enabled = false;
+        UIController.ShowYesNoDialog("Вы хотите войти в свой дом?", () =>
+        {
+            SceneManager.LoadScene(3);
+        });
     }
 }
