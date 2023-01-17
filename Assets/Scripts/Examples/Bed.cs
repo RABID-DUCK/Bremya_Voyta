@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Bed : MonoBehaviour
 {
+    [SerializeField] private WorldTime worldTime;
+
     Outline outline;
     SleepPanel sleepPanel;
 
@@ -45,7 +47,7 @@ public class Bed : MonoBehaviour
     {
         //sleepWindow.SetActive(true);
 
-        if (!WorldTime.CheckTimeOfDay)
+        if (!worldTime.CheckTimeOfDay)
         {
             print("night");
             sleepWindow.SetActive(true);
@@ -54,7 +56,7 @@ public class Bed : MonoBehaviour
         else
         {
             print("day");
-            print(WorldTime.timeProgress);
+            print(worldTime.timeProgress);
             playerSleep.SetActive(false);
             Player.SetActive(true);
         }

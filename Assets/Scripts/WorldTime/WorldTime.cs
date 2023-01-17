@@ -4,39 +4,37 @@ using Photon.Pun;
 
 public class WorldTime : MonoBehaviour, IPunObservable
 {
-    // HELLO EBATERINA!!!
-    [Header("Time of day settings")]
-    [Tooltip("Number of seconds during the day")]
-    public static float dayTimeInSeconds; // Количество секунд днем
-    [Tooltip("Number of seconds during the night")]
-    public static float nightTimeInSeconds; // Количество секунд ночью
-    [Tooltip("Time of day range")]
-    public static float timeProgress; // Игровой прогресс
-
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public static bool IsStartTime; // Отвечает за включение времени
+    public float dayTimeInSeconds { get; set; }// Количество секунд днем
+
+    public float nightTimeInSeconds { get; set; } // Количество секунд ночью
+
+    public float timeProgress { get; set; } // Игровой прогресс
 
     /// <summary>
     /// Число дня, который наступил. Счет идет до 6, потом обнуляется!
     /// </summary>
-    public static event Action<int> GetNumberDay;
+    public event Action<int> GetNumberDay;
 
     /// <summary>
     /// Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!
     /// </summary>
-    public static event Action<float> GetTimeProgress;
+    public event Action<float> GetTimeProgress;
 
     /// <summary>
     /// Взять время суток!
     /// </summary>
-    public static event Action<bool> GetTimeOfDay;
+    public event Action<bool> GetTimeOfDay;
 
     /// <summary>
     /// true - День, false - Ночь!
     /// </summary>
-    [HideInInspector] public static bool CheckTimeOfDay;
+    public bool CheckTimeOfDay { get; set; }
+
+    public bool IsStartTime { get; set; }// Отвечает за включение времени
+
 
     private void Awake()
     {
@@ -46,9 +44,9 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void Start()
     {
-        dayTimeInSeconds = 180f;
-        nightTimeInSeconds = 80f;
-        timeProgress = 0f;
+        dayTimeInSeconds = 360f;
+        nightTimeInSeconds = 60f;
+        timeProgress = 0.2f;
         CheckTimeOfDay = true;
 
         GetNumberDay?.Invoke(countOfDaysElapsed);
@@ -90,6 +88,8 @@ public class WorldTime : MonoBehaviour, IPunObservable
             {
                 timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
             }
+
+            print(timeProgress);
         }
 
         if (timeProgress > 1f)
@@ -119,7 +119,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
         else if (stream.IsReading)
         {
             timeProgress = (float)stream.ReceiveNext();
-            Debug.Log("Reading: "+timeProgress);
+            Debug.Log("Reading: " + timeProgress);
         }
     }
 }

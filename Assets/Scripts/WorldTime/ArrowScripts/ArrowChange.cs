@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ArrowChange : MonoBehaviour
 {
+    [SerializeField] private WorldTime worldTime;
+
     [SerializeField] private RectTransform arrowRectTransform;
 
     public float timeRotationArrow;
@@ -20,11 +22,11 @@ public class ArrowChange : MonoBehaviour
 
     private void Update()
     {
-        if(IsUseRotateArrowFromEventWheel && WorldTime.CheckTimeOfDay && WorldTime.IsStartTime)
+        if(IsUseRotateArrowFromEventWheel && worldTime.CheckTimeOfDay && worldTime.IsStartTime)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
-        else if(WorldTime.IsStartTime)
+        else if(worldTime.IsStartTime)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }

@@ -39,8 +39,8 @@ public class EventController : MonoBehaviour
 
     private void Start()
     {
-        WorldTime.GetNumberDay += SetDay;
-        WorldTime.GetTimeProgress += SetTimeInSeconds;
+        worldTime.GetNumberDay += SetDay;
+        worldTime.GetTimeProgress += SetTimeInSeconds;
 
         randomEvent = 6;
     }
@@ -64,12 +64,12 @@ public class EventController : MonoBehaviour
 
     public void SelectEventByTime()
     {
-        if (WorldTime.IsStartTime)
+        if (worldTime.IsStartTime)
         {
             if (worldTime.countOfDaysElapsed == firstNumberDay &&
-            WorldTime.timeProgress == firstGameProgress ||
+            worldTime.timeProgress == firstGameProgress ||
             worldTime.countOfDaysElapsed == secondNumberDay &&
-            WorldTime.timeProgress == firstGameProgress)
+            worldTime.timeProgress == firstGameProgress)
             {
                 SelectRandomEvent();
 
@@ -179,8 +179,8 @@ public class EventController : MonoBehaviour
 
     public void RemoveEvent()
     {
-        if (worldTime.countOfDaysElapsed == firstNumberDay + 1 && WorldTime.timeProgress == firstGameProgress ||
-            worldTime.countOfDaysElapsed == secondNumberDay + 1 && WorldTime.timeProgress == secondGameProgress)
+        if (worldTime.countOfDaysElapsed == firstNumberDay + 1 && worldTime.timeProgress == firstGameProgress ||
+            worldTime.countOfDaysElapsed == secondNumberDay + 1 && worldTime.timeProgress == secondGameProgress)
         {
             IsNegativeWeather = false;
 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ChangeDayAndNight : MonoBehaviour
 {
+    [SerializeField] private WorldTime worldTime;
+
     [Tooltip("Directional light")]
     [SerializeField] private Light directionalLight;
 
@@ -28,7 +30,7 @@ public class ChangeDayAndNight : MonoBehaviour
 
     private void Update()
     {
-        if (WorldTime.CheckTimeOfDay)
+        if (worldTime.CheckTimeOfDay)
         {
             ChangingGradientColorDay();
 
@@ -44,21 +46,21 @@ public class ChangeDayAndNight : MonoBehaviour
 
     private void ChangingGradientColorDay()
     {
-        directionalLight.color = dayGradient.Evaluate(WorldTime.timeProgress);
+        directionalLight.color = dayGradient.Evaluate(worldTime.timeProgress);
 
-        RenderSettings.ambientLight = daySkyGradient.Evaluate(WorldTime.timeProgress);
+        RenderSettings.ambientLight = daySkyGradient.Evaluate(worldTime.timeProgress);
 
-        directionalLight.transform.localEulerAngles = new Vector3(180 * WorldTime.timeProgress,
+        directionalLight.transform.localEulerAngles = new Vector3(180 * worldTime.timeProgress,
             defaultAngles.x, defaultAngles.z);
     }
 
     private void ChangingGradientColorNught()
     {
-        directionalLight.color = nightGradient.Evaluate(WorldTime.timeProgress);
+        directionalLight.color = nightGradient.Evaluate(worldTime.timeProgress);
 
-        RenderSettings.ambientLight = nightSkyGradient.Evaluate(WorldTime.timeProgress);
+        RenderSettings.ambientLight = nightSkyGradient.Evaluate(worldTime.timeProgress);
 
-        directionalLight.transform.localEulerAngles = new Vector3(180 * WorldTime.timeProgress - 180,
+        directionalLight.transform.localEulerAngles = new Vector3(180 * worldTime.timeProgress - 180,
             defaultAngles.x, defaultAngles.z);
     }
 }
