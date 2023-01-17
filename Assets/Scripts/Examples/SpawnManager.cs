@@ -13,6 +13,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject[] Spawns;
     [SerializeField] private CinemachineVirtualCamera _camera;
+    [SerializeField] private Coordinator sceneCoordinator;
     private PhotonView _photonView;
     private LobbyMenu _lobbyMenu;
     [SerializeField] private List<CharacterSO> listCharacters;
@@ -33,7 +34,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         if (newPlayer.IsMine)
         {
             _camera.Follow = newPlayer.transform;
-            Debug.Log("PIZDA "+newPlayer);
+            sceneCoordinator.InitializationPlayer(newPlayer.GetComponent<Character>());
         }
     }
 }

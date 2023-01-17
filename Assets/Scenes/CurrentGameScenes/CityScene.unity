@@ -19547,6 +19547,7 @@ MonoBehaviour:
   - {fileID: 1205488521}
   - {fileID: 1590130930}
   _camera: {fileID: 6321848277602666299}
+  sceneCoordinator: {fileID: 1179321167}
   listCharacters:
   - {fileID: 11400000, guid: c3b94e01147220943a4c363f8ccd0251, type: 2}
   - {fileID: 11400000, guid: 93de5cfb53ed40649a12ad39bf5bf541, type: 2}
