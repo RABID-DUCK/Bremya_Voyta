@@ -39,13 +39,12 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void Awake()
     {
-        CheckTimeOfDay = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        dayTimeInSeconds = 180f;
+        dayTimeInSeconds = 15f;
         nightTimeInSeconds = 80f;
         timeProgress = 0f;
         CheckTimeOfDay = true;
@@ -89,12 +88,15 @@ public class WorldTime : MonoBehaviour, IPunObservable
             {
                 timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
             }
+            print(timeProgress.ToString());
         }
 
         if (timeProgress > 1f)
         {
             timeProgress = 0f;
+
             CheckTimeOfDay = !CheckTimeOfDay;
+            GetTimeOfDay?.Invoke(CheckTimeOfDay);
 
             if (CheckTimeOfDay)
             {

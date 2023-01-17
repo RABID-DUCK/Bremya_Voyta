@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,64 +6,75 @@ using UnityEngine.UI;
 
 public class SleepPanel : MonoBehaviour
 {
-    private bool yesBtn;
-    private bool noBtn;
-
-    PlayerController playerController;
-
-    [SerializeField] private Button warningYes;
-
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject playerSleep;
-    [SerializeField] private GameObject sleepWindow;
+    //private bool yesBtn;
+    //private bool noBtn;
+    //
+    //[SerializeField] private Button warningYes;
+    //
+    //[SerializeField] private GameObject player;
+    //[SerializeField] private GameObject sleepWindow;
     //[SerializeField] private GameObject warningWindow;
 
-    float notSleep=0;
-    public void BtnYes()
+    //float notSleep=0;
+    //
+    //private void Start()
+    //{
+    //    
+    //}
+    //public void BtnYes()
+    //{
+    //    yesBtn = true;
+    //    ShowSleepPanel();
+    //}
+    //public void BtnNo()
+    //{
+    //    noBtn = true;
+    //}
+    //public void ShowSleepPanel()
+    //{
+    //    if (yesBtn == true)
+    //    {
+    //        sleepWindow.SetActive(false);
+    //        Instantiate(player, new Vector3(-0.984f, 0.4f, -0.261f), Quaternion.LookRotation(new Vector3(0,90f,0)));
+    //    }
+    //    else if (noBtn == true)
+    //    {
+    //        if (notSleep == 0)
+    //        {
+    //            sleepWindow.SetActive(false);
+    //            notSleep += 1;
+    //        }
+    //        else if (notSleep >= 1)
+    //        {
+    //            sleepWindow.SetActive(false);
+    //            //warningWindow.SetActive(true);
+    //            Instantiate(player, player.transform.position, Quaternion.LookRotation(new Vector3(0,90f,0)));
+    //        }
+    //    }
+    //}
+
+    [SerializeField] private GameObject player;
+
+    [SerializeField] private GameObject sleepPanel;
+
+    [SerializeField] private Button yesButton;
+    [SerializeField] private Button noButton;
+
+    public event Action OnSleep;
+
+    private void Start()
     {
-        yesBtn = true;
-        ShowSleepPanel();
+        yesButton.onClick.AddListener(SleepSender);
+        noButton.onClick.AddListener(ClosePanel);
     }
-    public void BtnNo()
+
+    private void ClosePanel()
     {
-        noBtn = true;
-        ShowSleepPanel();
+        sleepPanel.SetActive(false);
     }
-    public void ShowSleepPanel()
+
+    private void SleepSender()
     {
-        if (yesBtn==true)
-        {
-            sleepWindow.SetActive(false);
-            playerSleep.SetActive(true);
-            player.SetActive(false);
-        }
-        else if (noBtn == true)
-        {
-            if (notSleep == 0)
-            {
-                sleepWindow.SetActive(false);
-                notSleep += 1;
-            }
-            else if (notSleep >= 1)
-            {
-                sleepWindow.SetActive(false);
-                //warningWindow.SetActive(true);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            playerSleep.SetActive(false);
-            player.SetActive(true);
-        }
-    }
-    public void WarningBtnYes()
-    {
-        //warningWindow.SetActive(false);
-        playerSleep.SetActive(true);
-        player.SetActive(false);
-    }
-    public void WarningBtnNo()
-    {
-        print("тут он будет валиться на камнях");
+        OnSleep?.Invoke();
     }
 }
