@@ -26,29 +26,25 @@ public class Character : MonoBehaviour
 
     public bool Init { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         GetComponents(professions);
+        InitializationPlayer(clickEventer);
     }
 
-    private void OnDestroy()
+    public void InitializationPlayer(ClickEventer clickEventer)
     {
         if (Init)
         {
-            clickEventer.OnClickWork -= GetObject;
+            this.clickEventer.OnClickWork -= GetObject;
         }
-    }
 
-    public void Initialization(ClickEventer clickEventer)
-    {
-        print(clickEventer);
-        OnDestroy();
         InitPlayer(clickEventer);
     }
 
     private void InitPlayer(ClickEventer clickEventer)
     {
-        clickEventer.OnClickWork += GetObject;
+        this.clickEventer.OnClickWork += GetObject;
         this.clickEventer = clickEventer;
 
         Init = true;

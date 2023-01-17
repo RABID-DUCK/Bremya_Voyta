@@ -18,8 +18,6 @@ public class ShowCanvasGroup : MonoBehaviour
 
     public void FastShow()
     {
-        canvasGroup.blocksRaycasts = true;
-        
         canvasGroup.alpha = 1;
         OnShowed?.Invoke();
     }
@@ -32,16 +30,12 @@ public class ShowCanvasGroup : MonoBehaviour
 
     public void FastHide()
     {
-        canvasGroup.blocksRaycasts = false;
-
         canvasGroup.alpha = 0;
         OnHided?.Invoke();
     }
 
     private IEnumerator Open()
     {
-        canvasGroup.blocksRaycasts = true;
-
         while (canvasGroup.alpha < 1)
         {
             canvasGroup.alpha += Time.deltaTime * speed;
@@ -53,8 +47,6 @@ public class ShowCanvasGroup : MonoBehaviour
 
     private IEnumerator Close()
     {
-        canvasGroup.blocksRaycasts = false;
-
         while (canvasGroup.alpha > 0)
         {
             canvasGroup.alpha -= Time.deltaTime * speed;
