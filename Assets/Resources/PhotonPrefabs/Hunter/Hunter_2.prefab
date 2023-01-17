@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2733972157312690840}
   - component: {fileID: 6849081737057809516}
   - component: {fileID: 3833328910855163983}
+  - component: {fileID: 5331528235493942669}
+  - component: {fileID: 6936978543897598330}
   m_Layer: 0
   m_Name: Hunter_2
   m_TagString: Untagged
@@ -134,10 +136,42 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6849081737057809516}
+  - {fileID: 4477458144125275418}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!54 &5331528235493942669
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &6936978543897598330
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220119700152802986}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.41425127
+  m_Height: 2.3499026
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.162935, z: -0.11491281}
 --- !u!1001 &1613028105592821418
 PrefabInstance:
   m_ObjectHideFlags: 0
