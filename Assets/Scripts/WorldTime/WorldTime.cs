@@ -45,9 +45,9 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void Start()
     {
-        dayTimeInSeconds = 180f;
-        nightTimeInSeconds = 80f;
-        timeProgress = 0f;
+        dayTimeInSeconds = 360f;
+        nightTimeInSeconds = 60f;
+        timeProgress = 0.2f;
         CheckTimeOfDay = true;
 
         GetNumberDay?.Invoke(countOfDaysElapsed);
