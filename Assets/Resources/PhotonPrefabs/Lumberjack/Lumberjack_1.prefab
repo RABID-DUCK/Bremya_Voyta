@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 354161671569638736}
   - component: {fileID: 5101075023910394741}
   - component: {fileID: 2771380457759694356}
+  - component: {fileID: 9209793499329775710}
+  - component: {fileID: 1484583651899354343}
   m_Layer: 0
   m_Name: Lumberjack_1
   m_TagString: Untagged
@@ -51,11 +53,12 @@ MonoBehaviour:
     coins: 0
     woodCount: 0
     berriesCount: 0
+    carrotCount: 0
     milkCount: 0
-    metallCount: 0
+    coalCount: 0
+    ironCount: 0
     meatCount: 0
     fishCount: 0
-    carrotCount: 0
 --- !u!114 &5101075023910394741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +83,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e2ce2de08cf86428b7b4e782ac40be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9209793499329775710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315382485268062640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
+--- !u!114 &1484583651899354343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315382485268062640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 9209793499329775710}
+  - {fileID: 6006766594630285191}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &8831456697685625671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,6 +197,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8563b9485175b04f8cd2c72f64c1b88, type: 3}
+--- !u!1 &917092781808550491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8517863898295945500, guid: d8563b9485175b04f8cd2c72f64c1b88, type: 3}
+  m_PrefabInstance: {fileID: 8831456697685625671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6252614497281764508
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917092781808550491}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af5595e07aef14941be93c7f3ed0e550, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6006766594630285191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917092781808550491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: walk
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!4 &6946739044205476180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1938911006608585235, guid: d8563b9485175b04f8cd2c72f64c1b88, type: 3}

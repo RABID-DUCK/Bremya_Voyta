@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2811236154774300029}
   - component: {fileID: 9015255267348121183}
   - component: {fileID: 5975140066188230760}
+  - component: {fileID: 2431937902056908516}
+  - component: {fileID: 3832333891641001651}
   m_Layer: 0
   m_Name: Lumberjack_2
   m_TagString: Untagged
@@ -51,11 +53,12 @@ MonoBehaviour:
     coins: 0
     woodCount: 0
     berriesCount: 0
+    carrotCount: 0
     milkCount: 0
-    metallCount: 0
+    coalCount: 0
+    ironCount: 0
     meatCount: 0
     fishCount: 0
-    carrotCount: 0
 --- !u!114 &9015255267348121183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +83,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e2ce2de08cf86428b7b4e782ac40be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2431937902056908516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315382485268062640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 3832333891641001651}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &3832333891641001651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315382485268062640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1001 &3543355362568017413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,3 +201,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1938911006608585235, guid: b01ba394634fd12429723033600c41f2, type: 3}
   m_PrefabInstance: {fileID: 3543355362568017413}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4990279906379292516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8389519801681594721, guid: b01ba394634fd12429723033600c41f2, type: 3}
+  m_PrefabInstance: {fileID: 3543355362568017413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5247282568756514673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990279906379292516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: walk
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
