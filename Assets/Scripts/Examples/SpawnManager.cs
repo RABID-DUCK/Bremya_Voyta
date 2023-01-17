@@ -1,3 +1,4 @@
+using Cinemachine;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
@@ -11,6 +12,8 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject[] Spawns;
+    [SerializeField] private CinemachineVirtualCamera _camera;
+    [SerializeField] private Coordinator sceneCoordinator;
     private PhotonView _photonView;
     private LobbyMenu _lobbyMenu;
     [SerializeField] private List<CharacterSO> listCharacters;
@@ -21,13 +24,17 @@ public class SpawnManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        Vector3 randomPositions = Spawns[Random.Range(0, Spawns.Length)].transform.localPosition;
+        Vector3 randomPositions = Spawns[Random.Range(0, Spawns.Length)].transform.position;
         data = PhotonNetwork.LocalPlayer.CustomProperties["Profession"].ToString().Split('|', 2);
         _nameCh = data[0];
         _idCh = Int32.Parse(data[1]);
-
         CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _nameCh);
         string nameCharacter = _character.prefabs[_idCh].name;
-        PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), randomPositions, Quaternion.identity);
+        PhotonView newPlayer = PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), randomPositions, Quaternion.identity).GetPhotonView();
+        if (newPlayer.IsMine)
+        {
+            _camera.Follow = newPlayer.transform;
+            sceneCoordinator.InitializationPlayer(newPlayer.GetComponent<Character>());
+        }
     }
 }
