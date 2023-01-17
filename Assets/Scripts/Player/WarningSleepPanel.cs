@@ -13,7 +13,6 @@ public class WarningSleepPanel : MonoBehaviour
     private bool IsSleep;
 
     [SerializeField] private float timeStart;
-    [SerializeField] private bool timerRunning = false;
     [SerializeField] private TextMeshProUGUI textTimer;
 
     public event Action<bool> OnDontSleep = delegate { };
@@ -30,9 +29,7 @@ public class WarningSleepPanel : MonoBehaviour
         warningSleepPanel.SetActive(true);
 
         timeStart -= Time.deltaTime;
-        textTimer.text = Mathf.Round(timeStart).ToString();
-
-        textTimer.text = ("Пора спать! У вас " + textTimer.text + " секунд чтобы лечь спать!");
+        textTimer.text = ("Пора спать! У вас " + (Mathf.Round(timeStart).ToString()) + " секунд чтобы лечь спать!");
     }
 
     public void HideWarningSleepPanel()
