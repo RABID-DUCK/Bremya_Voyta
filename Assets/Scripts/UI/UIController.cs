@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    private const string dialogWindowPrefabName = "DialogWindow";
+    private const string infoWindowPrefabName = "InfoWindow";
+
     [SerializeField] private DialogWindow dialogWindowPrefab;
     private Transform canvasTransform;
-
 
     private static UIController instance = null;
 
@@ -25,7 +27,6 @@ public class UIController : MonoBehaviour
         //}
         
         instance = this;
-        print(instance);
     }
 
     private void OnDestroy()
@@ -33,17 +34,26 @@ public class UIController : MonoBehaviour
         instance = null;
     }
 
-    public static void ShowDialog(string titleText, string messageText,
-        string applyButtonText, string cancelButtonText,
+    public static void ShowDialog(string messageText, string applyButtonText, string cancelButtonText,
         Action OnApplyCallback, Action OnCancelCallback = null)
     {
-        DialogWindow tempDialogWindow = Instantiate(instance.dialogWindowPrefab, instance.canvasTransform);
-        tempDialogWindow.ShowDialog(titleText, messageText, applyButtonText, cancelButtonText, OnApplyCallback, OnCancelCallback);
-
+        DialogWindow createdDialogWindow = WindowManager.InitWindowPrefab<DialogWindow>(dialogWindowPrefabName, instance.canvasTransform);
+        createdDialogWindow.ShowDialog(messageText, applyButtonText, cancelButtonText, OnApplyCallback, OnCancelCallback);
     }
 
-    public static void ShowYesNoDialog(string titleText, string messageText, Action OnApplyCallback, Action OnCancelCallback = null)
+    public static void ShowYesNoDialog(string messageText, Action OnApplyCallback, Action OnCancelCallback = null)
     {
-        ShowDialog(titleText, messageText, "Да", "Нет", OnApplyCallback, OnCancelCallback);
+        ShowDialog(messageText, "Да", "Нет", OnApplyCallback, OnCancelCallback);
+    }
+
+    public static void ShowInfo(string messageText, string applyButtonText, Action OnApplyCallback = null)
+    {
+        InfoWindow createdinfoWindow = WindowManager.InitWindowPrefab<InfoWindow>(infoWindowPrefabName, instance.canvasTransform);
+        createdinfoWindow.ShowInfo(messageText, applyButtonText, OnApplyCallback);
+    }
+
+    public static void ShowOkInfo(string messageText, Action OnApplyCallback = null)
+    {
+        ShowInfo(messageText, "Ок", OnApplyCallback);
     }
 }
