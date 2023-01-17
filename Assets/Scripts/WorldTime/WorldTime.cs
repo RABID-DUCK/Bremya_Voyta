@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using UnityEngine;
-using Photon.Pun;
 
 public class WorldTime : MonoBehaviour, IPunObservable
 {
@@ -44,7 +44,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void Start()
     {
-        dayTimeInSeconds = 15f;
+        dayTimeInSeconds = 360f;
         nightTimeInSeconds = 60f;
         timeProgress = 0.2f;
 

@@ -15373,6 +15373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
   arrowRectTransform: {fileID: 1805297919}
+  timeRotationArrow: 420
   IsUseRotateArrowFromEventWheel: 0
 --- !u!1 &697987846 stripped
 GameObject:
@@ -17280,7 +17281,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000026703, y: -0.049901962}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 131.0155, y: 118.628}
   m_Pivot: {x: 0.5, y: 0.081851415}
 --- !u!114 &913893794
@@ -34684,7 +34685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
   arrowRectTransform: {fileID: 913893792}
-  IsUseRotateArrowFromEventWheel: 0
+  timeRotationArrow: 2520
+  IsUseRotateArrowFromEventWheel: 1
 --- !u!1 &1687422089
 GameObject:
   m_ObjectHideFlags: 0
@@ -35999,7 +36001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.84, y: 0.21}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 22.5155, y: 42.9213}
   m_Pivot: {x: 0.5182328, y: 0.12423128}
 --- !u!114 &1805297921
