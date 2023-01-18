@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4be06481d43da14bbe7e1794a482bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  workVideo: {fileID: 0}
+  workVideo: {fileID: 32900000, guid: 4a5ba92bff4663947be12c4d1bebf552, type: 3}
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &7795225811180509861 stripped

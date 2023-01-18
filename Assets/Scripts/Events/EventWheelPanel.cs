@@ -1,10 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventWheelPanel : MonoBehaviour
 {
     [SerializeField] private GameObject eventWheelPanel;
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
+
+    [SerializeField] private Button openWheelPanel;
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;
@@ -14,6 +17,8 @@ public class EventWheelPanel : MonoBehaviour
     {
         EventController.OnGetEventSO += SetInfoFromEventSO;
         EventController.OnEndEvent += SetStandartInfo;
+
+        openWheelPanel.onClick.AddListener(OpenPanelDuringStartEvent);
 
         SetStandartInfo();
     }

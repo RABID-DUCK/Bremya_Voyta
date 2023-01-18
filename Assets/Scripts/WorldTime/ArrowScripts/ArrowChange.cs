@@ -5,18 +5,17 @@ public class ArrowChange : MonoBehaviour
     [Header("Time setting")]
     [SerializeField] private WorldTime worldTime;
 
-    [SerializeField] private RectTransform arrowRectTransform;
+    [Header("ArrowChange settings")]
+    [Space, SerializeField] private RectTransform arrowRectTransform;
 
-    [SerializeField] private bool IsUseRotateArrowFromEventWheel;
+    [SerializeField] private float timeRotationArrow;
+
+    [Space, SerializeField] private bool IsUseRotateArrowFromEventWheel;
 
     private float angleOffsetRotationArrow;
 
-    private float timeRotationArrow;
-
     private void Start()
     {
-        CalcTimeRotationArrow(timeRotationArrow);
-
         CalcAngleOffset(timeRotationArrow);
     }
 
@@ -26,7 +25,7 @@ public class ArrowChange : MonoBehaviour
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
-        else if (worldTime.IsStartTime)
+        else if (worldTime.IsStartTime && !IsUseRotateArrowFromEventWheel)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
@@ -39,25 +38,6 @@ public class ArrowChange : MonoBehaviour
 
     public void CalcAngleOffset(float timeRotationArrow)
     {
-        if (IsUseRotateArrowFromEventWheel)
-        {
-            angleOffsetRotationArrow = 360 / timeRotationArrow;
-        }
-    }
-
-    public void CalcTimeRotationArrow(float timeRotationArrow)
-    {
-        if (IsUseRotateArrowFromEventWheel)
-        {
-            timeRotationArrow = (worldTime.dayTimeInSeconds + worldTime.nightTimeInSeconds) * 6;
-
-            print($"Секунд днем {worldTime.dayTimeInSeconds}, секунд ночью {worldTime.nightTimeInSeconds}");
-
-            print(arrowRectTransform);
-        }
-        else
-        {
-            timeRotationArrow = worldTime.dayTimeInSeconds + worldTime.nightTimeInSeconds;
-        }
+        angleOffsetRotationArrow = 360 / timeRotationArrow;
     }
 }

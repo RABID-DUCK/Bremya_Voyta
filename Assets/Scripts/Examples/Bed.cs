@@ -53,10 +53,6 @@ public class Bed : MonoBehaviour
 
             IsSleep = false;
         }
-        if (!worldTime.CheckTimeOfDay)
-        {
-            warningSleepPanel.ShowWarningSleepPanel(worldTime.CheckTimeOfDay);
-        }
     }
 
     private void StateSleep()

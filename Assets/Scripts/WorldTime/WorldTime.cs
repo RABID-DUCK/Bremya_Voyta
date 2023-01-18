@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using UnityEngine;
-using Photon.Pun;
 
 public class WorldTime : MonoBehaviour, IPunObservable
 {
@@ -46,7 +46,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
     {
         dayTimeInSeconds = 360f;
         nightTimeInSeconds = 60f;
-        timeProgress = 0.2f;
+        timeProgress = 0f;
 
         CheckTimeOfDay = true;
 
@@ -97,6 +97,8 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
             CheckTimeOfDay = !CheckTimeOfDay;
             GetTimeOfDay?.Invoke(CheckTimeOfDay);
+
+            print(CheckTimeOfDay);
 
             if (CheckTimeOfDay)
             {
