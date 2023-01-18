@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 2982760742753060940}
   - component: {fileID: 2026495590523064860}
   - component: {fileID: 8808933756785542456}
-  - component: {fileID: 8892260125560580587}
   - component: {fileID: 5129044010404031375}
+  - component: {fileID: 7569462150823950461}
+  - component: {fileID: 8451354893634752527}
   m_Layer: 0
   m_Name: Miner_2
   m_TagString: Untagged
@@ -114,7 +115,7 @@ MonoBehaviour:
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
   m_ScaleModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
@@ -142,20 +143,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!136 &8892260125560580587
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337730651412174358}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.46277723
-  m_Height: 2.640223
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.2449565, z: -0.12095633}
 --- !u!54 &5129044010404031375
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -168,10 +155,45 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!143 &7569462150823950461
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337730651412174358}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2.405363
+  m_Radius: 0.5335113
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.28, z: 0}
+--- !u!114 &8451354893634752527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337730651412174358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeca157ff591bc44aa6129ae21e1d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 9.8
+  moveSpeed: 7
+  turningSpeed: 7
+  playerBody: {fileID: 5440560475460572255}
+  animator: {fileID: 8867201339358700460}
 --- !u!1001 &5866120642488985164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -260,3 +282,8 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!95 &8867201339358700460 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3055134927817508320, guid: 4737009988ba70f4ab29548b1d1697e4, type: 3}
+  m_PrefabInstance: {fileID: 5866120642488985164}
+  m_PrefabAsset: {fileID: 0}

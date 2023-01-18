@@ -2,20 +2,15 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     CharacterController cc;
 
-    private float vertical, horizontal;
-    Bed bed;
-    Vector3 test;
+    [SerializeField] private float gravity = 9.8f;
     [Header("�������� ����������� ���������")]
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float turningSpeed = 7f;
-
-    [SerializeField] private PhotonView photonView;
-
-    [SerializeField] private float sensitivityMouse;
+    private float vSpeed = 0;
 
     [SerializeField] private Transform playerBody;
 
@@ -23,10 +18,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (!photonView)
-        {
-            photonView = GetComponent<PhotonView>();
-        }
         if (!photonView.IsMine)
         {
             enabled = false;
@@ -34,38 +25,32 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         PlayerMove();
     }
-    //private void MoveUnit()
-    //{
-    //    switch (controlType)
-    //    {
-    //        case ControlTypes.Keybord:
-    //            moveDirection = new Vector3(Input.GetAxis("Horizontal") * speed_X, 0f, Input.GetAxis("Vertical") * speed_Z);
-    //            break;
-    //        case ControlTypes.VirtualJoystick:
-    //            moveDirection = new Vector3(moveJoystick.AxisX * speed_X, 0f, moveJoystick.AxisY * speed_Z);
-    //            break;
-    //    }
-    //    moveDirection = Camera.mainCamera.transform.TransformDirection(moveDirection);
-    //    controller.SimpleMove(moveDirection);
-
-    //    Vector3 lookDirection = moveDirection + transform.position;
-
-    //    transform.LookAt(new Vector3(lookDirection.x, transform.position.y, lookDirection.z));
-    //}
 
     private void PlayerMove()
     {
-        /*                if (PhotonNetwork.LocalPlayer.IsLocal)
-                        {
+        var h = Input.GetAxis("Horizontal"); // AD
+        var v = Input.GetAxis("Vertical"); // WS
 
+        // Move player
+        var right = transform.right * h;
+        var forward = transform.forward * v;
+        vSpeed -= (cc.isGrounded ? 0 : gravity) * Time.deltaTime;
+        var up = transform.up * vSpeed;
+        var moveDir = right + forward;
+        cc.Move((moveDir + up) * moveSpeed * Time.deltaTime);
 
-                        }
-        */
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        // Rotate graphics
+        if (moveDir.normalized.magnitude > 0.001f)
+        {
+            var targetRot = Quaternion.LookRotation(moveDir, Vector3.up);
+            playerBody.rotation = Quaternion.Slerp(playerBody.rotation, targetRot, turningSpeed * Time.deltaTime); // Smooth
+        }
+
+        if (h != 0 || v != 0 || moveDir.normalized.magnitude > 0.001f)
         {
             animator.SetBool("walk", true);
         }
@@ -73,23 +58,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("walk", false);
         }
-
-        var h = -Input.GetAxis("Horizontal"); // AD
-        var v = -Input.GetAxis("Vertical"); // WS
-
-        
-        // Move player
-        var right = transform.right * h;
-        var forward = transform.forward * v;
-        var moveDir = right + forward;
-        cc.Move(moveDir * moveSpeed * Time.deltaTime);
-        
-
-        // Rotate graphics
-        if (moveDir.normalized.magnitude < 0.001f) return;
-        var targetRot = Quaternion.LookRotation(moveDir, Vector3.up);
-        playerBody.rotation = Quaternion.Slerp(playerBody.rotation, targetRot, turningSpeed * Time.deltaTime); // Smooth
-
     }
     public void WindowSleep()
     {
