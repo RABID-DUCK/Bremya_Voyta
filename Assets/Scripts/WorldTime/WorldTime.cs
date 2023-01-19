@@ -35,6 +35,8 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     public bool IsStartTime { get; set; }// Отвечает за включение времени
 
+    public event Action OnEndGame;
+
 
     private void Awake()
     {
@@ -106,7 +108,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
                 if (countOfDaysElapsed > 6)
                 {
-                    countOfDaysElapsed = 0;
+                    OnEndGame?.Invoke();
                 }
             }
         }
