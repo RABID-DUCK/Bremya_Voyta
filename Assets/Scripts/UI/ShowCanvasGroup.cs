@@ -10,6 +10,35 @@ public class ShowCanvasGroup : MonoBehaviour
     public CanvasGroup canvasGroup;
     public float speed = 2f;
 
+    public bool IsHided
+    {
+        get
+        {
+            return _isHided;
+        }
+
+        private set
+        {
+            _isHided = value;
+            canvasGroup.blocksRaycasts = !_isHided;
+        }
+    }
+
+    [SerializeField]
+    private bool _isHided;
+
+    private void Start()
+    {
+        if (!IsHided)
+        {
+            FastShow();
+        }
+        else
+        {
+            FastHide();
+        }
+    }
+
     public void Show()
     {
         StopAllCoroutines();
@@ -18,9 +47,9 @@ public class ShowCanvasGroup : MonoBehaviour
 
     public void FastShow()
     {
-        canvasGroup.blocksRaycasts = true;
-        
         canvasGroup.alpha = 1;
+        IsHided = false;
+
         OnShowed?.Invoke();
     }
 
@@ -32,15 +61,15 @@ public class ShowCanvasGroup : MonoBehaviour
 
     public void FastHide()
     {
-        canvasGroup.blocksRaycasts = false;
-
         canvasGroup.alpha = 0;
+        IsHided = true;
+
         OnHided?.Invoke();
     }
 
     private IEnumerator Open()
     {
-        canvasGroup.blocksRaycasts = true;
+        IsHided = false;
 
         while (canvasGroup.alpha < 1)
         {
@@ -53,7 +82,7 @@ public class ShowCanvasGroup : MonoBehaviour
 
     private IEnumerator Close()
     {
-        canvasGroup.blocksRaycasts = false;
+        IsHided = true;
 
         while (canvasGroup.alpha > 0)
         {
