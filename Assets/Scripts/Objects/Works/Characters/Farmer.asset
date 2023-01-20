@@ -24,7 +24,7 @@ MonoBehaviour:
   - "\u0413\u0440\u044F\u0434\u043A\u0430"
   - "\u041A\u043E\u0440\u043E\u0432\u043D\u0438\u043A"
   prefabs:
-  - {fileID: 2034222575266473214, guid: 3c731bebf9c488243aff9428def2860b, type: 3}
+  - {fileID: 2034222575266473214, guid: 975eefd8a47b3b54c80b1f3ab1f80652, type: 3}
   - {fileID: 2034222575266473214, guid: c854c7ba6781a4f4a8b0ab65ca9bcc7d, type: 3}
   avatars:
   - {fileID: 21300000, guid: 559c35de2bf011044a68848a068ce8f6, type: 3}
