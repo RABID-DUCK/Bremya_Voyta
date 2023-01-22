@@ -2,7 +2,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EndGame : MonoBehaviour
@@ -12,31 +11,55 @@ public class EndGame : MonoBehaviour
     [SerializeField] private GameObject finishPanel;
     [SerializeField] private TMP_Text descriptionText;
 
+    public Dictionary<string, int> players = new Dictionary<string, int>();
     private List<int> sortCoins = new List<int>();
-    private List<string> sortPlayers = new List<string>();
 
     private void Start()
     {
+        worldTime = FindObjectOfType<WorldTime>();
+
         worldTime.OnEndGame += FinishGame;
     }
 
     private void FinishGame()
     {
         GetAllPlayers();
+
+        SortPlayersByCoins();
+
+        SetTopPlayersSetting();
     }
 
     private void GetAllPlayers()
     {
         foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
         {
-            //players.Add(player.Value.NickName, (int)player.Value.CustomProperties["coins"]);
+            players.Add(player.Value.NickName, (int)player.Value.CustomProperties["coins"]);
+
+            sortCoins.Add((int)player.Value.CustomProperties["coins"]);
         }
     }
 
     private void SortPlayersByCoins()
     {
-        //sortCoinsList.AddRange<playersDict.Values>
+        sortCoins.Sort();
+    }
+
+    private void SetTopPlayersSetting()
+    {
+        int counterPlayers = 1;
+
+        for (int i = sortCoins.Count; i >= 0; i--)
+        {
+            foreach (var player in players)
+            {
+                if (sortCoins[i] == player.Value)
+                {
+                    descriptionText.text += $"{counterPlayers} ћесто - {player.Key}, количество монет - {player.Value}\r\n";
+
+                    counterPlayers++;
+                }
+            }
+        }
     }
 }
-
-// —оздать словарь и записывать в лист имена с помощью предварительной сортировки монет от большего к меньшему. ¬ывод в панель говна.
