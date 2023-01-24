@@ -14,9 +14,12 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     [SerializeField] public GameObject[] Spawns;
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private Coordinator sceneCoordinator;
+    private Animator animator;
     private PhotonView _photonView;
     private LobbyMenu _lobbyMenu;
     [SerializeField] private List<CharacterSO> listCharacters;
+    Quaternion synchRot = Quaternion.identity;
+     
 
     private string[] data;
     private string _nameCh;
@@ -31,6 +34,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _nameCh);
         string nameCharacter = _character.prefabs[_idCh].name;
         PhotonView newPlayer = PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), randomPositions, Quaternion.identity).GetPhotonView();
+        //newPlayer.transform.parent = transform;
         if (newPlayer.IsMine)
         {
             _camera.Follow = newPlayer.transform;
