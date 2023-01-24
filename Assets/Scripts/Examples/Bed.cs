@@ -1,26 +1,24 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bed : MonoBehaviour
 {
     [SerializeField] private WorldTime worldTime;
 
-    Outline outline;
-    SleepPanel sleepPanel;
+    private Outline outline;
+
+    [SerializeField] private SleepPanel sleepPanel;
 
     [SerializeField] private LayerMask sleepLayerMask;
     [SerializeField] private GameObject sleepWindow;
-    [SerializeField] private GameObject player;
     [SerializeField] private GameObject playerSleep;
 
-    [SerializeField] private WarningSleepPanel warningSleepPanel;
     private bool IsSleep { get; set; }
 
     private void OnEnable()
     {
         worldTime = FindObjectOfType<WorldTime>();
     }
-
-
     private void Start()
     {
         outline = transform.gameObject.GetComponent<Outline>();
@@ -49,7 +47,7 @@ public class Bed : MonoBehaviour
     {
         if (worldTime.CheckTimeOfDay)
         {
-            Instantiate(player, new Vector3(0.2f, 0.08f, 0.7f), Quaternion.LookRotation(new Vector3(0, 0, 0)));
+            //Instantiate(player, new Vector3(0.2f, 0.08f, 0.7f), Quaternion.LookRotation(new Vector3(0, 0, 0)));
 
             IsSleep = false;
         }
@@ -71,7 +69,7 @@ public class Bed : MonoBehaviour
 
     private void Sleep()
     {
-        Instantiate(player, new Vector3(-0.984f, 0.4f, -0.261f), Quaternion.LookRotation(new Vector3(0, 90f, 0)));
+        //Instantiate(player, new Vector3(-0.984f, 0.4f, -0.261f), Quaternion.LookRotation(new Vector3(0, 90f, 0)));
 
         IsSleep = true;
     }

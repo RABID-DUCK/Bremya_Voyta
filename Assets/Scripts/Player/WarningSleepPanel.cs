@@ -7,7 +7,9 @@ using UnityEngine;
 public class WarningSleepPanel : MonoBehaviour
 {
     [SerializeField] private WorldTime worldTime;
+    [SerializeField] private SleepPanel sleepPanel;
 
+    [SerializeField] private GameObject warningSleepObject;
     [SerializeField] private GameObject warningSleepPanel;
 
     private bool IsSleep;
@@ -16,7 +18,10 @@ public class WarningSleepPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textTimer;
 
     public event Action<bool> OnDontSleep = delegate { };
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(warningSleepObject);
+    }
     private void Start()
     {
         textTimer.text = timeStart.ToString();
@@ -43,7 +48,7 @@ public class WarningSleepPanel : MonoBehaviour
             }
             else
             {
-                IsSleep = true;
+                HideWarningSleepPanel();
             }
         }
     }
@@ -51,10 +56,6 @@ public class WarningSleepPanel : MonoBehaviour
     public void HideWarningSleepPanel()
     {
         StartCoroutine(HidePanel());
-
-        IsSleep = false;
-
-        OnDontSleep?.Invoke(IsSleep);
     }
 
     public IEnumerator HidePanel()
