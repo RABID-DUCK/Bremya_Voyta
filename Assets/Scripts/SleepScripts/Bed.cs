@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Bed : MonoBehaviour
 {
@@ -75,58 +74,58 @@ public class Bed : MonoBehaviour
     }
 }
 
-    
-    
-    
-    
-    //
-    //void Start()
-    //{
-    //    outline = transform.gameObject.GetComponent<Outline>();
-    //}
-    //
-    //private void OnMouseOver()
-    //{
-    //    outline.enabled = true;
-    //}
-    //
-    //private void OnMouseExit()
-    //{
-    //    outline.enabled = false;
-    //}
-    //
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
-    //        RaycastHit hit;
-    //        if (Physics.Raycast(ray, out hit, sleepLayerMask))
-    //        {
-    //            StateSleep();
-    //        }
-    //    }
-    //}
-    ////private void OnMouseDown()
-    ////{
-    ////    StateSleep();
-    ////}
-    //public void StateSleep()
-    //{
-    //    //sleepWindow.SetActive(true);
-    //
-    //    if (!worldTime.CheckTimeOfDay)
-    //    {
-    //        print("night");
-    //        sleepWindow.SetActive(true);
-    //        sleepPanel.ShowSleepPanel();
-    //    }
-    //    else
-    //    {
-    //        print("day");
-    //        print(worldTime.timeProgress);
-    //        playerSleep.SetActive(false);
-    //        Player.SetActive(true);
-    //    }
-    //}
+
+
+
+
+//
+//void Start()
+//{
+//    outline = transform.gameObject.GetComponent<Outline>();
+//}
+//
+//private void OnMouseOver()
+//{
+//    outline.enabled = true;
+//}
+//
+//private void OnMouseExit()
+//{
+//    outline.enabled = false;
+//}
+//
+//void Update()
+//{
+//    if (Input.GetMouseButtonDown(0))
+//    {
+//        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
+//        RaycastHit hit;
+//        if (Physics.Raycast(ray, out hit, sleepLayerMask))
+//        {
+//            StateSleep();
+//        }
+//    }
+//}
+////private void OnMouseDown()
+////{
+////    StateSleep();
+////}
+//public void StateSleep()
+//{
+//    //sleepWindow.SetActive(true);
+//
+//    if (!worldTime.CheckTimeOfDay)
+//    {
+//        print("night");
+//        sleepWindow.SetActive(true);
+//        sleepPanel.ShowSleepPanel();
+//    }
+//    else
+//    {
+//        print("day");
+//        print(worldTime.timeProgress);
+//        playerSleep.SetActive(false);
+//        Player.SetActive(true);
+//    }
+//}
 
