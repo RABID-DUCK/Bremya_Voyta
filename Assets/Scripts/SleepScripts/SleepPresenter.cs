@@ -1,16 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.Video;
 
-public class SleepPresenter : MonoBehaviour
+public class SleepPresenter : SleepModel
 {
     [Header("View scripts")]
     [SerializeField] private SleepView sleepView;
 
+    [Header("Sleep settings")]
+    [SerializeField] private VideoClip sleepVideo;
+
     private EmergencySleepView emergencySleepView;
-
-    [Header("Model script")]
-    [SerializeField] private SleepModel sleepModel;
-
     private WorldTime worldTime;
 
     public bool isSleeping { get; private set; }
@@ -19,6 +19,8 @@ public class SleepPresenter : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         worldTime = FindObjectOfType<WorldTime>();
 
         emergencySleepView = FindObjectOfType<EmergencySleepView>();
@@ -26,20 +28,21 @@ public class SleepPresenter : MonoBehaviour
 
     private void Start()
     {
-        worldTime.GetTimeOfDay += ShowEnergenceSleepPanel;
+        worldTime.GetTimeOfDay += StartEnergenceSleepPanel;
 
         emergencySleepView.OnTimerIsOut += GoFastSleep;
 
-        sleepView.OnClickYesButton += GoSleep;
-
-        sleepModel.OnEndSleep += AfterSleep;
+        if (sleepView != null)
+        {
+            sleepView.OnClickYesButton += GoSleep;
+        }
     }
 
-    private void ShowEnergenceSleepPanel(bool checkTimeOfDay)
+    private void StartEnergenceSleepPanel(bool checkTimeOfDay)
     {
         if (checkTimeOfDay == false)
         {
-            sleepModel.ResetIsSleeping(isSleeping);
+            ResetIsSleeping(isSleeping);
 
             emergencySleepView.ShowEmergencySleepPanel();
             emergencySleepView.StartTimerEmergencySleepPanel();
@@ -50,7 +53,8 @@ public class SleepPresenter : MonoBehaviour
     {
         if(isSleeping == false)
         {
-            sleepModel.GoSleep();
+            GoSleep(sleepVideo);
+            AfterSleep(worldTime);
 
             OnSleeping?.Invoke(isSleeping);
         }
@@ -58,15 +62,11 @@ public class SleepPresenter : MonoBehaviour
 
     private void GoSleep()
     {
-        sleepModel.GoSleep();
+        GoSleep(sleepVideo);
+        AfterSleep(worldTime);
 
         isSleeping = true;
 
         OnSleeping?.Invoke(isSleeping);
-    }
-
-    private void AfterSleep()
-    {
-        sleepModel.AfterSleep(worldTime);
     }
 }
