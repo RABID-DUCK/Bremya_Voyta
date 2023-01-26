@@ -7,8 +7,7 @@ public class UIController : MonoBehaviour
     private const string dialogWindowPrefabName = "DialogWindow";
     private const string infoWindowPrefabName = "InfoWindow";
     private const string videoWindowPrefabName = "VideoWindow";
-
-    [SerializeField] private DialogWindow dialogWindowPrefab;
+    
     private Transform canvasTransform;
 
     private static UIController instance = null;

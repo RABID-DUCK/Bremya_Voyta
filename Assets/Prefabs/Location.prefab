@@ -170,10 +170,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1373717152688546471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b7bd60ad9f3190408467552f4bb23b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: 4e496df9866036046b6d1e19a5b42d09, type: 2}
   workVideo: {fileID: 32900000, guid: abcda2ea988cdff48829d232d9f8ea62, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &6213158779548304933
@@ -289,10 +292,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2690280924417406352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c8191ec4f3f4546a1927c5014097a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  workVideo: {fileID: 32900000, guid: a51ee648244ef4b49a51b38873f7442d, type: 3}
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: 01fae7940af560848a94e6ad6bb07225, type: 2}
+  workVideo: {fileID: 32900000, guid: 4a5ba92bff4663947be12c4d1bebf552, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &2910943194856062749 stripped
@@ -421,10 +427,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4491119025467711486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40abc6a4d3d76d6468bbd0093eeb6ce1, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: a492e3b32c4a23e4e867e9e11f375f6b, type: 2}
   workVideo: {fileID: 32900000, guid: e45078f64dd01fd4e9f16062ee924b41, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &6731771772083369857
@@ -540,10 +549,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5794482431426166240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4f08def9d472f541be9cfd0fb4a9404, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: 737e5d1186c1b6944ad0d08ce9674f95, type: 2}
   workVideo: {fileID: 32900000, guid: 75e62e99e52e7c04898f46fe191f688a, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &5960101582514932764 stripped
@@ -641,10 +653,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6457998374049931178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d9ad9ccf6767f40ad672085b8e1f6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: af77cd023596b2543b9f57604b3cb91e, type: 2}
   workVideo: {fileID: 32900000, guid: 60ba936a0c72559478374f35431d70c8, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &7723453554859418526 stripped
@@ -742,10 +757,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7724850815656755967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4be06481d43da14bbe7e1794a482bd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
   workVideo: {fileID: 32900000, guid: 4a5ba92bff4663947be12c4d1bebf552, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &7795225811180509861 stripped
@@ -825,10 +843,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8001679359263827506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eef0001b273d654ca40b5936d154bab, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: babf6a8688b6d6d45866cb68587ac82b, type: 2}
   workVideo: {fileID: 32900000, guid: 0f72fcca9354e8349bb3af00685e86d1, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &8597634974213585423
@@ -877,10 +898,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528509330440573455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f469d966e53c9458685e15a51c0db5, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ca116bf74ea7e4cb3cdb91452caab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _workName: 
+  _receivedItem: {fileID: 11400000, guid: 942ab6f152fc3324b8ffc040713b8585, type: 2}
   workVideo: {fileID: 32900000, guid: 8ba3e736b51f60b4bb5719e82f721be1, type: 3}
+  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &7703983217025978987

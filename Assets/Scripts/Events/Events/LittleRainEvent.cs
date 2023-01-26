@@ -1,3 +1,4 @@
+using Ekonomika.Work;
 using System.Collections;
 using UnityEngine;
 
@@ -12,9 +13,6 @@ public class LittleRainEvent : MonoBehaviour
     [Tooltip("General Directional light")]
     [SerializeField] private Light directionalLight;
 
-    [Header("Event Property Controller")]
-    [SerializeField] private WorkController workController;
-
     //TODO: Нужно добавить звук дождя
 
     public void StartSmallRainEvent() // Этот метод нужно вызывать, при старте события!!!
@@ -28,7 +26,7 @@ public class LittleRainEvent : MonoBehaviour
 
     private void StartLittleRainEffect()
     {
-        workController.OvverideFarmerDropItems(1, 3);
+        WorkOverrider.OverrideFarmerDropItems(1, 3);
 
         //TODO: Огород + 3 от макс. кол-ва
     }
@@ -44,7 +42,7 @@ public class LittleRainEvent : MonoBehaviour
 
     private void EndlittleRainEffect()
     {
-        workController.ReturnFarmerDropItems();
+        WorkOverrider.ReturnFarmerDropItems();
 
         //TODO: Вернуть к норме
     }

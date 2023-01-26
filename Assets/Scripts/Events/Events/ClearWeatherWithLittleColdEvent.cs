@@ -1,12 +1,10 @@
+using Ekonomika.Work;
 using UnityEngine;
 
 public class ClearWeatherWithLittleColdEvent : MonoBehaviour
 {
     [Tooltip("Scriptable event object \"ClearWeatherWithLittleColdSO\"")]
     public EventSO ClearWeatherWithLittleColdSO;
-
-    [Header("Event Property Controller")]
-    [SerializeField] private WorkController workController;
 
     public void StartClearWeatherWithLittleCold() // Этот метод нужно вызывать, при старте события!!!
     {
@@ -15,7 +13,7 @@ public class ClearWeatherWithLittleColdEvent : MonoBehaviour
 
     private void StartClearWeatherWithLittleColdEffect() // Реализовать логику эффекта от ивента
     {
-        workController.OvverideFishingDropItems(1, 3);
+        WorkOverrider.OverrideFishingDropItems(1, 3);
 
         //TODO: Пруд, + 3шт. от макс. кол-ва
     }
@@ -27,7 +25,7 @@ public class ClearWeatherWithLittleColdEvent : MonoBehaviour
 
     private void EndClearWeatherWithLittleColdEffect() // Реализовать логику снятия эффекта
     {
-        workController.ReturnFishingDropItems();
+        WorkOverrider.ReturnFishingDropItems();
 
         //TODO: Вернуть к норме
     }

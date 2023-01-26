@@ -1,12 +1,10 @@
+using Ekonomika.Work;
 using UnityEngine;
 
 public class StormEvent : MonoBehaviour
 {
     [Tooltip("Scriptable event object \"StormSO\"")]
     public EventSO StormSO;
-
-    [Header("Event Property Controller")]
-    [SerializeField] private WorkController workController;
  
     public void StartStormEvent()
     {
@@ -20,14 +18,14 @@ public class StormEvent : MonoBehaviour
 
     private void StartStormEffect()
     {
-        workController.OvverideLumberjackDropItems(1, 3);
+        WorkOverrider.OverrideLumberjackDropItems(1, 3);
 
         //TODO: Лес, -2шт. от макс. кол-ва.
     }
 
     private void EndStormEffect()
     {
-        workController.ReturnIronMiningDropItems();
+        WorkOverrider.ReturnIronMiningDropItems();
 
         //TODO: Веруть на мэсто
     }

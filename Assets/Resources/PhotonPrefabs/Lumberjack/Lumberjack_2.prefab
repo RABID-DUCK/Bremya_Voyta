@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5348795459217620561}
   - component: {fileID: 2811236154774300029}
-  - component: {fileID: 9015255267348121183}
-  - component: {fileID: 5975140066188230760}
   - component: {fileID: 2431937902056908516}
   - component: {fileID: 3832333891641001651}
   - component: {fileID: 4827290028922328596}
@@ -52,40 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1f2febc9d8c8e4f9a8d0d4d8e1758e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory:
-    coins: 0
-    woodCount: 0
-    berriesCount: 0
-    carrotCount: 0
-    milkCount: 0
-    coalCount: 0
-    ironCount: 0
-    meatCount: 0
-    fishCount: 0
---- !u!114 &9015255267348121183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315382485268062640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4b35a3d598ba14c99a353f5e74c9b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5975140066188230760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315382485268062640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e2ce2de08cf86428b7b4e782ac40be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  allowedEarnedItems:
+  - {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
+  - {fileID: 11400000, guid: af77cd023596b2543b9f57604b3cb91e, type: 2}
 --- !u!114 &2431937902056908516
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,12 +1,10 @@
+using Ekonomika.Work;
 using UnityEngine;
 
 public class MineСollapseEvent : MonoBehaviour
 {
     [Tooltip("Scriptable event object \"MineСollapseSO\"")]
     public EventSO MineСollapseSO;
-
-    [Header("Event Property Controller")]
-    [SerializeField] private WorkController workController;
 
     public void StartMineСollapseEvent() // Этот метод нужно вызывать, при старте события!!!
     {
@@ -15,8 +13,8 @@ public class MineСollapseEvent : MonoBehaviour
 
     private void StartMineСollapseEffect()
     {
-        workController.OvverideCoalMiningDropItems(1, 3);
-        workController.OvverideIronMiningDropItems(1, 3);
+        WorkOverrider.OverrideCoalMiningDropItems(1, 3);
+        WorkOverrider.OverrideIronMiningDropItems(1, 3);
 
         // TODO: копатель, - 2шт. от макс. кол-ва.
     }
@@ -28,8 +26,8 @@ public class MineСollapseEvent : MonoBehaviour
 
     private void EndMineСollapseEffect()
     {
-        workController.ReturnCoalMiningDropItems();
-        workController.ReturnIronMiningDropItems();
+        WorkOverrider.ReturnCoalMiningDropItems();
+        WorkOverrider.ReturnIronMiningDropItems();
 
         // TODO: Вернуть назад
     }
