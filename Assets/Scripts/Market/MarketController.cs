@@ -1,37 +1,33 @@
-using Photon.Pun;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class MarketController : MonoBehaviourPunCallbacks
+[Serializable]
+public struct SellItem
+{
+    public Item item;
+    public int price;
+
+    public SellItem(Item item, int price)
+    {
+        this.item = item;
+        this.price = price;
+    }
+}
+
+public class MarketController : MonoBehaviour
 {
     public event Action OnOpenMarket;
     public event Action OnCloseMarket;
 
-    public Character character { get; private set; }
+    public SellItem[] ItemsForSale { get => _itemsForSale.ToArray(); }
 
-    [Serializable]
-    public struct MarketPrices
-    {
-        public int woodPrice;
-        public int berriesPrice;
-        public int carrotPrice;
-        public int milkPrice;
-        public int coalPrice;
-        public int ironPrice;
-        public int meatPrice;
-        public int fishPrice;
-    }
+    [SerializeField]
+    private List<SellItem> _itemsForSale;
 
-    public MarketPrices marketPrices;
+    public bool Init { get; private set; }
 
-    private void Start()
-    {
-        character = photonView.gameObject.GetComponent<Character>();
-
-        if (!character)
-        {
-            return;
-        }
-    }
+    private Character player;
 
     public void OpenMarket()
     {
@@ -41,5 +37,25 @@ public class MarketController : MonoBehaviourPunCallbacks
     public void CloseMareket()
     {
         OnCloseMarket?.Invoke();
+    }
+
+    public void Initialization(Character player)
+    {
+        this.player = player;
+        Init = this.player;
+    }
+
+    public void BuyItem(Item item)
+    {
+        if (Init)
+        {
+            foreach (SellItem sellItem in _itemsForSale)
+            {
+                if (sellItem.item == item)
+                {
+                    // Buying logic.
+                }
+            }
+        }
     }
 }

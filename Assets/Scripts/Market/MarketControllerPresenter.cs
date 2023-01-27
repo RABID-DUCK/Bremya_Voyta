@@ -1,116 +1,54 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MarketControllerPresenter : MonoBehaviour
 {
+    [SerializeField]
+    private MarketController marketController;
 
-    [SerializeField] private GameObject marketPanel;
-    [SerializeField] public MarketView marketView;
+    [SerializeField]
+    private MarketItemButton marketItemButton;
 
-    private int currentId;
+    [SerializeField]
+    private Transform buttonSpawnTransform;
 
+    private List<MarketItemButton> spawnedMarketItemButtons = new List<MarketItemButton>();
 
     private void Start()
     {
-        marketView.selectPanelId += SetPanelId;
+        marketItemButton.gameObject.SetActive(false);
+        marketController.OnOpenMarket += UpdateItemsForSale;
     }
 
-    private void SetPanelId(int panelId)
+    private void OnDestroy()
     {
-        currentId = panelId;
-        Debug.Log("dasd");
+        marketController.OnOpenMarket -= UpdateItemsForSale;
     }
 
-    private void Update()
+    public void UpdateItemsForSale()
     {
+        ResetItemsForSale();
+
+        foreach (SellItem sellItem in marketController.ItemsForSale)
+        {
+            MarketItemButton createdmarketItemButton = Instantiate(marketItemButton, buttonSpawnTransform);
+
+            createdmarketItemButton.Initialization(sellItem);
+            createdmarketItemButton.OnClick += marketController.BuyItem;
+            createdmarketItemButton.gameObject.SetActive(true);
+
+            spawnedMarketItemButtons.Add(createdmarketItemButton);
+        }
     }
 
-    public void OpenMarketPanel()
+    private void ResetItemsForSale()
     {
-        marketPanel.SetActive(true);
+        foreach (MarketItemButton button in spawnedMarketItemButtons)
+        {
+            button.OnClick -= marketController.BuyItem;
+            Destroy(button.gameObject);
+        }
+
+        spawnedMarketItemButtons.Clear();
     }
-
-    public void CloseMarketPanel()
-    {
-        marketPanel.SetActive(false);
-    }
-    //[SerializeField]
-    //private MarketController marketController;
-
-    //public void BuyWood()
-    //{
-    //    Calculate(marketController.marketPrices.woodPrice, () =>
-    //    {
-    //        marketController.character.inventory.woodCount++;
-    //    });
-    //}
-
-    //public void BuyBerries()
-    //{
-    //    Calculate(marketController.marketPrices.berriesPrice, () =>
-    //    {
-    //        marketController.character.inventory.berriesCount++;
-    //    });
-    //}
-
-    //public void BuyCarrot()
-    //{
-    //    Calculate(marketController.marketPrices.carrotPrice, () =>
-    //    {
-    //        marketController.character.inventory.carrotCount++;
-    //    });
-    //}
-
-    //public void BuyMilk()
-    //{
-    //    Calculate(marketController.marketPrices.milkPrice, () =>
-    //    {
-    //        marketController.character.inventory.milkCount++;
-    //    });
-    //}
-
-    //public void BuyCoal()
-    //{
-    //    Calculate(marketController.marketPrices.coalPrice, () =>
-    //    {
-    //        marketController.character.inventory.coalCount++;
-    //    });
-    //}
-
-    //public void BuyIron()
-    //{
-    //    Calculate(marketController.marketPrices.ironPrice, () =>
-    //    {
-    //        marketController.character.inventory.ironCount++;
-    //    });
-    //}
-
-    //public void BuyMeat()
-    //{
-    //    Calculate(marketController.marketPrices.meatPrice, () =>
-    //    {
-    //        marketController.character.inventory.meatCount++;
-    //    });
-    //}
-
-    //public void BuyFish()
-    //{
-    //    Calculate(marketController.marketPrices.fishPrice, () =>
-    //    {
-    //        marketController.character.inventory.fishCount++;
-    //    });
-    //}
-
-    //private void Calculate(int price, Action OnSuccess)
-    //{
-    //    if (price <= marketController.character.inventory.coins)
-    //    {
-    //        marketController.character.inventory.coins -= price;
-    //        OnSuccess?.Invoke();
-    //    }
-    //    else
-    //    {
-    //        //TODO: Pop-up window
-    //    }
-    //}
 }

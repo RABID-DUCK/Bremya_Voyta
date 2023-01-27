@@ -37,6 +37,8 @@ public class Coordinator : MonoBehaviour
     public void InitializationPlayer(Character player)
     {
         player.Initialization(clickEventer);
+        marketController.Initialization(player);
+        
         this.player = player;
     }
 
@@ -54,11 +56,6 @@ public class Coordinator : MonoBehaviour
 
         marketController.OnOpenMarket += OpenMarketPanel;
         marketController.OnCloseMarket += CloseMarketPanel;
-
-        if (marketShowCanvasGroup != null)
-        {
-            marketShowCanvasGroup.FastHide();
-        }
 
         OnEndEducation?.Invoke();
     }
