@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -50,14 +51,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             playerBody.rotation = Quaternion.Slerp(playerBody.rotation, targetRot, turningSpeed * Time.deltaTime); // Smooth
         }
 
-        if (h != 0 || v != 0 || moveDir.normalized.magnitude > 0.001f)
-        {
-            animator.SetBool("walk", true);
-        }
-        else
-        {
-            animator.SetBool("walk", false);
-        }
+        animator.SetBool("walk", (h != 0 || v != 0 || moveDir.normalized.magnitude > 0.001f));
     }
     public void WindowSleep()
     {
