@@ -39,6 +39,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     public event Action OnStartTaxEvent;
 
+    public event Action OnStopTaxEvent;
 
     private void Awake()
     {
@@ -98,6 +99,10 @@ public class WorldTime : MonoBehaviour, IPunObservable
         if(timeProgress == 0.5f && isCheckTimeOfDay == true)
         {
             OnStartTaxEvent?.Invoke();
+        }
+        else if (timeProgress == 0.8f && isCheckTimeOfDay == true)
+        {
+            OnStopTaxEvent?.Invoke();
         }
 
         if (timeProgress > 1f)

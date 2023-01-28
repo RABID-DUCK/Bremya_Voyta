@@ -23,7 +23,13 @@ public class TaxBoxPanelsView : MonoBehaviour
     [SerializeField] private GameObject errorPanel;
     [SerializeField] private Button okErrorButton;
 
+    [Header("")]
+    [SerializeField] private GameObject taxHasNotBeenPaidPanel;
+    [SerializeField] private Button okButton;
+
     public event Action OnClickGetResource;
+
+    public bool isPanelCanBeOpened = false;
 
     public bool isCompleted { get; private set; } = false;
 
@@ -35,6 +41,13 @@ public class TaxBoxPanelsView : MonoBehaviour
         okSuccessfullyButton.onClick.AddListener(IsCompleted);
 
         okErrorButton.onClick.AddListener(HideErrorPanel);
+
+        okButton.onClick.AddListener(HideTaxHasNotBeenPaidPanel);
+    }
+
+    public void ShowTrue()
+    {
+        isPanelCanBeOpened = true;
     }
 
     private void SendOnClickGetResource()
@@ -44,7 +57,8 @@ public class TaxBoxPanelsView : MonoBehaviour
 
     public void ShowTaxBoxPanel()
     {
-        taxBoxPanel.SetActive(true);
+        if(isPanelCanBeOpened)
+            taxBoxPanel.SetActive(true);
     }
 
     public void HideTaxBoxPanel()
@@ -76,5 +90,15 @@ public class TaxBoxPanelsView : MonoBehaviour
     private void HideErrorPanel()
     {
         errorPanel.SetActive(false);
+    }
+
+    public void ShowTaxHasNotBeenPaidPanel()
+    {
+        taxHasNotBeenPaidPanel.SetActive(true);
+    }
+
+    private void HideTaxHasNotBeenPaidPanel()
+    {
+        taxHasNotBeenPaidPanel.SetActive(false);
     }
 }

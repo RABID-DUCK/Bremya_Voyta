@@ -5,7 +5,7 @@ public class TaxBoxPresenter : TaxBoxModel
 {
     [SerializeField] private TaxBox taxBoxView;
     [SerializeField] private TaxBoxPanelsView taxBoxPanelsView;
- 
+
     [SerializeField] private List<Item> resurces = new List<Item>();
 
     private WorldTime worldTime;
@@ -19,15 +19,28 @@ public class TaxBoxPresenter : TaxBoxModel
     {
         taxBoxView.OnClickTaxBox += OpenTaxBoxPanel;
 
-        worldTime.OnStartTaxEvent += SetInformationAboutNecessaryResources;
+        worldTime.OnStartTaxEvent += StartTaxEvent;
+
+        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
 
         taxBoxPanelsView.OnClickGetResource += TakeResourcesFromPlayer;
     }
 
+    private void StartTaxEvent()
+    {
+        IsPanelCanBeOpened();
+
+        SetInformationAboutNecessaryResources();
+    }
+
+    private void IsPanelCanBeOpened()
+    {
+        taxBoxPanelsView.ShowTrue();
+    }
+
     private void OpenTaxBoxPanel()
     {
-        if(taxBoxPanelsView.isCompleted == false)
-            taxBoxPanelsView.ShowTaxBoxPanel();
+        taxBoxPanelsView.ShowTaxBoxPanel();
     }
 
     private void SetInformationAboutNecessaryResources()
@@ -37,9 +50,19 @@ public class TaxBoxPresenter : TaxBoxModel
         SetSelectedResurcesInformationOnTaxBoxPanel(taxBoxPanelsView.imageResuces, taxBoxPanelsView.nameResurcesText, taxBoxPanelsView.countResurcesText);
     }
 
+    private void OutputtingTaxBoxEventResults()
+    {
+        if (taxBoxPanelsView.isCompleted == false)
+        {
+            taxBoxPanelsView.ShowTaxHasNotBeenPaidPanel();
+
+
+        }
+    }
+
     private void TakeResourcesFromPlayer()
     {
-        if(CheckingResources() == true)
+        if (CheckingResources() == true)
         {
             //TODO: Дописать
 
