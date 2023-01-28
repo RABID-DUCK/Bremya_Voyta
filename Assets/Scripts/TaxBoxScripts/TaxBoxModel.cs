@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class TaxBoxModel : MonoBehaviour
 {
-    public List<Item> selectResources = new List<Item>();
-    public List<int> selectCountResources = new List<int>();
+    [HideInInspector] public List<Item> selectResources = new List<Item>();
+    [HideInInspector] public List<int> selectCountResources = new List<int>();
 
     private void Randomize(int firstCount, int secondCount, out int selectIndex)
     {
