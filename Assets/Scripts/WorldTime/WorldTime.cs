@@ -16,31 +16,33 @@ public class WorldTime : MonoBehaviour, IPunObservable
     /// <summary>
     /// Число дня, который наступил. Счет идет до 6, потом обнуляется!
     /// </summary>
-    public event Action<int> GetNumberDay;
+    public event Action<int> OnGetNumberDay;
 
     /// <summary>
     /// Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!
     /// </summary>
-    public event Action<float> GetTimeProgress;
+    public event Action<float> OnGetTimeProgress;
 
     /// <summary>
     /// Взять время суток!
     /// </summary>
-    public event Action<bool> GetTimeOfDay;
+    public event Action<bool> OnGetTimeOfDay;
 
     /// <summary>
     /// true - День, false - Ночь!
     /// </summary>
-    public bool CheckTimeOfDay { get; set; }
+    public bool isCheckTimeOfDay { get; set; }
 
-    public bool IsStartTime { get; set; }// Отвечает за включение времени
+    public bool isStartTime { get; set; }// Отвечает за включение времени
 
     public event Action OnEndGame;
+
+    public event Action OnStartTaxEvent;
 
 
     private void Awake()
     {
-        CheckTimeOfDay = this;
+        isCheckTimeOfDay = this;
         DontDestroyOnLoad(this);
     }
 
@@ -50,25 +52,25 @@ public class WorldTime : MonoBehaviour, IPunObservable
         nightTimeInSeconds = 60f;
         timeProgress = 0f;
 
-        CheckTimeOfDay = true;
+        isCheckTimeOfDay = true;
 
-        GetNumberDay?.Invoke(countOfDaysElapsed);
+        OnGetNumberDay?.Invoke(countOfDaysElapsed);
 
-        GetTimeProgress?.Invoke(timeProgress);
+        OnGetTimeProgress?.Invoke(timeProgress);
 
-        GetTimeOfDay?.Invoke(CheckTimeOfDay);
+        OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
 
         Coordinator.OnEndEducation += StartTime;
     }
 
     public void StartTime()
     {
-        IsStartTime = true;
+        isStartTime = true;
     }
 
     private void FixedUpdate()
     {
-        if (IsStartTime)
+        if (isStartTime)
         {
             ChengeOfTime();
         }
@@ -83,7 +85,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
         if (Application.isPlaying)
         {
-            if (CheckTimeOfDay)
+            if (isCheckTimeOfDay)
             {
                 timeProgress += Time.fixedDeltaTime / dayTimeInSeconds;
             }
@@ -93,16 +95,21 @@ public class WorldTime : MonoBehaviour, IPunObservable
             }
         }
 
+        if(timeProgress == 0.5f && isCheckTimeOfDay == true)
+        {
+            OnStartTaxEvent?.Invoke();
+        }
+
         if (timeProgress > 1f)
         {
             timeProgress = 0f;
 
-            CheckTimeOfDay = !CheckTimeOfDay;
-            GetTimeOfDay?.Invoke(CheckTimeOfDay);
+            isCheckTimeOfDay = !isCheckTimeOfDay;
+            OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
 
-            print(CheckTimeOfDay);
+            print(isCheckTimeOfDay);
 
-            if (CheckTimeOfDay)
+            if (isCheckTimeOfDay)
             {
                 countOfDaysElapsed++;
 

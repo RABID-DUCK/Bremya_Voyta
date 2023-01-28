@@ -30,7 +30,7 @@ public class ChangeDayAndNight : MonoBehaviour
 
     private void Update()
     {
-        if (worldTime.CheckTimeOfDay)
+        if (worldTime.isCheckTimeOfDay)
         {
             ChangingGradientColorDay();
 

@@ -39,8 +39,8 @@ public class EventController : MonoBehaviour
 
     private void Start()
     {
-        worldTime.GetNumberDay += SetDay;
-        worldTime.GetTimeProgress += SetTimeInSeconds;
+        worldTime.OnGetNumberDay += SetDay;
+        worldTime.OnGetTimeProgress += SetTimeInSeconds;
 
         randomEvent = 6;
     }
@@ -64,7 +64,7 @@ public class EventController : MonoBehaviour
 
     public void SelectEventByTime()
     {
-        if (worldTime.IsStartTime)
+        if (worldTime.isStartTime)
         {
             if (worldTime.countOfDaysElapsed == firstNumberDay &&
             worldTime.timeProgress == firstGameProgress ||

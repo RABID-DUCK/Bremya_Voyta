@@ -21,11 +21,11 @@ public class ArrowChange : MonoBehaviour
 
     private void Update()
     {
-        if (IsUseRotateArrowFromEventWheel && worldTime.CheckTimeOfDay && worldTime.IsStartTime)
+        if (IsUseRotateArrowFromEventWheel && worldTime.isCheckTimeOfDay && worldTime.isStartTime)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }
-        else if (worldTime.IsStartTime && !IsUseRotateArrowFromEventWheel)
+        else if (worldTime.isStartTime && !IsUseRotateArrowFromEventWheel)
         {
             RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
         }

@@ -28,7 +28,7 @@ public class SleepPresenter : SleepModel
 
     private void Start()
     {
-        worldTime.GetTimeOfDay += StartEnergenceSleepPanel;
+        worldTime.OnGetTimeOfDay += StartEnergenceSleepPanel;
 
         emergencySleepView.OnTimerIsOut += GoFastSleep;
 

@@ -17,7 +17,7 @@ public class SleepModel : MonoBehaviour
     public void AfterSleep(WorldTime worldTime)
     {
         worldTime.timeProgress = 0;
-        worldTime.CheckTimeOfDay = true;
+        worldTime.isCheckTimeOfDay = true;
     }
 
     public void ResetIsSleeping(bool isSleep)

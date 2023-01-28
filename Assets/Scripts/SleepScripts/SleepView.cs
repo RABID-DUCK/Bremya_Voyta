@@ -33,6 +33,11 @@ public class SleepView : MonoBehaviour
         }
     }
 
+    private void OnMouseExit()
+    {
+        bedOutline.enabled = false;
+    }
+
     private void SendPositiveResponse()
     {
         OnClickYesButton?.Invoke();

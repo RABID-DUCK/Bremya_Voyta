@@ -44,7 +44,7 @@ public class Bed : MonoBehaviour
 
     private void Update()
     {
-        if (worldTime.CheckTimeOfDay)
+        if (worldTime.isCheckTimeOfDay)
         {
             //Instantiate(player, new Vector3(0.2f, 0.08f, 0.7f), Quaternion.LookRotation(new Vector3(0, 0, 0)));
 
@@ -54,7 +54,7 @@ public class Bed : MonoBehaviour
 
     private void StateSleep()
     {
-        if (!worldTime.CheckTimeOfDay)
+        if (!worldTime.isCheckTimeOfDay)
         {
             print("night");
             sleepWindow.SetActive(true);
@@ -62,7 +62,7 @@ public class Bed : MonoBehaviour
         else
         {
             print("day");
-            print(worldTime.CheckTimeOfDay);
+            print(worldTime.isCheckTimeOfDay);
         }
     }
 

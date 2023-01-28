@@ -26,12 +26,12 @@ public class WarningSleepPanel : MonoBehaviour
     {
         textTimer.text = timeStart.ToString();
 
-        worldTime.GetTimeOfDay += ShowWarningSleepPanel;
+        worldTime.OnGetTimeOfDay += ShowWarningSleepPanel;
     }
 
     private void Update()
     {
-        ShowWarningSleepPanel(worldTime.CheckTimeOfDay);
+        ShowWarningSleepPanel(worldTime.isCheckTimeOfDay);
     }
 
     public void ShowWarningSleepPanel(bool timeOfDay)
