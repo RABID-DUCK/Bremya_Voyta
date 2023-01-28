@@ -8,36 +8,37 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 {
     ChatClient chatClient;
     [SerializeField] string userID;
+    private string nickName = PhotonNetwork.LocalPlayer.NickName;
     [SerializeField] TextMeshProUGUI chatText;
     [SerializeField] TMP_InputField textMessage;
     [SerializeField] GameObject chatPanel;
 
     public void DebugReturn(DebugLevel level, string message)
     {
-        Debug.Log($"{level}, {message}");
+        // Debug.Log($"{level}, {message}");
     }
 
     public void OnChatStateChange(ChatState state)
     {
-        Debug.Log(state);
+        // Debug.Log(state);
     }
 
     public void OnConnected()
     {
-        chatText.text += "\n Вы подключились к чату!";
-        chatClient.Subscribe("globalChat");
+        //chatText.text += "\n Вы подключились к чату!";
+        chatClient.Subscribe("G");
     }
 
     public void OnDisconnected()
     {
-        chatClient.Unsubscribe(new string[] { "globalChat" });
+        chatClient.Unsubscribe(new string[] { "G" });
     }
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
         for (int i = 0; i < senders.Length; i++)
         {
-            chatText.text += $"\n [{channelName}] {senders[i]}: {messages[i]}";
+            chatText.text += $"\n<b>[{channelName}] <color=#FFD700>{senders[i]}</color>:</b> {messages[i]}";
         }
     }
 
@@ -55,7 +56,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
         for (int i = 0; i < channels.Length; i++)
         {
-            chatText.text += $" Вы подключены к {channels[i]}.";
+            chatText.text += $"\n<align=center><b>Вы <color=green>подклюлись</color> к [{channels[i]}] чату.</b></align>";
         }
     }
 
@@ -63,24 +64,24 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
         for (int i = 0; i < channels.Length; i++)
         {
-            chatText.text += $" Вы отключены от {channels[i]}.";
+            chatText.text += $"\n<align=center><b>Вы <color=red>отключились</color> от [{channels[i]}] чата.</b></align>";
         }
     }
 
     public void OnUserSubscribed(string channel, string user)
     {
-        chatText.text += $" Пользователь {user} подключился к {channel}";
+        chatText.text += $"\n<align=center><b>Пользователь {user} <color=green>подключился</color> к [{channel}] чату</b></align>";
     }
 
     public void OnUserUnsubscribed(string channel, string user)
     {
-        chatText.text += $" Пользователь {user} отключлися от {channel}";
+        chatText.text += $"\n<align=center><b>Пользователь {user} <color=red>отключлися</color> от [{channel}] чата</b></align>";
     }
 
     void Start()
     {
         chatClient = new ChatClient(this);
-        chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(userID));
+        chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(nickName));
     }
 
     void Update()
@@ -92,10 +93,9 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
         if (textMessage.text != "")
         {
-            chatClient.PublishMessage("globalChat", textMessage.text);
+            chatClient.PublishMessage("G", textMessage.text);
             textMessage.text = "";
         }
-
     }
 
     public void OpenChat()
