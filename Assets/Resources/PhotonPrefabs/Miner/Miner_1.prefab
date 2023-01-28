@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3278687988701537016}
   - component: {fileID: 7816756181364656778}
   - component: {fileID: 475300284354080827}
+  - component: {fileID: 2138526475945788244}
   - component: {fileID: 4592470471474669046}
   - component: {fileID: 8933803830141310416}
-  - component: {fileID: 2138526475945788244}
   m_Layer: 0
   m_Name: Miner_1
   m_TagString: Untagged
@@ -97,25 +97,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PositionModel:
     SynchronizeEnabled: 1
-    TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 3
+    TeleportEnabled: 0
+    TeleportIfDistanceGreaterThan: 1
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    ExtrapolateOption: 1
+    InterpolateLerpSpeed: 7
+    ExtrapolateOption: 0
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
     SynchronizeEnabled: 1
-    InterpolateOption: 1
+    InterpolateOption: 2
     InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
+    InterpolateLerpSpeed: 7
   m_ScaleModel:
     SynchronizeEnabled: 0
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &2138526475945788244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337730651412174358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeca157ff591bc44aa6129ae21e1d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 9.8
+  moveSpeed: 7
+  turningSpeed: 7
+  playerBody: {fileID: 571589459317875671}
+  animator: {fileID: 6739219670823001687}
 --- !u!54 &4592470471474669046
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,23 +167,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.28, z: 0}
---- !u!114 &2138526475945788244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337730651412174358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eeca157ff591bc44aa6129ae21e1d93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: 9.8
-  moveSpeed: 7
-  turningSpeed: 7
-  playerBody: {fileID: 571589459317875671}
-  animator: {fileID: 6739219670823001687}
 --- !u!1001 &2091593118586507716
 PrefabInstance:
   m_ObjectHideFlags: 0
