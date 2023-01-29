@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public Inventory Inventory { get; private set; } = new Inventory();
+    public Wallet PlayerWallet { get; private set; } = new Wallet();
+    public Inventory PlayerInventory { get; private set; } = new Inventory();
+    
     public bool Init { get; private set; }
 
     private ClickEventer clickEventer;

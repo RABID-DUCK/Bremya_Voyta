@@ -31,7 +31,7 @@ namespace Ekonomika.Work
             {
                 UIController.ShowVideo(workVideo, () =>
                 {
-                    player.Inventory.PutItem(ReceivedItem, CalculateDropItems());
+                    player.PlayerInventory.PutItem(ReceivedItem, CalculateDropItems());
                 });
             });
         }

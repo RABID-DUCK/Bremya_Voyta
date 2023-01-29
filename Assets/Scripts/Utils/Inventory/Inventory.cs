@@ -5,8 +5,7 @@ namespace Ekonomika.Utils
 {
     public class Inventory
     {
-        public event Action OnPut;
-        public event Action OnPickUp;
+        public event Action OnInventoryChanged;
         public event Action OnNotEnoughItems;
 
         public List<InventoryConteiner> Conteiners { get; private set; } = new List<InventoryConteiner>();
@@ -24,7 +23,7 @@ namespace Ekonomika.Utils
                 CtreateNewConteiner(type, count);
             }
 
-            OnPut?.Invoke();
+            OnInventoryChanged?.Invoke();
         }
 
         public void PickUpItem(Item type, int count = 1)
@@ -35,7 +34,7 @@ namespace Ekonomika.Utils
             {
                 foundConteiner.ItemCount -= count;
 
-                OnPickUp?.Invoke();
+                OnInventoryChanged?.Invoke();
             }
             else
             {
