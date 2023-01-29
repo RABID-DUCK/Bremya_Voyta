@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         vSpeed -= (cc.isGrounded ? 0 : gravity) * Time.deltaTime;
         var up = transform.up * vSpeed;
         var moveDir = right + forward;
-        cc.Move((moveDir + up) * moveSpeed * Time.deltaTime);
+        cc.Move((moveDir.normalized + up) * moveSpeed * Time.deltaTime);
 
         // Rotate graphics
         if (moveDir.normalized.magnitude > 0.001f)
