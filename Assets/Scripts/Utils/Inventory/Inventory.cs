@@ -6,7 +6,6 @@ namespace Ekonomika.Utils
     public class Inventory
     {
         public event Action OnInventoryChanged;
-        public event Action OnNotEnoughItems;
 
         public List<InventoryConteiner> Conteiners { get; private set; } = new List<InventoryConteiner>();
 
@@ -30,16 +29,12 @@ namespace Ekonomika.Utils
         {
             InventoryConteiner foundConteiner = FindConteiner(type);
 
-            if (foundConteiner != null && foundConteiner.ItemCount >= count)
-            {
-                foundConteiner.ItemCount -= count;
+            if (foundConteiner == null || foundConteiner.ItemCount < count)
+                throw new InvalidOperationException();
 
-                OnInventoryChanged?.Invoke();
-            }
-            else
-            {
-                OnNotEnoughItems?.Invoke();
-            }
+            foundConteiner.ItemCount -= count;
+            
+            OnInventoryChanged?.Invoke();
         }
 
         private InventoryConteiner FindConteiner(Item type)

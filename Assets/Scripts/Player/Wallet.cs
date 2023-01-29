@@ -2,8 +2,7 @@ using System;
 
 public class Wallet
 {
-    public Action OnCoinsChanged;
-    public Action OnNotEnoughCoins;
+    public event Action OnCoinsChanged;
 
     public int CoinsCount { get; private set; }
 
@@ -15,14 +14,10 @@ public class Wallet
 
     public void PickUpCoins(int count)
     {
-        if (CoinsCount >= count)
-        {
-            CoinsCount -= count;
-            OnCoinsChanged?.Invoke();
-        }
-        else
-        {
-            OnNotEnoughCoins?.Invoke();
-        }
+        if (CoinsCount < count)
+            throw new InvalidOperationException();
+
+        CoinsCount -= count;
+        OnCoinsChanged?.Invoke();
     }
 }

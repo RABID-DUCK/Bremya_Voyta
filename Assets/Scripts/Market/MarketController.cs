@@ -53,7 +53,17 @@ public class MarketController : MonoBehaviour
             {
                 if (sellItem.item == item)
                 {
-                    // Buying logic.
+                    Wallet playerWallet = player.PlayerWallet;
+
+                    try
+                    {
+                        playerWallet.PickUpCoins(sellItem.price);
+                        player.PlayerInventory.PutItem(item);
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        UIController.ShowOkInfo($"Вам не хватает {sellItem.price - playerWallet.CoinsCount} монет, чтобы купить {item.ItemName}!");
+                    }
                 }
             }
         }

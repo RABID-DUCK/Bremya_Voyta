@@ -27,15 +27,15 @@ public class ShowCanvasGroup : MonoBehaviour
     [SerializeField]
     private bool _isHided;
 
-    private void Start()
+    private void Awake()
     {
         if (!IsHided)
         {
-            FastShow();
+            canvasGroup.alpha = 1f;
         }
         else
         {
-            FastHide();
+            canvasGroup.alpha = 0f;
         }
     }
 
