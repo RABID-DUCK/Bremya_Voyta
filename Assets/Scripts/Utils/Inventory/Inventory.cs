@@ -7,7 +7,9 @@ namespace Ekonomika.Utils
     {
         public event Action OnInventoryChanged;
 
-        public List<InventoryConteiner> Conteiners { get; private set; } = new List<InventoryConteiner>();
+        public InventoryConteiner[] InventoryConteiners { get => _conteiners.ToArray(); }
+        
+        private List<InventoryConteiner> _conteiners = new List<InventoryConteiner>();
 
         public void PutItem(Item type, int count = 1)
         {
@@ -39,12 +41,12 @@ namespace Ekonomika.Utils
 
         private InventoryConteiner FindConteiner(Item type)
         {
-            return Conteiners.Find(x => { return x.Item == type; });
+            return _conteiners.Find(x => { return x.Item == type; });
         }
 
         private void CtreateNewConteiner(Item type, int startCount)
         {
-            Conteiners.Add(new InventoryConteiner(type, startCount));
+            _conteiners.Add(new InventoryConteiner(type, startCount));
         }
     }
 }
