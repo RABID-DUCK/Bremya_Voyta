@@ -1421,6 +1421,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Bed
       objectReference: {fileID: 0}
+    - target: {fileID: 972694559859723686, guid: e57bc3184c330fd498e2d652e89810fd, type: 3}
+      propertyPath: panelExit
+      value: 
+      objectReference: {fileID: 1542752326}
+    - target: {fileID: 972694559859723686, guid: e57bc3184c330fd498e2d652e89810fd, type: 3}
+      propertyPath: confirmBtn
+      value: 
+      objectReference: {fileID: 1068246771}
+    - target: {fileID: 972694559859723686, guid: e57bc3184c330fd498e2d652e89810fd, type: 3}
+      propertyPath: declineBtn
+      value: 
+      objectReference: {fileID: 2043167742}
     - target: {fileID: 2374369690824121542, guid: e57bc3184c330fd498e2d652e89810fd, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2321,32 +2333,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2129457082867266069, guid: e57bc3184c330fd498e2d652e89810fd, type: 3}
   m_PrefabInstance: {fileID: 808528742}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1549293255
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549293253}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3861478300804232965, guid: f914bf449b5d6984084f3de563357623, type: 3}
---- !u!114 &1549293256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549293253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 340dc26dd28862445a7fcef96e878b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1549293259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2354,7 +2340,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549293253}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
