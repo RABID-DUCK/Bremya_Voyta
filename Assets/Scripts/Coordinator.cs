@@ -7,6 +7,7 @@ public class Coordinator : MonoBehaviour
     public static event Action OnEndEducation;
 
     [SerializeField] private ClickEventer clickEventer;
+    [SerializeField] private UIUpdater uiUpdater;
 
     [Header("Start")]
     [SerializeField] private DialogData startDialogData;
@@ -38,7 +39,8 @@ public class Coordinator : MonoBehaviour
     {
         player.Initialization(clickEventer);
         marketController.Initialization(player);
-        
+        uiUpdater.Initialization(player);
+
         this.player = player;
     }
 
