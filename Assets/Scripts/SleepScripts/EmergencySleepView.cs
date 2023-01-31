@@ -32,6 +32,8 @@ public class EmergencySleepView : MonoBehaviour
     public void HideEmergencySleepPanel()
     {
         emergencyPanelSleep.SetActive(false);
+
+        StopCoroutine(StartTimer(timerText.text));
     }
 
     private IEnumerator StartTimer(string timerText)

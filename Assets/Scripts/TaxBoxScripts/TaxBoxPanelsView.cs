@@ -23,7 +23,7 @@ public class TaxBoxPanelsView : MonoBehaviour
     [SerializeField] private GameObject errorPanel;
     [SerializeField] private Button okErrorButton;
 
-    [Header("")]
+    [Header("Has Not Been Paid Panel")]
     [SerializeField] private GameObject taxHasNotBeenPaidPanel;
     [SerializeField] private Button okButton;
 
