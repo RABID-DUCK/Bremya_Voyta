@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   _itemName: "\u0423\u0433\u043E\u043B\u044C"
-  _itemSprite: {fileID: 0}
+  _itemSprite: {fileID: 21300000, guid: 3cd133244f645014a9a8135bc1bd8606, type: 3}

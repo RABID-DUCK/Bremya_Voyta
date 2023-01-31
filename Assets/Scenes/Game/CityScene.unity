@@ -21175,6 +21175,7 @@ MonoBehaviour:
   dialogPresenter: {fileID: 1599129250}
   marketController: {fileID: 166551129}
   marketShowCanvasGroup: {fileID: 301566531}
+  taxBoxPresenter: {fileID: 1909124433}
 --- !u!1 &1184527709
 GameObject:
   m_ObjectHideFlags: 0
@@ -34378,7 +34379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 71f6ca9c771cb2444bbb88c8e245c6ba, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

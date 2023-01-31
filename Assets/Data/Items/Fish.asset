@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   _itemName: "\u0420\u044B\u0431\u0430"
-  _itemSprite: {fileID: 0}
+  _itemSprite: {fileID: 21300000, guid: 3c54871fb0b33004e8a854f34cd09e13, type: 3}
