@@ -1,6 +1,8 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 
@@ -8,10 +10,17 @@ public class EndGame : MonoBehaviour
 {
     [SerializeField] WorldTime worldTime;
 
+    [Header("Finish panel setting")]
     [SerializeField] private GameObject finishPanel;
+
+    [Header("Top player properties")]
+    [SerializeField] private TMP_Text nameTopPlayer;
+    [SerializeField] private TMP_Text countCoinsTopPlayer;
+
+    [Header("All players settings")]
     [SerializeField] private TMP_Text descriptionText;
 
-    public Dictionary<string, int> players = new Dictionary<string, int>();
+    private Dictionary<string, int> players = new Dictionary<string, int>();
     private List<int> sortCoins = new List<int>();
 
     private void Start()
@@ -55,7 +64,15 @@ public class EndGame : MonoBehaviour
             {
                 if (sortCoins[i] == player.Value)
                 {
-                    descriptionText.text += $"{counterPlayers} Место - {player.Key}, количество монет - {player.Value}\r\n";
+                    if(i == sortCoins.Count)
+                    {
+                        nameTopPlayer.text = $"Новый староста {player.Key}";
+                        countCoinsTopPlayer.text = $"Количество монет - {player.Value}";
+                    }
+                    else
+                    {
+                        descriptionText.text += $"{counterPlayers} Место - {player.Key}, количество монет - {player.Value}\r\n";
+                    }
 
                     counterPlayers++;
                 }

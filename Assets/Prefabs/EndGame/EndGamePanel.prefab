@@ -161,7 +161,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419423683812282282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.5194912}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -176,7 +176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68.300446, y: 11.047607}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 665.5008, y: 793.6906}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1305941452471195170
@@ -476,7 +476,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTime: {fileID: 0}
   finishPanel: {fileID: 0}
+  nameTopPlayer: {fileID: 0}
+  countCoinsTopPlayer: {fileID: 0}
   descriptionText: {fileID: 3206635142548258404}
+  listCharacters:
+  - {fileID: 11400000, guid: c3b94e01147220943a4c363f8ccd0251, type: 2}
+  - {fileID: 11400000, guid: 93de5cfb53ed40649a12ad39bf5bf541, type: 2}
+  - {fileID: 11400000, guid: 975aec6e326a7f743929fd09e10cd3b8, type: 2}
+  - {fileID: 11400000, guid: d08228a3adf04fd4bb121e3b43b4689a, type: 2}
 --- !u!1 &6647839634065500552
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 332.75, y: -341.08}
+  m_AnchoredPosition: {x: 332.75012, y: -341.07986}
   m_SizeDelta: {x: 231.2047, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3416684086978616479
