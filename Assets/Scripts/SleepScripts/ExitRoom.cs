@@ -13,7 +13,7 @@ public class ExitRoom : MonoBehaviour
     {
         outline = transform.gameObject.GetComponent<Outline>();
     }
-
+    
     private void OnMouseOver()
     {
         if (outline != null) 
@@ -25,17 +25,22 @@ public class ExitRoom : MonoBehaviour
             print("null");
         }
         outline.enabled = true;
-    }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            panelExit.SetActive(true);
+        }
+    }
+    
     private void OnMouseExit()
     {
         outline.enabled = false;
     }
-
-    private void OnMouseDown()
-    {
-        panelExit.SetActive(true);
-    }
+    
+    //private void OnMouseDown()
+    //{
+    //    panelExit.SetActive(true);
+    //}
 
     public void SelectedConfirm()
     {
