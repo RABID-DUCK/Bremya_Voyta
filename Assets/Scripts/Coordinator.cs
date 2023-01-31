@@ -16,6 +16,9 @@ public class Coordinator : MonoBehaviour
     [Header("Market")]
     [SerializeField] private MarketController marketController;
     [SerializeField] private ShowCanvasGroup marketShowCanvasGroup;
+
+    [Header("Tax")]
+    [SerializeField] private TaxBoxPresenter taxBoxPresenter;
     
     private Character player;
 
@@ -40,6 +43,7 @@ public class Coordinator : MonoBehaviour
         player.Initialization(clickEventer);
         marketController.Initialization(player);
         uiUpdater.Initialization(player);
+        taxBoxPresenter.Initialization(player);
 
         this.player = player;
     }
