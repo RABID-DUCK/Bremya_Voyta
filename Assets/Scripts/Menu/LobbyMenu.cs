@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class LobbyMenu : MonoBehaviourPunCallbacks
 {
     [Header("Ёлементы лобби")]
-    [SerializeField] private GameObject Room;
+    [SerializeField] public GameObject Room;
     [SerializeField] private GameObject ChangeRoom;
     [SerializeField] private GameObject Loading;
     [SerializeField] private Button buttonStart;
@@ -27,7 +27,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     [SerializeField] private Transform playerItemParent;
 
     [Header("Ёлемент класса выбора")]
-    [SerializeField] private GameObject charactersMenu;
+    [SerializeField] public GameObject charactersMenu;
 
     [SerializeField] private CharacterItem characterItemPrefab;
     [SerializeField] private Transform characterItemParent;
