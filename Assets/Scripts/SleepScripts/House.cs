@@ -1,3 +1,4 @@
+using Ekonomika.Utils;
 using UnityEngine.SceneManagement;
 
 public class House : ClickableObject
@@ -6,7 +7,7 @@ public class House : ClickableObject
     {
         UIController.ShowYesNoDialog("Вы хотите войти в свой дом?", () =>
         {
-            SceneManager.LoadScene(3);
+            CameraSwitch.SwichHouseCamera();
         });
     }
 }
