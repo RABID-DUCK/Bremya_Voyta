@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -57,7 +58,9 @@ public class FastMenu : MonoBehaviour
 
     private void ExitInMenu()
     {
-        SceneManager.LoadScene("Menu"); // Если возникла ошибка, то я ебал рот того, кто переименовал сцену главного меню!
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Menu"); // (InKres) Если возникла ошибка, то я ебал рот того, кто переименовал сцену главного меню!
+                                        // (FilinGoy) Согласен!
     }
 
     private void ShowMenu()
