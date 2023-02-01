@@ -19,7 +19,6 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     private LobbyMenu _lobbyMenu;
     [SerializeField] private List<CharacterSO> listCharacters;
     Quaternion synchRot = Quaternion.identity;
-     
 
     private string[] data;
     private string _nameCh;
@@ -39,6 +38,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         {
             _camera.Follow = newPlayer.transform;
             sceneCoordinator.InitializationPlayer(newPlayer.GetComponent<Character>());
+            newPlayer.GetComponent<Character>().PlayerWallet.PutCoins(50);
         }
 
         PhotonNetwork.AutomaticallySyncScene = false;

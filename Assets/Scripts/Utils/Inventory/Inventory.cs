@@ -11,6 +11,8 @@ namespace Ekonomika.Utils
         
         private List<InventoryConteiner> _conteiners = new List<InventoryConteiner>();
 
+        InventorySYNC invSYNC = new InventorySYNC();
+
         public void PutItem(Item type, int count = 1)
         {
             InventoryConteiner foundConteiner = FindConteiner(type);
@@ -24,6 +26,8 @@ namespace Ekonomika.Utils
                 CtreateNewConteiner(type, count);
             }
 
+            invSYNC.PutOrPickUpItem(type, count);
+
             OnInventoryChanged?.Invoke();
         }
 
@@ -35,7 +39,9 @@ namespace Ekonomika.Utils
                 throw new InvalidOperationException();
 
             foundConteiner.ItemCount -= count;
-            
+
+            invSYNC.PutOrPickUpItem(type, -count);
+
             OnInventoryChanged?.Invoke();
         }
 

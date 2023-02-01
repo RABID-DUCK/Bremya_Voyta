@@ -248,7 +248,6 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         UpdatePlayerList();
-        print($"Игрок ({newPlayer}) зашёл.");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -256,13 +255,11 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         ClearPlayerData(otherPlayer);
 
         UpdatePlayerList();
-        print($"Игрок ({otherPlayer}) вышел.");
     }
 
     public override void OnJoinedRoom()
     {
         UpdatePlayerList();
-        print($"Вы ({PhotonNetwork.LocalPlayer}) создали/вошли в лобби.");
     }
 
     public void OpenError(string text)
