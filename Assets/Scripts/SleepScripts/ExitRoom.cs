@@ -1,49 +1,12 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using Ekonomika.Utils;
 
-public class ExitRoom : MonoBehaviour
+public class ExitRoom : ClickableObject
 {
-    Outline outline;
-    [SerializeField] private Button confirmBtn;
-    [SerializeField] private Button declineBtn;
-    [SerializeField] private GameObject panelExit;
-
-    void Start()
+    public override void Execute(Character player)
     {
-        outline = transform.gameObject.GetComponent<Outline>();
-    }
-
-    private void OnMouseOver()
-    {
-        if (outline != null) 
+        UIController.ShowYesNoDialog("Вы хотите выйти из дома?", () =>
         {
-            print("ne null;");
-        }
-        else
-        {
-            print("null");
-        }
-        outline.enabled = true;
-    }
-
-    private void OnMouseExit()
-    {
-        outline.enabled = false;
-    }
-
-    private void OnMouseDown()
-    {
-        panelExit.SetActive(true);
-    }
-
-    public void SelectedConfirm()
-    {
-        SceneManager.LoadScene("CityScene");
-    }
-
-    public void SelectedDecline()
-    {
-        panelExit.SetActive(false);
+            CameraSwitch.SwichToMainCamera();
+        });
     }
 }

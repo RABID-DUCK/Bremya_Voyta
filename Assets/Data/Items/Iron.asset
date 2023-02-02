@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: 
   _itemName: "\u0416\u0435\u043B\u0435\u0437\u043E"
-  _itemSprite: {fileID: 0}
+  _itemSprite: {fileID: 21300000, guid: 60b07aed0cc0bf44381403b39f033685, type: 3}

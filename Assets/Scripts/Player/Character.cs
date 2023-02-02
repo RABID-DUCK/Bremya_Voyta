@@ -1,13 +1,18 @@
 using Ekonomika.Utils;
 using Ekonomika.Work;
+using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviourPunCallbacks
 {
     public Wallet PlayerWallet { get; private set; } = new Wallet();
     public Inventory PlayerInventory { get; private set; } = new Inventory();
-    
+
+    private Hashtable _CP = new Hashtable();
+
     public bool Init { get; private set; }
 
     private ClickEventer clickEventer;
@@ -20,6 +25,15 @@ public class Character : MonoBehaviour
         if (Init)
         {
             clickEventer.OnClickWork -= GetObject;
+            PlayerWallet.OnCoinsChanged -= ChangeMoney;
+        }
+    }
+
+    private void Awake()
+    {
+        if (!photonView.IsMine)
+        {
+            Destroy(this);
         }
     }
 
@@ -27,6 +41,7 @@ public class Character : MonoBehaviour
     {
         OnDestroy();
         InitPlayer(clickEventer);
+        PlayerWallet.OnCoinsChanged += ChangeMoney;
     }
 
     private void InitPlayer(ClickEventer clickEventer)
@@ -49,5 +64,11 @@ public class Character : MonoBehaviour
         {
             UIController.ShowOkInfo($"¬ы не можете работать на данной работе ({workObject.WorkName})!");
         }
+    }
+
+    private void ChangeMoney()
+    {
+        _CP["coins"] = PlayerWallet.CoinsCount;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
     }
 }

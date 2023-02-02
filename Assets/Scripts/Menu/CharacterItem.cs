@@ -1,3 +1,4 @@
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +16,23 @@ public class CharacterItem : MonoBehaviour
     [HideInInspector] public LobbyMenu lm;
     [HideInInspector] public CharacterSO characterSO;
 
-    private ExitGames.Client.Photon.Hashtable _CP = new ExitGames.Client.Photon.Hashtable();
+    private Hashtable _CP = new Hashtable();
 
     public void ChangeCharacter()
     {
         foreach (var (_nick, j) in characterSO.full.Select((_nick, j) => (_nick, j)))
         {
-            if (characterSO.full[j] == "")
+            if (characterSO.full[j] == "" || characterSO.full[j] == PhotonNetwork.LocalPlayer.NickName)
             {
                 _CP["Profession"] = $"{characterSO.nameCharacter}|{j}";
                 PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
-                break;
+                lm.Room.SetActive(true);
+                lm.charactersMenu.SetActive(false);
+                return;
             }
         }
+        lm.ErrorText.text = $"Такая профессия уже занята";
+        lm.Error.SetActive(true);
     }
 
     public void OpenInfo()

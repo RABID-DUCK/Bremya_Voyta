@@ -63,6 +63,8 @@ public class SleepPresenter : SleepModel
     private void GoSleep()
     {
         GoSleep(sleepVideo);
+        emergencySleepView.HideEmergencySleepPanel();
+
         AfterSleep(worldTime);
 
         isSleeping = true;

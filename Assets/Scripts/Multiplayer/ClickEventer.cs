@@ -1,3 +1,4 @@
+using Ekonomika.Utils;
 using Ekonomika.Work;
 using System;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class ClickEventer : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && clickOnUi)
         {
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
+            Ray ray = CameraSwitch.currentCamera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
             RaycastHit _hit;
 
             if (Physics.Raycast(ray, out _hit, Mathf.Infinity))

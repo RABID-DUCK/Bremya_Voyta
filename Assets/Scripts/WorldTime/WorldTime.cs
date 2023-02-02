@@ -9,9 +9,9 @@ public class WorldTime : MonoBehaviourPunCallbacks
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public float dayTimeInSeconds { get; set; }// Количество секунд днем
+    public float dayTimeInSeconds { get; } = 360f; // Количество секунд днем
 
-    public float nightTimeInSeconds { get; set; } // Количество секунд ночью
+    public float nightTimeInSeconds { get; } = 60f; // Количество секунд ночью
 
     public float timeProgress { get; set; } // Игровой прогресс
 
@@ -35,7 +35,7 @@ public class WorldTime : MonoBehaviourPunCallbacks
     /// </summary>
     public bool isCheckTimeOfDay { get; set; }
 
-    public bool isStartTime { get; set; }// Отвечает за включение времени
+    public bool isStartTime { get; set; } // Отвечает за включение времени
 
     public event Action OnEndGame;
 
@@ -52,8 +52,6 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        dayTimeInSeconds = 360f;
-        nightTimeInSeconds = 60f;
         timeProgress = 0f;
 
         isCheckTimeOfDay = true;

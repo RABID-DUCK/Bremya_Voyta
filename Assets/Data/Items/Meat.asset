@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Meat
   m_EditorClassIdentifier: 
   _itemName: "\u041C\u044F\u0441\u043E"
-  _itemSprite: {fileID: 0}
+  _itemSprite: {fileID: 21300000, guid: 04bd8881f9d066b4fa40fc3a840aba76, type: 3}

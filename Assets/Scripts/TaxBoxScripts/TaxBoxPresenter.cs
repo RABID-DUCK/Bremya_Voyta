@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TaxBoxPresenter : TaxBoxModel
@@ -9,6 +10,8 @@ public class TaxBoxPresenter : TaxBoxModel
     [SerializeField] private List<Item> resurces = new List<Item>();
 
     private WorldTime worldTime;
+
+    private Character player;
 
     private void Awake()
     {
@@ -24,6 +27,11 @@ public class TaxBoxPresenter : TaxBoxModel
         worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
 
         taxBoxPanelsView.OnClickGetResource += TakeResourcesFromPlayer;
+    }
+
+    public void Initialization(Character player)
+    {
+        this.player = player;
     }
 
     private void StartTaxEvent()
@@ -55,20 +63,18 @@ public class TaxBoxPresenter : TaxBoxModel
         if (taxBoxPanelsView.isCompleted == false)
         {
             taxBoxPanelsView.ShowTaxHasNotBeenPaidPanel();
-
-
         }
     }
 
     private void TakeResourcesFromPlayer()
     {
-        if (CheckingResources() == true)
+        try
         {
-            //TODO: Дописать
+            GetResourcesFromPlayer(player);
 
             taxBoxPanelsView.ShowSuccessfullyPanel();
         }
-        else
+        catch (InvalidOperationException)
         {
             taxBoxPanelsView.ShowErrorPanel();
         }

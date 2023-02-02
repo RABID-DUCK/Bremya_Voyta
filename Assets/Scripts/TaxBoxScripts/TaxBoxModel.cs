@@ -32,11 +32,6 @@ public class TaxBoxModel : MonoBehaviour
         }
     }
 
-    private void TakeTaxForNonpayment()
-    {
-
-    }
-
     public void SetSelectedResurcesInformationOnTaxBoxPanel(List<Image> imageResuces, List<TMP_Text> nameResurcesText, List<TMP_Text> countResurcesText)
     {
         for (int i = 0; i < 3; i++)
@@ -47,13 +42,11 @@ public class TaxBoxModel : MonoBehaviour
         }
     }
 
-    public void GetResourcesFromPlayer()
+    public void GetResourcesFromPlayer(Character player)
     {
-        //TODO: Дописать
-    }
-
-    public bool CheckingResources()
-    {
-        return true; //TODO: Дописать
+        for (int i = 0; i < selectResources.Count; i++)
+        {
+            player.PlayerInventory.PickUpItem(selectResources[i], selectCountResources[i]);
+        }
     }
 }

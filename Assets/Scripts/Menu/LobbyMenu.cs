@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class LobbyMenu : MonoBehaviourPunCallbacks
 {
     [Header("Ёлементы лобби")]
-    [SerializeField] private GameObject Room;
+    [SerializeField] public GameObject Room;
     [SerializeField] private GameObject ChangeRoom;
     [SerializeField] private GameObject Loading;
     [SerializeField] private Button buttonStart;
@@ -27,7 +27,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     [SerializeField] private Transform playerItemParent;
 
     [Header("Ёлемент класса выбора")]
-    [SerializeField] private GameObject charactersMenu;
+    [SerializeField] public GameObject charactersMenu;
 
     [SerializeField] private CharacterItem characterItemPrefab;
     [SerializeField] private Transform characterItemParent;
@@ -248,7 +248,6 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         UpdatePlayerList();
-        print($"»грок ({newPlayer}) зашЄл.");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -256,13 +255,11 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         ClearPlayerData(otherPlayer);
 
         UpdatePlayerList();
-        print($"»грок ({otherPlayer}) вышел.");
     }
 
     public override void OnJoinedRoom()
     {
         UpdatePlayerList();
-        print($"¬ы ({PhotonNetwork.LocalPlayer}) создали/вошли в лобби.");
     }
 
     public void OpenError(string text)
