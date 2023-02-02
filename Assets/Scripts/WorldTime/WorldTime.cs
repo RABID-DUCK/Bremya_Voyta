@@ -7,9 +7,9 @@ public class WorldTime : MonoBehaviour, IPunObservable
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public float dayTimeInSeconds { get; set; }// Количество секунд днем
+    public float dayTimeInSeconds { get; set; } = /*360f*/10f; // Количество секунд днем
 
-    public float nightTimeInSeconds { get; set; } // Количество секунд ночью
+    public float nightTimeInSeconds { get; set; } = /*60f*/5f; // Количество секунд ночью
 
     public float timeProgress { get; set; } // Игровой прогресс
 
@@ -33,7 +33,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
     /// </summary>
     public bool isCheckTimeOfDay { get; set; }
 
-    public bool isStartTime { get; set; }// Отвечает за включение времени
+    public bool isStartTime { get; set; } // Отвечает за включение времени
 
     public event Action OnEndGame;
 
@@ -49,8 +49,6 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void Start()
     {
-        dayTimeInSeconds = 360f;
-        nightTimeInSeconds = 60f;
         timeProgress = 0f;
 
         isCheckTimeOfDay = true;
@@ -79,11 +77,6 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     private void ChengeOfTime()
     {
-        if (dayTimeInSeconds == 0)
-        {
-            print("There can't be 0 seconds in one day!!!");
-        }
-
         if (Application.isPlaying)
         {
             if (isCheckTimeOfDay)

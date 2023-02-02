@@ -5967,7 +5967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 38.781326}
+  m_AnchoredPosition: {x: 0, y: 38.781372}
   m_SizeDelta: {x: -1112.471, y: -598.2123}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113147506
@@ -13025,10 +13025,10 @@ RectTransform:
   m_Father: {fileID: 1329387167}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.349, y: 0.905}
-  m_AnchorMax: {x: 0.65, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 149.6719, y: 33}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &339328985
 MonoBehaviour:
@@ -14850,7 +14850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0430\u043B\u043E\u0433\u0438"
+  m_text: "\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}
   m_sharedMaterial: {fileID: 747194865791565738, guid: 6f9931b4886414c4da9450f3cc73797c, type: 2}
@@ -15512,27 +15512,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3595712299293085270, guid: bdb84e9682ae5ca49a7b8c36e6e244dd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595712299293085270, guid: bdb84e9682ae5ca49a7b8c36e6e244dd, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595712299293085270, guid: bdb84e9682ae5ca49a7b8c36e6e244dd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 723.2846
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595712299293085270, guid: bdb84e9682ae5ca49a7b8c36e6e244dd, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 28.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595712299293085270, guid: bdb84e9682ae5ca49a7b8c36e6e244dd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 371.6423
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595712299293085270, guid: bdb84e9682ae5ca49a7b8c36e6e244dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.064999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595712299293085271, guid: bdb84e9682ae5ca49a7b8c36e6e244dd, type: 3}
       propertyPath: m_fontAsset
@@ -15865,13 +15865,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 690839846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 270cfd21c87339e41a622c86a493d7c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 48fd4d5839d0df841914f86042a79528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
   arrowRectTransform: {fileID: 1805297919}
-  timeRotationArrow: 420
-  IsUseRotateArrowFromEventWheel: 0
 --- !u!1 &697987846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7955324953202361596, guid: c63e852bab0ea464b9a26aaefe6e223d, type: 3}
@@ -18956,15 +18954,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 694543783417114819, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1028.3004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 694543783417114819, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 528.9524
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 694543783417114819, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5194912
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 694543783417114819, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19005,6 +19003,10 @@ PrefabInstance:
     - target: {fileID: 6554028378873830281, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_Name
       value: EndGamePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: worldTime
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: finishPanel
@@ -35671,8 +35673,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
   arrowRectTransform: {fileID: 913893792}
-  timeRotationArrow: 2160
-  IsUseRotateArrowFromEventWheel: 1
 --- !u!1 &1690777619
 GameObject:
   m_ObjectHideFlags: 0

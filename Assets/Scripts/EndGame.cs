@@ -37,6 +37,8 @@ public class EndGame : MonoBehaviour
         SortPlayersByCoins();
 
         SetTopPlayersSetting();
+
+        ShowFinishPanel();
     }
 
     private void GetAllPlayers()
@@ -78,5 +80,10 @@ public class EndGame : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ShowFinishPanel()
+    {
+        finishPanel.SetActive(true);
     }
 }
