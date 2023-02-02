@@ -1,8 +1,10 @@
 ﻿using Photon.Pun;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class WorldTime : MonoBehaviour, IPunObservable
+public class WorldTime : MonoBehaviourPunCallbacks
 {
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
@@ -41,6 +43,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
 
     public event Action OnStopTaxEvent;
 
+
     private void Awake()
     {
         isCheckTimeOfDay = this;
@@ -77,8 +80,19 @@ public class WorldTime : MonoBehaviour, IPunObservable
         }
     }
 
-    private void ChengeOfTime()
+
+    public void ChengeOfTime()
     {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Hashtable ht = new Hashtable { { "StartTime", timeProgress } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        }
+        else
+        {
+            timeProgress = (float)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+        }
+
         if (dayTimeInSeconds == 0)
         {
             print("There can't be 0 seconds in one day!!!");
@@ -112,7 +126,7 @@ public class WorldTime : MonoBehaviour, IPunObservable
             isCheckTimeOfDay = !isCheckTimeOfDay;
             OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
 
-            print(isCheckTimeOfDay);
+            print("NAXUI: "+isCheckTimeOfDay);
 
             if (isCheckTimeOfDay)
             {
@@ -124,19 +138,20 @@ public class WorldTime : MonoBehaviour, IPunObservable
                 }
             }
         }
+
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting && PhotonNetwork.IsMasterClient)
-        {
-            stream.SendNext(timeProgress);
-            Debug.Log(timeProgress);
-        }
-        else if (stream.IsReading)
-        {
-            timeProgress = (float)stream.ReceiveNext();
-            Debug.Log("Reading: " + timeProgress);
-        }
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting && PhotonNetwork.IsMasterClient)
+    //    {
+    //        stream.SendNext(timeProgress);
+    //        Debug.Log(timeProgress);
+    //    }
+    //    else if (stream.IsReading)
+    //    {
+    //        timeProgress = (float)stream.ReceiveNext();
+    //        Debug.Log("Reading: " + timeProgress);
+    //    }
+    //}
 }
