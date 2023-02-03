@@ -24,7 +24,8 @@ public class CharacterItem : MonoBehaviour
         {
             if (characterSO.full[j] == "" || characterSO.full[j] == PhotonNetwork.LocalPlayer.NickName)
             {
-                _CP["Profession"] = $"{characterSO.nameCharacter}|{j}";
+                _CP["Profession"] = $"{characterSO.nameCharacter}";
+                _CP["Skin"] = j;
                 PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
                 lm.Room.SetActive(true);
                 lm.charactersMenu.SetActive(false);
