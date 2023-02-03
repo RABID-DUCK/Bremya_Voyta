@@ -1,21 +1,18 @@
 using Cinemachine;
 using Photon.Pun;
-using System;
+using Photon.Realtime;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject[] Spawns;
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private Coordinator sceneCoordinator;
-    private Animator animator;
-    private PhotonView _photonView;
-    private LobbyMenu _lobbyMenu;
     [SerializeField] private List<CharacterSO> listCharacters;
+    [SerializeField] private List<House> houses;
     Quaternion synchRot = Quaternion.identity;
 
     private string _nameCh;
@@ -23,22 +20,32 @@ public class SpawnManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        Vector3 randomPositions = Spawns[Random.Range(0, Spawns.Length)].transform.position;
-
         _nameCh = (string)PhotonNetwork.LocalPlayer.CustomProperties["Profession"];
         _idCh = (int)PhotonNetwork.LocalPlayer.CustomProperties["Skin"];
 
         CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _nameCh);
 
         string nameCharacter = _character.prefabs[_idCh].name;
-        PhotonView newPlayer = PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), randomPositions, Quaternion.identity).GetPhotonView();
-        
-        if (newPlayer.IsMine)
+        GameObject _locPlayer = PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), new Vector3(0, 7, 0), Quaternion.identity);
+
+        _camera.Follow = _locPlayer.transform;
+        sceneCoordinator.InitializationPlayer(_locPlayer.GetComponent<Character>());
+        _locPlayer.GetComponent<Character>().PlayerWallet.PutCoins(50);
+
+        // Логика спавна игрока взависимости от его профессии
+        List<Player> _players = PhotonNetwork.PlayerList.ToList();
+        houses.ForEach(h => h.playerNick = _players.FirstOrDefault(p => h.profession == (string)p.CustomProperties["Profession"] && h.skin == (int)p.CustomProperties["Skin"])?.NickName ?? "");
+
+        Transform _posDoor = houses.FirstOrDefault(h => h.playerNick == PhotonNetwork.LocalPlayer.NickName)?.doorway;
+        if (_posDoor != null)
         {
-            _camera.Follow = newPlayer.transform;
-            sceneCoordinator.InitializationPlayer(newPlayer.GetComponent<Character>());
-            newPlayer.GetComponent<Character>().PlayerWallet.PutCoins(50);
+            CharacterController _controller = _locPlayer.GetComponent<CharacterController>();
+            _controller.enabled = false;
+            _locPlayer.transform.position = _locPlayer.transform.TransformVector(_posDoor.position);
+            _locPlayer.transform.GetChild(0).rotation = _posDoor.transform.rotation;
+            _controller.enabled = true;
         }
+
 
         PhotonNetwork.AutomaticallySyncScene = false;
     }
