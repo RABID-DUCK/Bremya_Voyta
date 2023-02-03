@@ -19012,6 +19012,14 @@ PrefabInstance:
       propertyPath: finishPanel
       value: 
       objectReference: {fileID: 970362627}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: nameTopPlayer
+      value: 
+      objectReference: {fileID: 970362629}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: countCoinsTopPlayer
+      value: 
+      objectReference: {fileID: 970362628}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
 --- !u!4 &970362626 stripped
@@ -19024,6 +19032,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 419423683812282282, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
   m_PrefabInstance: {fileID: 970362625}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &970362628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6344637078110659376, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+  m_PrefabInstance: {fileID: 970362625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &970362629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2230524537697677371, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+  m_PrefabInstance: {fileID: 970362625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &981489886
 GameObject:
   m_ObjectHideFlags: 0
