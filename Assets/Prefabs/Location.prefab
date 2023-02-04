@@ -138,6 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!4 &1176630424591044610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1994205470102484310, guid: 3d1bb3e4e73296e4385cf58a0561a957, type: 3}
@@ -176,7 +180,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: 4e496df9866036046b6d1e19a5b42d09, type: 2}
   workVideo: {fileID: 32900000, guid: abcda2ea988cdff48829d232d9f8ea62, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &6213158779548304933
@@ -228,6 +231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!114 &4678772260744833522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +305,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: 01fae7940af560848a94e6ad6bb07225, type: 2}
   workVideo: {fileID: 32900000, guid: 4a5ba92bff4663947be12c4d1bebf552, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &2910943194856062749 stripped
@@ -332,6 +338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!114 &3717947835074190928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +409,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!1 &4491119025467711486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3867260130461727402, guid: 3d1bb3e4e73296e4385cf58a0561a957, type: 3}
@@ -433,7 +447,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: a492e3b32c4a23e4e867e9e11f375f6b, type: 2}
   workVideo: {fileID: 32900000, guid: e45078f64dd01fd4e9f16062ee924b41, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &6731771772083369857
@@ -503,6 +516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!1 &5794482431426166240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6598564544414881972, guid: 3d1bb3e4e73296e4385cf58a0561a957, type: 3}
@@ -555,7 +572,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: 737e5d1186c1b6944ad0d08ce9674f95, type: 2}
   workVideo: {fileID: 32900000, guid: 75e62e99e52e7c04898f46fe191f688a, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &5960101582514932764 stripped
@@ -607,6 +623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!1 &6457998374049931178 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5937863214119795454, guid: 3d1bb3e4e73296e4385cf58a0561a957, type: 3}
@@ -659,7 +679,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: af77cd023596b2543b9f57604b3cb91e, type: 2}
   workVideo: {fileID: 32900000, guid: 60ba936a0c72559478374f35431d70c8, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &7723453554859418526 stripped
@@ -711,6 +730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!1 &7724850815656755967 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6975163845499709355, guid: 3d1bb3e4e73296e4385cf58a0561a957, type: 3}
@@ -763,7 +786,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
   workVideo: {fileID: 32900000, guid: 4a5ba92bff4663947be12c4d1bebf552, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!1 &7795225811180509861 stripped
@@ -797,6 +819,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8715299682024fb566c967353534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 
+  skin: 0
+  playerNick: 
+  doorway: {fileID: 0}
 --- !u!114 &3933069798820248082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,7 +875,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: babf6a8688b6d6d45866cb68587ac82b, type: 2}
   workVideo: {fileID: 32900000, guid: 0f72fcca9354e8349bb3af00685e86d1, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &8597634974213585423
@@ -904,7 +929,6 @@ MonoBehaviour:
   _workName: 
   _receivedItem: {fileID: 11400000, guid: 942ab6f152fc3324b8ffc040713b8585, type: 2}
   workVideo: {fileID: 32900000, guid: 8ba3e736b51f60b4bb5719e82f721be1, type: 3}
-  durationOfWork: 5
   standartMinDropItems: 3
   standartMaxDropItems: 5
 --- !u!114 &7703983217025978987
