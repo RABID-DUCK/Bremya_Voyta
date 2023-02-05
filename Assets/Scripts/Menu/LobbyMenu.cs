@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using WebSocketSharp;
 
 public class LobbyMenu : MonoBehaviourPunCallbacks
 {
@@ -57,10 +58,9 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
         {
             if (_player.Value.CustomProperties["Profession"] != null && _player.Value != PhotonNetwork.LocalPlayer)
             {
-                string[] _data = _player.Value.CustomProperties["Profession"].ToString().Split('|', 2);
-                string _nameCh = _data[0];
-                int _idCh = Int32.Parse(_data[1]);
-                CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _data[0]);
+                string _nameCh = (string)_player.Value.CustomProperties["Profession"];
+                int _idCh = (int)_player.Value.CustomProperties["Skin"];
+                CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _nameCh);
                 _character.full[_idCh] = _player.Value.NickName;
             }
         }
@@ -79,7 +79,8 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
             {
                 if (_nick == "" || _nick == null)
                 {
-                    _CP["Profession"] = $"{_itemCharacter.nameCharacter}|{j}";
+                    _CP["Profession"] = $"{_itemCharacter.nameCharacter}";
+                    _CP["Skin"] = j;
                     PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
                     return;
                 }
@@ -199,11 +200,10 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
             _player.SetNick();
         }
 
-        if (changedProps["Profession"] != null && changedProps["Profession"] != "")
+        if (!string.IsNullOrEmpty((string)changedProps["Profession"]))
         {
-            string[] _data = changedProps["Profession"].ToString().Split('|', 2);
-            string _nameCh = _data[0];
-            int _idCh = Int32.Parse(_data[1]);
+            string _nameCh = (string)changedProps["Profession"];
+            int _idCh = (int)changedProps["Skin"];
 
             foreach (CharacterSO _itemCharacter in listCharacters)
             {
@@ -216,7 +216,7 @@ public class LobbyMenu : MonoBehaviourPunCallbacks
                 }
             }
 
-            CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _data[0]);
+            CharacterSO _character = listCharacters.FirstOrDefault(c => c.nameCharacter == _nameCh);
             _character.full[_idCh] = targetPlayer.NickName;
             _player.imageAvatar.sprite = _character.avatars[_idCh];
         }

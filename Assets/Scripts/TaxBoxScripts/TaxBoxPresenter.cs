@@ -76,7 +76,7 @@ public class TaxBoxPresenter : TaxBoxModel
         }
         catch (InvalidOperationException)
         {
-            taxBoxPanelsView.ShowErrorPanel();
+            taxBoxPanelsView.ShowTaxHasNotBeenPaidPanel();
         }
     }
 }
