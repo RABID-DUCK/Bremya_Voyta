@@ -6157,7 +6157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &113147505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6253,7 +6253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 113147510}
   speed: 4
-  _isHided: 1
+  _isHided: 0
 --- !u!225 &113147510
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6310,7 +6310,7 @@ Transform:
   - {fileID: 1640688545}
   - {fileID: 224931771}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &140168707
 GameObject:
@@ -11926,7 +11926,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224931770
 GameObject:
@@ -15878,7 +15878,7 @@ RectTransform:
   - {fileID: 982873120}
   - {fileID: 970362626}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15944,6 +15944,12 @@ MonoBehaviour:
   - {fileID: 1094564382}
   - {fileID: 1276000313}
   - {fileID: 1375134973}
+  successfullyPanel: {fileID: 1904487489}
+  okSuccessfullyButton: {fileID: 960412602}
+  errorPanel: {fileID: 1571303189}
+  okErrorButton: {fileID: 1565665108}
+  taxHasNotBeenPaidPanel: {fileID: 446335745}
+  okButton: {fileID: 247259450}
   isPanelCanBeOpened: 0
 --- !u!1 &660131990
 GameObject:
@@ -20571,7 +20577,7 @@ Transform:
   m_Children:
   - {fileID: 809696555}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1083953087
 GameObject:
@@ -20997,7 +21003,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.2, y: 1}
   m_AnchoredPosition: {x: -5, y: 0.000099658966}
   m_SizeDelta: {x: 9.9999, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28052,7 +28058,7 @@ Transform:
   - {fileID: 1404873624}
   - {fileID: 104235312}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1306333839
 GameObject:
@@ -34125,7 +34131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2374369690824121542, guid: e57bc3184c330fd498e2d652e89810fd, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2374369690824121542, guid: e57bc3184c330fd498e2d652e89810fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35738,7 +35744,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1595287600
 MonoBehaviour:
@@ -36482,7 +36488,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749230791
 GameObject:
@@ -36515,7 +36521,7 @@ Transform:
   - {fileID: 1365870805}
   - {fileID: 19356334}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1756863404
 GameObject:
@@ -40342,31 +40348,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &3748627090232853516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3748627090258831316, guid: 8815a672047010f409adeddc6e841943, type: 3}
   m_PrefabInstance: {fileID: 49603544}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3748627090232853517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3748627090232853516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!4 &3788981029443518547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3788981029471527819, guid: 8815a672047010f409adeddc6e841943, type: 3}
