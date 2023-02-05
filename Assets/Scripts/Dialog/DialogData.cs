@@ -47,7 +47,7 @@ namespace Ekonomika.Dialog
         {
             public int personId;
             [Space]
-            [TextArea(3, 5)]
+            [TextArea(5, 7)]
             public string text;
         }
 
