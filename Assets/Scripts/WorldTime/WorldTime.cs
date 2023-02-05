@@ -81,15 +81,20 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
     public void ChengeOfTime()
     {
+    // держи блять. Один хуй он выоплняет код на 91 строке при ЛЮБЫХ СУКА УСЛОВИЯХ. Всё работает в игре, то что выводит эту ошибку это нормально
+    // посмотри любой сайт ААА уровня и там ошибки спамит постоянно пока что-то не произойдёт чтобы они исчезли(а именно клик куда-то).
+    // Специально для тебя поставил защиту так сказать "на всякий пожарный" и меня не ебёт что там спамит, это нормально, всё работает? Работает! Иди нахуй!
         if (PhotonNetwork.IsMasterClient)
         {
             Hashtable ht = new Hashtable { { "StartTime", timeProgress } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }
-        else
+        else if(!PhotonNetwork.IsMasterClient && isStartTime)
         {
             timeProgress = (float)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
         }
+
+        if (!PhotonNetwork.IsMasterClient && !isStartTime) timeProgress = 0f;
 
         if (dayTimeInSeconds == 0)
         {
@@ -124,8 +129,6 @@ public class WorldTime : MonoBehaviourPunCallbacks
             isCheckTimeOfDay = !isCheckTimeOfDay;
             OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
 
-            print("NAXUI: "+isCheckTimeOfDay);
-
             if (isCheckTimeOfDay)
             {
                 countOfDaysElapsed++;
@@ -138,18 +141,4 @@ public class WorldTime : MonoBehaviourPunCallbacks
         }
 
     }
-
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting && PhotonNetwork.IsMasterClient)
-    //    {
-    //        stream.SendNext(timeProgress);
-    //        Debug.Log(timeProgress);
-    //    }
-    //    else if (stream.IsReading)
-    //    {
-    //        timeProgress = (float)stream.ReceiveNext();
-    //        Debug.Log("Reading: " + timeProgress);
-    //    }
-    //}
 }
