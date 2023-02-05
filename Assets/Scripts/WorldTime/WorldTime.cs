@@ -43,6 +43,10 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
     public event Action OnStopTaxEvent;
 
+    public event Action OnStartCasinoEvent;
+
+    public event Action OnStopCasinoEvent;
+
 
     private void Awake()
     {
@@ -120,6 +124,16 @@ public class WorldTime : MonoBehaviourPunCallbacks
         else if (timeProgress == 0.8f && isCheckTimeOfDay == true)
         {
             OnStopTaxEvent?.Invoke();
+        }
+
+        if(countOfDaysElapsed == 3 && timeProgress == 0f || countOfDaysElapsed == 6 && timeProgress == 0f)
+        {
+            OnStartCasinoEvent?.Invoke();
+        }
+
+        if(countOfDaysElapsed == 3 && timeProgress == 1f || countOfDaysElapsed == 6 && timeProgress == 0.6f)
+        {
+            OnStopCasinoEvent?.Invoke();
         }
 
         if (timeProgress > 1f)
