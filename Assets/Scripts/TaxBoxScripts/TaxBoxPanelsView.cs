@@ -59,7 +59,7 @@ public class TaxBoxPanelsView : MonoBehaviour
 
     public void ShowSuccessfullyPanel()
     {
-        UIController.ShowInfo("Налог умпешно уплачен!", "Ок", IsCompleted);
+        UIController.ShowInfo("Налог успешно уплачен!", "Ок", IsCompleted);
     }
 
     private void IsCompleted()

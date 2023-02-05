@@ -6,6 +6,7 @@ public class TaxBoxPresenter : TaxBoxModel
 {
     [SerializeField] private TaxBox taxBoxView;
     [SerializeField] private TaxBoxPanelsView taxBoxPanelsView;
+    [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     [SerializeField] private List<Item> resurces = new List<Item>();
 
@@ -16,6 +17,7 @@ public class TaxBoxPresenter : TaxBoxModel
     private void Awake()
     {
         worldTime = FindObjectOfType<WorldTime>();
+        showCanvasGroup = FindObjectOfType<ShowCanvasGroup>();
     }
 
     private void Start()
@@ -78,5 +80,10 @@ public class TaxBoxPresenter : TaxBoxModel
         {
             taxBoxPanelsView.ShowTaxHasNotBeenPaidPanel();
         }
+    }
+
+    public void OpenPanelDuringStartEvent()
+    {
+        showCanvasGroup.Show();
     }
 }
