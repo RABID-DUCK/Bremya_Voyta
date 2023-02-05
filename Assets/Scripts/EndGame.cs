@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class EndGame : MonoBehaviour
 {
+    [SerializeField] private ShowCanvasGroup showCanvasGroup;
+
     [SerializeField] WorldTime worldTime;
 
     [Header("Finish panel setting")]
@@ -20,6 +22,11 @@ public class EndGame : MonoBehaviour
 
     private Dictionary<string, int> players = new Dictionary<string, int>();
     private List<int> sortCoins = new List<int>();
+
+    private void Awake()
+    {
+        showCanvasGroup = FindObjectOfType<ShowCanvasGroup>();
+    }
 
     private void Start()
     {
@@ -82,6 +89,6 @@ public class EndGame : MonoBehaviour
 
     private void ShowFinishPanel()
     {
-        finishPanel.SetActive(true);
+        showCanvasGroup.Show();
     }
 }
