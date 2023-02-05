@@ -1,8 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 
@@ -66,7 +64,7 @@ public class EndGame : MonoBehaviour
             {
                 if (sortCoins[i] == player.Value)
                 {
-                    if(i == sortCoins.Count)
+                    if (i == sortCoins.Count)
                     {
                         nameTopPlayer.text = $"Новый староста {player.Key}";
                         countCoinsTopPlayer.text = $"Количество монет - {player.Value}";

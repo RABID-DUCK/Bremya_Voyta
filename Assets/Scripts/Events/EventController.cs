@@ -193,4 +193,17 @@ public class EventController : MonoBehaviour
             OnEndEvent?.Invoke();
         }
     }
+
+    public void RemoveEvents()
+    {
+        IsNegativeWeather = false;
+
+        littleRainEvent.EndSmallRainEvent();
+        ThunderstormWithHeavyRainEvent.EndThunderEvent();
+        stormEvent.EndStormEvent();
+        mine—ollapseEvent.EndMine—ollapseEvent();
+        clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
+
+        OnEndEvent?.Invoke();
+    }
 }
