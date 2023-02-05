@@ -15895,10 +15895,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d271541b71ea145beaba33aa73a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1100433418}
-  speed: 0.6
-  max: 1
-  min: 0.75
+  highligtedImage: {fileID: 1100433418}
+  highligtSpeed: 0.6
+  brightnessMax: 1
+  brightnessMin: 0.85
 --- !u!225 &1635399753
 CanvasGroup:
   m_ObjectHideFlags: 0
