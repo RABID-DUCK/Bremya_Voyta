@@ -327,6 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldTime: {fileID: 0}
+  sleepPanel: {fileID: 0}
+  warningSleepObject: {fileID: 0}
   warningSleepPanel: {fileID: 2980287435826000718}
   timeStart: 15
   textTimer: {fileID: 2980287435147625228}
