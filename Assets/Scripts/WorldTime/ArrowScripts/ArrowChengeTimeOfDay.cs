@@ -28,7 +28,7 @@ public class ArrowChengeTimeOfDay : MonoBehaviour
 
     private void ResetAngleRotate(bool timeOfDay)
     {
-        if(timeOfDay && PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] != null)
+        if(timeOfDay && PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTime"))
         {
             arrowRectTransform.Rotate(0f, 0f, 0f);
         }
@@ -50,7 +50,7 @@ public class ArrowChengeTimeOfDay : MonoBehaviour
 
     private void RotateArrowTimeOfDay(RectTransform arrowRectTransform, float angleOffsetRotationArrow)
     {
-        if (worldTime.isStartTime && PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] != null)
+        if (worldTime.isStartTime && PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTime"))
         {
             arrowRectTransform.Rotate(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
 

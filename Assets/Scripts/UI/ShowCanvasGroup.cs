@@ -29,6 +29,8 @@ public class ShowCanvasGroup : MonoBehaviour
 
     private void Awake()
     {
+        IsHided = _isHided;
+
         if (!IsHided)
         {
             canvasGroup.alpha = 1f;
