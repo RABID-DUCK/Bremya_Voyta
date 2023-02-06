@@ -6903,6 +6903,7 @@ GameObject:
   - component: {fileID: 166551126}
   - component: {fileID: 166551129}
   - component: {fileID: 166551128}
+  - component: {fileID: 166551130}
   m_Layer: 0
   m_Name: Market
   m_TagString: Untagged
@@ -6955,20 +6956,43 @@ MonoBehaviour:
   _itemsForSale:
   - item: {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
     price: 15
+    count: 0
   - item: {fileID: 11400000, guid: 942ab6f152fc3324b8ffc040713b8585, type: 2}
     price: 15
+    count: 0
   - item: {fileID: 11400000, guid: 737e5d1186c1b6944ad0d08ce9674f95, type: 2}
     price: 15
+    count: 0
   - item: {fileID: 11400000, guid: a492e3b32c4a23e4e867e9e11f375f6b, type: 2}
     price: 15
+    count: 0
   - item: {fileID: 11400000, guid: babf6a8688b6d6d45866cb68587ac82b, type: 2}
     price: 15
+    count: 0
   - item: {fileID: 11400000, guid: 01fae7940af560848a94e6ad6bb07225, type: 2}
     price: 15
+    count: 0
   - item: {fileID: 11400000, guid: 4e496df9866036046b6d1e19a5b42d09, type: 2}
     price: 15
+    count: 0
   - item: {fileID: 11400000, guid: af77cd023596b2543b9f57604b3cb91e, type: 2}
     price: 15
+    count: 0
+--- !u!114 &166551130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166551125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d016bad7397e16043b157e1853cfeade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marketController: {fileID: 166551129}
+  marketItemButtonPrefab: {fileID: 1841214251}
+  buttonSpawnTransform: {fileID: 1030717715}
 --- !u!1 &169984092
 GameObject:
   m_ObjectHideFlags: 0
@@ -34593,10 +34617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea37d7d04dc892b4a9865057dd27c598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNmaeText: {fileID: 85647297}
   itemIcon: {fileID: 1472570907}
   buyButton: {fileID: 1717476602}
   priceText: {fileID: 1221536952}
-  playerNmaeText: {fileID: 85647297}
 --- !u!1 &1848119721
 GameObject:
   m_ObjectHideFlags: 0
