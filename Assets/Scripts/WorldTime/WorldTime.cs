@@ -94,7 +94,7 @@ public class WorldTime : MonoBehaviourPunCallbacks
             ht.Add("isCheckTimeOfDay", isCheckTimeOfDay);
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }
-        if (PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] == null)
+        if (!PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTime"))
         {
             return;
         }
@@ -110,7 +110,7 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
         if (Application.isPlaying)
         {
-            if (PhotonNetwork.CurrentRoom.CustomProperties["isCheckTimeOfDay"] != null)
+            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("isCheckTimeOfDay"))
             {
                 if (isCheckTimeOfDay)
                 {
