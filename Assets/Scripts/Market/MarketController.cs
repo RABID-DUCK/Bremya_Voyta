@@ -129,16 +129,4 @@ public class MarketController : MonoBehaviour
     {
         player.PlayerWallet.PutCoins(coins);
     }
-
-    public void UpdateMarket()
-    {
-        string[] items = (string[])PhotonNetwork.CurrentRoom.CustomProperties["ShopItems"];
-        // игрок [0] | предмет [1] | количество [2] | цена [3]
-        foreach (string item in items)
-        {
-            string[] _temp = item.Split("|");
-
-            onlineSellItems.Add(new OnlineSellItem(_temp[0], new SellItem())); //TODO: дописать поиск по предмета.
-        }
-    }
 }
