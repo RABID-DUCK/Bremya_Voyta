@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -82,23 +83,25 @@ public class WorldTime : MonoBehaviourPunCallbacks
         }
     }
 
-
     public void ChengeOfTime()
     {
-    // держи блять. Один хуй он выоплняет код на 91 строке при ЛЮБЫХ СУКА УСЛОВИЯХ. Всё работает в игре, то что выводит эту ошибку это нормально
-    // посмотри любой сайт ААА уровня и там ошибки спамит постоянно пока что-то не произойдёт чтобы они исчезли(а именно клик куда-то).
-    // Специально для тебя поставил защиту так сказать "на всякий пожарный" и меня не ебёт что там спамит, это нормально, всё работает? Работает! Иди нахуй!
         if (PhotonNetwork.IsMasterClient)
         {
-            Hashtable ht = new Hashtable { { "StartTime", timeProgress } };
+            Hashtable ht = new Hashtable();
+            ht.Add("StartTime", timeProgress);
+            ht.Add("dayTime", dayTimeInSeconds);
+            ht.Add("nightTime", nightTimeInSeconds);
+            ht.Add("isCheckTimeOfDay", isCheckTimeOfDay);
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }
-        else if(!PhotonNetwork.IsMasterClient && isStartTime)
+        if (PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] == null)
+        {
+            return;
+        }
+        else
         {
             timeProgress = (float)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
         }
-
-        if (!PhotonNetwork.IsMasterClient && !isStartTime) timeProgress = 0f;
 
         if (dayTimeInSeconds == 0)
         {
@@ -107,52 +110,48 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
         if (Application.isPlaying)
         {
-            if (isCheckTimeOfDay)
+            if (PhotonNetwork.CurrentRoom.CustomProperties["isCheckTimeOfDay"] != null)
             {
-                timeProgress += Time.fixedDeltaTime / dayTimeInSeconds;
-            }
-            else
-            {
-                timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
-            }
-        }
-
-        if(timeProgress == 0.5f && isCheckTimeOfDay == true)
-        {
-            OnStartTaxEvent?.Invoke();
-        }
-        else if (timeProgress == 0.8f && isCheckTimeOfDay == true)
-        {
-            OnStopTaxEvent?.Invoke();
-        }
-
-        if(countOfDaysElapsed == 3 && timeProgress == 0f || countOfDaysElapsed == 6 && timeProgress == 0f)
-        {
-            OnStartCasinoEvent?.Invoke();
-        }
-
-        if(countOfDaysElapsed == 3 && timeProgress == 1f || countOfDaysElapsed == 6 && timeProgress == 0.6f)
-        {
-            OnStopCasinoEvent?.Invoke();
-        }
-
-        if (timeProgress > 1f)
-        {
-            timeProgress = 0f;
-
-            isCheckTimeOfDay = !isCheckTimeOfDay;
-            OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
-
-            if (isCheckTimeOfDay)
-            {
-                countOfDaysElapsed++;
-
-                if (countOfDaysElapsed > 6)
+                if (isCheckTimeOfDay)
                 {
-                    OnEndGame?.Invoke();
+                    timeProgress += Time.fixedDeltaTime / dayTimeInSeconds;
+                }
+                else
+                {
+                    timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
+                }
+            }
+
+            if (timeProgress == 0.5f && isCheckTimeOfDay == true)
+            {
+                OnStartTaxEvent?.Invoke();
+            }
+            else if (timeProgress == 0.8f && isCheckTimeOfDay == true)
+            {
+                OnStopTaxEvent?.Invoke();
+            }
+
+            if (timeProgress > 1f)
+            {
+                timeProgress = 0f;
+
+                isCheckTimeOfDay = !isCheckTimeOfDay;
+                OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
+
+                if (isCheckTimeOfDay)
+                {
+                    countOfDaysElapsed++;
+
+                    if (countOfDaysElapsed > 6)
+                    {
+                        OnEndGame?.Invoke();
+                    }
                 }
             }
         }
-
+        else
+        {
+            return;
+        }
     }
 }
