@@ -61,7 +61,7 @@ public class Character : MonoBehaviourPunCallbacks
         }
         else
         {
-            UIController.ShowOkInfo($"Вы не можете работать на данной работе! Требуется: <b>{workObject.WorkerName}</b>.");
+            UIController.ShowOkInfo($"Вы не можете работать на данной работе! \nТребуется: <b>{workObject.WorkerName}</b>.");
         }
     }
 

@@ -30,7 +30,7 @@ namespace Ekonomika.Work
 
         public override void Execute(Character player)
         {
-            UIController.ShowYesNoDialog($"Вы хотите начать работу: <b>{WorkName}</b>?", () =>
+            UIController.ShowYesNoDialog($"Вы хотите начать работу: \n<b>{WorkName}</b>?", () =>
             {
                 UIController.ShowVideo(workVideo, () =>
                 {
