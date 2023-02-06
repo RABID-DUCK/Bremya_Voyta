@@ -62,10 +62,51 @@ public class MarketController : MonoBehaviour
                     }
                     catch (InvalidOperationException)
                     {
-                        UIController.ShowOkInfo($"Вам не хватает {sellItem.price - playerWallet.CoinsCount} монет, чтобы купить {item.ItemName}!");
+                        UIController.ShowOkInfo($"Вам не хватает {sellItem.price - playerWallet.CoinsCount} монет(ы), чтобы купить {item.ItemName}!");
                     }
                 }
             }
         }
+    }
+
+    public void GetMoney(int countMoney)
+    {
+        if (Init)
+        {
+            try
+            {
+                player.PlayerWallet.PickUpCoins(countMoney);
+            }
+            catch (InvalidOperationException)
+            {
+                UIController.ShowInfo($"Вам не хватает {countMoney - player.PlayerWallet.CoinsCount} монет(ы), чтобы внести депозит!", "Ок");
+            }
+        }
+    }
+
+    public bool CalculateProbabilityWinning()
+    {
+        System.Random rnd = new System.Random();
+
+        int randomNumber = rnd.Next(0,1);
+
+        if(randomNumber == 0f)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void CalculateWinningAmount(int countMoney, out int winningAmount)
+    {
+        winningAmount = countMoney / 100 * 40;
+    }
+
+    public void SetWinMoney(int coins)
+    {
+        player.PlayerWallet.PutCoins(coins);
     }
 }

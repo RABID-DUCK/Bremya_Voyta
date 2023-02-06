@@ -7,12 +7,12 @@ public class MarketControllerPresenter : MonoBehaviour
     private MarketController marketController;
 
     [SerializeField]
-    private MarketItemButton marketItemButton;
+    private ShopItemButton marketItemButton;
 
     [SerializeField]
     private Transform buttonSpawnTransform;
 
-    private List<MarketItemButton> spawnedMarketItemButtons = new List<MarketItemButton>();
+    private List<ShopItemButton> spawnedMarketItemButtons = new List<ShopItemButton>();
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class MarketControllerPresenter : MonoBehaviour
 
         foreach (SellItem sellItem in marketController.ItemsForSale)
         {
-            MarketItemButton createdmarketItemButton = Instantiate(marketItemButton, buttonSpawnTransform);
+            ShopItemButton createdmarketItemButton = Instantiate(marketItemButton, buttonSpawnTransform);
 
             createdmarketItemButton.Initialization(sellItem);
             createdmarketItemButton.OnClick += marketController.BuyItem;
@@ -43,7 +43,7 @@ public class MarketControllerPresenter : MonoBehaviour
 
     private void ResetItemsForSale()
     {
-        foreach (MarketItemButton button in spawnedMarketItemButtons)
+        foreach (ShopItemButton button in spawnedMarketItemButtons)
         {
             button.OnClick -= marketController.BuyItem;
             Destroy(button.gameObject);

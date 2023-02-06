@@ -21,9 +21,10 @@ namespace Ekonomika.Utils
         private IEnumerator TextAnim(string text)
         {
             textObject.text = "";
-            foreach (char letter in text.ToCharArray())
+
+            foreach (string letter in text.Split(" "))
             {
-                textObject.text += letter;
+                textObject.text += letter + " ";
                 yield return new WaitForSeconds(letterPause);
             }
         }

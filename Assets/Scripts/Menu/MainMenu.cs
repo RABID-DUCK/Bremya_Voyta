@@ -50,9 +50,10 @@ public class MainMenu : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    public override void OnDisconnected(DisconnectCause cause)
+    public void Tutorial()
     {
-        print($"Выход {cause.ToString()}");
+        Loading.SetActive(true);
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void Play()

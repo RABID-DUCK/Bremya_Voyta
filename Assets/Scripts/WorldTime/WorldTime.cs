@@ -44,6 +44,10 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
     public event Action OnStopTaxEvent;
 
+    public event Action OnStartCasinoEvent;
+
+    public event Action OnStopCasinoEvent;
+
 
     private void Awake()
     {
