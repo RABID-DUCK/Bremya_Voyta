@@ -6,10 +6,13 @@ namespace Ekonomika.Work
     public class WorkBehaviour : ClickableObject, IWork
     {
         public string WorkName => _workName;
+        public string WorkerName => _workerName;
+        
         public Item ReceivedItem => _receivedItem;
 
         [Header("Work settings")]
         [SerializeField] private string _workName;
+        [SerializeField] private string _workerName;
         [SerializeField] private Item _receivedItem;
 
         [Space]
@@ -27,7 +30,7 @@ namespace Ekonomika.Work
 
         public override void Execute(Character player)
         {
-            UIController.ShowYesNoDialog($"Вы хотите начать работу ({WorkName})?", () =>
+            UIController.ShowYesNoDialog($"Вы хотите начать работу: <b>{WorkName}</b>?", () =>
             {
                 UIController.ShowVideo(workVideo, () =>
                 {

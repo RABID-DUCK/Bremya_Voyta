@@ -2,7 +2,6 @@ using Ekonomika.Utils;
 using Ekonomika.Work;
 using ExitGames.Client.Photon;
 using Photon.Pun;
-using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,7 +61,7 @@ public class Character : MonoBehaviourPunCallbacks
         }
         else
         {
-            UIController.ShowOkInfo($"Вы не можете работать на данной работе ({workObject.WorkName})!");
+            UIController.ShowOkInfo($"Вы не можете работать на данной работе! Требуется: <b>{workObject.WorkerName}</b>.");
         }
     }
 
