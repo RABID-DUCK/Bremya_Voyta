@@ -1,17 +1,34 @@
+using ExitGames.Client.Photon;
+using Photon.Pun;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [Serializable]
 public struct SellItem
 {
     public Item item;
     public int price;
+    public int count;
 
-    public SellItem(Item item, int price)
+    public SellItem(Item item, int price, int count)
     {
         this.item = item;
         this.price = price;
+        this.count = count;
+    }
+}
+
+public struct OnlineSellItem
+{
+    public string playerName;
+    public SellItem item;
+
+    public OnlineSellItem(string playerName, SellItem sellItem)
+    {
+        this.playerName = playerName;
+        item = sellItem;
     }
 }
 
@@ -21,6 +38,8 @@ public class MarketController : MonoBehaviour
     public event Action OnCloseMarket;
 
     public SellItem[] ItemsForSale { get => _itemsForSale.ToArray(); }
+
+    private List<OnlineSellItem> onlineSellItems;
 
     [SerializeField]
     private List<SellItem> _itemsForSale;
@@ -44,6 +63,7 @@ public class MarketController : MonoBehaviour
         this.player = player;
         Init = this.player;
     }
+
 
     public void BuyItem(Item item)
     {
@@ -108,5 +128,17 @@ public class MarketController : MonoBehaviour
     public void SetWinMoney(int coins)
     {
         player.PlayerWallet.PutCoins(coins);
+    }
+
+    public void UpdateMarket()
+    {
+        string[] items = (string[])PhotonNetwork.CurrentRoom.CustomProperties["ShopItems"];
+        // игрок [0] | предмет [1] | количество [2] | цена [3]
+        foreach (string item in items)
+        {
+            string[] _temp = item.Split("|");
+
+            onlineSellItems.Add(new OnlineSellItem(_temp[0], new SellItem())); //TODO: дописать поиск по предмета.
+        }
     }
 }
