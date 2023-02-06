@@ -8,6 +8,7 @@ public class EventWheelPanel : MonoBehaviour
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     [SerializeField] private Button openWheelPanel;
+    //[SerializeField] private Button closeWheelPanel;
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;
@@ -20,8 +21,15 @@ public class EventWheelPanel : MonoBehaviour
 
         openWheelPanel.onClick.AddListener(OpenPanelDuringStartEvent);
 
+        //closeWheelPanel.onClick.AddListener(CloseEventWheelPanel);
+
         SetStandartInfo();
     }
+
+    //private void CloseEventWheelPanel()
+    //{
+    //    showCanvasGroup.Hide();
+    //}
 
     private void SetInfoFromEventSO(EventSO eventSO)
     {

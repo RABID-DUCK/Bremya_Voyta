@@ -1,7 +1,5 @@
 ﻿using Photon.Pun;
 using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -10,9 +8,9 @@ public class WorldTime : MonoBehaviourPunCallbacks
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public float dayTimeInSeconds { get; } = 360f; // Количество секунд днем
+    public float dayTimeInSeconds { get; } = 15f; // Количество секунд днем
 
-    public float nightTimeInSeconds { get; } = 60f; // Количество секунд ночью
+    public float nightTimeInSeconds { get; } = 10f; // Количество секунд ночью
 
     public float timeProgress { get; set; } // Игровой прогресс
 
@@ -103,11 +101,6 @@ public class WorldTime : MonoBehaviourPunCallbacks
             timeProgress = (float)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
         }
 
-        if (dayTimeInSeconds == 0)
-        {
-            print("There can't be 0 seconds in one day!!!");
-        }
-
         if (Application.isPlaying)
         {
             if (PhotonNetwork.CurrentRoom.CustomProperties["isCheckTimeOfDay"] != null)
@@ -121,6 +114,8 @@ public class WorldTime : MonoBehaviourPunCallbacks
                     timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
                 }
             }
+
+            OnGetTimeProgress?.Invoke(timeProgress);
 
             if (timeProgress == 0.5f && isCheckTimeOfDay == true)
             {
@@ -141,6 +136,7 @@ public class WorldTime : MonoBehaviourPunCallbacks
                 if (isCheckTimeOfDay)
                 {
                     countOfDaysElapsed++;
+                    OnGetNumberDay?.Invoke(countOfDaysElapsed);
 
                     if (countOfDaysElapsed > 6)
                     {

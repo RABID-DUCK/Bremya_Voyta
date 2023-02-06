@@ -20,8 +20,8 @@ public class EventController : MonoBehaviour
 
     private bool IsNegativeWeather = false;
 
-    private int originalDay;
-    private float originalTimeInSeconds;
+    //private int originalDay;
+    //private float originalTimeInSeconds;
 
     public static event Action<bool> OnGetWeather;
 
@@ -39,21 +39,21 @@ public class EventController : MonoBehaviour
 
     private void Start()
     {
-        worldTime.OnGetNumberDay += SetDay;
-        worldTime.OnGetTimeProgress += SetTimeInSeconds;
+        //worldTime.OnGetNumberDay += SetDay;
+        //worldTime.OnGetTimeProgress += SetTimeInSeconds;
 
         randomEvent = 6;
     }
 
-    public void SetDay(int day)
-    {
-        originalDay = day;
-    }
+    //public void SetDay(int day)
+    //{
+    //    originalDay = day;
+    //}
 
-    public void SetTimeInSeconds(float timeInSeconds)
-    {
-        originalTimeInSeconds = timeInSeconds;
-    }
+    //public void SetTimeInSeconds(float timeInSeconds)
+    //{
+    //    originalTimeInSeconds = timeInSeconds;
+    //}
 
     public void Update()
     {
@@ -66,10 +66,14 @@ public class EventController : MonoBehaviour
     {
         if (worldTime.isStartTime)
         {
-            if (worldTime.countOfDaysElapsed == firstNumberDay &&
-            worldTime.timeProgress == firstGameProgress ||
-            worldTime.countOfDaysElapsed == secondNumberDay &&
-            worldTime.timeProgress == firstGameProgress)
+            if (worldTime.countOfDaysElapsed == firstNumberDay && worldTime.timeProgress == firstGameProgress && worldTime.isCheckTimeOfDay)
+            {
+                SelectRandomEvent();
+
+                SelectEventByRandomizeNumber(randomEvent);
+            }
+
+            if(worldTime.countOfDaysElapsed == secondNumberDay && worldTime.timeProgress == secondGameProgress && worldTime.isCheckTimeOfDay)
             {
                 SelectRandomEvent();
 
@@ -179,8 +183,20 @@ public class EventController : MonoBehaviour
 
     public void RemoveEvent()
     {
-        if (worldTime.countOfDaysElapsed == firstNumberDay + 1 && worldTime.timeProgress == firstGameProgress ||
-            worldTime.countOfDaysElapsed == secondNumberDay + 1 && worldTime.timeProgress == secondGameProgress)
+        if (worldTime.countOfDaysElapsed == firstNumberDay + 1 && worldTime.timeProgress == firstGameProgress)
+        {
+            IsNegativeWeather = false;
+
+            littleRainEvent.EndSmallRainEvent();
+            ThunderstormWithHeavyRainEvent.EndThunderEvent();
+            stormEvent.EndStormEvent();
+            mine—ollapseEvent.EndMine—ollapseEvent();
+            clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
+
+            OnEndEvent?.Invoke();
+        }
+
+        if(worldTime.countOfDaysElapsed == secondNumberDay + 1 && worldTime.timeProgress == secondGameProgress)
         {
             IsNegativeWeather = false;
 
