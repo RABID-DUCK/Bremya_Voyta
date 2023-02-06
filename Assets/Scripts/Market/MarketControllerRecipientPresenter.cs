@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnlineMarketControllerPresenter : MonoBehaviour
+public class MarketControllerRecipientPresenter : MonoBehaviour
 {
     [SerializeField]
     private MarketController marketController;
@@ -32,9 +32,9 @@ public class OnlineMarketControllerPresenter : MonoBehaviour
     {
         ClearMarketItems();
 
-        if (marketController.onlineSellItems != null)
+        if (marketController.OnlineSellItems != null)
         {
-            foreach (OnlineSellItem sellItem in marketController.onlineSellItems)
+            foreach (OnlineSellItem sellItem in marketController.OnlineSellItems)
             {
                 MarketItemButton createdmarketItemButton = Instantiate(marketItemButtonPrefab, buttonSpawnTransform);
                 createdmarketItemButton.Initialization(sellItem);
@@ -58,6 +58,6 @@ public class OnlineMarketControllerPresenter : MonoBehaviour
 
     private void OnBuyOnlineItem(OnlineSellItem onlineSellItem)
     {
-        marketController.BuyOnlineItem(onlineSellItem);
+        marketController.BuyItemOnTheMarket(onlineSellItem);
     }
 }

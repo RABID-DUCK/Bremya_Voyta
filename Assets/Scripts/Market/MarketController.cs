@@ -37,11 +37,10 @@ public class MarketController : MonoBehaviourPunCallbacks
 {
     public event Action OnOpenMarket;
     public event Action OnCloseMarket;
-
     public event Action OnUpdateMarketItems;
 
     public SellItem[] ItemsForSale { get => _itemsForSale.ToArray(); }
-    public OnlineSellItem[] onlineSellItems
+    public OnlineSellItem[] OnlineSellItems
     {
         get
         {
@@ -77,6 +76,14 @@ public class MarketController : MonoBehaviourPunCallbacks
 
     private Character player;
 
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey("Shop"))
+        {
+            OnUpdateMarketItems?.Invoke();
+        }
+    }
+
     public void OpenMarket()
     {
         OnOpenMarket?.Invoke();
@@ -93,8 +100,7 @@ public class MarketController : MonoBehaviourPunCallbacks
         Init = this.player;
     }
 
-
-    public void BuyItem(Item item)
+    public void BuyItemInTheStore(Item item)
     {
         if (Init)
         {
@@ -102,16 +108,9 @@ public class MarketController : MonoBehaviourPunCallbacks
             {
                 if (sellItem.item == item)
                 {
-                    Wallet playerWallet = player.PlayerWallet;
-
-                    try
+                    if (CheckForLackOfMoney(sellItem.price))
                     {
-                        playerWallet.PickUpCoins(sellItem.price);
                         player.PlayerInventory.PutItem(item);
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        UIController.ShowOkInfo($"¬ам не хватает {sellItem.price - playerWallet.CoinsCount} монет(ы), чтобы купить {item.ItemName}!");
                     }
                 }
             }
@@ -159,11 +158,20 @@ public class MarketController : MonoBehaviourPunCallbacks
         player.PlayerWallet.PutCoins(coins);
     }
 
-    public void BuyOnlineItem(OnlineSellItem onlineSellItem)
+    public void BuyItemOnTheMarket(OnlineSellItem onlineSellItem)
+    {
+        if (CheckForLackOfMoney(onlineSellItem.item.price))
+        {
+            SendBuyTrade(onlineSellItem);
+            player.PlayerInventory.PutItem(onlineSellItem.item.item, onlineSellItem.item.count);
+        }
+    }
+
+    private void SendBuyTrade(OnlineSellItem item)
     {
         List<string> shop = PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("Shop") ?
             ((string[])PhotonNetwork.CurrentRoom.CustomProperties["Shop"]).ToList<string>() : new List<string>();
-        string _value = $"{onlineSellItem.playerName}|{onlineSellItem.item.item.name}|{onlineSellItem.item.count}|{onlineSellItem.item.price}";
+        string _value = $"{item.playerName}|{item.item.item.name}|{item.item.count}|{item.item.price}";
 
         if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("Shop"))
         {
@@ -174,7 +182,13 @@ public class MarketController : MonoBehaviourPunCallbacks
         }
     }
 
-    public void SellOnlineItem(OnlineSellItem onlineSellItem)
+    public void SellItemOnTheMarket(OnlineSellItem onlineSellItem)
+    {
+        SendSellTrade(onlineSellItem);
+    }
+
+
+    public void SendSellTrade(OnlineSellItem onlineSellItem)
     {
         List<string> shop = PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("Shop") ?
             ((string[])PhotonNetwork.CurrentRoom.CustomProperties["Shop"]).ToList<string>() : new List<string>();
@@ -184,11 +198,17 @@ public class MarketController : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
     }
 
-    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    private bool CheckForLackOfMoney(int coinCount)
     {
-        if (propertiesThatChanged.ContainsKey("Shop"))
+        try
         {
-            OnUpdateMarketItems?.Invoke();
+            player.PlayerWallet.PickUpCoins(coinCount);
+            return true;
+        }
+        catch (InvalidOperationException)
+        {
+            UIController.ShowOkInfo($"¬ам не хватает {coinCount - player.PlayerWallet.CoinsCount} монет(ы)!");
+            return false;
         }
     }
 }

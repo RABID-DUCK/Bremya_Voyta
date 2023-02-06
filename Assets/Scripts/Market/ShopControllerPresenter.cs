@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarketControllerPresenter : MonoBehaviour
+public class ShopControllerPresenter : MonoBehaviour
 {
     [SerializeField]
     private MarketController marketController;
@@ -34,7 +34,7 @@ public class MarketControllerPresenter : MonoBehaviour
             ShopItemButton createdmarketItemButton = Instantiate(marketItemButton, buttonSpawnTransform);
 
             createdmarketItemButton.Initialization(sellItem);
-            createdmarketItemButton.OnClick += marketController.BuyItem;
+            createdmarketItemButton.OnClick += marketController.BuyItemInTheStore;
             createdmarketItemButton.gameObject.SetActive(true);
 
             spawnedMarketItemButtons.Add(createdmarketItemButton);
@@ -45,7 +45,7 @@ public class MarketControllerPresenter : MonoBehaviour
     {
         foreach (ShopItemButton button in spawnedMarketItemButtons)
         {
-            button.OnClick -= marketController.BuyItem;
+            button.OnClick -= marketController.BuyItemInTheStore;
             Destroy(button.gameObject);
         }
 
