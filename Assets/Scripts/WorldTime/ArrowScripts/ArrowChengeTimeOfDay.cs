@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class ArrowChengeTimeOfDay : MonoBehaviour
 {
@@ -27,9 +28,13 @@ public class ArrowChengeTimeOfDay : MonoBehaviour
 
     private void ResetAngleRotate(bool timeOfDay)
     {
-        if(timeOfDay)
+        if(timeOfDay && PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] != null)
         {
             arrowRectTransform.Rotate(0f, 0f, 0f);
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -45,11 +50,14 @@ public class ArrowChengeTimeOfDay : MonoBehaviour
 
     private void RotateArrowTimeOfDay(RectTransform arrowRectTransform, float angleOffsetRotationArrow)
     {
-        if (worldTime.isStartTime)
+        if (worldTime.isStartTime && PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] != null)
         {
             arrowRectTransform.Rotate(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
 
-            print(timeRotationArrow);
+        }
+        else
+        {
+            return;
         }
     }
 }

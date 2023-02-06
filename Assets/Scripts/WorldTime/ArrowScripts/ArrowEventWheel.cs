@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class ArrowEventWheel : MonoBehaviour
@@ -36,9 +37,13 @@ public class ArrowEventWheel : MonoBehaviour
 
     private void RotateArrowTimeOfDay(RectTransform arrowRectTransform, float angleOffsetRotationArrow)
     {
-        if (worldTime.isCheckTimeOfDay && worldTime.isStartTime)
+        if (worldTime.isCheckTimeOfDay && worldTime.isStartTime && PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] != null)
         {
             arrowRectTransform.Rotate(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
+        }
+        else
+        {
+            return;
         }
     }
 }
