@@ -37,7 +37,7 @@ public class ArrowEventWheel : MonoBehaviour
 
     private void RotateArrowTimeOfDay(RectTransform arrowRectTransform, float angleOffsetRotationArrow)
     {
-        if (worldTime.isCheckTimeOfDay && worldTime.isStartTime && PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] != null)
+        if (worldTime.isCheckTimeOfDay && worldTime.isStartTime && PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTime"))
         {
             arrowRectTransform.Rotate(0f, 0f, -angleOffsetRotationArrow * Time.deltaTime);
         }
