@@ -1,9 +1,11 @@
 ﻿using Photon.Pun;
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class WorldTime : MonoBehaviourPunCallbacks
+public class WorldTime : MonoBehaviour
 {
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
@@ -65,7 +67,10 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
         OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
 
-        Coordinator.OnEndEducation += StartTime;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Coordinator.OnEndEducation += StartTime;
+        }
     }
 
     public void StartTime()
@@ -77,33 +82,49 @@ public class WorldTime : MonoBehaviourPunCallbacks
     {
         if (isStartTime)
         {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                ChengeOfTime();
+                Hashtable ht = new Hashtable {
+                {"StartTime", timeProgress+0.002f},
+                {"countOfDaysElapsed", countOfDaysElapsed },
+                {"isStartTime", isStartTime ? 1 : 0 },
+                {"isCheckTimeOfDay", isCheckTimeOfDay ? 1 : 0 }
+            };
+                PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+                return;
+            }
+        }
+
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTime"))
+            {
+                timeProgress = (float)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+                isStartTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["isStartTime"] != 0 ? true : false;
+                isCheckTimeOfDay = (int)PhotonNetwork.CurrentRoom.CustomProperties["isCheckTimeOfDay"] != 0 ? true : false;
+                countOfDaysElapsed = (int)PhotonNetwork.CurrentRoom.CustomProperties["countOfDaysElapsed"];
+            }
+            else
+            {
+                return;
+            }
+
             ChengeOfTime();
         }
     }
 
     public void ChengeOfTime()
     {
-        if (PhotonNetwork.IsMasterClient)
+
+        if (dayTimeInSeconds == 0)
         {
-            Hashtable ht = new Hashtable();
-            ht.Add("StartTime", timeProgress);
-            ht.Add("dayTime", dayTimeInSeconds);
-            ht.Add("nightTime", nightTimeInSeconds);
-            ht.Add("isCheckTimeOfDay", isCheckTimeOfDay);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-        }
-        if (!PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTime"))
-        {
-            return;
-        }
-        else
-        {
-            timeProgress = (float)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+            print("There can't be 0 seconds in one day!!!");
         }
 
         if (Application.isPlaying)
         {
-            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("isCheckTimeOfDay"))
+            if (PhotonNetwork.IsMasterClient)
             {
                 if (isCheckTimeOfDay)
                 {
@@ -114,8 +135,6 @@ public class WorldTime : MonoBehaviourPunCallbacks
                     timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
                 }
             }
-
-            OnGetTimeProgress?.Invoke(timeProgress);
 
             if (timeProgress == 0.5f && isCheckTimeOfDay == true)
             {
@@ -135,8 +154,10 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
                 if (isCheckTimeOfDay)
                 {
-                    countOfDaysElapsed++;
-                    OnGetNumberDay?.Invoke(countOfDaysElapsed);
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        countOfDaysElapsed++;
+                    }
 
                     if (countOfDaysElapsed > 6)
                     {
@@ -144,10 +165,6 @@ public class WorldTime : MonoBehaviourPunCallbacks
                     }
                 }
             }
-        }
-        else
-        {
-            return;
         }
     }
 }

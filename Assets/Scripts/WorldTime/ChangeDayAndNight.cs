@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class ChangeDayAndNight : MonoBehaviour
@@ -30,6 +31,7 @@ public class ChangeDayAndNight : MonoBehaviour
 
     private void Update()
     {
+
         if (worldTime.isCheckTimeOfDay)
         {
             ChangingGradientColorDay();
@@ -41,7 +43,8 @@ public class ChangeDayAndNight : MonoBehaviour
             ChangingGradientColorNught();
 
             directionalLight.intensity = 0.2f;
-        }
+
+        }    
     }
 
     private void ChangingGradientColorDay()
