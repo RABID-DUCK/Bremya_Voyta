@@ -1,6 +1,7 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class EventController : MonoBehaviourPunCallbacks
@@ -31,7 +32,7 @@ public class EventController : MonoBehaviourPunCallbacks
         worldTime.OnStartEvent += SelectEventByTime;
     }
 
-    [ContextMenu("Aue")]
+    [ContextMenu("StartEvent")]
     public void StartEventik()
     {
         SelectEventByTime();
@@ -45,6 +46,9 @@ public class EventController : MonoBehaviourPunCallbacks
             Hashtable _CP = new Hashtable() { { "StartEvent", randomEvent } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
         }
+
+        worldTime.OnStartEvent -= SelectEventByTime;
+        worldTime.OnStopEvent += RemoveEvents;
     }
 
     public int SelectRandomEvent()
