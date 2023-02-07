@@ -14912,6 +14912,7 @@ MonoBehaviour:
   - {fileID: 1094564382}
   - {fileID: 1276000313}
   - {fileID: 1375134973}
+  standartText: {fileID: 0}
   isPanelCanBeOpened: 0
 --- !u!1 &660131990
 GameObject:
@@ -16553,10 +16554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
-  firstNumberDay: 2
-  firstGameProgress: 0.8
-  secondNumberDay: 5
-  secondGameProgress: 0.8
   littleRainEvent: {fileID: 989820648}
   clearWeatherWithLittleColdEvent: {fileID: 1136995793}
   "mine\u0421ollapseEvent": {fileID: 736321961}
@@ -19280,7 +19277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1076143923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36388,8 +36385,8 @@ MonoBehaviour:
   selectResources: []
   selectCountResources: 
   taxBoxView: {fileID: 49603548}
-  taxBoxPanelsView: {fileID: 654464160}
-  showCanvasGroup: {fileID: 0}
+  taxBoxPanelView: {fileID: 654464160}
+  showCanvasGroup: {fileID: 320526434}
   resurces:
   - {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
   - {fileID: 11400000, guid: 942ab6f152fc3324b8ffc040713b8585, type: 2}
