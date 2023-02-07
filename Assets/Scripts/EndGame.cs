@@ -3,15 +3,12 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EndGame : MonoBehaviour
 {
-    [SerializeField] private ShowCanvasGroup showCanvasGroup;
-
     [SerializeField] WorldTime worldTime;
-
-    [Header("Finish panel setting")]
-    [SerializeField] private GameObject finishPanel;
 
     [Header("Top player properties")]
     [SerializeField] private TMP_Text nameTopPlayer;
@@ -19,6 +16,10 @@ public class EndGame : MonoBehaviour
 
     [Header("All players settings")]
     [SerializeField] private TMP_Text descriptionText;
+
+    [SerializeField] private Button exitToMenu;
+
+    [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     private Dictionary<string, int> players = new Dictionary<string, int>();
     private List<int> sortCoins = new List<int>();
@@ -30,9 +31,9 @@ public class EndGame : MonoBehaviour
 
     private void Start()
     {
-        worldTime = FindObjectOfType<WorldTime>();
-
         worldTime.OnEndGame += FinishGame;
+
+        exitToMenu.onClick.AddListener(LoadMenuScene);
     }
 
     private void FinishGame()
@@ -85,6 +86,11 @@ public class EndGame : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void LoadMenuScene()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     private void ShowFinishPanel()

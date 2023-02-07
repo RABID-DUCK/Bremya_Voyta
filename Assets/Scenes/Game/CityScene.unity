@@ -12754,7 +12754,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -18818,7 +18818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 575c7948a0e4d9f4fac34e720ce3efa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userID: 
   chatText: {fileID: 77831518}
   textMessage: {fileID: 1928829623}
   chatPanel: {fileID: 1788494555}
@@ -35546,6 +35545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822896748}
   - component: {fileID: 1822896749}
+  - component: {fileID: 1822896750}
   m_Layer: 0
   m_Name: WorkController
   m_TagString: Untagged
@@ -35580,6 +35580,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5d2207987382b48933880eeb78300a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1822896750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822896747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9e9fac68d381849baf3d11fafc9745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workController: {fileID: 1822896749}
 --- !u!114 &1834963354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7955324952065386080, guid: c63e852bab0ea464b9a26aaefe6e223d, type: 3}
@@ -36633,7 +36646,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1041550669}
+        m_TargetAssemblyTypeName: ChatManager, Assembly-CSharp
+        m_MethodName: CheckEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -36644,7 +36669,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
-  m_RichText: 1
+  m_RichText: 0
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1

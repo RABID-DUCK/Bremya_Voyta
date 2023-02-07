@@ -1,13 +1,14 @@
 using ExitGames.Client.Photon;
 using Photon.Chat;
 using Photon.Pun;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class ChatManager : MonoBehaviour, IChatClientListener
 {
     ChatClient chatClient;
-    [SerializeField] string userID;
+    string userID;
     private string nickName = PhotonNetwork.LocalPlayer.NickName;
     [SerializeField] TextMeshProUGUI chatText;
     [SerializeField] TMP_InputField textMessage;
@@ -96,6 +97,11 @@ public class ChatManager : MonoBehaviour, IChatClientListener
             chatClient.PublishMessage("G", textMessage.text);
             textMessage.text = "";
         }
+    }
+
+    public void CheckEnter()
+    {
+        // отправка по нажатию на Enter
     }
 
     public void OpenChat()
