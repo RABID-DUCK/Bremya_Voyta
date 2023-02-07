@@ -5,7 +5,7 @@ using UnityEngine;
 public class TaxBoxPresenter : TaxBoxModel
 {
     [SerializeField] private TaxBox taxBoxView;
-    [SerializeField] private TaxBoxPanelsView taxBoxPanelsView;
+    [SerializeField] private TaxBoxPanelView taxBoxPanelView;
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     [SerializeField] private List<Item> resurces = new List<Item>();
@@ -14,21 +14,13 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private Character player;
 
-    private void Awake()
-    {
-        worldTime = FindObjectOfType<WorldTime>();
-        showCanvasGroup = FindObjectOfType<ShowCanvasGroup>();
-    }
-
     private void Start()
     {
-        taxBoxView.OnClickTaxBox += OpenTaxBoxPanel;
-
         worldTime.OnStartTaxEvent += StartTaxEvent;
 
-        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
+        taxBoxView.OnClickTaxBox += OpenTaxBoxPanel;
 
-        taxBoxPanelsView.OnClickGetResource += TakeResourcesFromPlayer;
+        taxBoxPanelView.OnClickGetResource += TakeResourcesFromPlayer;
     }
 
     public void Initialization(Character player)
@@ -45,26 +37,34 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void IsPanelCanBeOpened()
     {
-        taxBoxPanelsView.ShowTrue();
+        worldTime.OnStartTaxEvent -= StartTaxEvent;
+
+        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
+
+        taxBoxPanelView.ShowTrue();
     }
 
     private void OpenTaxBoxPanel()
     {
-        taxBoxPanelsView.ShowTaxBoxPanel();
+        taxBoxPanelView.ShowTaxBoxPanel();
     }
 
     private void SetInformationAboutNecessaryResources()
     {
+        //taxBoxPanelView.ShowAllElements();
+
         SelectRandomResurses(resurces);
 
-        SetSelectedResurcesInformationOnTaxBoxPanel(taxBoxPanelsView.imageResuces, taxBoxPanelsView.nameResurcesText, taxBoxPanelsView.countResurcesText);
+        SetSelectedResurcesInformationOnTaxBoxPanel(taxBoxPanelView.imageResuces, taxBoxPanelView.nameResurcesText, taxBoxPanelView.countResurcesText);
     }
 
     private void OutputtingTaxBoxEventResults()
     {
-        if (taxBoxPanelsView.isCompleted == false)
+        if (taxBoxPanelView.isCompleted == false)
         {
-            taxBoxPanelsView.ShowTaxHasNotBeenPaidPanel();
+            taxBoxPanelView.ShowTaxHasNotBeenPaidPanel();
+
+            worldTime.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
         }
     }
 
@@ -74,11 +74,11 @@ public class TaxBoxPresenter : TaxBoxModel
         {
             GetResourcesFromPlayer(player);
 
-            taxBoxPanelsView.ShowSuccessfullyPanel();
+            taxBoxPanelView.ShowSuccessfullyPanel();
         }
         catch (InvalidOperationException)
         {
-            taxBoxPanelsView.ShowTaxHasNotBeenPaidPanel();
+            taxBoxPanelView.ShowTaxHasNotBeenPaidPanel();
         }
     }
 

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TaxBoxPanelsView : MonoBehaviour
+public class TaxBoxPanelView : MonoBehaviour
 {
     [Header("TaxBox Panel")]
     [SerializeField] private GameObject taxBoxPanel;
@@ -15,6 +15,8 @@ public class TaxBoxPanelsView : MonoBehaviour
     public List<TMP_Text> nameResurcesText = new List<TMP_Text>();
     public List<TMP_Text> countResurcesText = new List<TMP_Text>();
 
+    public GameObject standartText;
+
     private ShowCanvasGroup showCanvasGroup;
 
     public bool isPanelCanBeOpened = false;
@@ -22,11 +24,6 @@ public class TaxBoxPanelsView : MonoBehaviour
     public bool isCompleted { get; private set; } = false;
 
     public event Action OnClickGetResource;
-
-    private void Awake()
-    {
-        showCanvasGroup = taxBoxPanel.GetComponent<ShowCanvasGroup>();
-    }
 
     private void Start()
     {
