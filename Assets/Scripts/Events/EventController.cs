@@ -6,22 +6,9 @@ public class EventController : MonoBehaviour
     [Header("Event controller settings")]
     [SerializeField] private WorldTime worldTime;
 
-    [Space, Tooltip("First half of the week. The day the event is to take place")]
-    public int firstNumberDay;
-    [Tooltip("First half of the week. Time when the event should take place")]
-    public float firstGameProgress;
-
-    [Space, Tooltip("Second half of the week. The day the event is to take place")]
-    public int secondNumberDay;
-    [Tooltip("Second half of the week. Time when the event should take place")]
-    public float secondGameProgress;
-
     private int randomEvent;
 
     private bool IsNegativeWeather = false;
-
-    //private int originalDay;
-    //private float originalTimeInSeconds;
 
     public static event Action<bool> OnGetWeather;
 
@@ -39,59 +26,30 @@ public class EventController : MonoBehaviour
 
     private void Start()
     {
-        //worldTime.OnGetNumberDay += SetDay;
-        //worldTime.OnGetTimeProgress += SetTimeInSeconds;
-
-        randomEvent = 6;
-    }
-
-    //public void SetDay(int day)
-    //{
-    //    originalDay = day;
-    //}
-
-    //public void SetTimeInSeconds(float timeInSeconds)
-    //{
-    //    originalTimeInSeconds = timeInSeconds;
-    //}
-
-    public void Update()
-    {
-        SelectEventByTime();
-
-        RemoveEvent();
+        worldTime.OnStartEvent += SelectEventByTime;
     }
 
     public void SelectEventByTime()
     {
-        if (worldTime.isStartTime)
-        {
-            if (worldTime.countOfDaysElapsed == firstNumberDay && worldTime.timeProgress == firstGameProgress && worldTime.isCheckTimeOfDay)
-            {
-                SelectRandomEvent();
+        SelectRandomEvent();
 
-                SelectEventByRandomizeNumber(randomEvent);
-            }
+        SelectEventByRandomizeNumber(randomEvent);
 
-            if(worldTime.countOfDaysElapsed == secondNumberDay && worldTime.timeProgress == secondGameProgress && worldTime.isCheckTimeOfDay)
-            {
-                SelectRandomEvent();
+        worldTime.OnStartEvent -= SelectEventByTime;
 
-                SelectEventByRandomizeNumber(randomEvent);
-            }
-        }
+        worldTime.OnStopEvent += RemoveEvents;
     }
 
     public void SelectRandomEvent()
     {
-        randomEvent = UnityEngine.Random.Range(0, 5);
+        randomEvent = UnityEngine.Random.Range(1, 6);
     }
 
     public void SelectEventByRandomizeNumber(int randomNumberEvent)
     {
         switch (randomNumberEvent)
         {
-            case 0:
+            case 1:
 
                 if (littleRainEvent != null)
                 {
@@ -106,7 +64,7 @@ public class EventController : MonoBehaviour
 
                 break;
 
-            case 1:
+            case 2:
 
                 if (ThunderstormWithHeavyRainEvent != null)
                 {
@@ -121,7 +79,7 @@ public class EventController : MonoBehaviour
 
                 break;
 
-            case 2:
+            case 3:
 
                 if (stormEvent != null)
                 {
@@ -136,7 +94,7 @@ public class EventController : MonoBehaviour
 
                 break;
 
-            case 3:
+            case 4:
 
                 if (clearWeatherWithLittleColdEvent != null)
                 {
@@ -151,7 +109,7 @@ public class EventController : MonoBehaviour
 
                 break;
 
-            case 4:
+            case 5:
 
                 if (mine—ollapseEvent != null)
                 {
@@ -166,7 +124,7 @@ public class EventController : MonoBehaviour
 
                 break;
 
-            case 5:
+            case 6:
 
                 if (standartDayEvent != null)
                 {
@@ -178,40 +136,20 @@ public class EventController : MonoBehaviour
                 }
 
                 break;
-        }
-    }
 
-    public void RemoveEvent()
-    {
-        if (worldTime.countOfDaysElapsed == firstNumberDay + 1 && worldTime.timeProgress == firstGameProgress)
-        {
-            IsNegativeWeather = false;
+            default:
 
-            littleRainEvent.EndSmallRainEvent();
-            ThunderstormWithHeavyRainEvent.EndThunderEvent();
-            stormEvent.EndStormEvent();
-            mine—ollapseEvent.EndMine—ollapseEvent();
-            clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
+                Debug.Log($"¬˚Ô‡ÎÓ ÌÂ ÚÓ ˜ËÒÎÓ - ({randomNumberEvent})");
 
-            OnEndEvent?.Invoke();
-        }
-
-        if(worldTime.countOfDaysElapsed == secondNumberDay + 1 && worldTime.timeProgress == secondGameProgress)
-        {
-            IsNegativeWeather = false;
-
-            littleRainEvent.EndSmallRainEvent();
-            ThunderstormWithHeavyRainEvent.EndThunderEvent();
-            stormEvent.EndStormEvent();
-            mine—ollapseEvent.EndMine—ollapseEvent();
-            clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
-
-            OnEndEvent?.Invoke();
+                break;
         }
     }
 
     public void RemoveEvents()
     {
+        worldTime.OnStopEvent -= RemoveEvents;
+        worldTime.OnStartEvent += SelectEventByTime;
+
         IsNegativeWeather = false;
 
         littleRainEvent.EndSmallRainEvent();

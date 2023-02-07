@@ -16,17 +16,17 @@ public class WorldTime : MonoBehaviourPunCallbacks
     /// <summary>
     /// Число дня, который наступил. Счет идет до 6, потом обнуляется!
     /// </summary>
-    public event Action<int> OnGetNumberDay; //+
+    public event Action<int> OnGetNumberDay;
 
     /// <summary>
     /// Подвязываться к прогрессу веремени. Обнуляется, когда наступает день или ночь!
     /// </summary>
-    public event Action<float> OnGetTimeProgress; //+
+    public event Action<float> OnGetTimeProgress;
 
     /// <summary>
     /// Взять время суток!
     /// </summary>
-    public event Action<bool> OnGetTimeOfDay; //+
+    public event Action<bool> OnGetTimeOfDay;
 
     /// <summary>
     /// true - День, false - Ночь!
@@ -35,15 +35,16 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
     public bool isStartTime { get; set; } // Отвечает за включение времени
 
-    public event Action OnEndGame; //+
+    public event Action OnStartTaxEvent = delegate { };
+    public event Action OnStopTaxEvent = delegate { };
 
-    public event Action OnStartTaxEvent; //+
+    public event Action OnStartCasinoEvent = delegate { };
+    public event Action OnStopCasinoEvent = delegate { };
 
-    public event Action OnStopTaxEvent; //+
+    public event Action OnStartEvent = delegate { };
+    public event Action OnStopEvent = delegate { };
 
-    public event Action OnStartCasinoEvent;
-
-    public event Action OnStopCasinoEvent;
+    public event Action OnEndGame = delegate { };
 
     private void Start()
     {
@@ -117,22 +118,22 @@ public class WorldTime : MonoBehaviourPunCallbacks
                 {
                     timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
                 }
-            }
 
-            if (timeProgress > 1f)
-            {
-                timeProgress = 0f;
-
-                isCheckTimeOfDay = !isCheckTimeOfDay;
-
-
-                if (isCheckTimeOfDay)
+                if (timeProgress > 1f)
                 {
-                    countOfDaysElapsed++;
+                    timeProgress = 0f;
+
+                    isCheckTimeOfDay = !isCheckTimeOfDay;
+
+
+                    if (isCheckTimeOfDay)
+                    {
+                        countOfDaysElapsed++;
+                    }
                 }
             }
 
-            EventSender();
+            EventSender(countOfDaysElapsed, timeProgress, isCheckTimeOfDay);
         }
         else
         {
@@ -140,7 +141,7 @@ public class WorldTime : MonoBehaviourPunCallbacks
         }
     }
 
-    private void EventSender()
+    private void EventSender(int countOfDaysElapsed, float timeProgress, bool isCheckTimeOfDay)
     {
         //----------- Главные события ----------//
         OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
@@ -150,41 +151,63 @@ public class WorldTime : MonoBehaviourPunCallbacks
         OnGetTimeProgress?.Invoke(timeProgress);
         //--------------------------------------//
 
+        //--------------- Стандартные(Природные и т.п.) события ---------------//
+        if (countOfDaysElapsed == 1 && timeProgress > 0.6f && isCheckTimeOfDay)
+        {
+            OnStartEvent?.Invoke();
+        }
+
+        if (countOfDaysElapsed == 2 && timeProgress > 1f && isCheckTimeOfDay)
+        {
+            OnStopEvent?.Invoke();
+        }
+
+        if (countOfDaysElapsed == 4 && timeProgress > 0.6f && isCheckTimeOfDay)
+        {
+            OnStartEvent?.Invoke();
+        }
+
+        if (countOfDaysElapsed == 5 && timeProgress > 1f && isCheckTimeOfDay)
+        {
+            OnStopEvent?.Invoke();
+        }
+        //----------------------------------------------------------------------//
+
         //---------------------------- Менялы -----------------------------//
-        if (isCheckTimeOfDay && countOfDaysElapsed == 3 && timeProgress == 0f)
+        if (isCheckTimeOfDay && countOfDaysElapsed == 2 && timeProgress == 0f)
         {
             OnStartCasinoEvent?.Invoke();
         }
 
-        if (isCheckTimeOfDay && countOfDaysElapsed == 3 && timeProgress == 0.8f)
+        if (isCheckTimeOfDay && countOfDaysElapsed == 2 && timeProgress == 0.8f)
         {
             OnStopCasinoEvent?.Invoke();
         }
 
-        if (isCheckTimeOfDay && countOfDaysElapsed == 6 && timeProgress == 0f)
+        if (isCheckTimeOfDay && countOfDaysElapsed == 5 && timeProgress == 0f)
         {
             OnStartCasinoEvent?.Invoke();
         }
 
-        if (isCheckTimeOfDay && countOfDaysElapsed == 6 && timeProgress == 0.5f)
+        if (isCheckTimeOfDay && countOfDaysElapsed == 5 && timeProgress == 0.5f)
         {
             OnStopCasinoEvent?.Invoke();
         }
         //------------------------------------------------------------------//
 
         //---------------------------------- Налоги -----------------------------------//
-        if (countOfDaysElapsed == 6 && timeProgress == 0.5f && isCheckTimeOfDay == true)
+        if (countOfDaysElapsed == 5 && timeProgress == 0.5f && isCheckTimeOfDay == true)
         {
             OnStartTaxEvent?.Invoke();
         }
-        else if (countOfDaysElapsed == 6 && timeProgress == 0.9f && isCheckTimeOfDay == true)
+        else if (countOfDaysElapsed == 5 && timeProgress == 0.9f && isCheckTimeOfDay == true)
         {
             OnStopTaxEvent?.Invoke();
         }
         //-----------------------------------------------------------------------------//
 
         //---------------------- Конец игры ---------------------//
-        if (countOfDaysElapsed == 6 && isCheckTimeOfDay == false)
+        if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
         {
             OnEndGame?.Invoke();
         }
