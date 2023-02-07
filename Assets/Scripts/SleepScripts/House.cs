@@ -10,9 +10,18 @@ public class House : ClickableObject
 
     public override void Execute(Character player)
     {
-        UIController.ShowYesNoDialog("Вы хотите войти в свой дом?", () =>
+        if (player.photonView.Controller.NickName == playerNick)
         {
-            CameraSwitch.SwichHouseCamera();
-        });
+            UIController.ShowYesNoDialog("Вы хотите войти в свой дом?", () =>
+            {
+                CameraSwitch.SwichHouseCamera();
+            });
+        }
+        else
+        {
+            UIController.ShowOkInfo("Вы не можете войти в данный дом.\n" +
+                (string.IsNullOrEmpty(playerNick) ? "Дом заброшен." : 
+                                                   $"Дом принадлежит:\n<b>{playerNick}</b>"));
+        }
     }
 }

@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class WorldTime : MonoBehaviour
 {
@@ -38,22 +37,16 @@ public class WorldTime : MonoBehaviour
 
     public bool isStartTime { get; set; } // Отвечает за включение времени
 
-    public event Action OnEndGame;
+    public event Action OnStartTaxEvent = delegate { };
+    public event Action OnStopTaxEvent = delegate { };
 
-    public event Action OnStartTaxEvent;
+    public event Action OnStartCasinoEvent = delegate { };
+    public event Action OnStopCasinoEvent = delegate { };
 
-    public event Action OnStopTaxEvent;
+    public event Action OnStartEvent = delegate { };
+    public event Action OnStopEvent = delegate { };
 
-    public event Action OnStartCasinoEvent;
-
-    public event Action OnStopCasinoEvent;
-
-
-    private void Awake()
-    {
-        isCheckTimeOfDay = this;
-        DontDestroyOnLoad(this);
-    }
+    public event Action OnEndGame = delegate { };
 
     private void Start()
     {
@@ -134,7 +127,6 @@ public class WorldTime : MonoBehaviour
                 {
                     timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
                 }
-            }
 
             if (timeProgress == 0.5f && isCheckTimeOfDay == true)
             {
@@ -159,12 +151,90 @@ public class WorldTime : MonoBehaviour
                         countOfDaysElapsed++;
                     }
 
-                    if (countOfDaysElapsed > 6)
+                    isCheckTimeOfDay = !isCheckTimeOfDay;
+
+
+                    if (isCheckTimeOfDay)
                     {
-                        OnEndGame?.Invoke();
+                        countOfDaysElapsed++;
                     }
                 }
             }
+
+            EventSender(countOfDaysElapsed, timeProgress, isCheckTimeOfDay);
         }
+    }
+
+    private void EventSender(int countOfDaysElapsed, float timeProgress, bool isCheckTimeOfDay)
+    {
+        //----------- Главные события ----------//
+        OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
+
+        OnGetNumberDay?.Invoke(countOfDaysElapsed);
+
+        OnGetTimeProgress?.Invoke(timeProgress);
+        //--------------------------------------//
+
+        //--------------- Стандартные(Природные и т.п.) события ---------------//
+        if (countOfDaysElapsed == 1 && timeProgress > 0.6f && isCheckTimeOfDay)
+        {
+            OnStartEvent?.Invoke();
+        }
+
+        if (countOfDaysElapsed == 2 && timeProgress > 1f && isCheckTimeOfDay)
+        {
+            OnStopEvent?.Invoke();
+        }
+
+        if (countOfDaysElapsed == 4 && timeProgress > 0.6f && isCheckTimeOfDay)
+        {
+            OnStartEvent?.Invoke();
+        }
+
+        if (countOfDaysElapsed == 5 && timeProgress > 1f && isCheckTimeOfDay)
+        {
+            OnStopEvent?.Invoke();
+        }
+        //----------------------------------------------------------------------//
+
+        //---------------------------- Менялы -----------------------------//
+        if (isCheckTimeOfDay && countOfDaysElapsed == 2 && timeProgress == 0f)
+        {
+            OnStartCasinoEvent?.Invoke();
+        }
+
+        if (isCheckTimeOfDay && countOfDaysElapsed == 2 && timeProgress == 0.8f)
+        {
+            OnStopCasinoEvent?.Invoke();
+        }
+
+        if (isCheckTimeOfDay && countOfDaysElapsed == 5 && timeProgress == 0f)
+        {
+            OnStartCasinoEvent?.Invoke();
+        }
+
+        if (isCheckTimeOfDay && countOfDaysElapsed == 5 && timeProgress == 0.5f)
+        {
+            OnStopCasinoEvent?.Invoke();
+        }
+        //------------------------------------------------------------------//
+
+        //---------------------------------- Налоги -----------------------------------//
+        if (countOfDaysElapsed == 5 && timeProgress == 0.5f && isCheckTimeOfDay == true)
+        {
+            OnStartTaxEvent?.Invoke();
+        }
+        else if (countOfDaysElapsed == 5 && timeProgress == 0.9f && isCheckTimeOfDay == true)
+        {
+            OnStopTaxEvent?.Invoke();
+        }
+        //-----------------------------------------------------------------------------//
+
+        //---------------------- Конец игры ---------------------//
+        if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
+        {
+            OnEndGame?.Invoke();
+        }
+        //-------------------------------------------------------//
     }
 }

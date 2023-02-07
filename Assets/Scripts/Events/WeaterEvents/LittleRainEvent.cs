@@ -26,7 +26,7 @@ public class LittleRainEvent : MonoBehaviour
 
     private void StartLittleRainEffect()
     {
-        WorkOverrider.OverrideFarmerDropItems(1, 3);
+        WorkOverrider.OverrideFarmerDropItems(6, 8);
 
         //TODO: Огород + 3 от макс. кол-ва
     }
