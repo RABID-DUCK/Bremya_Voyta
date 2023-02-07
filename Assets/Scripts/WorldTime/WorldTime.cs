@@ -46,13 +46,6 @@ public class WorldTime : MonoBehaviourPunCallbacks
 
     public event Action OnStopCasinoEvent;
 
-
-    private void Awake()
-    {
-        isCheckTimeOfDay = this;
-        DontDestroyOnLoad(this);
-    }
-
     private void Start()
     {
         timeProgress = 0f;

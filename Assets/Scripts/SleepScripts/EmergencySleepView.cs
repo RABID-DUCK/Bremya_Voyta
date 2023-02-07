@@ -12,11 +12,6 @@ public class EmergencySleepView : MonoBehaviour
 
     public event Action OnTimerIsOut;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     public void StartTimerEmergencySleepPanel()
     {
         StartCoroutine(StartTimer(timerText.text));
