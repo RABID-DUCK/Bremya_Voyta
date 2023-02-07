@@ -1,16 +1,15 @@
 using Ekonomika.Utils;
 using Ekonomika.Work;
-using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Character : MonoBehaviourPunCallbacks
 {
     public Wallet PlayerWallet { get; private set; } = new Wallet();
     public Inventory PlayerInventory { get; private set; } = new Inventory();
-
-    private Hashtable _CP = new Hashtable();
 
     public bool Init { get; private set; }
 
@@ -24,7 +23,6 @@ public class Character : MonoBehaviourPunCallbacks
         if (Init)
         {
             clickEventer.OnClickWork -= GetObject;
-            PlayerWallet.OnCoinsChanged -= ChangeMoney;
         }
     }
 
@@ -40,7 +38,6 @@ public class Character : MonoBehaviourPunCallbacks
     {
         OnDestroy();
         InitPlayer(clickEventer);
-        PlayerWallet.OnCoinsChanged += ChangeMoney;
     }
 
     private void InitPlayer(ClickEventer clickEventer)
@@ -65,9 +62,14 @@ public class Character : MonoBehaviourPunCallbacks
         }
     }
 
-    private void ChangeMoney()
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
-        _CP["coins"] = PlayerWallet.CoinsCount;
-        PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
+        if (targetPlayer == PhotonNetwork.LocalPlayer && changedProps.ContainsKey("coins"))
+        {
+            if ((int)changedProps["coins"] != PlayerWallet.CoinsCount)
+            {
+                PlayerWallet.SetMoney((int)changedProps["coins"]);
+            }
+        }
     }
 }

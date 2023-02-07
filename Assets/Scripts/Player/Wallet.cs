@@ -1,3 +1,5 @@
+using ExitGames.Client.Photon;
+using Photon.Pun;
 using System;
 
 public class Wallet
@@ -9,6 +11,7 @@ public class Wallet
     public void PutCoins(int count)
     {
         CoinsCount += count;
+        ChangeMoney();
         OnCoinsChanged?.Invoke();
     }
 
@@ -18,6 +21,20 @@ public class Wallet
             throw new InvalidOperationException();
 
         CoinsCount -= count;
+        ChangeMoney();
+        OnCoinsChanged?.Invoke();
+    }
+
+    private void ChangeMoney()
+    {
+        Hashtable _CP = new Hashtable();
+        _CP["coins"] = CoinsCount;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
+    }
+
+    public void SetMoney(int count)
+    {
+        CoinsCount = count;
         OnCoinsChanged?.Invoke();
     }
 }
