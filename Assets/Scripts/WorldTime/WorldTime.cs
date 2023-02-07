@@ -1,8 +1,7 @@
 ﻿using Photon.Pun;
 using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class WorldTime : MonoBehaviour
 {
@@ -82,8 +81,7 @@ public class WorldTime : MonoBehaviour
                 {"StartTime", timeProgress+0.002f},
                 {"countOfDaysElapsed", countOfDaysElapsed },
                 {"isStartTime", isStartTime ? 1 : 0 },
-                {"isCheckTimeOfDay", isCheckTimeOfDay ? 1 : 0 }
-            };
+                {"isCheckTimeOfDay", isCheckTimeOfDay ? 1 : 0 }};
                 PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
                 return;
             }
@@ -109,12 +107,6 @@ public class WorldTime : MonoBehaviour
 
     public void ChengeOfTime()
     {
-
-        if (dayTimeInSeconds == 0)
-        {
-            print("There can't be 0 seconds in one day!!!");
-        }
-
         if (Application.isPlaying)
         {
             if (PhotonNetwork.IsMasterClient)
@@ -128,40 +120,34 @@ public class WorldTime : MonoBehaviour
                     timeProgress += Time.fixedDeltaTime / nightTimeInSeconds;
                 }
 
-            if (timeProgress == 0.5f && isCheckTimeOfDay == true)
-            {
-                OnStartTaxEvent?.Invoke();
-            }
-            else if (timeProgress == 0.8f && isCheckTimeOfDay == true)
-            {
-                OnStopTaxEvent?.Invoke();
-            }
-
-            if (timeProgress > 1f)
-            {
-                timeProgress = 0f;
-
-                isCheckTimeOfDay = !isCheckTimeOfDay;
-                OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
-
-                if (isCheckTimeOfDay)
+                if (timeProgress == 0.5f && isCheckTimeOfDay == true)
                 {
-                    if (PhotonNetwork.IsMasterClient)
-                    {
-                        countOfDaysElapsed++;
-                    }
+                    OnStartTaxEvent?.Invoke();
+                }
+                else if (timeProgress == 0.8f && isCheckTimeOfDay == true)
+                {
+                    OnStopTaxEvent?.Invoke();
+                }
+
+                if (timeProgress > 1f)
+                {
+                    timeProgress = 0f;
 
                     isCheckTimeOfDay = !isCheckTimeOfDay;
-
+                    OnGetTimeOfDay?.Invoke(isCheckTimeOfDay);
 
                     if (isCheckTimeOfDay)
                     {
-                        countOfDaysElapsed++;
+                        if (PhotonNetwork.IsMasterClient)
+                        {
+                            countOfDaysElapsed++;
+                        }
+
+                        //isCheckTimeOfDay = !isCheckTimeOfDay;
                     }
                 }
+                EventSender(countOfDaysElapsed, timeProgress, isCheckTimeOfDay);
             }
-
-            EventSender(countOfDaysElapsed, timeProgress, isCheckTimeOfDay);
         }
     }
 
