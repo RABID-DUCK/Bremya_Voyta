@@ -1,7 +1,9 @@
+using ExitGames.Client.Photon;
+using Photon.Pun;
 using System;
 using UnityEngine;
 
-public class EventController : MonoBehaviour
+public class EventController : MonoBehaviourPunCallbacks
 {
     [Header("Event controller settings")]
     [SerializeField] private WorldTime worldTime;
@@ -29,20 +31,25 @@ public class EventController : MonoBehaviour
         worldTime.OnStartEvent += SelectEventByTime;
     }
 
-    public void SelectEventByTime()
+    [ContextMenu("Aue")]
+    public void StartEventik()
     {
-        SelectRandomEvent();
-
-        SelectEventByRandomizeNumber(randomEvent);
-
-        worldTime.OnStartEvent -= SelectEventByTime;
-
-        worldTime.OnStopEvent += RemoveEvents;
+        SelectEventByTime();
     }
 
-    public void SelectRandomEvent()
+    public void SelectEventByTime()
     {
-        randomEvent = UnityEngine.Random.Range(1, 6);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            randomEvent = SelectRandomEvent();
+            Hashtable _CP = new Hashtable() { { "StartEvent", randomEvent } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
+        }
+    }
+
+    public int SelectRandomEvent()
+    {
+        return UnityEngine.Random.Range(1, 6);
     }
 
     public void SelectEventByRandomizeNumber(int randomNumberEvent)
@@ -159,5 +166,21 @@ public class EventController : MonoBehaviour
         clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
 
         OnEndEvent?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        worldTime.OnStartEvent -= SelectEventByTime;
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey("StartEvent"))
+        {
+            SelectEventByRandomizeNumber((int)PhotonNetwork.CurrentRoom.CustomProperties["StartEvent"]);
+
+            worldTime.OnStartEvent -= SelectEventByTime;
+            worldTime.OnStopEvent += RemoveEvents;
+        }
     }
 }

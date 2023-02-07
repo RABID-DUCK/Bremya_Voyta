@@ -162,19 +162,22 @@ public class WorldTime : MonoBehaviour
         //--------------------------------------//
 
         //--------------- Стандартные(Природные и т.п.) события ---------------//
-        if (countOfDaysElapsed == 1 && timeProgress > 0.6f && isCheckTimeOfDay)
+        if(PhotonNetwork.IsMasterClient)
         {
-            OnStartEvent?.Invoke();
+            if (countOfDaysElapsed == 1 && timeProgress > 0.6f && isCheckTimeOfDay)
+            {
+                OnStartEvent?.Invoke();
+            }
+
+            if (countOfDaysElapsed == 4 && timeProgress > 0.6f && isCheckTimeOfDay)
+            {
+                OnStartEvent?.Invoke();
+            }
         }
 
         if (countOfDaysElapsed == 2 && timeProgress > 1f && isCheckTimeOfDay)
         {
             OnStopEvent?.Invoke();
-        }
-
-        if (countOfDaysElapsed == 4 && timeProgress > 0.6f && isCheckTimeOfDay)
-        {
-            OnStartEvent?.Invoke();
         }
 
         if (countOfDaysElapsed == 5 && timeProgress > 1f && isCheckTimeOfDay)
