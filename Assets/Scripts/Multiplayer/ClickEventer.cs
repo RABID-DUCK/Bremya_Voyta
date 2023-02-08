@@ -20,8 +20,7 @@ public class ClickEventer : MonoBehaviour
 
             if (Physics.Raycast(ray, out _hit, Mathf.Infinity))
             {
-                GetClickableObject(_hit);
-                print(_hit);
+                GetClickableObject(_hit);   
             }
         }
     }

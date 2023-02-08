@@ -8,9 +8,9 @@ public class WorldTime : MonoBehaviour
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public float dayTimeInSeconds { get; } = 15f; // Количество секунд днем
+    public float dayTimeInSeconds { get; } = 10f; // Количество секунд днем
 
-    public float nightTimeInSeconds { get; } = 10f; // Количество секунд ночью
+    public float nightTimeInSeconds { get; } = 1f; // Количество секунд ночью
 
     public float timeProgress { get; set; } // Игровой прогресс
 
@@ -225,7 +225,8 @@ public class WorldTime : MonoBehaviour
         {
             OnStartTaxEvent?.Invoke();
         }
-        else if (countOfDaysElapsed == 5 && timeProgress > 0.9f && isCheckTimeOfDay == true)
+
+        if (countOfDaysElapsed == 5 && timeProgress > 0.9f && isCheckTimeOfDay == true)
         {
             OnStopTaxEvent?.Invoke();
         }

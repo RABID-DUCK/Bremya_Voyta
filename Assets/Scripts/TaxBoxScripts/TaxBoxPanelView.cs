@@ -11,12 +11,15 @@ public class TaxBoxPanelView : MonoBehaviour
     [SerializeField] private Button getResourceButton;
     [SerializeField] private Button closeTaxBoxPanelButton;
 
+    [Space, Header("UI Elements")]
     public List<Image> imageResuces = new List<Image>();
     public List<TMP_Text> nameResurcesText = new List<TMP_Text>();
     public List<TMP_Text> countResurcesText = new List<TMP_Text>();
 
+    [Space]
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
+    [Space]
     public bool isPanelCanBeOpened = false;
 
     public bool isCompleted { get; private set; } = false;

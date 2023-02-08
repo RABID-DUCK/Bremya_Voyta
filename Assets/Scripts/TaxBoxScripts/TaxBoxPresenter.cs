@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TaxBoxPresenter : TaxBoxModel
 {
     [SerializeField] private WorldTime worldTime;
 
-    [Space ,SerializeField] private TaxBox taxBox;
+    [Space, SerializeField] private TaxBox taxBox;
     [SerializeField] private TaxBoxPanelView taxBoxPanelView;
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
@@ -31,6 +30,7 @@ public class TaxBoxPresenter : TaxBoxModel
     private void StartTaxEvent()
     {
         worldTime.OnStartTaxEvent -= StartTaxEvent;
+        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
 
         IsPanelCanBeOpened();
 
@@ -39,8 +39,6 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void IsPanelCanBeOpened()
     {
-        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
-
         taxBoxPanelView.ShowTrue();
     }
 
@@ -64,21 +62,21 @@ public class TaxBoxPresenter : TaxBoxModel
 
             TakePenaltyForNonPaymentOfTax(player);
 
+            taxBoxPanelView.HideTaxBoxPanel();
+
             worldTime.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
         }
     }
 
     private void TakeResourcesFromPlayer()
     {
-        try
+        if (GetResourcesFromPlayer(player))
         {
-            GetResourcesFromPlayer(player);
-
             taxBoxPanelView.ShowSuccessfullyPanel();
         }
-        catch (InvalidOperationException)
+        else
         {
-            taxBoxPanelView.ShowPanelNotEnoughResources();
+            UIController.ShowInfo("У вас не хватает ресурсов для уплаты налога!", "Ок");
         }
     }
 
