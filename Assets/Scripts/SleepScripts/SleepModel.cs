@@ -4,24 +4,17 @@ using UnityEngine.Video;
 
 public class SleepModel : MonoBehaviour
 {
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     public void GoSleep(VideoClip sleepVideo)
     {
         UIController.ShowVideo(sleepVideo, null);
     }
 
-    public void AfterSleep(WorldTime worldTime)
+    public void AfterSleep(WorldTime worldTime, bool isICanSleep, bool isSleeping)
     {
         worldTime.timeProgress = 0;
         worldTime.isCheckTimeOfDay = true;
-    }
 
-    public void ResetIsSleeping(bool isSleep)
-    {
-        isSleep = false;
+        isICanSleep = false;
+        isSleeping = false;
     }
 }

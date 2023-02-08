@@ -2,6 +2,7 @@ using ExitGames.Client.Photon;
 using JetBrains.Annotations;
 using Photon.Pun;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EventController : MonoBehaviourPunCallbacks
@@ -18,6 +19,10 @@ public class EventController : MonoBehaviourPunCallbacks
     public static event Action<EventSO> OnGetEventSO = delegate { };
 
     public static event Action OnEndEvent = delegate { };
+
+    public List<AudioClip> audioClips = new List<AudioClip>(3);
+
+    public AudioSource iventsSounds;
 
     [Header("Events")]
     [SerializeField] private LittleRainEvent littleRainEvent;
@@ -71,6 +76,8 @@ public class EventController : MonoBehaviourPunCallbacks
                     OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(littleRainEvent.littleRainSO);
+
+                    iventsSounds.clip = audioClips[0];
                 }
 
                 break;
@@ -86,6 +93,9 @@ public class EventController : MonoBehaviourPunCallbacks
                     OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(ThunderstormWithHeavyRainEvent.ThunderSO);
+
+                    iventsSounds.clip = audioClips[0];
+                    Debug.Log(audioClips);
                 }
 
                 break;
@@ -101,6 +111,9 @@ public class EventController : MonoBehaviourPunCallbacks
                     OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(stormEvent.StormSO);
+
+                    iventsSounds.clip = audioClips[1];
+                    Debug.Log(audioClips);
                 }
 
                 break;
@@ -168,6 +181,8 @@ public class EventController : MonoBehaviourPunCallbacks
         stormEvent.EndStormEvent();
         mine—ollapseEvent.EndMine—ollapseEvent();
         clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
+
+        iventsSounds.clip = null;
 
         OnEndEvent?.Invoke();
     }

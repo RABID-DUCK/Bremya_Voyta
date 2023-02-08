@@ -10,6 +10,8 @@ public class EmergencySleepView : MonoBehaviour
     [SerializeField] private GameObject emergencyPanelSleep;
     [SerializeField] private TMP_Text timerText;
 
+    [Space, SerializeField] private ShowCanvasGroup ShowCanvasGroup;
+
     public event Action OnTimerIsOut;
 
     public void StartTimerEmergencySleepPanel()
@@ -21,12 +23,12 @@ public class EmergencySleepView : MonoBehaviour
 
     public void ShowEmergencySleepPanel()
     {
-        emergencyPanelSleep.SetActive(true);
+        ShowCanvasGroup.Show();
     }
 
     public void HideEmergencySleepPanel()
     {
-        emergencyPanelSleep.SetActive(false);
+        ShowCanvasGroup.Hide();
 
         StopCoroutine(StartTimer(timerText.text));
     }
@@ -39,5 +41,7 @@ public class EmergencySleepView : MonoBehaviour
 
             timerText = i.ToString();
         }
+
+        HideEmergencySleepPanel();
     }
 }

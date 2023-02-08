@@ -5,48 +5,69 @@ using UnityEngine.Video;
 public class SleepPresenter : SleepModel
 {
     [Header("View scripts")]
-    [SerializeField] private SleepView sleepView;
+    [SerializeField] private EmergencySleepView emergencySleepView;
+    [SerializeField] private Bed bed;
 
     [Header("Sleep settings")]
     [SerializeField] private VideoClip sleepVideo;
 
-    private EmergencySleepView emergencySleepView;
-    private WorldTime worldTime;
+    [SerializeField] private WorldTime worldTime;
 
-    public bool isSleeping { get; private set; }
+    private bool isICanSleep = false;
 
-    public event Action<bool> OnSleeping = delegate { };
+    private bool isSleeping = false;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-
-        worldTime = FindObjectOfType<WorldTime>();
-
-        emergencySleepView = FindObjectOfType<EmergencySleepView>();
-    }
+    public event Action<bool> OnIsSleeping = delegate { };
 
     private void Start()
     {
-        worldTime.OnGetTimeOfDay += StartEnergenceSleepPanel;
+        worldTime.IsSleepTime += AllowToSleep;
+
+        bed.OnClickOnBed += CheckingIfICanSleep;
 
         emergencySleepView.OnTimerIsOut += GoFastSleep;
+    }
 
-        if (sleepView != null)
+    private void AllowToSleep()
+    {
+        worldTime.IsSleepTime -= AllowToSleep;
+
+        isICanSleep = true;
+
+        StartEmergencySleepView();
+    }
+
+    private void StartEmergencySleepView()
+    {
+        emergencySleepView.ShowEmergencySleepPanel();
+        emergencySleepView.StartTimerEmergencySleepPanel();
+    }
+
+    private void CheckingIfICanSleep()
+    {
+        if (isICanSleep)
         {
-            sleepView.OnClickYesButton += GoSleep;
+            UIController.ShowYesNoDialog("Вы хотите лечь спать?", GoToSleep);
+        }
+        else
+        {
+            UIController.ShowInfo("Вы не можете спать днем!", "Ок");
         }
     }
 
-    private void StartEnergenceSleepPanel(bool checkTimeOfDay)
+    private void GoToSleep()
     {
-        if (checkTimeOfDay == false)
-        {
-            ResetIsSleeping(isSleeping);
+        GoSleep(sleepVideo);
 
-            emergencySleepView.ShowEmergencySleepPanel();
-            emergencySleepView.StartTimerEmergencySleepPanel();
-        }
+        isSleeping = true;
+
+        OnIsSleeping?.Invoke(isSleeping);
+
+        AfterSleep(worldTime, isICanSleep, isSleeping);
+
+        emergencySleepView.HideEmergencySleepPanel();
+
+        worldTime.IsSleepTime += AllowToSleep;
     }
 
     private void GoFastSleep()
@@ -54,21 +75,12 @@ public class SleepPresenter : SleepModel
         if(isSleeping == false)
         {
             GoSleep(sleepVideo);
-            AfterSleep(worldTime);
 
-            OnSleeping?.Invoke(isSleeping);
+            AfterSleep(worldTime, isICanSleep, isSleeping);
+
+            OnIsSleeping?.Invoke(false);
+
+            worldTime.IsSleepTime += AllowToSleep;
         }
-    }
-
-    private void GoSleep()
-    {
-        GoSleep(sleepVideo);
-        emergencySleepView.HideEmergencySleepPanel();
-
-        AfterSleep(worldTime);
-
-        isSleeping = true;
-
-        OnSleeping?.Invoke(isSleeping);
     }
 }

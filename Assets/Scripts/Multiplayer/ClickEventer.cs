@@ -8,6 +8,7 @@ public class ClickEventer : MonoBehaviour
 {
     public event Action<IClickableObject> OnClickObject;
     public event Action<IWork> OnClickWork;
+    public AudioSource clickSound;
 
     private void Update()
     {
@@ -23,6 +24,8 @@ public class ClickEventer : MonoBehaviour
                 GetClickableObject(_hit);   
             }
         }
+
+        if (Input.GetMouseButton(0) && !clickSound.isPlaying) clickSound.Play();
     }
 
     private void GetClickableObject(RaycastHit _hit)
