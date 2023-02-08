@@ -38,6 +38,8 @@ public class EndGame : MonoBehaviour
 
     private void FinishGame()
     {
+        worldTime.OnEndGame -= FinishGame;
+
         GetAllPlayers();
 
         SortPlayersByCoins();

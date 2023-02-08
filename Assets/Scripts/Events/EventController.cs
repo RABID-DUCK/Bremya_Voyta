@@ -1,7 +1,7 @@
 using ExitGames.Client.Photon;
+using JetBrains.Annotations;
 using Photon.Pun;
 using System;
-using System.Linq;
 using UnityEngine;
 
 public class EventController : MonoBehaviourPunCallbacks
@@ -45,10 +45,10 @@ public class EventController : MonoBehaviourPunCallbacks
             randomEvent = SelectRandomEvent();
             Hashtable _CP = new Hashtable() { { "StartEvent", randomEvent } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
-        }
 
-        worldTime.OnStartEvent -= SelectEventByTime;
-        worldTime.OnStopEvent += RemoveEvents;
+            worldTime.OnStartEvent -= SelectEventByTime;
+            worldTime.OnStopEvent += RemoveEvents;
+        }
     }
 
     public int SelectRandomEvent()
@@ -172,11 +172,6 @@ public class EventController : MonoBehaviourPunCallbacks
         OnEndEvent?.Invoke();
     }
 
-    private void OnDestroy()
-    {
-        worldTime.OnStartEvent -= SelectEventByTime;
-    }
-
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
         if (propertiesThatChanged.ContainsKey("StartEvent"))
@@ -186,5 +181,10 @@ public class EventController : MonoBehaviourPunCallbacks
             worldTime.OnStartEvent -= SelectEventByTime;
             worldTime.OnStopEvent += RemoveEvents;
         }
+    }
+
+    private void OnDestroy()
+    {
+        worldTime.OnStartEvent -= SelectEventByTime;
     }
 }

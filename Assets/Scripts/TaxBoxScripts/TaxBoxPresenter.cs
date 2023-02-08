@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TaxBoxPresenter : TaxBoxModel
 {
-    [SerializeField] private TaxBox taxBoxView;
+    [SerializeField] private WorldTime worldTime;
+
+    [Space ,SerializeField] private TaxBox taxBoxView;
     [SerializeField] private TaxBoxPanelView taxBoxPanelView;
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     [SerializeField] private List<Item> resurces = new List<Item>();
-
-    private WorldTime worldTime;
 
     private Character player;
 

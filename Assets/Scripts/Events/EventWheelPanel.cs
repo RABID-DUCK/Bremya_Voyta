@@ -5,14 +5,18 @@ using UnityEngine.UI;
 public class EventWheelPanel : MonoBehaviour
 {
     [SerializeField] private GameObject eventWheelPanel;
-    [SerializeField] private ShowCanvasGroup showCanvasGroup;
+    [SerializeField] private GameObject infoEventPanel;
 
     [SerializeField] private Button openWheelPanel;
-    //[SerializeField] private Button closeWheelPanel;
+
+    [SerializeField] private Button currentEventTab;
+    [SerializeField] private Button infoEventTab;
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private TMP_Text eventPropertyText;
+
+    [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     private void Start()
     {
@@ -21,15 +25,10 @@ public class EventWheelPanel : MonoBehaviour
 
         openWheelPanel.onClick.AddListener(OpenPanelDuringStartEvent);
 
-        //closeWheelPanel.onClick.AddListener(CloseEventWheelPanel);
-
         SetStandartInfo();
-    }
 
-    //private void CloseEventWheelPanel()
-    //{
-    //    showCanvasGroup.Hide();
-    //}
+        ShowEventWheelPanel();
+    }
 
     private void SetInfoFromEventSO(EventSO eventSO)
     {
@@ -54,5 +53,23 @@ public class EventWheelPanel : MonoBehaviour
     public void OpenPanelDuringStartEvent()
     {
         showCanvasGroup.Show();
+    }
+
+    public void ShowInfoEventPanel()
+    {
+        currentEventTab.interactable = true;
+        infoEventTab.interactable = false;
+
+        infoEventPanel.SetActive(true);
+        eventWheelPanel.SetActive(false);
+    }
+
+    public void ShowEventWheelPanel()
+    {
+        infoEventTab.interactable = true;
+        currentEventTab.interactable = false;
+
+        infoEventPanel.SetActive(false);
+        eventWheelPanel.SetActive(true);
     }
 }
