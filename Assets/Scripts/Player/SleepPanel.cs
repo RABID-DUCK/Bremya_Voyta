@@ -47,6 +47,6 @@ public class SleepPanel : MonoBehaviour
 
     private void AfterSleep()
     {
-        player.transform.position = new Vector3(0, 0.0142f, 0);
+        
     }
 }
