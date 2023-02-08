@@ -12,7 +12,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private Coordinator sceneCoordinator;
     [SerializeField] private List<CharacterSO> listCharacters;
-    [SerializeField] private List<House> houses;
+    public List<House> houses;
     Quaternion synchRot = Quaternion.identity;
 
     private string _nameCh;
@@ -28,11 +28,14 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         string nameCharacter = _character.prefabs[_idCh].name;
         GameObject _locPlayer = PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), new Vector3(0, 7, 0), Quaternion.identity);
 
+
         _locPlayer.AddComponent<AudioListener>();
-       
+        Character ch = _locPlayer.GetComponent<Character>();
+
         _camera.Follow = _locPlayer.transform;
-        sceneCoordinator.InitializationPlayer(_locPlayer.GetComponent<Character>());
-        _locPlayer.GetComponent<Character>().PlayerWallet.PutCoins(50);
+        sceneCoordinator.InitializationPlayer(ch);
+        ch.PlayerWallet.PutCoins(50);
+        ch.spawnManager = this;
 
         // Логика спавна игрока взависимости от его профессии
         List<Player> _players = PhotonNetwork.PlayerList.ToList();

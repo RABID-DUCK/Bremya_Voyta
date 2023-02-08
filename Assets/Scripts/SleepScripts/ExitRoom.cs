@@ -1,4 +1,5 @@
 using Ekonomika.Utils;
+using UnityEngine;
 
 public class ExitRoom : ClickableObject
 {
@@ -6,6 +7,7 @@ public class ExitRoom : ClickableObject
     {
         UIController.ShowYesNoDialog("Вы хотите выйти из дома?", () =>
         {
+            player.ReturnHome();
             CameraSwitch.SwichToMainCamera();
         });
     }

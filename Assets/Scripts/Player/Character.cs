@@ -3,6 +3,7 @@ using Ekonomika.Work;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -19,6 +20,8 @@ public class Character : MonoBehaviourPunCallbacks
     private List<Item> allowedEarnedItems;
 
     private CharacterController controller;
+
+    public SpawnManager spawnManager;
 
     private void OnDestroy()
     {
@@ -72,6 +75,12 @@ public class Character : MonoBehaviourPunCallbacks
         transform.position = cords;
         transform.GetChild(0).rotation = rotation;
         controller.enabled = true;
+    }
+
+    public void ReturnHome()
+    {
+        Transform posHouse = spawnManager.houses.FirstOrDefault(h => photonView.Owner.NickName == h.playerNick).doorway;
+        Teleport(posHouse.position, posHouse.rotation);
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)

@@ -15,9 +15,7 @@ public class WaterTrigger : MonoBehaviourPunCallbacks
         {
             Character character = other.GetComponent<Character>();
 
-            Transform posHouse = houses.FirstOrDefault(h => other.gameObject.GetPhotonView().Owner.NickName == h.playerNick).doorway;
-
-            character.Teleport(posHouse.position, posHouse.transform.rotation);
+            character.ReturnHome();
         }
     }
 }
