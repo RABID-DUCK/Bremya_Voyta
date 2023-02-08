@@ -4,7 +4,7 @@ using UnityEngine;
 public class ShopControllerPresenter : MonoBehaviour
 {
     [SerializeField]
-    private MarketController marketController;
+    private ShopController marketController;
 
     [SerializeField]
     private ShopItemButton marketItemButton;
@@ -45,7 +45,6 @@ public class ShopControllerPresenter : MonoBehaviour
     {
         foreach (ShopItemButton button in spawnedMarketItemButtons)
         {
-            button.OnClick -= marketController.BuyItemInTheStore;
             Destroy(button.gameObject);
         }
 

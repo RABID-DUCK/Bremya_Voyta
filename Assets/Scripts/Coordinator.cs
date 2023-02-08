@@ -1,4 +1,5 @@
 using Ekonomika.Dialog;
+using Ekonomika.Utils;
 using System;
 using UnityEngine;
 
@@ -14,8 +15,14 @@ public class Coordinator : MonoBehaviour
     [SerializeField] private DialogPresenter dialogPresenter;
 
     [Header("Market")]
-    [SerializeField] private MarketController marketController;
+    
+    [SerializeField] private ShopController marketController;
     [SerializeField] private ShowCanvasGroup marketShowCanvasGroup;
+
+    [SerializeField] private MarketBuyController marketBuyController;
+    [SerializeField] private MarketSellController marketSellController;
+    [SerializeField] private ShowCanvasGroup marketSellShowCanvasGroup;
+    [SerializeField] private ShowCanvasGroup marketSellItemShowCanvasGroup;
 
     [Header("Tax")]
     [SerializeField] private TaxBoxPresenter taxBoxPresenter;
@@ -44,6 +51,7 @@ public class Coordinator : MonoBehaviour
         marketController.Initialization(player);
         uiUpdater.Initialization(player);
         taxBoxPresenter.PlayerInitialization(player);
+        marketBuyController.Initialization(player);
 
         this.player = player;
     }
@@ -62,23 +70,42 @@ public class Coordinator : MonoBehaviour
 
         marketController.OnOpenMarket += OpenMarketPanel;
         marketController.OnCloseMarket += CloseMarketPanel;
+        
+        marketSellController.OnOpenSellMarket += OpenSellMarket;
+        marketSellController.OnCloseSellMarket += CloseSellMarket;
+        marketSellController.OnOpenSellItem += OpenSellItem;
+        marketSellController.OnCloseSellItem += CloseSellItem;
 
         OnEndEducation?.Invoke();
     }
 
     private void OpenMarketPanel()
     {
-        if (marketShowCanvasGroup != null)
-        {
-            marketShowCanvasGroup.Show();
-        }
+        marketShowCanvasGroup.Show();
     }
 
     private void CloseMarketPanel()
     {
-        if (marketShowCanvasGroup != null)
-        {
-            marketShowCanvasGroup.Hide();
-        }
+        marketShowCanvasGroup.Hide();
+    }
+
+    private void OpenSellMarket(Inventory inventory)
+    {
+        marketSellShowCanvasGroup.Show();
+    }
+
+    private void CloseSellMarket()
+    {
+        marketSellShowCanvasGroup.Hide();
+    }
+
+    private void OpenSellItem()
+    {
+        marketSellItemShowCanvasGroup.Show();
+    }
+
+    private void CloseSellItem()
+    {
+        marketSellItemShowCanvasGroup.Hide();
     }
 }

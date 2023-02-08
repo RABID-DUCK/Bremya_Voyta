@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 public class MarketItemButton : MonoBehaviour
 {
-    public Action<OnlineSellItem> OnClick;
+    public Action<MarketLot> OnClick;
 
     [SerializeField] private TextMeshProUGUI playerNmaeText;
     [SerializeField] private Image itemIcon;
     [SerializeField] private Button buyButton;
     [SerializeField] private TextMeshProUGUI priceText;
 
-    private OnlineSellItem buttonItem;
+    private MarketLot buttonItem;
 
     private void Awake()
     {
         buyButton.onClick.AddListener(OnClickByButton);
     }
 
-    public void Initialization(OnlineSellItem onlineSellItem)
+    public void Initialization(MarketLot onlineSellItem)
     {
         buttonItem = onlineSellItem;
-        Sprite itemSprite = onlineSellItem.item.item.ItemSprite;
+        Sprite itemSprite = onlineSellItem.sellItem.item.ItemSprite;
 
         playerNmaeText.text = onlineSellItem.playerName;
 
@@ -35,7 +35,7 @@ public class MarketItemButton : MonoBehaviour
             itemIcon.gameObject.SetActive(false);
         }
 
-        priceText.text = onlineSellItem.item.price.ToString();
+        priceText.text = onlineSellItem.sellItem.price.ToString();
     }
 
     private void OnClickByButton()

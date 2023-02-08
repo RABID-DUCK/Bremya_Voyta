@@ -35,7 +35,7 @@ namespace Ekonomika.Utils
         {
             InventoryConteiner foundConteiner = FindConteiner(type);
 
-            if (foundConteiner == null || foundConteiner.ItemCount > count)
+            if (foundConteiner == null || foundConteiner.ItemCount < count)
                 throw new InvalidOperationException();
 
             foundConteiner.ItemCount -= count;

@@ -3,7 +3,7 @@
 public class CasinoPresenter : MonoBehaviour
 {
     [SerializeField] private CasinoView casinoView;
-    [SerializeField] private MarketController marketController;
+    [SerializeField] private ShopController marketController;
 
     [SerializeField] private WorldTime worldTime;
 
