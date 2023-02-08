@@ -39,6 +39,8 @@ public class EventWheelPanel : MonoBehaviour
         eventPropertyText.text = eventSO.eventDescriptionProperties;
 
         OpenPanelDuringStartEvent();
+
+        ShowEventWheelPanel();
     }
 
     private void SetStandartInfo()
