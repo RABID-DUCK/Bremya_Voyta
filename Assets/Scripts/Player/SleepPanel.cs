@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,9 +8,7 @@ public class SleepPanel : MonoBehaviour
 {
     [SerializeField] private WorldTime worldTime;
 
-    private Character player;
-
-    [SerializeField] private List<House> houses;
+    [SerializeField] private GameObject player;
 
     [SerializeField] private GameObject sleepPanel;
 
@@ -20,8 +16,6 @@ public class SleepPanel : MonoBehaviour
     [SerializeField] private Button noButton;
 
     [SerializeField] private VideoClip sleepVideo;
-
-    private CharacterController _charackter;
 
     public event Action OnSleep;
 
@@ -47,6 +41,6 @@ public class SleepPanel : MonoBehaviour
 
     private void AfterSleep()
     {
-        player.transform.position = new Vector3(0, 0.0142f, 0);
+        SceneManager.LoadScene("CityScene");
     }
 }
