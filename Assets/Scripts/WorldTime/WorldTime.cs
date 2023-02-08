@@ -8,9 +8,9 @@ public class WorldTime : MonoBehaviour
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public float dayTimeInSeconds { get; } = 5f; // Количество секунд днем
+    public float dayTimeInSeconds { get; } = 15f; // Количество секунд днем
 
-    public float nightTimeInSeconds { get; } = 5f; // Количество секунд ночью
+    public float nightTimeInSeconds { get; } = 10f; // Количество секунд ночью
 
     public float timeProgress { get; set; } // Игровой прогресс
 
@@ -35,6 +35,8 @@ public class WorldTime : MonoBehaviour
     public bool isCheckTimeOfDay { get; set; }
 
     public bool isStartTime { get; set; } // Отвечает за включение времени
+
+    public event Action IsSleepTime = delegate { };
 
     public event Action OnStartTaxEvent = delegate { };
     public event Action OnStopTaxEvent = delegate { };
@@ -141,9 +143,12 @@ public class WorldTime : MonoBehaviour
                         if (PhotonNetwork.IsMasterClient)
                         {
                             countOfDaysElapsed++;
-                        }
 
-                        //isCheckTimeOfDay = !isCheckTimeOfDay;
+                            //if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
+                            //{
+                            //    isStartTime = false;
+                            //}
+                        }
                     }
                 }
                 EventSender(countOfDaysElapsed, timeProgress, isCheckTimeOfDay);
@@ -161,8 +166,15 @@ public class WorldTime : MonoBehaviour
         OnGetTimeProgress?.Invoke(timeProgress);
         //--------------------------------------//
 
+        //------- Сон -------//
+        if (isCheckTimeOfDay == false && countOfDaysElapsed != 5)
+        {
+            IsSleepTime?.Invoke();
+        }
+        //-------------------//
+
         //--------------- Стандартные(Природные и т.п.) события ---------------//
-        if(PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
         {
             if (countOfDaysElapsed == 1 && timeProgress > 0.6f && isCheckTimeOfDay)
             {
@@ -186,7 +198,7 @@ public class WorldTime : MonoBehaviour
         }
         //----------------------------------------------------------------------//
 
-        //----------------------------- Менялы -----------------------------// TODO: Переписать подписку
+        //----------------------------- Менялы -----------------------------//
         if (isCheckTimeOfDay && countOfDaysElapsed > 2 && timeProgress == 0f)
         {
             OnStartCasinoEvent?.Invoke();
@@ -208,7 +220,7 @@ public class WorldTime : MonoBehaviour
         }
         //------------------------------------------------------------------//
 
-        //---------------------------------- Налоги -----------------------------------// TODO: Переписать подписку
+        //---------------------------------- Налоги -----------------------------------//
         if (countOfDaysElapsed == 5 && timeProgress > 0.5f && isCheckTimeOfDay == true)
         {
             OnStartTaxEvent?.Invoke();
@@ -217,7 +229,7 @@ public class WorldTime : MonoBehaviour
         {
             OnStopTaxEvent?.Invoke();
         }
-        //-----------------------------------------------------------------------------// TODO: Переписать подписку
+        //-----------------------------------------------------------------------------// 
 
         //---------------------- Конец игры ---------------------//
         if (countOfDaysElapsed > 5 && isCheckTimeOfDay == false)
