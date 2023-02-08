@@ -32,6 +32,8 @@ public class TaxBoxPanelView : MonoBehaviour
     public void ShowTrue()
     {
         isPanelCanBeOpened = true;
+
+        UIController.ShowInfo("Оплатите налоги!!!", "Ок");
     }
 
     private void SendOnClickGetResource()
@@ -44,6 +46,10 @@ public class TaxBoxPanelView : MonoBehaviour
         if (isPanelCanBeOpened)
         {
             showCanvasGroup.Show();
+        }
+        else
+        {
+            UIController.ShowInfo("Событие пока не доступно!","Ок");
         }
     }
 
@@ -62,8 +68,13 @@ public class TaxBoxPanelView : MonoBehaviour
         isCompleted = true;
     }
 
-    public void ShowTaxHasNotBeenPaidPanel()
+    public void ShowPanelNotEnoughResources()
     {
         UIController.ShowInfo("У вас не хватает ресурсов для уплаты налога!", "Ок");
+    }
+
+    public void ShowPanelTaxNotPaid()
+    {
+        UIController.ShowInfo("Налог не улачен! Штраф составляет 10 монет!", "Ок");
     }
 }

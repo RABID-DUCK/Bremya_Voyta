@@ -22,23 +22,40 @@ public class TaxBoxModel : MonoBehaviour
             int selectIndex = 0;
             int selectResourceCount = 0;
 
-            Randomize(0, resurces.Count, out selectIndex);
+            while (selectResources.Count < 3)
+            {
+                Randomize(0, resurces.Count, out selectIndex);
 
-            selectResources.Add(resurces[selectIndex]);
+                if (selectResources[i].ItemName != resurces[selectIndex].ItemName)
+                {
+                    selectResources.Add(resurces[selectIndex]);
+                }
+            }
 
-            Randomize(1, 2, out selectResourceCount);
+            if(selectCountResources.Count < 3)
+            {
+                Randomize(1, 2, out selectResourceCount);
 
-            selectCountResources.Add(selectResourceCount);
+                selectCountResources.Add(selectResourceCount);
+            }
         }
     }
 
     public void SetSelectedResurcesInformationOnTaxBoxPanel(List<Image> imageResuces, List<TMP_Text> nameResurcesText, List<TMP_Text> countResurcesText)
     {
-        for (int i = 0; i < 3; i++)
+        if(selectResources.Count == 3 && selectCountResources.Count == 3)
         {
-            imageResuces[i].sprite = selectResources[i].ItemSprite;
-            nameResurcesText[i].text = selectResources[i].ItemName;
-            countResurcesText[i].text = $"Налог составляет: {selectCountResources[i]}шт.";
+            for (int i = 0; i < 3; i++)
+            {
+                imageResuces[i].sprite = selectResources[i].ItemSprite;
+                nameResurcesText[i].text = selectResources[i].ItemName;
+                countResurcesText[i].text = $"Налог составляет: {selectCountResources[i]}шт.";
+            }
+        }
+        else
+        {
+            Debug.LogError($"Ты еблан. У тебя в массивах больше 3-х элементов\r\n" +
+                $"selectResources = {selectResources.Count}; selectCountResources = {selectCountResources.Count}");
         }
     }
 
@@ -48,5 +65,10 @@ public class TaxBoxModel : MonoBehaviour
         {
             player.PlayerInventory.PickUpItem(selectResources[i], selectCountResources[i]);
         }
+    }
+
+    public void TakePenaltyForNonPaymentOfTax(Character player)
+    {
+        player.PlayerWallet.PickUpCoins(10);
     }
 }
