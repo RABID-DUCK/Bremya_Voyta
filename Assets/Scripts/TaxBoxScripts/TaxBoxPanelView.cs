@@ -15,8 +15,6 @@ public class TaxBoxPanelView : MonoBehaviour
     public List<TMP_Text> nameResurcesText = new List<TMP_Text>();
     public List<TMP_Text> countResurcesText = new List<TMP_Text>();
 
-    public GameObject standartText;
-
     private ShowCanvasGroup showCanvasGroup;
 
     public bool isPanelCanBeOpened = false;

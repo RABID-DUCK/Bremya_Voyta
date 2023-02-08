@@ -8,9 +8,9 @@ public class WorldTime : MonoBehaviour
     [Space, Tooltip("Count of days elapsed")]
     public int countOfDaysElapsed; // Номер наступившего дня
 
-    public float dayTimeInSeconds { get; } = 15f; // Количество секунд днем
+    public float dayTimeInSeconds { get; } = 360f; // Количество секунд днем
 
-    public float nightTimeInSeconds { get; } = 10f; // Количество секунд ночью
+    public float nightTimeInSeconds { get; } = 60f; // Количество секунд ночью
 
     public float timeProgress { get; set; } // Игровой прогресс
 
