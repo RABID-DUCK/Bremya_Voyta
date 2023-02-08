@@ -175,52 +175,52 @@ public class WorldTime : MonoBehaviour
             }
         }
 
-        if (countOfDaysElapsed == 2 && timeProgress > 1f && isCheckTimeOfDay)
+        if (countOfDaysElapsed == 2 && timeProgress > 0.95f && isCheckTimeOfDay)
         {
             OnStopEvent?.Invoke();
         }
 
-        if (countOfDaysElapsed == 5 && timeProgress > 1f && isCheckTimeOfDay)
+        if (countOfDaysElapsed == 5 && timeProgress > 0.95f && isCheckTimeOfDay)
         {
             OnStopEvent?.Invoke();
         }
         //----------------------------------------------------------------------//
 
-        //---------------------------- Менялы -----------------------------//
-        if (isCheckTimeOfDay && countOfDaysElapsed == 2 && timeProgress == 0f)
+        //----------------------------- Менялы -----------------------------// TODO: Переписать подписку
+        if (isCheckTimeOfDay && countOfDaysElapsed > 2 && timeProgress == 0f)
         {
             OnStartCasinoEvent?.Invoke();
         }
 
-        if (isCheckTimeOfDay && countOfDaysElapsed == 2 && timeProgress == 0.8f)
+        if (isCheckTimeOfDay && countOfDaysElapsed > 2 && timeProgress == 0.8f)
         {
             OnStopCasinoEvent?.Invoke();
         }
 
-        if (isCheckTimeOfDay && countOfDaysElapsed == 5 && timeProgress == 0f)
+        if (isCheckTimeOfDay && countOfDaysElapsed > 5 && timeProgress == 0f)
         {
             OnStartCasinoEvent?.Invoke();
         }
 
-        if (isCheckTimeOfDay && countOfDaysElapsed == 5 && timeProgress == 0.5f)
+        if (isCheckTimeOfDay && countOfDaysElapsed > 5 && timeProgress == 0.5f)
         {
             OnStopCasinoEvent?.Invoke();
         }
         //------------------------------------------------------------------//
 
-        //---------------------------------- Налоги -----------------------------------//
-        if (countOfDaysElapsed == 5 && timeProgress == 0.5f && isCheckTimeOfDay == true)
+        //---------------------------------- Налоги -----------------------------------// TODO: Переписать подписку
+        if (countOfDaysElapsed == 5 && timeProgress > 0.5f && isCheckTimeOfDay == true)
         {
             OnStartTaxEvent?.Invoke();
         }
-        else if (countOfDaysElapsed == 5 && timeProgress == 0.9f && isCheckTimeOfDay == true)
+        else if (countOfDaysElapsed == 5 && timeProgress > 0.9f && isCheckTimeOfDay == true)
         {
             OnStopTaxEvent?.Invoke();
         }
-        //-----------------------------------------------------------------------------//
+        //-----------------------------------------------------------------------------// TODO: Переписать подписку
 
         //---------------------- Конец игры ---------------------//
-        if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
+        if (countOfDaysElapsed > 5 && isCheckTimeOfDay == false)
         {
             OnEndGame?.Invoke();
         }
