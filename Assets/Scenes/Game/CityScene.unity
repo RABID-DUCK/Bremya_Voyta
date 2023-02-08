@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17309213, g: 0.2163364, b: 0.29834357, a: 1}
+  m_IndirectSpecularColor: {r: 0.43710327, g: 0.4848175, b: 0.56508553, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6738,54 +6738,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113147504}
   m_CullTransparentMesh: 1
---- !u!114 &113147508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113147504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32f395ca546b2c745803b22e3d91f737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventWheelPanel: {fileID: 113147504}
-  infoEventPanel: {fileID: 0}
-  openWheelPanel: {fileID: 1246632324}
-  currentEventTab: {fileID: 0}
-  infoEventTab: {fileID: 0}
-  titleText: {fileID: 2039319755}
-  descriptionText: {fileID: 873179590}
-  eventPropertyText: {fileID: 743009408}
-  showCanvasGroup: {fileID: 113147509}
---- !u!114 &113147509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113147504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2aa94c0d8317e643ae1eaca3aa80d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 113147510}
-  speed: 4
-  _isHided: 1
---- !u!225 &113147510
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113147504}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &115121578
 GameObject:
   m_ObjectHideFlags: 0
@@ -38582,7 +38534,7 @@ MonoBehaviour:
   selectResources: []
   selectCountResources: 
   worldTime: {fileID: 1595287600}
-  taxBoxView: {fileID: 49603548}
+  taxBox: {fileID: 0}
   taxBoxPanelView: {fileID: 654464160}
   showCanvasGroup: {fileID: 320526434}
   resurces:
