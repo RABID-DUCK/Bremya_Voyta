@@ -18,6 +18,8 @@ public class Character : MonoBehaviourPunCallbacks
     [SerializeField]
     private List<Item> allowedEarnedItems;
 
+    private CharacterController controller;
+
     private void OnDestroy()
     {
         if (Init)
@@ -32,6 +34,8 @@ public class Character : MonoBehaviourPunCallbacks
         {
             Destroy(this);
         }
+
+        controller = gameObject.GetComponent<CharacterController>();
     }
 
     public void Initialization(ClickEventer clickEventer)
@@ -60,6 +64,14 @@ public class Character : MonoBehaviourPunCallbacks
         {
             UIController.ShowOkInfo($"Вы не можете работать на данной работе! \nТребуется: <b>{workObject.WorkerName}</b>.");
         }
+    }
+
+    public void Teleport(Vector3 cords, Quaternion rotation = new Quaternion())
+    {
+        controller.enabled = false;
+        transform.position = cords;
+        transform.GetChild(0).rotation = rotation;
+        controller.enabled = true;
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
