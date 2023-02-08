@@ -46,8 +46,6 @@ public class EventController : MonoBehaviourPunCallbacks
             Hashtable _CP = new Hashtable() { { "StartEvent", randomEvent } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
 
-            print("InjectEventNumber");
-
             worldTime.OnStartEvent -= SelectEventByTime;
             worldTime.OnStopEvent += RemoveEvents;
         }
@@ -160,7 +158,6 @@ public class EventController : MonoBehaviourPunCallbacks
 
     public void RemoveEvents()
     {
-        print("remove");
         worldTime.OnStopEvent -= RemoveEvents;
         worldTime.OnStartEvent += SelectEventByTime;
 
@@ -175,21 +172,19 @@ public class EventController : MonoBehaviourPunCallbacks
         OnEndEvent?.Invoke();
     }
 
-    private void OnDestroy()
-    {
-        worldTime.OnStartEvent -= SelectEventByTime;
-    }
-
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
         if (propertiesThatChanged.ContainsKey("StartEvent"))
         {
-            print("SelectEventNumber");
-
             SelectEventByRandomizeNumber((int)PhotonNetwork.CurrentRoom.CustomProperties["StartEvent"]);
 
             worldTime.OnStartEvent -= SelectEventByTime;
             worldTime.OnStopEvent += RemoveEvents;
         }
+    }
+
+    private void OnDestroy()
+    {
+        worldTime.OnStartEvent -= SelectEventByTime;
     }
 }
