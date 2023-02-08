@@ -9,6 +9,7 @@ public class ExitRoom : ClickableObject
         {
             player.ReturnHome();
             CameraSwitch.SwichToMainCamera();
+            player.gameObject.GetComponent<PlayerController>().enabled = true;
         });
     }
 }

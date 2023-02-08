@@ -16,6 +16,7 @@ public class House : ClickableObject
             {
                 player.Teleport(new Vector3(1f, -49.3f, 0.23f));
                 CameraSwitch.SwichHouseCamera();
+                player.gameObject.GetComponent<PlayerController>().enabled = false;
             });
         }
         else
