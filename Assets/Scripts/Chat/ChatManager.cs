@@ -88,6 +88,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     void Update()
     {
         this.chatClient.Service();
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SendButton();
+        }
     }
 
     public void SendButton()
@@ -97,11 +101,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
             chatClient.PublishMessage("G", textMessage.text);
             textMessage.text = "";
         }
-    }
-
-    public void CheckEnter()
-    {
-        // отправка по нажатию на Enter
     }
 
     public void OpenChat()
