@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TaxBoxPresenter : TaxBoxModel
 {
     [SerializeField] private WorldTime worldTime;
 
-    [Space ,SerializeField] private TaxBox taxBoxView;
+    [Space, SerializeField] private TaxBox taxBox;
     [SerializeField] private TaxBoxPanelView taxBoxPanelView;
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
@@ -18,18 +17,21 @@ public class TaxBoxPresenter : TaxBoxModel
     {
         worldTime.OnStartTaxEvent += StartTaxEvent;
 
-        taxBoxView.OnClickTaxBox += OpenTaxBoxPanel;
+        taxBox.OnClickTaxBox += OpenTaxBoxPanel;
 
         taxBoxPanelView.OnClickGetResource += TakeResourcesFromPlayer;
     }
 
-    public void Initialization(Character player)
+    public void PlayerInitialization(Character player)
     {
         this.player = player;
     }
 
     private void StartTaxEvent()
     {
+        worldTime.OnStartTaxEvent -= StartTaxEvent;
+        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
+
         IsPanelCanBeOpened();
 
         SetInformationAboutNecessaryResources();
@@ -37,10 +39,6 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void IsPanelCanBeOpened()
     {
-        worldTime.OnStartTaxEvent -= StartTaxEvent;
-
-        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
-
         taxBoxPanelView.ShowTrue();
     }
 
@@ -51,8 +49,6 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void SetInformationAboutNecessaryResources()
     {
-        //taxBoxPanelView.ShowAllElements();
-
         SelectRandomResurses(resurces);
 
         SetSelectedResurcesInformationOnTaxBoxPanel(taxBoxPanelView.imageResuces, taxBoxPanelView.nameResurcesText, taxBoxPanelView.countResurcesText);
@@ -62,7 +58,11 @@ public class TaxBoxPresenter : TaxBoxModel
     {
         if (taxBoxPanelView.isCompleted == false)
         {
-            taxBoxPanelView.ShowTaxHasNotBeenPaidPanel();
+            taxBoxPanelView.ShowPanelTaxNotPaid();
+
+            TakePenaltyForNonPaymentOfTax(player);
+
+            taxBoxPanelView.HideTaxBoxPanel();
 
             worldTime.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
         }
@@ -70,15 +70,13 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void TakeResourcesFromPlayer()
     {
-        try
+        if (GetResourcesFromPlayer(player))
         {
-            GetResourcesFromPlayer(player);
-
             taxBoxPanelView.ShowSuccessfullyPanel();
         }
-        catch (InvalidOperationException)
+        else
         {
-            taxBoxPanelView.ShowTaxHasNotBeenPaidPanel();
+            UIController.ShowInfo("У вас не хватает ресурсов для уплаты налога!", "Ок");
         }
     }
 

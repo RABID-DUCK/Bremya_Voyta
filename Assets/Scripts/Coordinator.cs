@@ -43,7 +43,7 @@ public class Coordinator : MonoBehaviour
         player.Initialization(clickEventer);
         marketController.Initialization(player);
         uiUpdater.Initialization(player);
-        taxBoxPresenter.Initialization(player);
+        taxBoxPresenter.PlayerInitialization(player);
 
         this.player = player;
     }

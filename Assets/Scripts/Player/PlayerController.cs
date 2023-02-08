@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [SerializeField] private Transform playerBody;
 
+    [SerializeField] private AudioSource playerWalckSound;
+
     [SerializeField] private Animator animator;
 
     private void Awake()
@@ -36,6 +38,18 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         var h = Input.GetAxis("Horizontal"); // AD
         var v = Input.GetAxis("Vertical"); // WS
+
+        if (h != 0 || v != 0)
+        {
+            if (!playerWalckSound.isPlaying)
+            {
+                playerWalckSound.Play();
+            }
+        }
+        else
+        {
+            playerWalckSound.Stop();
+        }
 
         // Move player
         var right = transform.right * h;
