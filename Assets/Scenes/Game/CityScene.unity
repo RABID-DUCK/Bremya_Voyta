@@ -27480,7 +27480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1313304768}
   m_Layer: 0
-  m_Name: TaxesItems
+  m_Name: InventoryItems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27600,7 +27600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1329387167}
   m_Layer: 0
-  m_Name: TaxesPanel
+  m_Name: InventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
