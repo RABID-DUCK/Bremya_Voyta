@@ -6118,7 +6118,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 716363715}
   m_HandleRect: {fileID: 716363714}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13745,10 +13745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a946dae8b81d9d40813dbe1da567f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emergencySleepView: {fileID: 1779564838}
+  worldTime: {fileID: 1595287600}
   bed: {fileID: 1442248777}
   sleepVideo: {fileID: 32900000, guid: 1e49bb8ec135c7f45873d05026dce2bd, type: 3}
-  worldTime: {fileID: 1595287600}
 --- !u!1 &485720492
 GameObject:
   m_ObjectHideFlags: 0
@@ -15900,6 +15899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
   arrowRectTransform: {fileID: 1805297919}
+  sleepPresenter: {fileID: 478749257}
 --- !u!1 &697987846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7955324953202361596, guid: c63e852bab0ea464b9a26aaefe6e223d, type: 3}
@@ -35064,6 +35064,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countOfDaysElapsed: 0
+  dayTimeInSeconds: 360
+  nightTimeInSeconds: 60
 --- !u!1 &1598248573
 GameObject:
   m_ObjectHideFlags: 0
@@ -35298,7 +35300,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674516262}
   m_HandleRect: {fileID: 674516261}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -35424,7 +35426,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1623178052}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1642993099}
+        m_TargetAssemblyTypeName: ShowCanvasGroup, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1623178052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36050,6 +36064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
   arrowRectTransform: {fileID: 913893792}
+  sleepPresenter: {fileID: 478749257}
 --- !u!1 &1684692791
 GameObject:
   m_ObjectHideFlags: 0
@@ -36978,9 +36993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bc12324a21d0a42addec5a64bd1087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emergencyPanelSleep: {fileID: 1779564837}
-  timerText: {fileID: 1783834900}
-  ShowCanvasGroup: {fileID: 1779564839}
 --- !u!114 &1779564839
 MonoBehaviour:
   m_ObjectHideFlags: 0

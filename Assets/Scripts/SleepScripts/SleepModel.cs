@@ -1,20 +1,22 @@
-using System;
+using Ekonomika.Utils;
 using UnityEngine;
 using UnityEngine.Video;
 
 public class SleepModel : MonoBehaviour
 {
+    public WorldTime worldTime;
+
     public void GoSleep(VideoClip sleepVideo)
     {
-        UIController.ShowVideo(sleepVideo, null);
+        UIController.ShowVideo(sleepVideo, AfterSleep);
     }
 
-    public void AfterSleep(WorldTime worldTime, bool isICanSleep, bool isSleeping)
+    public void AfterSleep()
     {
         worldTime.timeProgress = 0;
         worldTime.isCheckTimeOfDay = true;
+        worldTime.countOfDaysElapsed++;
 
-        isICanSleep = false;
-        isSleeping = false;
+        CameraSwitch.SwichHouseCamera();
     }
 }

@@ -53,6 +53,7 @@ MonoBehaviour:
   allowedEarnedItems:
   - {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
   - {fileID: 11400000, guid: af77cd023596b2543b9f57604b3cb91e, type: 2}
+  spawnManager: {fileID: 0}
 --- !u!114 &9209793499329775710
 MonoBehaviour:
   m_ObjectHideFlags: 0

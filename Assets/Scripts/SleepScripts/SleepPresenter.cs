@@ -5,42 +5,36 @@ using UnityEngine.Video;
 public class SleepPresenter : SleepModel
 {
     [Header("View scripts")]
-    [SerializeField] private EmergencySleepView emergencySleepView;
+    //[SerializeField] private EmergencySleepView emergencySleepView;
     [SerializeField] private Bed bed;
 
     [Header("Sleep settings")]
     [SerializeField] private VideoClip sleepVideo;
 
-    [SerializeField] private WorldTime worldTime;
-
     private bool isICanSleep = false;
 
-    private bool isSleeping = false;
+    public event Action OnSkipArrow = delegate { };
 
-    public event Action<bool> OnIsSleeping = delegate { };
+    //private bool isSleeping = false;
+
+    //public event Action<bool> OnIsSleeping = delegate { };
 
     private void Start()
     {
         worldTime.IsSleepTime += AllowToSleep;
 
-        bed.OnClickOnBed += CheckingIfICanSleep;
+        //emergencySleepView.OnTimerIsOut += GoToFastSleep;
 
-        emergencySleepView.OnTimerIsOut += GoFastSleep;
+        bed.OnClickOnBed += CheckingIfICanSleep;
     }
 
     private void AllowToSleep()
     {
-        worldTime.IsSleepTime -= AllowToSleep;
+        //worldTime.IsSleepTime -= AllowToSleep;
+
+        //emergencySleepView.ShowEmergencySleepPanel();
 
         isICanSleep = true;
-
-        StartEmergencySleepView();
-    }
-
-    private void StartEmergencySleepView()
-    {
-        emergencySleepView.ShowEmergencySleepPanel();
-        emergencySleepView.StartTimerEmergencySleepPanel();
     }
 
     private void CheckingIfICanSleep()
@@ -57,30 +51,21 @@ public class SleepPresenter : SleepModel
 
     private void GoToSleep()
     {
+        isICanSleep = false;
+
+        //emergencySleepView.HideEmergencySleepPanel();
+
         GoSleep(sleepVideo);
 
-        isSleeping = true;
-
-        OnIsSleeping?.Invoke(isSleeping);
-
-        AfterSleep(worldTime, isICanSleep, isSleeping);
-
-        emergencySleepView.HideEmergencySleepPanel();
-
-        worldTime.IsSleepTime += AllowToSleep;
+        OnSkipArrow?.Invoke();
     }
 
-    private void GoFastSleep()
-    {
-        if(isSleeping == false)
-        {
-            GoSleep(sleepVideo);
+    //private void GoToFastSleep()
+    //{
+    //    emergencySleepView.OnTimerIsOut -= GoToFastSleep;
 
-            AfterSleep(worldTime, isICanSleep, isSleeping);
+    //    isICanSleep = false;
 
-            OnIsSleeping?.Invoke(false);
-
-            worldTime.IsSleepTime += AllowToSleep;
-        }
-    }
+    //    GoSleep(sleepVideo);
+    //}
 }

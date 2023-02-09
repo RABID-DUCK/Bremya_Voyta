@@ -1,5 +1,4 @@
-﻿using Photon.Pun;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ArrowChengeTimeOfDay : MonoBehaviour
 {
@@ -8,6 +7,8 @@ public class ArrowChengeTimeOfDay : MonoBehaviour
 
     [Header("ArrowChange settings")]
     [SerializeField] private RectTransform arrowRectTransform;
+
+    [SerializeField] private SleepPresenter sleepPresenter;
 
     private float angleOffsetRotationArrow;
 
@@ -18,7 +19,7 @@ public class ArrowChengeTimeOfDay : MonoBehaviour
         CalcTimeRotationArrow();
         CalcAngleFromTimeProgress(timeRotationArrow);
 
-        worldTime.OnGetTimeOfDay += ResetAngleRotate;
+        sleepPresenter.OnSkipArrow += ResetAngleRotate;
     }
 
     private void Update()
@@ -26,12 +27,9 @@ public class ArrowChengeTimeOfDay : MonoBehaviour
         RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
     }
 
-    private void ResetAngleRotate(bool timeOfDay)
+    private void ResetAngleRotate()
     {
-        if(timeOfDay)
-        {
-            arrowRectTransform.Rotate(0f, 0f, 0f);
-        }
+        arrowRectTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     private float CalcTimeRotationArrow()
