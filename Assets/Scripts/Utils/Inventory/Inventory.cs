@@ -15,6 +15,9 @@ namespace Ekonomika.Utils
 
         public void PutItem(Item type, int count = 1)
         {
+            if (count < 1)
+                throw new InvalidOperationException();
+
             InventoryConteiner foundConteiner = FindConteiner(type);
 
             if (foundConteiner != null)
@@ -39,6 +42,11 @@ namespace Ekonomika.Utils
                 throw new InvalidOperationException();
 
             foundConteiner.ItemCount -= count;
+
+            if (foundConteiner.ItemCount == 0)
+            {
+                _conteiners.Remove(foundConteiner);
+            }
 
             invSYNC.PutOrPickUpItem(type, -count);
 

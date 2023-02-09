@@ -24,7 +24,8 @@ public class MarketSellItemView : MonoBehaviour
 
     public void SetItem(InventoryConteiner inventoryConteiner)
     {
-
+        priceSlider.value = 10f;
+        countSlider.value = (int)inventoryConteiner.ItemCount / 2;
         itemImage.sprite = inventoryConteiner.Item.ItemSprite;
         countSlider.maxValue = inventoryConteiner.ItemCount;
 
