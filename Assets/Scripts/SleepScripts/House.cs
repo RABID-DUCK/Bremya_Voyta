@@ -14,7 +14,7 @@ public class House : ClickableObject
         {
             UIController.ShowYesNoDialog("Вы хотите войти в свой дом?", () =>
             {
-                player.Teleport(new Vector3(1f, -49.3f, 0.23f));
+                player.Teleport(new Vector3(1f, -49.893f, 0.23f));
                 CameraSwitch.SwichHouseCamera();
                 player.gameObject.GetComponent<PlayerController>().enabled = false;
             });
