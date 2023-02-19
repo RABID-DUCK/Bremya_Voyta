@@ -1,14 +1,13 @@
 using ExitGames.Client.Photon;
-using JetBrains.Annotations;
 using Photon.Pun;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventController : MonoBehaviourPunCallbacks
+public class GameEventsStarter : MonoBehaviourPunCallbacks
 {
     [Header("Event controller settings")]
-    [SerializeField] private WorldTime worldTime;
+    [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
     private int randomEvent;
 
@@ -34,7 +33,7 @@ public class EventController : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        worldTime.OnStartEvent += SelectEventByTime;
+        worldTimeEventSender.OnStartEvent += SelectEventByTime;
     }
 
     [ContextMenu("StartEvent")]
@@ -51,8 +50,8 @@ public class EventController : MonoBehaviourPunCallbacks
             Hashtable _CP = new Hashtable() { { "StartEvent", randomEvent } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
 
-            worldTime.OnStartEvent -= SelectEventByTime;
-            worldTime.OnStopEvent += RemoveEvents;
+            worldTimeEventSender.OnStartEvent -= SelectEventByTime;
+            worldTimeEventSender.OnStopEvent += RemoveEvents;
         }
     }
 
@@ -171,8 +170,8 @@ public class EventController : MonoBehaviourPunCallbacks
 
     public void RemoveEvents()
     {
-        worldTime.OnStopEvent -= RemoveEvents;
-        worldTime.OnStartEvent += SelectEventByTime;
+        worldTimeEventSender.OnStopEvent -= RemoveEvents;
+        worldTimeEventSender.OnStartEvent += SelectEventByTime;
 
         IsNegativeWeather = false;
 
@@ -193,13 +192,13 @@ public class EventController : MonoBehaviourPunCallbacks
         {
             SelectEventByRandomizeNumber((int)PhotonNetwork.CurrentRoom.CustomProperties["StartEvent"]);
 
-            worldTime.OnStartEvent -= SelectEventByTime;
-            worldTime.OnStopEvent += RemoveEvents;
+            worldTimeEventSender.OnStartEvent -= SelectEventByTime;
+            worldTimeEventSender.OnStopEvent += RemoveEvents;
         }
     }
 
     private void OnDestroy()
     {
-        worldTime.OnStartEvent -= SelectEventByTime;
+        worldTimeEventSender.OnStartEvent -= SelectEventByTime;
     }
 }

@@ -13747,6 +13747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
+  worldTimeEventSender: {fileID: 1595287601}
   bed: {fileID: 1442248777}
   sleepVideo: {fileID: 32900000, guid: 1e49bb8ec135c7f45873d05026dce2bd, type: 3}
 --- !u!1 &485720492
@@ -17340,15 +17341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28cbcb49e8e763a4c9fcc55a598ebe9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldTime: {fileID: 1595287600}
-  audioClips: []
-  iventsSounds: {fileID: 0}
-  littleRainEvent: {fileID: 989820648}
-  clearWeatherWithLittleColdEvent: {fileID: 1136995793}
-  "mine\u0421ollapseEvent": {fileID: 736321961}
-  standartDayEvent: {fileID: 424204935}
-  stormEvent: {fileID: 169984094}
-  ThunderstormWithHeavyRainEvent: {fileID: 1440916633}
 --- !u!1 &792957406
 GameObject:
   m_ObjectHideFlags: 0
@@ -18964,6 +18956,10 @@ PrefabInstance:
       propertyPath: countCoinsTopPlayer
       value: 
       objectReference: {fileID: 970362628}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: worldTimeEventSender
+      value: 
+      objectReference: {fileID: 1595287601}
     - target: {fileID: 7454832120675866592, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 79
@@ -33684,7 +33680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   casinoView: {fileID: 1576812784}
   marketController: {fileID: 0}
-  worldTime: {fileID: 1595287600}
+  worldTimeEventSender: {fileID: 1595287601}
 --- !u!1 &1454504960
 GameObject:
   m_ObjectHideFlags: 0
@@ -35030,6 +35026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595287599}
   - component: {fileID: 1595287600}
+  - component: {fileID: 1595287601}
   m_Layer: 0
   m_Name: WorldTime
   m_TagString: Untagged
@@ -35067,6 +35064,19 @@ MonoBehaviour:
   countOfDaysElapsed: 0
   dayTimeInSeconds: 360
   nightTimeInSeconds: 60
+  eventSender: {fileID: 1595287601}
+--- !u!114 &1595287601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595287598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f8b9fa7d0c9464485a6bea14571d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1598248573
 GameObject:
   m_ObjectHideFlags: 0
@@ -38653,7 +38663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectResources: []
   selectCountResources: 
-  worldTime: {fileID: 1595287600}
+  worldTimeEventSender: {fileID: 1595287601}
   taxBox: {fileID: 49603548}
   taxBoxPanelView: {fileID: 654464160}
   showCanvasGroup: {fileID: 320526434}

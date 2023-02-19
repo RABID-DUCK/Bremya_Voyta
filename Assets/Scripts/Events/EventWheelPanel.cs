@@ -20,8 +20,8 @@ public class EventWheelPanel : MonoBehaviour
 
     private void Start()
     {
-        EventController.OnGetEventSO += SetInfoFromEventSO;
-        EventController.OnEndEvent += SetStandartInfo;
+        GameEventsStarter.OnGetEventSO += SetInfoFromEventSO;
+        GameEventsStarter.OnEndEvent += SetStandartInfo;
 
         openWheelPanel.onClick.AddListener(OpenPanelDuringStartEvent);
 

@@ -4,6 +4,8 @@ using UnityEngine.Video;
 
 public class SleepPresenter : SleepModel
 {
+    [SerializeField] private WorldTimeEventSender worldTimeEventSender;
+
     [Header("View scripts")]
     //[SerializeField] private EmergencySleepView emergencySleepView;
     [SerializeField] private Bed bed;
@@ -21,7 +23,7 @@ public class SleepPresenter : SleepModel
 
     private void Start()
     {
-        worldTime.IsSleepTime += AllowToSleep;
+        worldTimeEventSender.IsSleepTime += AllowToSleep;
 
         //emergencySleepView.OnTimerIsOut += GoToFastSleep;
 

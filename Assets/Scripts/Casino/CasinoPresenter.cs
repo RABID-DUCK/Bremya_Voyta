@@ -5,7 +5,7 @@ public class CasinoPresenter : MonoBehaviour
     [SerializeField] private CasinoView casinoView;
     [SerializeField] private ShopController marketController;
 
-    [SerializeField] private WorldTime worldTime;
+    [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
     private int countCoinsSelectedEvent;
     private int amountOfMoneyWon;
@@ -17,7 +17,7 @@ public class CasinoPresenter : MonoBehaviour
         casinoView.OnClickAverageRateButton += GetAvarageRateMoney;
         casinoView.OnClickMaximumRateButton += GetMaximumRateMoney;
 
-        worldTime.OnStopCasinoEvent += CheckingProbabilityWinningMoney;
+        worldTimeEventSender.OnStopCasinoEvent += CheckingProbabilityWinningMoney;
     }
 
     private void GetMinimumRateMoney()

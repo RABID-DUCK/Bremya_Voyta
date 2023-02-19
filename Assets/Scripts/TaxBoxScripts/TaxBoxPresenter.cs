@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TaxBoxPresenter : TaxBoxModel
 {
-    [SerializeField] private WorldTime worldTime;
+    [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
     [Space, SerializeField] private TaxBox taxBox;
     [SerializeField] private TaxBoxPanelView taxBoxPanelView;
@@ -15,7 +15,7 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void Start()
     {
-        worldTime.OnStartTaxEvent += StartTaxEvent;
+        worldTimeEventSender.OnStartTaxEvent += StartTaxEvent;
 
         taxBox.OnClickTaxBox += OpenTaxBoxPanel;
 
@@ -29,8 +29,8 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void StartTaxEvent()
     {
-        worldTime.OnStartTaxEvent -= StartTaxEvent;
-        worldTime.OnStopTaxEvent += OutputtingTaxBoxEventResults;
+        worldTimeEventSender.OnStartTaxEvent -= StartTaxEvent;
+        worldTimeEventSender.OnStopTaxEvent += OutputtingTaxBoxEventResults;
 
         IsPanelCanBeOpened();
 
@@ -64,7 +64,7 @@ public class TaxBoxPresenter : TaxBoxModel
 
             taxBoxPanelView.HideTaxBoxPanel();
 
-            worldTime.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
+            worldTimeEventSender.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
         }
     }
 

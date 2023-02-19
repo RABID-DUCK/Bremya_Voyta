@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class EndGame : MonoBehaviour
 {
-    [SerializeField] WorldTime worldTime;
+    [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
     [Header("Top player properties")]
     [SerializeField] private TMP_Text nameTopPlayer;
@@ -31,14 +31,14 @@ public class EndGame : MonoBehaviour
 
     private void Start()
     {
-        worldTime.OnEndGame += FinishGame;
+        worldTimeEventSender.OnEndGame += FinishGame;
 
         exitToMenu.onClick.AddListener(LoadMenuScene);
     }
 
     private void FinishGame()
     {
-        worldTime.OnEndGame -= FinishGame;
+        worldTimeEventSender.OnEndGame -= FinishGame;
 
         GetAllPlayers();
 
