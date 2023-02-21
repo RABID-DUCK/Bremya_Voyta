@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17309213, g: 0.2163364, b: 0.29834357, a: 1}
+  m_IndirectSpecularColor: {r: 0.17309213, g: 0.2163364, b: 0.2983436, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6022,6 +6022,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taxBox: {fileID: 3748627090232853516}
+--- !u!1 &49603549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5885996535497033344, guid: 8815a672047010f409adeddc6e841943, type: 3}
+  m_PrefabInstance: {fileID: 49603544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &49603550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 835251739415638806, guid: 8815a672047010f409adeddc6e841943, type: 3}
+  m_PrefabInstance: {fileID: 49603544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &49603551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49603549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14643b118e56ac744899d3c1f8f4d88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &49603552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6035,6 +6057,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.012453256, y: 0.011261361, z: 0.012453256}
   m_Center: {x: 2.3283064e-10, y: 0, z: -6.9849193e-10}
+--- !u!114 &49603553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49603550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14643b118e56ac744899d3c1f8f4d88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &52247780
 GameObject:
   m_ObjectHideFlags: 0
@@ -20888,6 +20922,7 @@ GameObject:
   - component: {fileID: 1173866869}
   - component: {fileID: 1173866871}
   - component: {fileID: 1173866872}
+  - component: {fileID: 1173866873}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -21048,6 +21083,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1173866873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173866868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14643b118e56ac744899d3c1f8f4d88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1174656982
 GameObject:
   m_ObjectHideFlags: 0
