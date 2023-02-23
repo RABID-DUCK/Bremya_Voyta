@@ -3,28 +3,27 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryConteinerItemButton : MonoBehaviour
+public class InventoryConteinerItemButton : BaseItemDisplayer
 {
     public Action<InventoryConteiner> OnClick;
-
-    [SerializeField]
-    private Image itemIcon;
     
-    [SerializeField]
-    private Button button;
-
+    [Header("Button elements")]
+    [SerializeField] private Button selectButton;
+    
     private InventoryConteiner inventoryConteiner;
 
     private void Awake()
     {
-        button.onClick.AddListener(OnClickButton);
+        selectButton.onClick.AddListener(OnClickButton);
     }
 
     public void Initialization(InventoryConteiner inventoryConteiner)
     {
         this.inventoryConteiner = inventoryConteiner;
-        
-        itemIcon.sprite = inventoryConteiner.Item.ItemSprite;
+
+        SetItemIcon(inventoryConteiner.Item.ItemSprite);
+        SetItemName(inventoryConteiner.Item.ItemName);
+        SetItemCount(inventoryConteiner.ItemCount);
     }
 
     private void OnClickButton()

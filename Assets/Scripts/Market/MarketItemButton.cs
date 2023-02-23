@@ -3,14 +3,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MarketItemButton : MonoBehaviour
+public class MarketItemButton : BaseItemDisplayer
 {
     public Action<MarketLot> OnClick;
 
-    [SerializeField] private TextMeshProUGUI playerNmaeText;
-    [SerializeField] private Image itemIcon;
-    [SerializeField] private Button buyButton;
+    [Header("Market elements")]
+    [SerializeField] private TextMeshProUGUI playerName;
     [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private Button buyButton;
 
     private MarketLot buttonItem;
 
@@ -22,20 +22,14 @@ public class MarketItemButton : MonoBehaviour
     public void Initialization(MarketLot onlineSellItem)
     {
         buttonItem = onlineSellItem;
-        Sprite itemSprite = onlineSellItem.sellItem.item.ItemSprite;
 
-        playerNmaeText.text = onlineSellItem.playerName;
+        SetItemIcon(buttonItem.sellItem.item.ItemSprite);
+        SetItemName(onlineSellItem.sellItem.item.ItemName);
+        SetItemCount(buttonItem.sellItem.count);
 
-        if (itemSprite)
-        {
-            itemIcon.sprite = itemSprite;
-        }
-        else
-        {
-            itemIcon.gameObject.SetActive(false);
-        }
-
+        playerName.text = onlineSellItem.playerName;
         priceText.text = onlineSellItem.sellItem.price.ToString();
+
     }
 
     private void OnClickByButton()

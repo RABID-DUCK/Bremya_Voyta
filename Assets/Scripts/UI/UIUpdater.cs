@@ -11,10 +11,10 @@ public class UIUpdater : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinsCountText;
 
     [Header("Inventory Update")]
-    [SerializeField] private ItemDisplayer itemDisplayer;
+    [SerializeField] private InventoryItemDisplayer itemDisplayer;
     [SerializeField] private Transform inventoryContentTransform;
 
-    private List<ItemDisplayer> spawnedItemDisplayer = new List<ItemDisplayer>();
+    private List<InventoryItemDisplayer> spawnedItemDisplayer = new List<InventoryItemDisplayer>();
 
     private Inventory _playerInventory;
     private Wallet _playerWallet;
@@ -64,7 +64,7 @@ public class UIUpdater : MonoBehaviour
 
         foreach (InventoryConteiner conteiner in _playerInventory.InventoryConteiners)
         {
-            ItemDisplayer createdItemDisplayer = Instantiate(itemDisplayer, inventoryContentTransform);
+            InventoryItemDisplayer createdItemDisplayer = Instantiate(itemDisplayer, inventoryContentTransform);
             createdItemDisplayer.Initialization(conteiner.Item, conteiner.ItemCount);
             createdItemDisplayer.gameObject.SetActive(true);
 
@@ -74,7 +74,7 @@ public class UIUpdater : MonoBehaviour
 
     private void ResetSpawnedItemDisplayer()
     {
-        foreach (ItemDisplayer item in spawnedItemDisplayer)
+        foreach (InventoryItemDisplayer item in spawnedItemDisplayer)
         {
             Destroy(item.gameObject);
         }

@@ -58,6 +58,11 @@ public class MarketSellController : MonoBehaviour
     public void CloseSellItem()
     {
         OnCloseSellItem?.Invoke();
+
+        if (playerInventory != null)
+        {
+            OnOpenSellMarket?.Invoke(playerInventory);
+        }
     }
 
     public void SendSellTrade(MarketLot onlineSellItem)
