@@ -6017,7 +6017,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 716363715}
   m_HandleRect: {fileID: 716363714}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19931,6 +19931,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2230524537697677371, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: m_text
+      value: "\u041D\u043E\u0432\u044B\u0439 \u0441\u0442\u0430\u0440\u043E\u0441\u0442\u0430"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230524537697677371, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_margin.x
       value: 11.067993
       objectReference: {fileID: 0}
@@ -19961,6 +19965,10 @@ PrefabInstance:
     - target: {fileID: 2872207541456622983, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3206635142548258404, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3206635142548258404, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_margin.w
@@ -20038,6 +20046,26 @@ PrefabInstance:
       propertyPath: worldTimeEventSender
       value: 
       objectReference: {fileID: 1595287601}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: characterSO.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: characterSO.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c3b94e01147220943a4c363f8ccd0251, type: 2}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: characterSO.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 93de5cfb53ed40649a12ad39bf5bf541, type: 2}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: characterSO.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 975aec6e326a7f743929fd09e10cd3b8, type: 2}
+    - target: {fileID: 6715446048738410597, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
+      propertyPath: characterSO.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: d08228a3adf04fd4bb121e3b43b4689a, type: 2}
     - target: {fileID: 7454832120675866592, guid: cbca77b56a1ce1c4ebc459948e47c844, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 79
@@ -37080,7 +37108,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674516262}
   m_HandleRect: {fileID: 674516261}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -43118,7 +43146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7955324953348031417, guid: c63e852bab0ea464b9a26aaefe6e223d, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7955324953348031417, guid: c63e852bab0ea464b9a26aaefe6e223d, type: 3}
       propertyPath: m_AnchorMax.x

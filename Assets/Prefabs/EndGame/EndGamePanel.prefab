@@ -400,12 +400,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635948c1959cf074a8e51ee586aa4914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showCanvasGroup: {fileID: 0}
-  worldTime: {fileID: 0}
-  finishPanel: {fileID: 0}
-  nameTopPlayer: {fileID: 0}
-  countCoinsTopPlayer: {fileID: 0}
+  worldTimeEventSender: {fileID: 0}
+  nameTopPlayer: {fileID: 2230524537697677371}
+  countCoinsTopPlayer: {fileID: 6344637078110659376}
+  avatarTopPlayer: {fileID: 7111497101221635790}
   descriptionText: {fileID: 3206635142548258404}
+  exitToMenu: {fileID: 0}
+  showCanvasGroup: {fileID: 0}
+  characterSO: []
 --- !u!225 &1143508144973406043
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -499,9 +501,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 71f6ca9c771cb2444bbb88c8e245c6ba, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

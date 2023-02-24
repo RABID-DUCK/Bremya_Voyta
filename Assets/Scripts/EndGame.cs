@@ -1,6 +1,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,7 @@ public class EndGame : MonoBehaviour
     [Header("Top player properties")]
     [SerializeField] private TMP_Text nameTopPlayer;
     [SerializeField] private TMP_Text countCoinsTopPlayer;
+    [SerializeField] private Image avatarTopPlayer;
 
     [Header("All players settings")]
     [SerializeField] private TMP_Text descriptionText;
@@ -21,12 +23,14 @@ public class EndGame : MonoBehaviour
 
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
+    [SerializeField] private List<CharacterSO> characterSO;
+
     private Dictionary<string, int> players = new Dictionary<string, int>();
     private List<int> sortCoins = new List<int>();
 
     private void Awake()
     {
-        showCanvasGroup = FindObjectOfType<ShowCanvasGroup>();
+        
     }
 
     private void Start()
@@ -64,29 +68,37 @@ public class EndGame : MonoBehaviour
         sortCoins.Sort();
     }
 
+    [ContextMenu("End")]
+    public void StartEnd()
+    {
+        FinishGame();
+    }
+
     private void SetTopPlayersSetting()
     {
-        int counterPlayers = 1;
-
-        for (int i = sortCoins.Count; i >= 0; i--)
+        var ordered = players.OrderByDescending(x => x.Value);
+        int st = 0;
+        foreach (var item in ordered)
         {
-            foreach (var player in players)
+            if (st == 0)
             {
-                if (sortCoins[i] == player.Value)
-                {
-                    if (i == sortCoins.Count)
-                    {
-                        nameTopPlayer.text = $"Новый староста {player.Key}";
-                        countCoinsTopPlayer.text = $"Количество монет - {player.Value}";
-                    }
-                    else
-                    {
-                        descriptionText.text += $"{counterPlayers} Место - {player.Key}, количество монет - {player.Value}\r\n";
-                    }
+                nameTopPlayer.text = $"Новый староста {item.Key}";
+                countCoinsTopPlayer.text = $"Количество монет - {item.Value}";
 
-                    counterPlayers++;
-                }
+                Player _player = PhotonNetwork.CurrentRoom.Players
+                    .FirstOrDefault(p => p.Value.NickName == item.Key).Value;
+
+                string profession = (string)_player.CustomProperties["Profession"];
+                int skin = (int)_player.CustomProperties["Skin"];
+
+                print(profession + " " + skin);
+                avatarTopPlayer.sprite = characterSO.FirstOrDefault(ch => ch.nameCharacter == profession).avatars[skin];
             }
+            else
+            {
+                descriptionText.text += $"{st + 1} Место - {item.Key}, количество монет - {item.Value}\r\n";
+            }
+            st++;
         }
     }
 
