@@ -11,7 +11,7 @@ public class Wallet
     public void PutCoins(int count)
     {
         CoinsCount += count;
-        ChangeMoney();
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "coins", CoinsCount } });
         OnCoinsChanged?.Invoke();
     }
 
@@ -21,20 +21,16 @@ public class Wallet
             throw new InvalidOperationException();
 
         CoinsCount -= count;
-        ChangeMoney();
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "coins", CoinsCount } });
         OnCoinsChanged?.Invoke();
     }
 
-    private void ChangeMoney()
+    public void Set(int count)
     {
-        Hashtable _CP = new Hashtable();
-        _CP["coins"] = CoinsCount;
-        PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
-    }
-
-    public void SetMoney(int count)
-    {
-        CoinsCount = count;
-        OnCoinsChanged?.Invoke();
+        if (count != CoinsCount)
+        {
+            CoinsCount = count;
+            OnCoinsChanged?.Invoke();
+        }
     }
 }

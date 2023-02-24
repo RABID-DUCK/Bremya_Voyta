@@ -69,7 +69,10 @@ public class MarketBuyController : MonoBehaviourPunCallbacks
     {
         try
         {
-            player.PlayerWallet.PickUpCoins(marketLot.sellItem.price);
+            if (PhotonNetwork.LocalPlayer.ActorNumber != marketLot.playerId)
+            {
+                player.PlayerWallet.PickUpCoins(marketLot.sellItem.price);
+            }
 
             SendBuyTrade(marketLot);
             player.PlayerInventory.PutItem(marketLot.sellItem.item, marketLot.sellItem.count);
@@ -94,8 +97,10 @@ public class MarketBuyController : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
 
             Player player = PhotonNetwork.CurrentRoom.GetPlayer(lot.playerId);
-            Hashtable money = new Hashtable() { { "coins", (int)player.CustomProperties["coins"] + lot.sellItem.price } };
-            player.SetCustomProperties(money);
+            if (PhotonNetwork.LocalPlayer.ActorNumber != lot.playerId)
+            {
+                player.SetCustomProperties(new Hashtable() { { "coins", (int)player.CustomProperties["coins"] + lot.sellItem.price } });
+            }
         }
     }
 }

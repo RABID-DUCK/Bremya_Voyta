@@ -83,14 +83,16 @@ public class Character : MonoBehaviourPunCallbacks
         Teleport(posHouse.position, posHouse.rotation);
     }
 
+    private void SetMoney(int money)
+    {
+        PlayerWallet.Set(money);
+    }
+
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
-        if (targetPlayer == PhotonNetwork.LocalPlayer && changedProps.ContainsKey("coins"))
+        if (PhotonNetwork.LocalPlayer == targetPlayer && changedProps.ContainsKey("coins"))
         {
-            if ((int)changedProps["coins"] != PlayerWallet.CoinsCount)
-            {
-                PlayerWallet.SetMoney((int)changedProps["coins"]);
-            }
+            SetMoney((int)changedProps["coins"]);
         }
     }
 }

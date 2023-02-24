@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
@@ -34,7 +35,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
 
         _camera.Follow = _locPlayer.transform;
         sceneCoordinator.InitializationPlayer(ch);
-        ch.PlayerWallet.PutCoins(50);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "coins", 50 } });
         ch.spawnManager = this;
 
         // Логика спавна игрока взависимости от его профессии
@@ -50,7 +51,6 @@ public class SpawnManager : MonoBehaviourPunCallbacks
             _locPlayer.transform.GetChild(0).rotation = _posDoor.transform.rotation;
             _controller.enabled = true;
         }
-
 
         PhotonNetwork.AutomaticallySyncScene = false;
     }
