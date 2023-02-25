@@ -40,6 +40,8 @@ public class VideoWindow : WindowBehaviour
     {
         this.OnVideoEnd = OnVideoEnd;
         StartCoroutine(StartVideo(video));
+
+        showCanvasGroup.Show();
     }
 
     private IEnumerator StartVideo(VideoClip videoClip)

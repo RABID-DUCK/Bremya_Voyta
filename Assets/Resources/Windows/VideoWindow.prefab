@@ -124,7 +124,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &3573356881267261065
 MonoBehaviour:
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 3573356881267261070}
   speed: 4
-  _isHided: 0
+  _isHided: 1
 --- !u!114 &3573356881267261064
 MonoBehaviour:
   m_ObjectHideFlags: 0
