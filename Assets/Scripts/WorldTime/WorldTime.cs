@@ -13,14 +13,9 @@ public class WorldTime : MonoBehaviour
 
     public float timeProgress { get; set; } // Игровой прогресс
 
-    /// <summary>
-    /// true - День, false - Ночь!
-    /// </summary>
-    public bool isCheckTimeOfDay { get; set; }
+    public bool isCheckTimeOfDay { get; set; } // true - День, false - Ночь!
 
     public bool isStartTime { get; set; } // Отвечает за включение времени
-
-    [SerializeField] private WorldTimeEventSender eventSender;
 
     private void Start()
     {
@@ -32,8 +27,6 @@ public class WorldTime : MonoBehaviour
         {
             Coordinator.OnEndEducation += StartTime;
         }
-
-        eventSender.EventSender(countOfDaysElapsed, timeProgress, isCheckTimeOfDay);
     }
 
     public void StartTime()
@@ -102,15 +95,9 @@ public class WorldTime : MonoBehaviour
                         if (PhotonNetwork.IsMasterClient)
                         {
                             countOfDaysElapsed++;
-
-                            //if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
-                            //{
-                            //    isStartTime = false;
-                            //}
                         }
                     }
                 }
-                eventSender.EventSender(countOfDaysElapsed, timeProgress, isCheckTimeOfDay);
             }
         }
     }

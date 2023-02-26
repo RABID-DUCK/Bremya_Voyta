@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WorldTimeEventSender : MonoBehaviour
 {
+    [SerializeField] private WorldTime worldTime;
+
     /// <summary>
     /// Число дня, который наступил. Счет идет до 6, потом обнуляется!
     /// </summary>
@@ -27,7 +29,7 @@ public class WorldTimeEventSender : MonoBehaviour
     /// <summary>
     /// Время спать!
     /// </summary>
-    public event Action IsSleepTime = delegate { };
+    public event Action OnSleepTime = delegate { };
 
     /// <summary>
     /// Старт налогов!
@@ -61,6 +63,11 @@ public class WorldTimeEventSender : MonoBehaviour
     /// </summary>
     public event Action OnEndGame = delegate { };
 
+    private void Update()
+    {
+        EventSender(worldTime.countOfDaysElapsed, worldTime.timeProgress, worldTime.isCheckTimeOfDay);
+    }
+
     public void EventSender(int countOfDaysElapsed, float timeProgress, bool isCheckTimeOfDay)
     {
         //----------- Главные события ----------//
@@ -74,7 +81,7 @@ public class WorldTimeEventSender : MonoBehaviour
         //------- Сон -------//
         if (isCheckTimeOfDay == false && countOfDaysElapsed != 5)
         {
-            IsSleepTime?.Invoke();
+            OnSleepTime?.Invoke();
         }
         //-------------------//
 

@@ -5457,7 +5457,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 7
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &43120118
 MonoBehaviour:
@@ -6017,7 +6017,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 716363715}
   m_HandleRect: {fileID: 716363714}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6612,24 +6612,24 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1595287599}
+  - {fileID: 879727180}
+  - {fileID: 478749256}
   - {fileID: 1909124432}
   - {fileID: 654464159}
+  - {fileID: 1449917975}
+  - {fileID: 1576812783}
+  - {fileID: 1640688545}
   - {fileID: 885478557}
   - {fileID: 1179321166}
   - {fileID: 1822896748}
   - {fileID: 1173866870}
-  - {fileID: 43120117}
+  - {fileID: 224931771}
   - {fileID: 166551126}
+  - {fileID: 43120117}
   - {fileID: 1041550670}
-  - {fileID: 879727180}
   - {fileID: 272125888}
   - {fileID: 791203321}
   - {fileID: 1354665764}
-  - {fileID: 1640688545}
-  - {fileID: 224931771}
-  - {fileID: 1449917975}
-  - {fileID: 1576812783}
-  - {fileID: 478749256}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7318,7 +7318,7 @@ Transform:
   - {fileID: 629559058}
   - {fileID: 1325149167}
   m_Father: {fileID: 115121579}
-  m_RootOrder: 8
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &169984092
 GameObject:
@@ -12490,7 +12490,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 15
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &224931772
 MonoBehaviour:
@@ -12793,7 +12793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 11
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272125889
 MonoBehaviour:
@@ -13415,7 +13415,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 297049552}
   m_HandleRect: {fileID: 297049551}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14301,7 +14301,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 18
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &478749257
 MonoBehaviour:
@@ -14318,6 +14318,7 @@ MonoBehaviour:
   worldTime: {fileID: 1595287600}
   worldTimeEventSender: {fileID: 1595287601}
   bed: {fileID: 1442248777}
+  emergencySleepView: {fileID: 1779564838}
   sleepVideo: {fileID: 32900000, guid: 1e49bb8ec135c7f45873d05026dce2bd, type: 3}
 --- !u!1 &485720492
 GameObject:
@@ -15819,7 +15820,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &654464160
 MonoBehaviour:
@@ -18032,7 +18033,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 12
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &791203323
 MonoBehaviour:
@@ -19181,7 +19182,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 10
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &885478556
 GameObject:
@@ -19213,7 +19214,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &885478558
 MonoBehaviour:
@@ -20604,7 +20605,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 9
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1051334651
 GameObject:
@@ -22183,7 +22184,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 6
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1173866871
 MonoBehaviour:
@@ -22352,7 +22353,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1179321167
 MonoBehaviour:
@@ -29374,7 +29375,7 @@ Transform:
   - {fileID: 736321960}
   - {fileID: 424204934}
   m_Father: {fileID: 115121579}
-  m_RootOrder: 13
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1365870802
 GameObject:
@@ -35444,7 +35445,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 16
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1449917976
 MonoBehaviour:
@@ -36712,7 +36713,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 17
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1576812784
 MonoBehaviour:
@@ -36871,7 +36872,6 @@ MonoBehaviour:
   countOfDaysElapsed: 0
   dayTimeInSeconds: 360
   nightTimeInSeconds: 60
-  eventSender: {fileID: 1595287601}
 --- !u!114 &1595287601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36884,6 +36884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f8b9fa7d0c9464485a6bea14571d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldTime: {fileID: 1595287600}
 --- !u!1 &1598248573
 GameObject:
   m_ObjectHideFlags: 0
@@ -37118,7 +37119,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674516262}
   m_HandleRect: {fileID: 674516261}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -37486,7 +37487,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 14
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1640688546
 MonoBehaviour:
@@ -38866,6 +38867,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bc12324a21d0a42addec5a64bd1087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emergencyPanelSleep: {fileID: 1779564837}
+  timerText: {fileID: 1783834900}
+  ShowCanvasGroup: {fileID: 1779564839}
 --- !u!114 &1779564839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39434,7 +39438,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 5
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1822896749
 MonoBehaviour:
@@ -40950,7 +40954,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115121579}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1909124433
 MonoBehaviour:
@@ -42318,7 +42322,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1205983062}
   m_HandleRect: {fileID: 1205983061}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

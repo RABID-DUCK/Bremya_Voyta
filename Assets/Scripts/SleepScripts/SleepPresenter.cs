@@ -4,70 +4,74 @@ using UnityEngine.Video;
 
 public class SleepPresenter : SleepModel
 {
+    public event Action OnSkipArrow;
+    public event Action OnAddDebuffToPlayer;
+
     [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
     [Header("View scripts")]
-    //[SerializeField] private EmergencySleepView emergencySleepView;
     [SerializeField] private Bed bed;
+    [SerializeField] private EmergencySleepView emergencySleepView;
 
     [Header("Sleep settings")]
     [SerializeField] private VideoClip sleepVideo;
 
-    private bool isICanSleep = false;
-
-    public event Action OnSkipArrow = delegate { };
-
-    //private bool isSleeping = false;
-
-    //public event Action<bool> OnIsSleeping = delegate { };
+    private bool isTimeSleep;
+    private bool isSleeping;
 
     private void Start()
     {
-        worldTimeEventSender.IsSleepTime += AllowToSleep;
+        worldTimeEventSender.OnSleepTime += IsSleepTime;
 
-        //emergencySleepView.OnTimerIsOut += GoToFastSleep;
+        emergencySleepView.OnTimerIsOut += StartEmergencySleep;
 
-        bed.OnClickOnBed += CheckingIfICanSleep;
+        bed.OnClickOnBed += StartSleep;
     }
 
-    private void AllowToSleep()
+    private void IsSleepTime()
     {
-        //worldTime.IsSleepTime -= AllowToSleep;
+        isTimeSleep = true;
 
-        //emergencySleepView.ShowEmergencySleepPanel();
-
-        isICanSleep = true;
+        ShowEmargencyPanel();
     }
 
-    private void CheckingIfICanSleep()
+    private void ShowEmargencyPanel()
     {
-        if (isICanSleep)
+        if (isTimeSleep && isSleeping == false)
         {
-            UIController.ShowYesNoDialog("Вы хотите лечь спать?", GoToSleep);
-        }
-        else
-        {
-            UIController.ShowInfo("Вы не можете спать днем!", "Ок");
+            worldTimeEventSender.OnSleepTime -= ShowEmargencyPanel;
+
+            emergencySleepView.ShowEmergencySleepPanel();
         }
     }
 
-    private void GoToSleep()
+    private void StartEmergencySleep()
     {
-        isICanSleep = false;
+        if (isTimeSleep == true && isSleeping == false)
+        {
+            GoSleep(sleepVideo, isSleeping);
 
-        //emergencySleepView.HideEmergencySleepPanel();
+            OnSkipArrow?.Invoke();
 
-        GoSleep(sleepVideo);
-
-        OnSkipArrow?.Invoke();
+            OnAddDebuffToPlayer?.Invoke();
+        }
     }
 
-    //private void GoToFastSleep()
-    //{
-    //    emergencySleepView.OnTimerIsOut -= GoToFastSleep;
+    private void StartSleep()
+    {
+        if(isTimeSleep == true)
+        {
+            isSleeping = true;
 
-    //    isICanSleep = false;
+            emergencySleepView.HideEmergencySleepPanel();
 
-    //    GoSleep(sleepVideo);
-    //}
+            GoSleep(sleepVideo, isSleeping);
+
+            isTimeSleep = false;
+
+            emergencySleepView.OnTimerIsOut += StartEmergencySleep;
+
+            OnSkipArrow?.Invoke();
+        }
+    }
 }

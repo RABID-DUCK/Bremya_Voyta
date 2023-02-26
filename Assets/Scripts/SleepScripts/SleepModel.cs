@@ -4,11 +4,18 @@ using UnityEngine.Video;
 
 public class SleepModel : MonoBehaviour
 {
-    public WorldTime worldTime;
+    [SerializeField] protected WorldTime worldTime;
 
-    public void GoSleep(VideoClip sleepVideo)
+    public void GoSleep(VideoClip sleepVideo, bool isSleep)
     {
-        UIController.ShowVideo(sleepVideo, AfterSleep);
+        if (sleepVideo == true)
+        {
+            UIController.ShowVideo(sleepVideo, AfterSleep);
+        }
+        else
+        {
+            UIController.ShowVideo(sleepVideo, AfterEmergencySleep);
+        }
     }
 
     public void AfterSleep()
@@ -18,5 +25,12 @@ public class SleepModel : MonoBehaviour
         worldTime.countOfDaysElapsed++;
 
         CameraSwitch.SwichHouseCamera();
+    }
+
+    public void AfterEmergencySleep()
+    {
+        worldTime.timeProgress = 0;
+        worldTime.isCheckTimeOfDay = true;
+        worldTime.countOfDaysElapsed++;
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 public class Bed : ClickableObject
 {
-    public event Action OnClickOnBed = delegate { };
+    public event Action OnClickOnBed;
 
     private void SendClickOnBed()
     {
