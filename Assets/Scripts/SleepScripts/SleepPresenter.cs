@@ -33,6 +33,8 @@ public class SleepPresenter : SleepModel
         isTimeSleep = true;
 
         ShowEmargencyPanel();
+
+        worldTimeEventSender.OnSleepTime -= IsSleepTime;
     }
 
     private void ShowEmargencyPanel()
@@ -49,7 +51,11 @@ public class SleepPresenter : SleepModel
     {
         if (isTimeSleep == true && isSleeping == false)
         {
-            GoSleep(sleepVideo, isSleeping);
+            GoSleep(sleepVideo);
+
+            isSleeping = true;
+
+            worldTimeEventSender.OnSleepTime += IsSleepTime;
 
             OnSkipArrow?.Invoke();
 
@@ -59,17 +65,19 @@ public class SleepPresenter : SleepModel
 
     private void StartSleep()
     {
-        if(isTimeSleep == true)
+        if (isTimeSleep == true)
         {
             isSleeping = true;
 
             emergencySleepView.HideEmergencySleepPanel();
 
-            GoSleep(sleepVideo, isSleeping);
+            GoSleep(sleepVideo);
 
             isTimeSleep = false;
 
             emergencySleepView.OnTimerIsOut += StartEmergencySleep;
+
+            worldTimeEventSender.OnSleepTime += IsSleepTime;
 
             OnSkipArrow?.Invoke();
         }

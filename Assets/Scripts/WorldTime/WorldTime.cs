@@ -41,12 +41,20 @@ public class WorldTime : MonoBehaviour
             if (PhotonNetwork.IsMasterClient)
             {
                 ChengeOfTime();
-                Hashtable ht = new Hashtable {
+
+                Hashtable hashtable = new Hashtable
+                {
                 {"StartTime", timeProgress+0.002f},
+
                 {"countOfDaysElapsed", countOfDaysElapsed },
+
                 {"isStartTime", isStartTime ? 1 : 0 },
-                {"isCheckTimeOfDay", isCheckTimeOfDay ? 1 : 0 }};
-                PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+
+                {"isCheckTimeOfDay", isCheckTimeOfDay ? 1 : 0 }
+                };
+
+                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable);
+
                 return;
             }
         }

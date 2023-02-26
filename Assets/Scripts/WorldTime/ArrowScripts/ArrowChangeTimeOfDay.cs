@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ArrowChengeTimeOfDay : MonoBehaviour
+public class ArrowChangeTimeOfDay : MonoBehaviour
 {
     [Header("Time setting")]
     [SerializeField] private WorldTime worldTime;

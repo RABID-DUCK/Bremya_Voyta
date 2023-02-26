@@ -1,4 +1,3 @@
-using Ekonomika.Utils;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -6,16 +5,11 @@ public class SleepModel : MonoBehaviour
 {
     [SerializeField] protected WorldTime worldTime;
 
-    public void GoSleep(VideoClip sleepVideo, bool isSleep)
+    public void GoSleep(VideoClip sleepVideo)
     {
-        if (sleepVideo == true)
-        {
-            UIController.ShowVideo(sleepVideo, AfterSleep);
-        }
-        else
-        {
-            UIController.ShowVideo(sleepVideo, AfterEmergencySleep);
-        }
+        worldTime.isStartTime = false;
+
+        UIController.ShowVideo(sleepVideo, AfterSleep);
     }
 
     public void AfterSleep()
@@ -23,14 +17,6 @@ public class SleepModel : MonoBehaviour
         worldTime.timeProgress = 0;
         worldTime.isCheckTimeOfDay = true;
         worldTime.countOfDaysElapsed++;
-
-        CameraSwitch.SwichHouseCamera();
-    }
-
-    public void AfterEmergencySleep()
-    {
-        worldTime.timeProgress = 0;
-        worldTime.isCheckTimeOfDay = true;
-        worldTime.countOfDaysElapsed++;
+        worldTime.isStartTime = true;
     }
 }

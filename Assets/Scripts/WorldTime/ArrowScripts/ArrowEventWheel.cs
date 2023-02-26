@@ -1,4 +1,3 @@
-using Photon.Pun;
 using UnityEngine;
 
 public class ArrowEventWheel : MonoBehaviour
@@ -9,8 +8,6 @@ public class ArrowEventWheel : MonoBehaviour
     [Header("ArrowChange settings")]
     [SerializeField] private RectTransform arrowRectTransform;
 
-    [SerializeField] private SleepPresenter sleepPresenter;
-
     private float timeRotationArrow;
 
     private float angleOffsetRotationArrow;
@@ -20,18 +17,11 @@ public class ArrowEventWheel : MonoBehaviour
         CalcTimeRotation();
 
         CalcAngleOffset(timeRotationArrow);
-
-        sleepPresenter.OnSkipArrow += SkipGradus;
     }
 
     private void Update()
     {
         RotateArrowTimeOfDay(arrowRectTransform, angleOffsetRotationArrow);
-    }
-
-    private void SkipGradus()
-    {
-        arrowRectTransform.Rotate(0f, 0f, -60);
     }
 
     private float CalcTimeRotation()
