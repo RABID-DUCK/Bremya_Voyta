@@ -11,10 +11,8 @@ public class TaxBoxPanelView : MonoBehaviour
     [SerializeField] private Button getResourceButton;
     [SerializeField] private Button closeTaxBoxPanelButton;
 
-    [Space, Header("UI Elements")]
-    public List<Image> imageResuces = new List<Image>();
-    public List<TMP_Text> nameResurcesText = new List<TMP_Text>();
-    public List<TMP_Text> countResurcesText = new List<TMP_Text>();
+    [Header("UI Elements")]
+    public List<TaxBoxViewItem> TaxBoxItems = new List<TaxBoxViewItem>();
 
     [Space]
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
@@ -52,7 +50,7 @@ public class TaxBoxPanelView : MonoBehaviour
         }
         else
         {
-            UIController.ShowInfo("Событие пока не доступно!","Ок");
+            UIController.ShowInfo("Событие пока не доступно!", "Ок"); 
         }
     }
 
@@ -80,4 +78,14 @@ public class TaxBoxPanelView : MonoBehaviour
     {
         UIController.ShowInfo("Налог не улачен! Штраф составляет 10 монет!", "Ок");
     }
+}
+
+[Serializable]
+public class TaxBoxViewItem
+{
+    public Image image;
+
+    public TMP_Text nameText;
+
+    public TMP_Text countText;
 }

@@ -5,11 +5,15 @@ public class TaxBoxPresenter : TaxBoxModel
 {
     [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
-    [Space, SerializeField] private TaxBox taxBox;
+    [Header("View scripts")]
+    [SerializeField] private TaxBox taxBox;
     [SerializeField] private TaxBoxPanelView taxBoxPanelView;
-    [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
     [SerializeField] private List<Item> resurces = new List<Item>();
+
+    [Space]
+    [SerializeField] private ShowCanvasGroup showCanvasGroup;
+
 
     private Character player;
 
@@ -29,12 +33,12 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void StartTaxEvent()
     {
-        worldTimeEventSender.OnStartTaxEvent -= StartTaxEvent;
-        worldTimeEventSender.OnStopTaxEvent += OutputtingTaxBoxEventResults;
-
         IsPanelCanBeOpened();
 
         SetInformationAboutNecessaryResources();
+
+        worldTimeEventSender.OnStartTaxEvent -= StartTaxEvent;
+        worldTimeEventSender.OnStopTaxEvent += OutputtingTaxBoxEventResults;
     }
 
     private void IsPanelCanBeOpened()
@@ -51,7 +55,7 @@ public class TaxBoxPresenter : TaxBoxModel
     {
         SelectRandomResurses(resurces);
 
-        SetSelectedResurcesInformationOnTaxBoxPanel(taxBoxPanelView.imageResuces, taxBoxPanelView.nameResurcesText, taxBoxPanelView.countResurcesText);
+        SetSelectedResurcesInformationOnTaxBoxPanel(taxBoxPanelView.TaxBoxItems);
     }
 
     private void OutputtingTaxBoxEventResults()
@@ -63,6 +67,8 @@ public class TaxBoxPresenter : TaxBoxModel
             TakePenaltyForNonPaymentOfTax(player);
 
             taxBoxPanelView.HideTaxBoxPanel();
+
+            taxBoxPanelView.isPanelCanBeOpened = false;
 
             worldTimeEventSender.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
         }
@@ -78,10 +84,5 @@ public class TaxBoxPresenter : TaxBoxModel
         {
             UIController.ShowInfo("У вас не хватает ресурсов для уплаты налога!", "Ок");
         }
-    }
-
-    public void OpenPanelDuringStartEvent()
-    {
-        showCanvasGroup.Show();
     }
 }

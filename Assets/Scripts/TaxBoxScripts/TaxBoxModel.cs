@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TaxBoxModel : MonoBehaviour
 {
@@ -28,7 +26,7 @@ public class TaxBoxModel : MonoBehaviour
             Randomize(0, resurces.Count, out selectIndex);
 
             selectResources.Add(resurces[selectIndex]);
-            resurces.RemoveAt(selectIndex); //Костыль привет!
+            resurces.RemoveAt(selectIndex); //Костыль привет
 
             Randomize(1, 2, out selectResourceCount);
 
@@ -36,15 +34,15 @@ public class TaxBoxModel : MonoBehaviour
         }
     }
 
-    public void SetSelectedResurcesInformationOnTaxBoxPanel(List<Image> imageResuces, List<TMP_Text> nameResurcesText, List<TMP_Text> countResurcesText)
+    public void SetSelectedResurcesInformationOnTaxBoxPanel(List<TaxBoxViewItem> taxBoxItems)
     {
         if (selectResources.Count == 3 && selectCountResources.Count == 3)
         {
             for (int i = 0; i < 3; i++)
             {
-                imageResuces[i].sprite = selectResources[i].ItemSprite;
-                nameResurcesText[i].text = selectResources[i].ItemName;
-                countResurcesText[i].text = $"Налог составляет: {selectCountResources[i]}шт.";
+                taxBoxItems[i].image.sprite = selectResources[i].ItemSprite;
+                taxBoxItems[i].nameText.text = selectResources[i].ItemName;
+                taxBoxItems[i].countText.text = $"Налог составляет: {selectCountResources[i]}шт.";
             }
         }
         else
@@ -76,7 +74,6 @@ public class TaxBoxModel : MonoBehaviour
         try
         {
             player.PlayerWallet.PickUpCoins(10);
-
         }
         catch (InvalidOperationException)
         {
