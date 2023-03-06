@@ -32,6 +32,8 @@ public class SleepPresenter : SleepModel
     {
         isTimeSleep = true;
 
+        isSleeping = false;
+
         ShowEmargencyPanel();
 
         worldTimeEventSender.OnSleepTime -= IsSleepTime;
@@ -51,9 +53,9 @@ public class SleepPresenter : SleepModel
     {
         if (isTimeSleep == true && isSleeping == false)
         {
-            GoSleep(sleepVideo);
-
             isSleeping = true;
+
+            GoSleep(sleepVideo);
 
             worldTimeEventSender.OnSleepTime += IsSleepTime;
 

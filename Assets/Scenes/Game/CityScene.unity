@@ -18046,8 +18046,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldTimeEventSender: {fileID: 1595287601}
-  audioClips: []
-  iventsSounds: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 7799d34ab3b6dbd4496ea1ca5247deae, type: 3}
+  - {fileID: 8300000, guid: 7799d34ab3b6dbd4496ea1ca5247deae, type: 3}
+  - {fileID: 8300000, guid: 7799d34ab3b6dbd4496ea1ca5247deae, type: 3}
+  iventsSounds: {fileID: 1930886557}
   littleRainEvent: {fileID: 989820648}
   clearWeatherWithLittleColdEvent: {fileID: 1136995793}
   "mine\u0421ollapseEvent": {fileID: 736321961}
@@ -41296,6 +41299,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928829621}
   m_CullTransparentMesh: 1
+--- !u!82 &1930886557 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6702911564019568276, guid: 8815a672047010f409adeddc6e841943, type: 3}
+  m_PrefabInstance: {fileID: 49603544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1940996899
 GameObject:
   m_ObjectHideFlags: 0
