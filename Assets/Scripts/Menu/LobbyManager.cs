@@ -14,6 +14,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject createRoomPanel;
     [SerializeField] GameObject joinGameLobby;
     [SerializeField] GameObject buttons;
+    [SerializeField] GameObject findLobbyPanel;
 
     public void OnJoinedGameLobby()
     {
@@ -25,5 +26,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         createRoomPanel.SetActive(true);
         joinGameLobby.SetActive(false);
+    }
+
+    public void CloseFindLobbyPanel()
+    {
+        findLobbyPanel.SetActive(false);
+        buttons.SetActive(true);
     }
 }
