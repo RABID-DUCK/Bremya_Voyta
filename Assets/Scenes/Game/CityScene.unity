@@ -15837,18 +15837,16 @@ MonoBehaviour:
   taxBoxPanel: {fileID: 320526432}
   getResourceButton: {fileID: 1295694544}
   closeTaxBoxPanelButton: {fileID: 1623178051}
-  imageResuces:
-  - {fileID: 1456268200}
-  - {fileID: 338672978}
-  - {fileID: 2006194523}
-  nameResurcesText:
-  - {fileID: 785223056}
-  - {fileID: 34355851}
-  - {fileID: 1065247443}
-  countResurcesText:
-  - {fileID: 1094564382}
-  - {fileID: 1276000313}
-  - {fileID: 1375134973}
+  TaxBoxItems:
+  - image: {fileID: 1456268200}
+    nameText: {fileID: 785223056}
+    countText: {fileID: 1094564382}
+  - image: {fileID: 338672978}
+    nameText: {fileID: 34355851}
+    countText: {fileID: 1276000313}
+  - image: {fileID: 2006194523}
+    nameText: {fileID: 1065247443}
+    countText: {fileID: 1375134973}
   showCanvasGroup: {fileID: 320526434}
   isPanelCanBeOpened: 0
 --- !u!1 &660131990
@@ -35460,7 +35458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   casinoView: {fileID: 1576812784}
-  marketController: {fileID: 0}
+  marketController: {fileID: 1831901018}
   worldTimeEventSender: {fileID: 1595287601}
 --- !u!1 &1454504960
 GameObject:
@@ -37961,7 +37959,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTime: {fileID: 1595287600}
   arrowRectTransform: {fileID: 913893792}
-  sleepPresenter: {fileID: 478749257}
 --- !u!1 &1684692791
 GameObject:
   m_ObjectHideFlags: 0
@@ -40973,7 +40970,6 @@ MonoBehaviour:
   worldTimeEventSender: {fileID: 1595287601}
   taxBox: {fileID: 49603548}
   taxBoxPanelView: {fileID: 654464160}
-  showCanvasGroup: {fileID: 320526434}
   resurces:
   - {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
   - {fileID: 11400000, guid: 942ab6f152fc3324b8ffc040713b8585, type: 2}
@@ -40983,6 +40979,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01fae7940af560848a94e6ad6bb07225, type: 2}
   - {fileID: 11400000, guid: 4e496df9866036046b6d1e19a5b42d09, type: 2}
   - {fileID: 11400000, guid: af77cd023596b2543b9f57604b3cb91e, type: 2}
+  showCanvasGroup: {fileID: 320526434}
 --- !u!1 &1910057374
 GameObject:
   m_ObjectHideFlags: 0
