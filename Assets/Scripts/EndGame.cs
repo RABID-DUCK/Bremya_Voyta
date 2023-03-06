@@ -104,6 +104,8 @@ public class EndGame : MonoBehaviour
 
     private void LoadMenuScene()
     {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
         SceneManager.LoadScene("Menu");
     }
 

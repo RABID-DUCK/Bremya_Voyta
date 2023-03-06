@@ -9,6 +9,7 @@ using System;
 using Random = UnityEngine.Random;
 using UnityEngine.Video;
 using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
@@ -48,6 +49,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     public void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        Loading.SetActive(false);
     }
 
     public void Tutorial()
@@ -68,7 +70,13 @@ public class MainMenu : MonoBehaviourPunCallbacks
         roomOptions.MaxPlayers = (byte)countPlayerInRoom;
 
         CreateRandomName(PhotonNetwork.LocalPlayer);
-        PhotonNetwork.JoinOrCreateRoom(RoomName, roomOptions, TypedLobby.Default);
+        if (!PhotonNetwork.JoinOrCreateRoom(RoomName, roomOptions, TypedLobby.Default))
+        {
+            Menu.SetActive(true);
+            Loading.SetActive(false);
+            ErrorText.text = "Ошибка при подключении или создании лобби";
+            Error.SetActive(true);
+        }
     }
 
     public override void OnJoinedRoom()
