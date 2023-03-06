@@ -15,19 +15,19 @@ public class MainMenu : MonoBehaviourPunCallbacks
 {
     public static MainMenu instance;
 
-    [Header("Свойства комнаты")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject Menu;
     [SerializeField] private GameObject Loading;
     [SerializeField] private GameObject Error;
     [SerializeField] private TMP_Text ErrorText;
     [SerializeField] private string RoomName = "Room";
     [SerializeField] private VideoPlayer ScreenSaver;
-    [Range(0, 6), Tooltip("Кол-во человек в комнате")] public int countPlayerInRoom;
+    [Range(0, 6), Tooltip("пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")] public int countPlayerInRoom;
 
-    [Header("Список рандомных ников")]
-    [SerializeField, Tooltip("Список ников для игроков")] private List<string> nick = new List<string> { "Jazz", "Alex", "Choon", "Jenorer", "Frin", "Qwano" };
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
+    [SerializeField, Tooltip("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")] private List<string> nick = new List<string> { "Jazz", "Alex", "Choon", "Jenorer", "Frin", "Qwano" };
 
-    [Header("Панельки")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] GameObject createRoomPanel;
     [SerializeField] GameObject listLobbyPanel;
     [SerializeField] GameObject joinGameLobby;
@@ -64,16 +64,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = Application.version;
         Menu.SetActive(true);
         Loading.SetActive(false);
-<<<<<<< Updated upstream
-    }
-
-    public void Start()
-    {
-        PhotonNetwork.ConnectUsingSettings();
-        Loading.SetActive(false);
-=======
         PhotonNetwork.JoinLobby();
->>>>>>> Stashed changes
     }
 
     public void Tutorial()
@@ -88,19 +79,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
         joinGameLobby.SetActive(false);
 
         RoomOptions roomOptions = new RoomOptions();
-<<<<<<< Updated upstream
-        roomOptions.IsVisible = false;
-        roomOptions.MaxPlayers = (byte)countPlayerInRoom;
-
-        CreateRandomName(PhotonNetwork.LocalPlayer);
-        if (!PhotonNetwork.JoinOrCreateRoom(RoomName, roomOptions, TypedLobby.Default))
-        {
-            Menu.SetActive(true);
-            Loading.SetActive(false);
-            ErrorText.text = "Ошибка при подключении или создании лобби";
-            Error.SetActive(true);
-        }
-=======
         roomOptions.IsVisible = true;
         roomOptions.MaxPlayers = (byte)countPlayerInRoom;
         if (roomInputField.text.Length >= 1)
@@ -115,7 +93,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
         createRoomPanel.SetActive(false);
         joinGameLobby.SetActive(false);
         listLobbyPanel.SetActive(true);
->>>>>>> Stashed changes
     }
 
     public override void OnJoinedRoom()
