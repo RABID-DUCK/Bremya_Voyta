@@ -94,7 +94,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
                     OnGetEventSO?.Invoke(ThunderstormWithHeavyRainEvent.ThunderSO);
 
                     iventsSounds.clip = audioClips[0];
-                    Debug.Log(audioClips);
+                    //Debug.Log(audioClips); // Дебаги нужно коммитить или убирать после тестирования!
                 }
 
                 break;
@@ -112,7 +112,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
                     OnGetEventSO?.Invoke(stormEvent.StormSO);
 
                     iventsSounds.clip = audioClips[1];
-                    Debug.Log(audioClips);
+                    //Debug.Log(audioClips);
                 }
 
                 break;
@@ -162,7 +162,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
             default:
 
-                Debug.Log($"Выпало не то число - ({randomNumberEvent})");
+                Debug.LogError($"Выпало не то число - ({randomNumberEvent})");
 
                 break;
         }
@@ -181,7 +181,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
         mineСollapseEvent.EndMineСollapseEvent();
         clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
 
-        iventsSounds.clip = null;
+        iventsSounds.Stop(); // Здесь кидает ошибку. Вместо обнуления можно просто останавливать проигрыватель, а нужный звук ты уже прокидываешь во время подключения выпавшего ивента.
 
         OnEndEvent?.Invoke();
     }

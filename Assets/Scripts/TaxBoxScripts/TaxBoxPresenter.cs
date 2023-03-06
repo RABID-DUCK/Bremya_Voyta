@@ -79,6 +79,8 @@ public class TaxBoxPresenter : TaxBoxModel
         if (GetResourcesFromPlayer(player))
         {
             taxBoxPanelView.ShowSuccessfullyPanel();
+
+            taxBoxPanelView.HideTaxBoxPanel();
         }
         else
         {

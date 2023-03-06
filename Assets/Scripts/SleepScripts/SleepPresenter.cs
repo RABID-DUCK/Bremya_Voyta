@@ -57,6 +57,8 @@ public class SleepPresenter : SleepModel
 
             worldTimeEventSender.OnSleepTime += IsSleepTime;
 
+            worldTimeEventSender.OnSleepTime += ShowEmargencyPanel;
+
             OnSkipArrow?.Invoke();
 
             OnAddDebuffToPlayer?.Invoke();

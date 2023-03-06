@@ -7,7 +7,7 @@ public class TaxBoxModel : MonoBehaviour
     [HideInInspector] public List<Item> selectResources = new List<Item>();
     [HideInInspector] public List<int> selectCountResources = new List<int>();
 
-    public event Action OnPaymentError;
+    //public event Action OnPaymentError;
 
     private void Randomize(int firstCount, int secondCount, out int selectIndex)
     {

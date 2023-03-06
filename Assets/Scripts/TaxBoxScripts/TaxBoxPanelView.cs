@@ -67,6 +67,8 @@ public class TaxBoxPanelView : MonoBehaviour
     private void IsCompleted()
     {
         isCompleted = true;
+
+        getResourceButton.interactable = false;
     }
 
     public void ShowPanelNotEnoughResources()
