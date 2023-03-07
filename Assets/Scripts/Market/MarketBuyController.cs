@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class MarketBuyController : MonoBehaviourPunCallbacks
+public class MarketBuyController : MonoBehaviourPunCallbacks, IObjectWithCharacter
 {
     public event Action OnOpenBuyMarket;
     public event Action OnCloseBuyMarket;
@@ -50,7 +50,7 @@ public class MarketBuyController : MonoBehaviourPunCallbacks
         }
     }
 
-    public void Initialization(Character player)
+    public void InitializePlayer(Character player)
     {
         this.player = player;
     }

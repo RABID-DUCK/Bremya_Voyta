@@ -3,16 +3,17 @@ using UnityEngine.Video;
 
 namespace Ekonomika.Work
 {
-    public class WorkBehaviour : ClickableObject, IWork
+    public class WorkBehaviour : OutlineClickableObject, IWork
     {
         public string WorkName => _workName;
         public string WorkerName => _workerName;
-        
+        public CharacterType WorkerType => _workerType;
         public Item ReceivedItem => _receivedItem;
 
         [Header("Work settings")]
         [SerializeField] private string _workName;
         [SerializeField] private string _workerName;
+        [SerializeField] private CharacterType _workerType;
         [SerializeField] private Item _receivedItem;
 
         [Space]
@@ -28,13 +29,13 @@ namespace Ekonomika.Work
         private int minDropItems = 3;
         private int maxDropItems = 5;
 
-        public override void Execute(Character player)
+        public override void Execute()
         {
             UIController.ShowYesNoDialog($"Вы хотите начать работу: \n<b>{WorkName}</b>?", () =>
             {
                 UIController.ShowVideo(workVideo, () =>
                 {
-                    player.PlayerInventory.PutItem(ReceivedItem, CalculateDropItems());
+                    Player.PlayerInventory.PutItem(ReceivedItem, CalculateDropItems());
                 });
             });
         }

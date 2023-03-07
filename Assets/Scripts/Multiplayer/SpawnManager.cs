@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject[] Spawns;
     [SerializeField] private CinemachineVirtualCamera _camera;
-    [SerializeField] private Coordinator sceneCoordinator;
+    [SerializeField] private CitySceneBoot citySceneBoot;
     [SerializeField] private List<CharacterSO> listCharacters;
     public List<House> houses;
     Quaternion synchRot = Quaternion.identity;
@@ -34,7 +34,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         Character ch = _locPlayer.GetComponent<Character>();
 
         _camera.Follow = _locPlayer.transform;
-        sceneCoordinator.InitializationPlayer(ch);
+        citySceneBoot.SetPlayer(ch);
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "coins", 50 } });
         ch.spawnManager = this;
 

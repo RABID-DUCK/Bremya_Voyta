@@ -50,9 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1f2febc9d8c8e4f9a8d0d4d8e1758e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowedEarnedItems:
-  - {fileID: 11400000, guid: babf6a8688b6d6d45866cb68587ac82b, type: 2}
-  - {fileID: 11400000, guid: 737e5d1186c1b6944ad0d08ce9674f95, type: 2}
+  characterType: 3
+  spawnManager: {fileID: 0}
 --- !u!114 &2026495590523064860
 MonoBehaviour:
   m_ObjectHideFlags: 0

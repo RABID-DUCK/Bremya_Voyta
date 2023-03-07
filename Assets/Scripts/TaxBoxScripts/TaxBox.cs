@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class TaxBox : ClickableObject
+public class TaxBox : OutlineClickableObject
 {
     [SerializeField] private GameObject taxBox;
 
     public event Action OnClickTaxBox;
 
-    public override void Execute(Character player)
+    public override void Execute()
     {
         OnClickTaxBox?.Invoke();
     }

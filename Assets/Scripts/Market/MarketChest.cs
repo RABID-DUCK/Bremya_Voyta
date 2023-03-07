@@ -1,12 +1,12 @@
 using Ekonomika.Utils;
 using System;
 
-public class MarketChest : ClickableObject
+public class MarketChest : OutlineClickableObject
 {
     public Action<Inventory> OnOpenChes;
 
-    public override void Execute(Character player)
+    public override void Execute()
     {
-        OnOpenChes?.Invoke(player.PlayerInventory);
+        OnOpenChes?.Invoke(Player.PlayerInventory);
     }
 }

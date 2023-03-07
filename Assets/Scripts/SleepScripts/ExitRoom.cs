@@ -1,15 +1,14 @@
 using Ekonomika.Utils;
-using UnityEngine;
 
-public class ExitRoom : ClickableObject
+public class ExitRoom : OutlineClickableObject
 {
-    public override void Execute(Character player)
+    public override void Execute()
     {
         UIController.ShowYesNoDialog("Вы хотите выйти из дома?", () =>
         {
-            player.ReturnHome();
+            Player.ReturnHome();
             CameraSwitch.SwichToMainCamera();
-            player.gameObject.GetComponent<PlayerController>().enabled = true;
+            Player.gameObject.GetComponent<PlayerController>().enabled = true;
         });
     }
 }

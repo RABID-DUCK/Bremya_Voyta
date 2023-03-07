@@ -2274,6 +2274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u0414\u043E\u0431\u044B\u0447\u0430 \u043C\u043E\u043B\u043E\u043A\u0430"
   _workerName: "\u0424\u0435\u0440\u043C\u0435\u0440"
+  _workerType: 0
   _receivedItem: {fileID: 11400000, guid: 4e496df9866036046b6d1e19a5b42d09, type: 2}
   workVideo: {fileID: 32900000, guid: abcda2ea988cdff48829d232d9f8ea62, type: 3}
   standartMinDropItems: 3
@@ -2447,6 +2448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u041E\u0445\u043E\u0442\u0430"
   _workerName: "\u041E\u0445\u043E\u0442\u043D\u0438\u043A"
+  _workerType: 0
   _receivedItem: {fileID: 11400000, guid: 01fae7940af560848a94e6ad6bb07225, type: 2}
   workVideo: {fileID: 32900000, guid: a51ee648244ef4b49a51b38873f7442d, type: 3}
   standartMinDropItems: 3
@@ -2609,6 +2611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u0420\u044B\u0431\u0430\u043B\u043A\u0430"
   _workerName: "\u041E\u0445\u043E\u0442\u043D\u0438\u043A"
+  _workerType: 1
   _receivedItem: {fileID: 11400000, guid: a492e3b32c4a23e4e867e9e11f375f6b, type: 2}
   workVideo: {fileID: 32900000, guid: e45078f64dd01fd4e9f16062ee924b41, type: 3}
   standartMinDropItems: 3
@@ -2772,6 +2775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u0414\u043E\u0431\u044B\u0447\u0430 \u0440\u0443\u0434\u044B (\u0443\u0433\u043E\u043B\u044C)"
   _workerName: "\u0428\u0430\u0445\u0442\u0451\u0440"
+  _workerType: 3
   _receivedItem: {fileID: 11400000, guid: 737e5d1186c1b6944ad0d08ce9674f95, type: 2}
   workVideo: {fileID: 32900000, guid: 75e62e99e52e7c04898f46fe191f688a, type: 3}
   standartMinDropItems: 3
@@ -2885,6 +2889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u0420\u0443\u0431\u043A\u0430 \u0434\u0435\u0440\u0435\u0432\u0430"
   _workerName: "\u041B\u0435\u0441\u043E\u0440\u0443\u0431"
+  _workerType: 2
   _receivedItem: {fileID: 11400000, guid: af77cd023596b2543b9f57604b3cb91e, type: 2}
   workVideo: {fileID: 32900000, guid: 60ba936a0c72559478374f35431d70c8, type: 3}
   standartMinDropItems: 3
@@ -2998,6 +3003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u0421\u0431\u043E\u0440 \u044F\u0433\u043E\u0434"
   _workerName: "\u041B\u0435\u0441\u043E\u0440\u0443\u0431"
+  _workerType: 2
   _receivedItem: {fileID: 11400000, guid: d63ac87e41d3ea44084bec3c7f6122f3, type: 2}
   workVideo: {fileID: 32900000, guid: 4a5ba92bff4663947be12c4d1bebf552, type: 3}
   standartMinDropItems: 3
@@ -3101,6 +3107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u0414\u043E\u0431\u044B\u0447\u0430 \u0440\u0443\u0434\u044B (\u0436\u0435\u043B\u0435\u0437\u043E)"
   _workerName: "\u0428\u0430\u0445\u0442\u0451\u0440"
+  _workerType: 3
   _receivedItem: {fileID: 11400000, guid: babf6a8688b6d6d45866cb68587ac82b, type: 2}
   workVideo: {fileID: 32900000, guid: 0f72fcca9354e8349bb3af00685e86d1, type: 3}
   standartMinDropItems: 3
@@ -3156,6 +3163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u0421\u0431\u043E\u0440 \u043E\u0432\u043E\u0449\u0435\u0439"
   _workerName: "\u0424\u0435\u0440\u043C\u0435\u0440"
+  _workerType: 0
   _receivedItem: {fileID: 11400000, guid: 942ab6f152fc3324b8ffc040713b8585, type: 2}
   workVideo: {fileID: 32900000, guid: 8ba3e736b51f60b4bb5719e82f721be1, type: 3}
   standartMinDropItems: 3
@@ -3366,6 +3374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _workName: "\u041E\u0445\u043E\u0442\u0430"
   _workerName: "\u041E\u0445\u043E\u0442\u043D\u0438\u043A"
+  _workerType: 1
   _receivedItem: {fileID: 11400000, guid: 01fae7940af560848a94e6ad6bb07225, type: 2}
   workVideo: {fileID: 32900000, guid: a51ee648244ef4b49a51b38873f7442d, type: 3}
   standartMinDropItems: 3

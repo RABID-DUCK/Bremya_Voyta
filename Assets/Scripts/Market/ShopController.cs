@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ShopController : MonoBehaviourPunCallbacks
+public class ShopController : MonoBehaviourPunCallbacks, IObjectWithCharacter
 {
     public event Action OnOpenMarket;
     public event Action OnCloseMarket;
@@ -28,6 +28,12 @@ public class ShopController : MonoBehaviourPunCallbacks
         }
     }
 
+    public void InitializePlayer(Character player)
+    {
+        this.player = player;
+        Init = this.player;
+    }
+
     public void OpenMarket()
     {
         OnOpenMarket?.Invoke();
@@ -36,12 +42,6 @@ public class ShopController : MonoBehaviourPunCallbacks
     public void CloseMareket()
     {
         OnCloseMarket?.Invoke();
-    }
-
-    public void Initialization(Character player)
-    {
-        this.player = player;
-        Init = this.player;
     }
 
     public void BuyItemInTheStore(Item item)

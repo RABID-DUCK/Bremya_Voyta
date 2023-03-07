@@ -4,7 +4,7 @@ namespace Ekonomika.Work
     {
         public string WorkName { get; }
         public string WorkerName { get; }
-        
+        public CharacterType WorkerType { get; }
         public Item ReceivedItem { get; }
     }
 }

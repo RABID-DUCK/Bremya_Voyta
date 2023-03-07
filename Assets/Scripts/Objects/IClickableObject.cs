@@ -1,4 +1,6 @@
 public interface IClickableObject
 {
-    public void Execute(Character player);
+    public bool Enabled { get; set; }
+
+    public void Execute();
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIUpdater : MonoBehaviour
+public class UIUpdater : MonoBehaviour, IObjectWithCharacter
 {
     public bool Init { get; private set; } = false;
 
@@ -24,7 +24,7 @@ public class UIUpdater : MonoBehaviour
         itemDisplayer.gameObject.SetActive(false);
     }
 
-    public void Initialization(Character player)
+    public void InitializePlayer(Character player)
     {
         if (player)
         {

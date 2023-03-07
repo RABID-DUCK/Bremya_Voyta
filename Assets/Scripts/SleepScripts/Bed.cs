@@ -1,6 +1,6 @@
 using System;
 
-public class Bed : ClickableObject
+public class Bed : OutlineClickableObject
 {
     public event Action OnClickOnBed;
 
@@ -9,7 +9,7 @@ public class Bed : ClickableObject
         OnClickOnBed?.Invoke();
     }
 
-    public override void Execute(Character player)
+    public override void Execute()
     {
         SendClickOnBed();
     }

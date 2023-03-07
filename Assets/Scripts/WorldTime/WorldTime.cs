@@ -25,7 +25,7 @@ public class WorldTime : MonoBehaviour
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Coordinator.OnEndEducation += StartTime;
+            CitySceneBoot.OnEndEducation += StartTime;
         }
     }
 
