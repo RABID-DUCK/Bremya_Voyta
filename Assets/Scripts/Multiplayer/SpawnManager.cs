@@ -1,4 +1,3 @@
-using Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
@@ -10,7 +9,6 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject[] Spawns;
-    [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private CitySceneBoot citySceneBoot;
     [SerializeField] private List<CharacterSO> listCharacters;
     public List<House> houses;
@@ -33,8 +31,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         _locPlayer.AddComponent<AudioListener>();
         Character ch = _locPlayer.GetComponent<Character>();
 
-        _camera.Follow = _locPlayer.transform;
-        citySceneBoot.SetPlayer(ch);
+        citySceneBoot.BootScene(ch);
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "coins", 50 } });
         ch.spawnManager = this;
 

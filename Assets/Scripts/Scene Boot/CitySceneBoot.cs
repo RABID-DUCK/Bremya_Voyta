@@ -1,3 +1,4 @@
+using Cinemachine;
 using Ekonomika.Dialog;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,30 +7,44 @@ public class CitySceneBoot : MonoBehaviour
 {
     public static System.Action OnEndEducation;
     
-    [SerializeField] private CitySceneUICoordinator uiCoordinator;
+    [SerializeField] private CitySceneUICoordinator UICoordinator;
     [SerializeField] private ClickEventer clickEventer;
     [SerializeField] private DialogData startDialogData;
     [SerializeField] private DialogPresenter dialogPresenter;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private Transform startCameraTransform;
+
 
     private List<IObjectWithCharacter> sceneObjectsWithCharacter = new List<IObjectWithCharacter>();
+
+    private Character _player;
 
     private void Awake()
     {
         SearchByObjects(FindObjectsOfType<Object>());
     }
 
-    private void Start()
+    public void BootScene(Character character, bool startDialog = true)
     {
-        clickEventer.SetObjectsEnabled(false);
-        dialogPresenter.OnDialogEnd += EndEducation;
-        dialogPresenter.StartDialog(startDialogData);
-    }
+        _player = character;
 
-    public void SetPlayer(Character character)
-    {
         foreach (IObjectWithCharacter sceneObj in sceneObjectsWithCharacter)
         {
-            sceneObj.InitializePlayer(character);
+            sceneObj.InitializePlayer(_player);
+        }
+
+        virtualCamera.Follow = startCameraTransform;
+
+        clickEventer.SetObjectsEnabled(false);
+        dialogPresenter.OnDialogEnd += EndEducation;
+
+        if (startDialog)
+        {
+            dialogPresenter.StartDialog(startDialogData);
+        }
+        else
+        {
+            EndEducation();
         }
     }
 
@@ -50,7 +65,8 @@ public class CitySceneBoot : MonoBehaviour
     {
         dialogPresenter.OnDialogEnd -= EndEducation;
 
-        uiCoordinator.Subscribe();
+        virtualCamera.Follow = _player.transform;
+        UICoordinator.Subscribe();
         clickEventer.SetObjectsEnabled(true);
 
         OnEndEducation?.Invoke();
