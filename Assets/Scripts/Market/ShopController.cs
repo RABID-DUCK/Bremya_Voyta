@@ -2,7 +2,6 @@ using ExitGames.Client.Photon;
 using Photon.Pun;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ShopController : MonoBehaviourPunCallbacks, IObjectWithCharacter
@@ -80,9 +79,9 @@ public class ShopController : MonoBehaviourPunCallbacks, IObjectWithCharacter
     {
         System.Random rnd = new System.Random();
 
-        int randomNumber = rnd.Next(0,1);
+        int randomNumber = rnd.Next(0, 1);
 
-        if(randomNumber == 0f)
+        if (randomNumber == 0f)
         {
             return false;
         }
