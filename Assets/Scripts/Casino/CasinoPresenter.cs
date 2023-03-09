@@ -17,8 +17,6 @@ public class CasinoPresenter : MonoBehaviour
         casinoView.OnClickMinimumRateButton += GetMinimumRateMoney;
         casinoView.OnClickAverageRateButton += GetAvarageRateMoney;
         casinoView.OnClickMaximumRateButton += GetMaximumRateMoney;
-
-        worldTimeEventSender.OnStopCasinoEvent += CheckingProbabilityWinningMoney;
     }
 
     private void ShowCasinoHelloPanel()
@@ -26,6 +24,9 @@ public class CasinoPresenter : MonoBehaviour
         UIController.ShowInfo($"Началось событие менялы!\r\nИспытайте свою удачу!", "Ок");
 
         casinoView.OpenCasino();
+
+        worldTimeEventSender.OnStartCasinoEvent -= ShowCasinoHelloPanel;
+        worldTimeEventSender.OnStopCasinoEvent += CheckingProbabilityWinningMoney;
     }
 
     private void GetMinimumRateMoney()
@@ -75,5 +76,7 @@ public class CasinoPresenter : MonoBehaviour
         }
 
         countCoinsSelectedEvent = 0;
+
+        worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
     }
 }
