@@ -78,5 +78,6 @@ public class CasinoPresenter : MonoBehaviour
         countCoinsSelectedEvent = 0;
 
         worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
+        worldTimeEventSender.OnStopCasinoEvent -= CheckingProbabilityWinningMoney;
     }
 }

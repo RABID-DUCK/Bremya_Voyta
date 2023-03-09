@@ -133,12 +133,12 @@ public class WorldTimeEventSender : MonoBehaviour
         //------------------------------------------------------------------//
 
         //---------------------------------- Налоги -----------------------------------//
-        if (countOfDaysElapsed == 5 && timeProgress > 0.5f && isCheckTimeOfDay == true)
+        if (countOfDaysElapsed == 5 && timeProgress > 0.5f && timeProgress <= 0.55f && isCheckTimeOfDay == true)
         {
             OnStartTaxEvent?.Invoke();
         }
 
-        if (countOfDaysElapsed == 5 && timeProgress > 0.9f && isCheckTimeOfDay == true)
+        if (countOfDaysElapsed == 5 && timeProgress > 0.9f && timeProgress < 0.95f && isCheckTimeOfDay == true)
         {
             OnStopTaxEvent?.Invoke();
         }

@@ -17,6 +17,8 @@ public class CasinoView : MonoBehaviour
         minimumRateButton.onClick.AddListener(SendOnClickMinimumRateButton);
         averageRateButton.onClick.AddListener(SendOnClickAverageRateButton);
         maximumRateButton.onClick.AddListener(SendOnClickMaximumRateButton);
+
+        CloseCasino();
     }
 
     private void SendOnClickMinimumRateButton()

@@ -81,7 +81,7 @@ public class ShopController : MonoBehaviourPunCallbacks, IObjectWithCharacter
 
         int randomNumber = rnd.Next(0, 1);
 
-        if (randomNumber == 0f)
+        if (randomNumber == 0)
         {
             return false;
         }
