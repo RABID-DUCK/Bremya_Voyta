@@ -13,33 +13,15 @@ public class CharacterItem : MonoBehaviour
     public Button buttonInfo;
     public Image avatarCharacter;
     [HideInInspector] public GameObject prefabCharacter;
-    [HideInInspector] public LobbyMenu lm;
     [HideInInspector] public CharacterSO characterSO;
-
-    private Hashtable _CP = new Hashtable();
-
-    public void ChangeCharacter()
+     
+    public void GetCharacter()
     {
-        foreach (var (_nick, j) in characterSO.full.Select((_nick, j) => (_nick, j)))
-        {
-            if (characterSO.full[j] == "" || characterSO.full[j] == PhotonNetwork.LocalPlayer.NickName)
-            {
-                _CP["Profession"] = $"{characterSO.nameCharacter}";
-                _CP["Skin"] = j;
-                PhotonNetwork.LocalPlayer.SetCustomProperties(_CP);
-                lm.Room.SetActive(true);
-                lm.charactersMenu.SetActive(false);
-                return;
-            }
-        }
-        lm.ErrorText.text = $"Такая профессия уже занята";
-        lm.Error.SetActive(true);
+        MenuManager.instance.GetCharacter(this);
     }
 
     public void OpenInfo()
     {
-        lm.characterInfoImage.sprite = characterSO.avatars[0];
-        lm.characterInfoText.text = characterSO.description;
-        lm.characterInfoPanel.SetActive(true);
+        MenuManager.instance.OpenCharacterInfo(this);
     }
 }

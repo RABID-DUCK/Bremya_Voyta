@@ -1,14 +1,12 @@
 using Photon.Pun;
 using Photon.Realtime;
-using ExitGames.Client.Photon;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerItem : MonoBehaviourPunCallbacks
 {
@@ -24,22 +22,12 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     [SerializeField] Button buttonReadyOther;
     [SerializeField] TMP_Text textButtonReadyOther;
 
-    private LobbyMenu lm;
-
     [HideInInspector] public Player phPlayer;
     [HideInInspector] public int phId = -1;
 
     [SerializeField] public bool boolReady;
 
-    private Regex r = new Regex("^[a-zA-Zа-яА-Я0-9]*$");
-
-    private ExitGames.Client.Photon.Hashtable _CP = new ExitGames.Client.Photon.Hashtable();
-
-    public void Set(UnityAction eventClick, LobbyMenu _lm)  // создаёт связь
-    {
-        buttonChange.onClick.AddListener(eventClick);
-        lm = _lm;
-    }
+    private Regex regex = new Regex("^[a-zA-Zа-яА-Я0-9]*$");
 
     public void SetPlayerInfo(Player _player)
     {
@@ -54,8 +42,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         }
 
         boolReady = false;
-        _CP["Ready"] = false;
-        phPlayer.SetCustomProperties(_CP);
+        phPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
 
         if (_player.IsLocal)
         {
@@ -104,22 +91,27 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
             if (_bool)
             {
-                if (r.IsMatch(inputNick.text))
+                if (regex.IsMatch(inputNick.text))
                 {
                     phPlayer.NickName = inputNick.text;
                 }
                 else
                 {
-                    lm.OpenError("Данный ник содержит недоступные символы!");
+                    MenuManager.instance.Error("Данный ник содержит недоступные символы!");
                 }
             }
             else
             {
-                lm.OpenError("Данный ник уже использьзуется!");
+                MenuManager.instance.Error("Данный ник уже использьзуется!");
             }
 
             inputNick.text = "";
         }
+    }
+
+    public void ChangeCharacter()
+    {
+        MenuManager.instance.OpenChangeCharacterPanel();
     }
 
     public void SetReadyButton()
@@ -128,8 +120,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         textButtonReady.color = boolReady ? Color.green : Color.red;
         textButtonReady.text = boolReady ? "Готов" : "Не готов";
 
-        _CP["Ready"] = boolReady;
-        phPlayer.SetCustomProperties(_CP);
+        phPlayer.SetCustomProperties(new Hashtable() { { "Ready", boolReady } });
     }
 
     public void SetReady()

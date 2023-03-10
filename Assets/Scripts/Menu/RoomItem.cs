@@ -1,22 +1,20 @@
 using Photon.Realtime;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class RoomItem : MonoBehaviour
 {
     [SerializeField] private TMP_Text roomName;
-    private RoomInfo _info;
+    private RoomInfo roomInfo;
 
-    public void SetUp(RoomInfo roominfo)
+    public void SetRoomInfo(RoomInfo _roomInfo)
     {
-        _info = roominfo;
-        roomName.text = _info.Name;
+        roomInfo = _roomInfo;
+        roomName.text = roomInfo.Name;
     }
 
     public void OnClick()
     {
-        MainMenu.instance.JoinRoom(_info);
+        MenuManager.instance.JoinRoom(roomInfo);
     }
 }
