@@ -1,6 +1,4 @@
-using ExitGames.Client.Photon;
 using Photon.Pun;
-using Photon.Pun.Demo.Cockpit;
 using Photon.Realtime;
 using System.Collections.Generic;
 using System.Linq;
@@ -161,9 +159,9 @@ public class MenuManager : MonoBehaviourPunCallbacks
             Destroy(roomItem.gameObject);
         }
 
-        foreach(RoomInfo room in roomsList)
+        foreach (RoomInfo room in roomsList)
         {
-            if(!room.RemovedFromList)
+            if (!room.RemovedFromList)
             {
                 RoomItem roomItem = Instantiate(roomItemPrefab, roomsListTransform);
                 roomItem.SetRoomInfo(room);
@@ -453,8 +451,21 @@ public class MenuManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        if (changedProps.ContainsKey(255)) // ник
+        if (changedProps.ContainsKey("LastNickName"))
         {
+            string lastNickName = (string)changedProps["LastNickName"];
+            data.listCharacters.ForEach((chatacter) =>
+            {
+                foreach (var (_nick, j) in chatacter.full.Select((_nick, j) => (_nick, j)))
+                {
+                    if (_nick == lastNickName)
+                    {
+                        chatacter.full[j] = targetPlayer.NickName;
+                        return;
+                    }
+                }
+            });
+
             _player.SetNick();
         }
 

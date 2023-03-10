@@ -574,7 +574,7 @@ namespace Photon.Pun
         {
             if (this.IsWriting)
             {
-                Debug.LogError("Error: you cannot read this stream that you are writing!");
+                Debug.LogError("Ошибка: невозможно прочитать даннный поток, он уже используется!");
                 return null;
             }
 
@@ -588,7 +588,7 @@ namespace Photon.Pun
         {
             if (this.IsWriting)
             {
-                Debug.LogError("Error: you cannot read this stream that you are writing!");
+                Debug.LogError("Ошибка: невозможно прочитать даннный поток, он уже используется!");
                 return null;
             }
 
@@ -602,7 +602,7 @@ namespace Photon.Pun
         {
             if (!this.IsWriting)
             {
-                Debug.LogError("Error: you cannot write/send to this stream that you are reading!");
+                Debug.LogError("Ошибка: вы не можете записывать/отправить в поток, он уже используется!");
                 return;
             }
 

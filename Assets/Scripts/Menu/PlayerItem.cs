@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -93,7 +92,9 @@ public class PlayerItem : MonoBehaviourPunCallbacks
             {
                 if (regex.IsMatch(inputNick.text))
                 {
+                    string lastNickName = phPlayer.NickName;
                     phPlayer.NickName = inputNick.text;
+                    phPlayer.SetCustomProperties(new Hashtable() { { "LastNickName", lastNickName } });
                 }
                 else
                 {
