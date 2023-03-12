@@ -79,7 +79,7 @@ public class WorldTimeEventSender : MonoBehaviour
         //--------------------------------------//
 
         //------- Сон -------//
-        if (isCheckTimeOfDay == false && countOfDaysElapsed < 5 && timeProgress >= 0f && timeProgress <= 0.05f)
+        if (isCheckTimeOfDay == false && countOfDaysElapsed < 5 && timeProgress >= 0f && timeProgress <= 0.01f)
         {
             OnSleepTime?.Invoke();
         }
