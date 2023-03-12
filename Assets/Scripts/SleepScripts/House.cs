@@ -8,7 +8,7 @@ public class House : OutlineClickableObject
     public string playerNick;
     public Transform doorway;
 
-    public override void Execute()
+    public override void OnExecute()
     {
         if (Player.photonView.Controller.NickName == playerNick)
         {

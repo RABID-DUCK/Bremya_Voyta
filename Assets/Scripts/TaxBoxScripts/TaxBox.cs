@@ -7,7 +7,7 @@ public class TaxBox : OutlineClickableObject
 
     public event Action OnClickTaxBox;
 
-    public override void Execute()
+    public override void OnExecute()
     {
         OnClickTaxBox?.Invoke();
     }

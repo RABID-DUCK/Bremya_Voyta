@@ -13,17 +13,14 @@ public class StandartObjectClickBehavior : MonoBehaviour, IObjectClickBehavior
                 return;
         }
 
-        if (clickableObject.Enabled)
-        {
-            clickableObject.Execute();
-        }
+        clickableObject.OnExecute();
     }
 
     public bool CheckCompatibilityWork(IWork work)
     {
         bool compatibility = _player.Type == work.WorkerType;
         
-        if (!compatibility)
+        if (!compatibility && work.Enabled)
             UIController.ShowOkInfo($"Вы не можете работать на данной работе! \nТребуется: <b>{work.WorkerName}</b>.");
 
         return compatibility;

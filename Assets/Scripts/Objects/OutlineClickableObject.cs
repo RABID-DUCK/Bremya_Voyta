@@ -46,5 +46,13 @@ public abstract class OutlineClickableObject : MonoBehaviour, IObjectWithCharact
         _player = player;
     }
 
-    public abstract void Execute();
+    public void Execute()
+    {
+        if (Enabled)
+        {
+            OnExecute();
+        }
+    }
+
+    public abstract void OnExecute();
 }

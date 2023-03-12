@@ -2,7 +2,7 @@ using Ekonomika.Utils;
 
 public class ExitRoom : OutlineClickableObject
 {
-    public override void Execute()
+    public override void OnExecute()
     {
         UIController.ShowYesNoDialog("Вы хотите выйти из дома?", () =>
         {

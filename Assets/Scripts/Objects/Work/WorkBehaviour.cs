@@ -29,15 +29,18 @@ namespace Ekonomika.Work
         private int minDropItems = 3;
         private int maxDropItems = 5;
 
-        public override void Execute()
+        public override void OnExecute()
         {
-            UIController.ShowYesNoDialog($"Вы хотите начать работу: \n<b>{WorkName}</b>?", () =>
+            if (Enabled)
             {
-                UIController.ShowVideo(workVideo, () =>
+                UIController.ShowYesNoDialog($"Вы хотите начать работу: \n<b>{WorkName}</b>?", () =>
                 {
-                    Player.PlayerInventory.PutItem(ReceivedItem, CalculateDropItems());
+                    UIController.ShowVideo(workVideo, () =>
+                    {
+                        Player.PlayerInventory.PutItem(ReceivedItem, CalculateDropItems());
+                    });
                 });
-            });
+            }
         }
 
         public void OverrideStandartDropItems(int min, int max)
