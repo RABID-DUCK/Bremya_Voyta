@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class TaxBoxModel : MonoBehaviour
 {
-    [HideInInspector] public List<Item> selectResources = new List<Item>();
-    [HideInInspector] public List<int> selectCountResources = new List<int>();
-
-    //public event Action OnPaymentError;
+    [Header("Read only!")]
+    public List<Item> selectResources = new List<Item>();
+    public List<int> selectCountResources = new List<int>();
 
     private void Randomize(int firstCount, int secondCount, out int selectIndex)
     {
@@ -26,7 +25,7 @@ public class TaxBoxModel : MonoBehaviour
             Randomize(0, resurces.Count, out selectIndex);
 
             selectResources.Add(resurces[selectIndex]);
-            resurces.RemoveAt(selectIndex); //Костыль привет
+            resurces.RemoveAt(selectIndex);
 
             Randomize(1, 2, out selectResourceCount);
 
@@ -58,6 +57,9 @@ public class TaxBoxModel : MonoBehaviour
         {
             for (int i = 0; i < selectResources.Count; i++)
             {
+                Debug.Log($"Выбранные ресурс {i} {selectResources[i].name}");
+                Debug.Log($"Количество ресурса {selectCountResources[i]}");
+
                 player.PlayerInventory.PickUpItem(selectResources[i], selectCountResources[i]);
             }
 
@@ -77,7 +79,7 @@ public class TaxBoxModel : MonoBehaviour
         }
         catch (InvalidOperationException)
         {
-            UIController.ShowInfo("Ну грусто... Что сказать?...", "Ок =(");
+            UIController.ShowInfo("Как можно быть настолько бедным?\r\nМожет пора поработать?", "Ок");
         }
     }
 }

@@ -79,7 +79,7 @@ public class ShopController : MonoBehaviourPunCallbacks, IObjectWithCharacter
     {
         System.Random rnd = new System.Random();
 
-        int randomNumber = rnd.Next(0, 1);
+        int randomNumber = rnd.Next(0, 2);
 
         if (randomNumber == 0)
         {
@@ -91,9 +91,9 @@ public class ShopController : MonoBehaviourPunCallbacks, IObjectWithCharacter
         }
     }
 
-    public void CalculateWinningAmount(int countMoney, out int winningAmount)
+    public void CalculateWinningAmount(float countMoney, out int winningAmount)
     {
-        winningAmount = countMoney / 100 * 40;
+        winningAmount = (int)((countMoney / 100f * 40f) + countMoney);
     }
 
     public void SetWinMoney(int coins)

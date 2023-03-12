@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class TaxBoxPresenter : TaxBoxModel
+public class TaxBoxPresenter : TaxBoxModel, IObjectWithCharacter
 {
     [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
@@ -14,7 +14,6 @@ public class TaxBoxPresenter : TaxBoxModel
     [Space]
     [SerializeField] private ShowCanvasGroup showCanvasGroup;
 
-
     private Character player;
 
     private void Start()
@@ -26,7 +25,7 @@ public class TaxBoxPresenter : TaxBoxModel
         taxBoxPanelView.OnClickGetResource += TakeResourcesFromPlayer;
     }
 
-    public void PlayerInitialization(Character player)
+    public void InitializePlayer(Character player)
     {
         this.player = player;
     }
@@ -76,7 +75,9 @@ public class TaxBoxPresenter : TaxBoxModel
 
     private void TakeResourcesFromPlayer()
     {
-        if (GetResourcesFromPlayer(player))
+        bool isCheckResource = GetResourcesFromPlayer(player);
+
+        if (isCheckResource)
         {
             taxBoxPanelView.ShowSuccessfullyPanel();
 
@@ -87,4 +88,5 @@ public class TaxBoxPresenter : TaxBoxModel
             UIController.ShowInfo("У вас не хватает ресурсов для уплаты налога!", "Ок");
         }
     }
+
 }

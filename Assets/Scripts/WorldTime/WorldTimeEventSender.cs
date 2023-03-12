@@ -79,7 +79,7 @@ public class WorldTimeEventSender : MonoBehaviour
         //--------------------------------------//
 
         //------- Сон -------//
-        if (isCheckTimeOfDay == false && countOfDaysElapsed < 6 && timeProgress >= 0f && timeProgress <= 0.05f)
+        if (isCheckTimeOfDay == false && countOfDaysElapsed < 5 && timeProgress >= 0f && timeProgress <= 0.05f)
         {
             OnSleepTime?.Invoke();
         }
@@ -88,18 +88,18 @@ public class WorldTimeEventSender : MonoBehaviour
         //--------------- Стандартные(Природные и т.п.) события ---------------//
         if (PhotonNetwork.IsMasterClient)
         {
-            if (countOfDaysElapsed == 1 && timeProgress > 0.6f && isCheckTimeOfDay)
+            if (countOfDaysElapsed == 1 && timeProgress >= 0.6f && timeProgress <= 0.65f && isCheckTimeOfDay)
             {
                 OnStartEvent?.Invoke();
             }
 
-            if (countOfDaysElapsed == 4 && timeProgress > 0.6f && isCheckTimeOfDay)
+            if (countOfDaysElapsed == 4 && timeProgress > 0.6f && timeProgress <= 0.65f && isCheckTimeOfDay)
             {
                 OnStartEvent?.Invoke();
             }
         }
 
-        if (countOfDaysElapsed == 2 && timeProgress > 0.95f && isCheckTimeOfDay)
+        if (countOfDaysElapsed == 2 && timeProgress > 0.95f  && isCheckTimeOfDay)
         {
             OnStopEvent?.Invoke();
         }
@@ -126,7 +126,7 @@ public class WorldTimeEventSender : MonoBehaviour
             OnStartCasinoEvent?.Invoke();
         }
 
-        if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0.5f && timeProgress <= 0.55f)
+        if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0.45f && timeProgress <= 0.5f)
         {
             OnStopCasinoEvent?.Invoke();
         }
@@ -145,7 +145,7 @@ public class WorldTimeEventSender : MonoBehaviour
         //-----------------------------------------------------------------------------// 
 
         //---------------------- Конец игры ---------------------//
-        if (countOfDaysElapsed > 5 && isCheckTimeOfDay == false)
+        if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
         {
             OnEndGame?.Invoke();
         }

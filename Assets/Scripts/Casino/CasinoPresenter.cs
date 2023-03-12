@@ -7,7 +7,7 @@ public class CasinoPresenter : MonoBehaviour
 
     [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
-    private int countCoinsSelectedEvent;
+    private float countCoinsSelectedEvent;
     private int amountOfMoneyWon;
 
     private void Start()
@@ -73,9 +73,9 @@ public class CasinoPresenter : MonoBehaviour
             marketController.SetWinMoney(amountOfMoneyWon);
 
             UIController.ShowInfo($"Ваша ставка выиграла! Вы получаете дополнительно {amountOfMoneyWon} монет!", "Ок");
-        }
 
-        countCoinsSelectedEvent = 0;
+            countCoinsSelectedEvent = 0;
+        }
 
         worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
         worldTimeEventSender.OnStopCasinoEvent -= CheckingProbabilityWinningMoney;

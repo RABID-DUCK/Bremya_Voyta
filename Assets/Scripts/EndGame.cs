@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class EndGame : MonoBehaviour
 {
+    [SerializeField] private WorldTime worldTime;
     [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
     [Header("Top player properties")]
@@ -28,11 +29,6 @@ public class EndGame : MonoBehaviour
     private Dictionary<string, int> players = new Dictionary<string, int>();
     private List<int> sortCoins = new List<int>();
 
-    private void Awake()
-    {
-        
-    }
-
     private void Start()
     {
         worldTimeEventSender.OnEndGame += FinishGame;
@@ -51,6 +47,8 @@ public class EndGame : MonoBehaviour
         SetTopPlayersSetting();
 
         ShowFinishPanel();
+
+        worldTime.isStartTime = false;
     }
 
     private void GetAllPlayers()
