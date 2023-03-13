@@ -1,5 +1,7 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -38,6 +40,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     [Header("Other Elements")]
     [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private Slider loadingBar;
     [SerializeField, Space] private GameObject errorPanel;
     [SerializeField] private TMP_Text errorText;
 
@@ -50,12 +53,15 @@ public class MenuManager : MonoBehaviourPunCallbacks
             return;
         }
         instance = this;
-        loadingPanel.SetActive(true);
     }
 
     public void Start()
     {
-        PhotonNetwork.ConnectUsingSettings();
+        if(!PhotonNetwork.ConnectUsingSettings())
+        {
+            Error("Не удалось подключиться к серверам!");
+        }
+        menuPanel.SetActive(true);
         ClearPlayerData();
         UpdateCharectersList(0);
         CreateRandomName(PhotonNetwork.LocalPlayer);
@@ -220,7 +226,29 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public void StartGame()
     {
         PhotonNetwork.CurrentRoom.IsVisible = false;
+        Send_Data("StartLoadingGame");
         PhotonNetwork.LoadLevel("CityScene");
+    }
+
+    [PunRPC]
+    public void StartLoadingGame()
+    {
+        loadingPanel.SetActive(true);
+        roomPanel.SetActive(false);
+        charactersPanel.SetActive(false);
+        characterInfoPanel.SetActive(false);
+
+        loadingBar.value = 0;
+        StartCoroutine(LoadLevelAsync());
+    }
+    
+    IEnumerator LoadLevelAsync()
+    {
+        while (PhotonNetwork.LevelLoadingProgress < 1)
+        {
+            loadingBar.value = PhotonNetwork.LevelLoadingProgress;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     // -> Character (Profession Change and Clear)
@@ -366,7 +394,6 @@ public class MenuManager : MonoBehaviourPunCallbacks
     }
 
     // -> Player
-
     private void UpdatePlayerList()     // создание/обновление игроков
     {
         playerItemsList?.ForEach((playerItem) =>
@@ -405,8 +432,6 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.GameVersion = Application.version;
-        menuPanel.SetActive(true);
-        loadingPanel.SetActive(false);
         PhotonNetwork.JoinLobby();
     }
 
