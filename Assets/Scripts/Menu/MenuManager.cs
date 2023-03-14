@@ -57,10 +57,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public void Start()
     {
-        if(!PhotonNetwork.ConnectUsingSettings())
-        {
-            Error("Не удалось подключиться к серверам!");
-        }
+        PhotonNetwork.ConnectUsingSettings();
         menuPanel.SetActive(true);
         ClearPlayerData();
         UpdateCharectersList(0);
