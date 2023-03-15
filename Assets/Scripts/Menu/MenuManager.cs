@@ -4,7 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Hastable = ExitGames.Client.Photon.Hashtable;
@@ -146,6 +148,21 @@ public class MenuManager : MonoBehaviourPunCallbacks
             createRoomPanel.SetActive(true);
         }
         loadingPanel.SetActive(false);
+    }
+
+    private readonly Regex regex = new Regex("^[a-zA-Zà-ÿÀ-ß0-9]*$");
+
+    public void CheckRoomName()
+    {
+/*        if (!regex.IsMatch(roomInputField.text))
+        {
+           print(regex.Replace(roomInputField.text, string.Empty));
+        }*/
+
+        if (roomInputField.text.Length > 20)
+        {
+            roomInputField.text = roomInputField.text.Remove(20);
+        }
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

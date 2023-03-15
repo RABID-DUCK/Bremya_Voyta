@@ -26,7 +26,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
     [SerializeField] public bool boolReady;
 
-    private Regex regex = new Regex("^[a-zA-Zà-ÿÀ-ß0-9]*$");
+    private readonly Regex regex = new Regex("^[a-zA-Zà-ÿÀ-ß0-9]*$");
 
     public void SetPlayerInfo(Player _player)
     {
