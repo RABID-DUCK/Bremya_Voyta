@@ -21,6 +21,8 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
     public List<AudioClip> audioClips = new List<AudioClip>(3);
 
+    public AudioSource iventsSounds;
+
     [Header("Events")]
     [SerializeField] private LittleRainEvent littleRainEvent;
     [SerializeField] private ClearWeatherWithLittleColdEvent clearWeatherWithLittleColdEvent;
@@ -74,7 +76,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                     OnGetEventSO?.Invoke(littleRainEvent.littleRainSO);
 
-                    SoundManager.Instance.PlaySound(audioClips[0]);
+                    iventsSounds.clip = audioClips[0];
                 }
 
                 break;
@@ -91,7 +93,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                     OnGetEventSO?.Invoke(ThunderstormWithHeavyRainEvent.ThunderSO);
 
-                    SoundManager.Instance.PlaySound(audioClips[0]);
+                    iventsSounds.clip = audioClips[0];
                     //Debug.Log(audioClips); // Дебаги нужно коммитить или убирать после тестирования!
                 }
 
@@ -109,7 +111,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                     OnGetEventSO?.Invoke(stormEvent.StormSO);
 
-                    SoundManager.Instance.PlaySound(audioClips[1]);
+                    iventsSounds.clip = audioClips[1];
                     //Debug.Log(audioClips);
                 }
 
@@ -179,8 +181,8 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
         mineСollapseEvent.EndMineСollapseEvent();
         clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
 
-        SoundManager.Instance.StopSound(audioClips);
-        
+        iventsSounds.Stop(); // Здесь кидает ошибку. Вместо обнуления можно просто останавливать проигрыватель, а нужный звук ты уже прокидываешь во время подключения выпавшего ивента.
+
         OnEndEvent?.Invoke();
     }
 
