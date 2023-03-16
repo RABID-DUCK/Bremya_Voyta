@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VolumeValue : MonoBehaviour
@@ -9,25 +7,20 @@ public class VolumeValue : MonoBehaviour
 
     void Start()
     {
-        audioSrc = GetComponent<AudioSource>(); 
-    }
-
-    void Update()
-    {
-        audioSrc.volume = musicVolume;
+        audioSrc = GetComponent<AudioSource>();
     }
 
     public void SetVolume(float vol)
     {
         musicVolume = vol;
-        StaticVolume.musicVolume = musicVolume;
+        StaticVolume.musicVolume = vol;
         if (musicVolume == 0f)
         {
             audioSrc.Pause();
         }
         else
         {
-            audioSrc.Play(0);
+            audioSrc.Play(); // в скобках был 0, убрал...
         }
     }
 }

@@ -1,8 +1,5 @@
 using Photon.Pun;
-using System;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {

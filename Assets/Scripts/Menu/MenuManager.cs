@@ -1,12 +1,9 @@
 using Photon.Pun;
 using Photon.Realtime;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Hastable = ExitGames.Client.Photon.Hashtable;
@@ -150,13 +147,13 @@ public class MenuManager : MonoBehaviourPunCallbacks
         loadingPanel.SetActive(false);
     }
 
-    private readonly Regex regex = new Regex("^[a-zA-Zà-ÿÀ-ß0-9]*$");
+    // private readonly Regex regex = new Regex("^[a-zA-Zà-ÿÀ-ß0-9]*$");
 
     public void CheckRoomName()
     {
-/*        if (!regex.IsMatch(roomInputField.text))
+        /*if (!regex.IsMatch(roomInputField.text))
         {
-           print(regex.Replace(roomInputField.text, string.Empty));
+            print(regex.Replace(roomInputField.text, string.Empty));
         }*/
 
         if (roomInputField.text.Length > 20)
@@ -255,7 +252,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         loadingBar.value = 0;
         StartCoroutine(LoadLevelAsync());
     }
-    
+
     IEnumerator LoadLevelAsync()
     {
         while (PhotonNetwork.LevelLoadingProgress < 1)
