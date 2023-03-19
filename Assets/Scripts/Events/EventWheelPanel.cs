@@ -74,4 +74,10 @@ public class EventWheelPanel : MonoBehaviour
         infoEventPanel.SetActive(false);
         eventWheelPanel.SetActive(true);
     }
+
+    private void OnDestroy()
+    {
+        GameEventsStarter.OnGetEventSO -= SetInfoFromEventSO;
+        GameEventsStarter.OnEndEvent -= SetStandartInfo;
+    }
 }
