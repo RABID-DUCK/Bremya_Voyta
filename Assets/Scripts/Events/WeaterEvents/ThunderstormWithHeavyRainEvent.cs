@@ -44,7 +44,7 @@ public class ThunderstormWithHeavyRainEvent : MonoBehaviour
 
     public void EndThunderEvent() // Этот метод нужно вызывать, при конце события!!!
     {
-        StartCoroutine(LightIsBrighter());
+        //StartCoroutine(LightIsBrighter());
 
         ThunderstormPS.SetActive(false);
 

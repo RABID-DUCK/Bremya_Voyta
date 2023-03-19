@@ -33,7 +33,7 @@ public class LittleRainEvent : MonoBehaviour
 
     public void EndSmallRainEvent() // Этот метод нужно вызывать, при конце события!!!
     {
-        StartCoroutine(LightIsBrighter());
+        // StartCoroutine(LightIsBrighter());
 
         littleRainPS.SetActive(false);
 

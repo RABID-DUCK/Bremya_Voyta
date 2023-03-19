@@ -36,12 +36,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
         worldTimeEventSender.OnStartEvent += SelectEventByTime;
     }
 
-    [ContextMenu("StartEvent")]
-    public void StartEventik()
-    {
-        SelectEventByTime();
-    }
-
+    // [ContextMenu("Add Random Event")]
     public void SelectEventByTime()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -49,9 +44,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
             randomEvent = SelectRandomEvent();
             Hashtable _CP = new Hashtable() { { "StartEvent", randomEvent } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(_CP);
-
-            worldTimeEventSender.OnStartEvent -= SelectEventByTime;
-            worldTimeEventSender.OnStopEvent += RemoveEvents;
         }
     }
 
@@ -72,8 +64,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                     littleRainEvent.StartSmallRainEvent();
 
-                    OnGetWeather?.Invoke(IsNegativeWeather);
-
                     OnGetEventSO?.Invoke(littleRainEvent.littleRainSO);
 
                     iventsSounds.clip = audioClips[0];
@@ -88,8 +78,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
                     IsNegativeWeather = true;
 
                     ThunderstormWithHeavyRainEvent.StartThunderEvent();
-
-                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(ThunderstormWithHeavyRainEvent.ThunderSO);
 
@@ -107,8 +95,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                     stormEvent.StartStormEvent();
 
-                    OnGetWeather?.Invoke(IsNegativeWeather);
-
                     OnGetEventSO?.Invoke(stormEvent.StormSO);
 
                     iventsSounds.clip = audioClips[1];
@@ -125,8 +111,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                     clearWeatherWithLittleColdEvent.StartClearWeatherWithLittleCold();
 
-                    OnGetWeather?.Invoke(IsNegativeWeather);
-
                     OnGetEventSO?.Invoke(clearWeatherWithLittleColdEvent.ClearWeatherWithLittleColdSO);
                 }
 
@@ -140,8 +124,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                     mineСollapseEvent.StartMineСollapseEvent();
 
-                    OnGetWeather?.Invoke(IsNegativeWeather);
-
                     OnGetEventSO?.Invoke(mineСollapseEvent.MineСollapseSO);
                 }
 
@@ -152,8 +134,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
                 if (standartDayEvent != null)
                 {
                     IsNegativeWeather = false;
-
-                    OnGetWeather?.Invoke(IsNegativeWeather);
 
                     OnGetEventSO?.Invoke(standartDayEvent.StandartDaySO);
                 }
@@ -168,7 +148,16 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
         }
     }
 
+    // [ContextMenu("Clear Events")]
     public void RemoveEvents()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "EndEvent", "Clear" } });
+        }
+    }
+
+    private void ClearWeather()
     {
         worldTimeEventSender.OnStopEvent -= RemoveEvents;
         worldTimeEventSender.OnStartEvent += SelectEventByTime;
@@ -181,7 +170,7 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
         mineСollapseEvent.EndMineСollapseEvent();
         clearWeatherWithLittleColdEvent.EndClearWeatherWithLittleCold();
 
-        iventsSounds.Stop(); // Здесь кидает ошибку. Вместо обнуления можно просто останавливать проигрыватель, а нужный звук ты уже прокидываешь во время подключения выпавшего ивента.
+        //iventsSounds.Stop(); // Здесь кидает ошибку. Вместо обнуления можно просто останавливать проигрыватель, а нужный звук ты уже прокидываешь во время подключения выпавшего ивента.
 
         OnEndEvent?.Invoke();
     }
@@ -194,6 +183,11 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
             worldTimeEventSender.OnStartEvent -= SelectEventByTime;
             worldTimeEventSender.OnStopEvent += RemoveEvents;
+        }
+
+        if (propertiesThatChanged.ContainsKey("EndEvent"))
+        {
+            ClearWeather();
         }
     }
 

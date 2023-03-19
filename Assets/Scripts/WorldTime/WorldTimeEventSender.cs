@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class WorldTimeEventSender : MonoBehaviour
+public class WorldTimeEventSender : MonoBehaviourPunCallbacks
 {
     [SerializeField] private WorldTime worldTime;
 
@@ -97,17 +97,18 @@ public class WorldTimeEventSender : MonoBehaviour
             {
                 OnStartEvent?.Invoke();
             }
+
+            if (countOfDaysElapsed == 2 && timeProgress > 0.95f && isCheckTimeOfDay)
+            {
+                OnStopEvent?.Invoke();
+            }
+
+            if (countOfDaysElapsed == 5 && timeProgress > 0.95f && isCheckTimeOfDay)
+            {
+                OnStopEvent?.Invoke();
+            }
         }
 
-        if (countOfDaysElapsed == 2 && timeProgress > 0.95f  && isCheckTimeOfDay)
-        {
-            OnStopEvent?.Invoke();
-        }
-
-        if (countOfDaysElapsed == 5 && timeProgress > 0.95f && isCheckTimeOfDay)
-        {
-            OnStopEvent?.Invoke();
-        }
         //----------------------------------------------------------------------//
 
         //----------------------------- Менялы -----------------------------//
