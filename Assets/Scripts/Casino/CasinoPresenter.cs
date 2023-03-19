@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
-public class CasinoPresenter : MonoBehaviour
+public class CasinoPresenter : MonoBehaviourPunCallbacks
 {
     [SerializeField] private CasinoView casinoView;
     [SerializeField] private ShopController marketController;
@@ -21,12 +24,10 @@ public class CasinoPresenter : MonoBehaviour
 
     private void ShowCasinoHelloPanel()
     {
-        UIController.ShowInfo($"Началось событие менялы!\r\nИспытайте свою удачу!", "Ок");
-
-        casinoView.OpenCasino();
-
-        worldTimeEventSender.OnStartCasinoEvent -= ShowCasinoHelloPanel;
-        worldTimeEventSender.OnStopCasinoEvent += CheckingProbabilityWinningMoney;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "StartCasino", "" } });
+        }
     }
 
     private void GetMinimumRateMoney()
@@ -58,26 +59,45 @@ public class CasinoPresenter : MonoBehaviour
 
     private void CheckingProbabilityWinningMoney()
     {
-        bool isWon = marketController.CalculateProbabilityWinning();
-
-        if (isWon == false)
+        if (PhotonNetwork.IsMasterClient)
         {
-            UIController.ShowInfo("Вы програли свою ставку!", "Ок");
-
-            casinoView.CloseCasino();
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() {{ "EndCasino", marketController.CalculateProbabilityWinning() ? 1 : 0 }});
         }
-        else
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey("StartCasino"))
         {
-            marketController.CalculateWinningAmount(countCoinsSelectedEvent, out amountOfMoneyWon);
+            UIController.ShowInfo($"Началось событие менялы!\r\nИспытайте свою удачу!", "Ок");
 
-            marketController.SetWinMoney(amountOfMoneyWon);
+            casinoView.OpenCasino();
 
-            UIController.ShowInfo($"Ваша ставка выиграла! Вы получаете дополнительно {amountOfMoneyWon} монет!", "Ок");
-
-            countCoinsSelectedEvent = 0;
+            worldTimeEventSender.OnStartCasinoEvent -= ShowCasinoHelloPanel;
+            worldTimeEventSender.OnStopCasinoEvent += CheckingProbabilityWinningMoney;
         }
 
-        worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
-        worldTimeEventSender.OnStopCasinoEvent -= CheckingProbabilityWinningMoney;
+        if (propertiesThatChanged.ContainsKey("EndCasino"))
+        {
+            if ((int)propertiesThatChanged["EndCasino"] == 0) // если проиграл
+            {
+                UIController.ShowInfo("Вы програли свою ставку!", "Ок");
+
+                casinoView.CloseCasino();
+            }
+            else
+            {
+                marketController.CalculateWinningAmount(countCoinsSelectedEvent, out amountOfMoneyWon);
+
+                marketController.SetWinMoney(amountOfMoneyWon);
+
+                UIController.ShowInfo($"Ваша ставка выиграла! Вы получаете дополнительно {amountOfMoneyWon} монет!", "Ок");
+
+                countCoinsSelectedEvent = 0;
+            }
+
+            worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
+            worldTimeEventSender.OnStopCasinoEvent -= CheckingProbabilityWinningMoney;
+        }
     }
 }

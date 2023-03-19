@@ -11,10 +11,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
     private int randomEvent;
 
-    private bool IsNegativeWeather = false;
-
-    public static event Action<bool> OnGetWeather;
-
     public static event Action<EventSO> OnGetEventSO = delegate { };
 
     public static event Action OnEndEvent = delegate { };
@@ -60,8 +56,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                 if (littleRainEvent != null)
                 {
-                    IsNegativeWeather = true;
-
                     littleRainEvent.StartSmallRainEvent();
 
                     OnGetEventSO?.Invoke(littleRainEvent.littleRainSO);
@@ -75,8 +69,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                 if (ThunderstormWithHeavyRainEvent != null)
                 {
-                    IsNegativeWeather = true;
-
                     ThunderstormWithHeavyRainEvent.StartThunderEvent();
 
                     OnGetEventSO?.Invoke(ThunderstormWithHeavyRainEvent.ThunderSO);
@@ -91,8 +83,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                 if (stormEvent != null)
                 {
-                    IsNegativeWeather = true;
-
                     stormEvent.StartStormEvent();
 
                     OnGetEventSO?.Invoke(stormEvent.StormSO);
@@ -107,8 +97,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                 if (clearWeatherWithLittleColdEvent != null)
                 {
-                    IsNegativeWeather = true;
-
                     clearWeatherWithLittleColdEvent.StartClearWeatherWithLittleCold();
 
                     OnGetEventSO?.Invoke(clearWeatherWithLittleColdEvent.ClearWeatherWithLittleColdSO);
@@ -120,8 +108,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                 if (mine—ollapseEvent != null)
                 {
-                    IsNegativeWeather = false;
-
                     mine—ollapseEvent.StartMine—ollapseEvent();
 
                     OnGetEventSO?.Invoke(mine—ollapseEvent.Mine—ollapseSO);
@@ -133,8 +119,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
                 if (standartDayEvent != null)
                 {
-                    IsNegativeWeather = false;
-
                     OnGetEventSO?.Invoke(standartDayEvent.StandartDaySO);
                 }
 
@@ -162,8 +146,6 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
         worldTimeEventSender.OnStopEvent -= RemoveEvents;
         worldTimeEventSender.OnStartEvent += SelectEventByTime;
 
-        IsNegativeWeather = false;
-
         littleRainEvent.EndSmallRainEvent();
         ThunderstormWithHeavyRainEvent.EndThunderEvent();
         stormEvent.EndStormEvent();
@@ -187,7 +169,10 @@ public class GameEventsStarter : MonoBehaviourPunCallbacks
 
         if (propertiesThatChanged.ContainsKey("EndEvent"))
         {
-            ClearWeather();
+            if ((string)propertiesThatChanged["EndEvent"] == "Clear")
+            {
+                ClearWeather();
+            }
         }
     }
 
