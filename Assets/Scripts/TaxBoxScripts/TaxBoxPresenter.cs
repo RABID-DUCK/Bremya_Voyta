@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TaxBoxPresenter : TaxBoxModel, IObjectWithCharacter
@@ -32,12 +34,10 @@ public class TaxBoxPresenter : TaxBoxModel, IObjectWithCharacter
 
     private void StartTaxEvent()
     {
-        IsPanelCanBeOpened();
-
-        SetInformationAboutNecessaryResources();
-
-        worldTimeEventSender.OnStartTaxEvent -= StartTaxEvent;
-        worldTimeEventSender.OnStopTaxEvent += OutputtingTaxBoxEventResults;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "StartTax", "Start" } });
+        }
     }
 
     private void IsPanelCanBeOpened()
@@ -59,17 +59,9 @@ public class TaxBoxPresenter : TaxBoxModel, IObjectWithCharacter
 
     private void OutputtingTaxBoxEventResults()
     {
-        if (taxBoxPanelView.isCompleted == false)
+        if (PhotonNetwork.IsMasterClient)
         {
-            taxBoxPanelView.ShowPanelTaxNotPaid();
-
-            TakePenaltyForNonPaymentOfTax(player);
-
-            taxBoxPanelView.HideTaxBoxPanel();
-
-            taxBoxPanelView.isPanelCanBeOpened = false;
-
-            worldTimeEventSender.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "Tax", "End" } });
         }
     }
 
@@ -89,4 +81,37 @@ public class TaxBoxPresenter : TaxBoxModel, IObjectWithCharacter
         }
     }
 
+    private string tax = "";
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey("Tax"))
+        {
+            tax = (string)propertiesThatChanged["Tax"];
+            if (tax == "Start")
+            {
+                IsPanelCanBeOpened();
+
+                SetInformationAboutNecessaryResources();
+
+                worldTimeEventSender.OnStartTaxEvent -= StartTaxEvent;
+                worldTimeEventSender.OnStopTaxEvent += OutputtingTaxBoxEventResults;
+            }
+            else 
+            if(tax == "End")
+            {
+                if (taxBoxPanelView.isCompleted == false)
+                {
+                    taxBoxPanelView.ShowPanelTaxNotPaid();
+
+                    TakePenaltyForNonPaymentOfTax(player);
+
+                    taxBoxPanelView.HideTaxBoxPanel();
+
+                    taxBoxPanelView.isPanelCanBeOpened = false;
+
+                    worldTimeEventSender.OnStopTaxEvent -= OutputtingTaxBoxEventResults;
+                }
+            }
+        }
+    }
 }

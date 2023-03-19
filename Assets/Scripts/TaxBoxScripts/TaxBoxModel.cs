@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaxBoxModel : MonoBehaviour
+public class TaxBoxModel : MonoBehaviourPunCallbacks
 {
     [Header("Read only!")]
     public List<Item> selectResources = new List<Item>();

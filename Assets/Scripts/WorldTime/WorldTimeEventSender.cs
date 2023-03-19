@@ -85,9 +85,9 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
         }
         //-------------------//
 
-        //--------------- Стандартные(Природные и т.п.) события ---------------//
         if (PhotonNetwork.IsMasterClient)
         {
+            //--------------- Стандартные(Природные и т.п.) события ---------------//
             if (countOfDaysElapsed == 1 && timeProgress >= 0.6f && timeProgress <= 0.65f && isCheckTimeOfDay)
             {
                 OnStartEvent?.Invoke();
@@ -107,13 +107,12 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
             {
                 OnStopEvent?.Invoke();
             }
+            //----------------------------------------------------------------------//
         }
 
-        //----------------------------------------------------------------------//
-
-        //----------------------------- Менялы -----------------------------//
         if (PhotonNetwork.IsMasterClient)
         {
+            //----------------------------- Менялы -----------------------------//
             if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0f && timeProgress <= 0.05f)
             {
                 OnStartCasinoEvent?.Invoke();
@@ -133,26 +132,29 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
             {
                 OnStopCasinoEvent?.Invoke();
             }
-        }
-        //------------------------------------------------------------------//
-
-        //---------------------------------- Налоги -----------------------------------//
-        if (countOfDaysElapsed == 5 && timeProgress > 0.5f && timeProgress <= 0.55f && isCheckTimeOfDay == true)
-        {
-            OnStartTaxEvent?.Invoke();
+            //------------------------------------------------------------------//
         }
 
-        if (countOfDaysElapsed == 5 && timeProgress > 0.9f && timeProgress < 0.95f && isCheckTimeOfDay == true)
+        if (PhotonNetwork.IsMasterClient)
         {
-            OnStopTaxEvent?.Invoke();
-        }
-        //-----------------------------------------------------------------------------// 
+            //---------------------------------- Налоги -----------------------------------//
+            if (countOfDaysElapsed == 5 && timeProgress > 0.5f && timeProgress <= 0.55f && isCheckTimeOfDay == true)
+            {
+                OnStartTaxEvent?.Invoke();
+            }
 
-        //---------------------- Конец игры ---------------------//
-        if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
-        {
-            OnEndGame?.Invoke();
+            if (countOfDaysElapsed == 5 && timeProgress > 0.9f && timeProgress < 0.95f && isCheckTimeOfDay == true)
+            {
+                OnStopTaxEvent?.Invoke();
+            }
+            //-----------------------------------------------------------------------------// 
+
+            //---------------------- Конец игры ---------------------// -_-
+            if (countOfDaysElapsed == 5 && isCheckTimeOfDay == false)
+            {
+                OnEndGame?.Invoke();
+            }
+            //-------------------------------------------------------//
         }
-        //-------------------------------------------------------//
     }
 }

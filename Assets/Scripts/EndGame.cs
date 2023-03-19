@@ -6,8 +6,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using ExitGames.Client.Photon;
 
-public class EndGame : MonoBehaviour
+public class EndGame : MonoBehaviourPunCallbacks
 {
     [SerializeField] private WorldTime worldTime;
     [SerializeField] private WorldTimeEventSender worldTimeEventSender;
@@ -36,19 +37,13 @@ public class EndGame : MonoBehaviour
         exitToMenu.onClick.AddListener(LoadMenuScene);
     }
 
+    // [ContextMenu("FinishGame")]
     private void FinishGame()
     {
-        worldTimeEventSender.OnEndGame -= FinishGame;
-
-        GetAllPlayers();
-
-        SortPlayersByCoins();
-
-        SetTopPlayersSetting();
-
-        ShowFinishPanel();
-
-        worldTime.isStartTime = false;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "EndGame", "End" } });
+        }
     }
 
     private void GetAllPlayers()
@@ -64,12 +59,6 @@ public class EndGame : MonoBehaviour
     private void SortPlayersByCoins()
     {
         sortCoins.Sort();
-    }
-
-    [ContextMenu("End")]
-    public void StartEnd()
-    {
-        FinishGame();
     }
 
     private void SetTopPlayersSetting()
@@ -110,5 +99,23 @@ public class EndGame : MonoBehaviour
     private void ShowFinishPanel()
     {
         showCanvasGroup.Show();
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey("EndGame"))
+        {
+            worldTimeEventSender.OnEndGame -= FinishGame;
+
+            GetAllPlayers();
+
+            SortPlayersByCoins();
+
+            SetTopPlayersSetting();
+
+            ShowFinishPanel();
+
+            worldTime.isStartTime = false;
+        }
     }
 }
