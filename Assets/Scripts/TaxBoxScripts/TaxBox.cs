@@ -7,8 +7,15 @@ public class TaxBox : OutlineClickableObject
 
     public event Action OnClickTaxBox;
 
+    public AudioClip taxBoxClip;
+
+    public AudioSource iventsSounds;
+
     public override void OnExecute()
     {
         OnClickTaxBox?.Invoke();
+
+        iventsSounds.clip = taxBoxClip;
+        iventsSounds.Play();
     }
 }
