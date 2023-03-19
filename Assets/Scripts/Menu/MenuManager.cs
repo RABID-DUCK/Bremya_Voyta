@@ -3,7 +3,9 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
+using UnityEditor.XR;
 using UnityEngine;
 using UnityEngine.UI;
 using Hastable = ExitGames.Client.Photon.Hashtable;
@@ -127,6 +129,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     }
 
     // Create Methods
+    private readonly Regex regex = new Regex("^[a-zA-Zа-яА-Я0-9]*$");
     public void CreateRoom()
     {
         loadingPanel.SetActive(true);
@@ -137,7 +140,15 @@ public class MenuManager : MonoBehaviourPunCallbacks
         roomOptions.MaxPlayers = (byte)data.countPlayersRoom;
         if (!string.IsNullOrEmpty(roomInputField.text))
         {
-            PhotonNetwork.CreateRoom(roomInputField.text, roomOptions);
+            if (regex.IsMatch(roomInputField.text))
+            {
+                PhotonNetwork.CreateRoom(roomInputField.text, roomOptions);
+            }
+            else
+            {
+                Error("Данное название содержит недоступные символы!\nНазвание дожно состоять из букв и/или чисел");
+                createRoomPanel.SetActive(true);
+            }
         }
         else
         {
@@ -147,15 +158,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
         loadingPanel.SetActive(false);
     }
 
-    // private readonly Regex regex = new Regex("^[a-zA-Zа-яА-Я0-9]*$");
-
     public void CheckRoomName()
     {
-        /*if (!regex.IsMatch(roomInputField.text))
-        {
-            print(regex.Replace(roomInputField.text, string.Empty));
-        }*/
-
         if (roomInputField.text.Length > 20)
         {
             roomInputField.text = roomInputField.text.Remove(20);

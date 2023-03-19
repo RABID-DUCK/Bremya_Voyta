@@ -98,7 +98,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    MenuManager.instance.Error("Данный ник содержит недоступные символы!");
+                    MenuManager.instance.Error("Данный ник содержит недоступные символы!\nНик дожен состоять из букв и/или чисел");
                 }
             }
             else
