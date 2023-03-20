@@ -157,15 +157,6 @@ public class MenuManager : MonoBehaviourPunCallbacks
         }
         loadingPanel.SetActive(false);
     }
-
-    public void CheckRoomName()
-    {
-        if (roomInputField.text.Length > 20)
-        {
-            roomInputField.text = roomInputField.text.Remove(20);
-        }
-    }
-
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         CloseCreatePanel();
