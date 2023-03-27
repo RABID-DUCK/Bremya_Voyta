@@ -88,12 +88,12 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             //--------------- Стандартные(Природные и т.п.) события ---------------//
-            if (countOfDaysElapsed == 1 && timeProgress >= 0.6f && timeProgress <= 0.65f && isCheckTimeOfDay)
+            if (countOfDaysElapsed == 1 && timeProgress >= 0.6f && timeProgress <= 0.61f && isCheckTimeOfDay)
             {
                 OnStartEvent?.Invoke();
             }
 
-            if (countOfDaysElapsed == 4 && timeProgress > 0.6f && timeProgress <= 0.65f && isCheckTimeOfDay)
+            if (countOfDaysElapsed == 4 && timeProgress > 0.6f && timeProgress <= 0.61f && isCheckTimeOfDay)
             {
                 OnStartEvent?.Invoke();
             }
@@ -113,22 +113,22 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             //----------------------------- Менялы -----------------------------//
-            if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0f && timeProgress <= 0.05f)
+            if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0f && timeProgress <= 0.01f)
             {
                 OnStartCasinoEvent?.Invoke();
             }
 
-            if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0.8f && timeProgress <= 0.85f)
+            if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0.8f && timeProgress <= 0.81f)
             {
                 OnStopCasinoEvent?.Invoke();
             }
 
-            if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0f && timeProgress <= 0.05f)
+            if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0f && timeProgress <= 0.01f)
             {
                 OnStartCasinoEvent?.Invoke();
             }
 
-            if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0.45f && timeProgress <= 0.5f)
+            if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0.45f && timeProgress <= 0.46f)
             {
                 OnStopCasinoEvent?.Invoke();
             }
@@ -138,12 +138,12 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             //---------------------------------- Налоги -----------------------------------//
-            if (countOfDaysElapsed == 5 && timeProgress > 0.5f && timeProgress <= 0.55f && isCheckTimeOfDay == true)
+            if (countOfDaysElapsed == 5 && timeProgress > 0.5f && timeProgress <= 0.51f && isCheckTimeOfDay == true)
             {
                 OnStartTaxEvent?.Invoke();
             }
 
-            if (countOfDaysElapsed == 5 && timeProgress > 0.9f && timeProgress < 0.95f && isCheckTimeOfDay == true)
+            if (countOfDaysElapsed == 5 && timeProgress > 0.9f && timeProgress < 0.91f && isCheckTimeOfDay == true)
             {
                 OnStopTaxEvent?.Invoke();
             }

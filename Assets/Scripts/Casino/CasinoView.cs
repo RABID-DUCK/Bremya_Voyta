@@ -12,7 +12,7 @@ public class CasinoView : MonoBehaviour
     [SerializeField] private Button averageRateButton;
     [SerializeField] private Button maximumRateButton;
 
-    void Start()
+    private void Start()
     {
         minimumRateButton.onClick.AddListener(SendOnClickMinimumRateButton);
         averageRateButton.onClick.AddListener(SendOnClickAverageRateButton);
@@ -48,5 +48,12 @@ public class CasinoView : MonoBehaviour
         minimumRateButton.interactable = false;
         averageRateButton.interactable = false;
         maximumRateButton.interactable = false;
+    }
+
+    private void OnDestroy()
+    {
+        minimumRateButton.onClick.RemoveListener(SendOnClickMinimumRateButton);
+        averageRateButton.onClick.RemoveListener(SendOnClickAverageRateButton);
+        maximumRateButton.onClick.RemoveListener(SendOnClickMaximumRateButton);
     }
 }

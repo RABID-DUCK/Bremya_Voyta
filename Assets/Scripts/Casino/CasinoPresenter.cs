@@ -13,6 +13,8 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
     private float countCoinsSelectedEvent;
     private int amountOfMoneyWon;
 
+    private bool isUseSystem;
+
     private void Start()
     {
         worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
@@ -36,6 +38,8 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
 
         countCoinsSelectedEvent = 5;
 
+        isUseSystem = true;
+
         casinoView.CloseCasino();
     }
 
@@ -44,6 +48,8 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
         marketController.GetMoney(10);
 
         countCoinsSelectedEvent = 10;
+
+        isUseSystem = true;
 
         casinoView.CloseCasino();
     }
@@ -54,6 +60,8 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
 
         countCoinsSelectedEvent = 15;
 
+        isUseSystem = true;
+
         casinoView.CloseCasino();
     }
 
@@ -61,7 +69,10 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() {{ "EndCasino", marketController.CalculateProbabilityWinning() ? 1 : 0 }});
+            if (isUseSystem)
+            {
+                PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "EndCasino", marketController.CalculateProbabilityWinning() ? 1 : 0 } });
+            }
         }
     }
 
@@ -83,6 +94,8 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
             {
                 UIController.ShowInfo("Вы програли свою ставку!", "Ок");
 
+                isUseSystem = false;
+
                 casinoView.CloseCasino();
             }
             else
@@ -94,6 +107,10 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
                 UIController.ShowInfo($"Ваша ставка выиграла! Вы получаете дополнительно {amountOfMoneyWon} монет!", "Ок");
 
                 countCoinsSelectedEvent = 0;
+
+                isUseSystem = false;
+
+                casinoView.CloseCasino();
             }
 
             worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
