@@ -4,16 +4,19 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine;
 
-public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener
+public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener, IObjectWithCharacter
 {
     ChatClient chatClient;
-    string userID;
     private string nickName = PhotonNetwork.LocalPlayer.NickName;
     [SerializeField] TextMeshProUGUI chatText;
     [SerializeField] TMP_InputField textMessage;
     [SerializeField] GameObject chatPanel;
-    // private Character player; #FIX Доделать получение игрока, я пытался так:          
-    //                  player = PhotonNetwork.GetPhotonView(PhotonNetwork.LocalPlayer.ActorNumber).GetComponent<Character>();
+    private Character player;
+
+    public void InitializePlayer(Character _player)
+    {
+        player = _player;
+    }
 
     public void DebugReturn(DebugLevel level, string message)
     {
@@ -108,6 +111,6 @@ public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener
     {
         bool invertOpen = chatPanel.activeSelf == true ? false : true;
         chatPanel.SetActive(invertOpen);
-        // player.SetMovement(!invertOpen); #FIX Расскоменитить при получении игрока.
+        // player.SetMovement(!invertOpen); #FIX Могут происходить другие события и из-за этого, он может разфризить игрока в доме например
     }
 }

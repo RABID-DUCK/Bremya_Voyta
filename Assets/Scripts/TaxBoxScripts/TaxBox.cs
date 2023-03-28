@@ -11,7 +11,7 @@ public class TaxBox : OutlineClickableObject
 
     public AudioSource iventsSounds;
 
-    public override void OnExecute()
+    protected override void OnExecute()
     {
         OnClickTaxBox?.Invoke();
 

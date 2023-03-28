@@ -10,7 +10,7 @@ public class MarketChest : OutlineClickableObject
 
     public AudioSource iventsSounds;
 
-    public override void OnExecute()
+    protected override void OnExecute()
     {
         OnOpenChes?.Invoke(Player.PlayerInventory);
 

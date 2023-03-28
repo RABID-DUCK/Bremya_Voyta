@@ -3,13 +3,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopItemButton : MonoBehaviour
+public class ShopItemButton : BaseItemDisplayer
 {
     public Action<Item> OnClick;
 
-    [SerializeField] private Image itemIcon;
+    [Header("Shop elements")]
     [SerializeField] private Button buyButton;
-    [SerializeField] private TextMeshProUGUI priceText;
 
     private Item buttonItem = null;
 
@@ -20,19 +19,13 @@ public class ShopItemButton : MonoBehaviour
 
     public void Initialization(SellItem sellItem)
     {
+        SetItemName(sellItem.item.ItemName);
+        SetItemIcon(sellItem.item.ItemSprite);
+        SetItemCount(sellItem.count);
+
         buttonItem = sellItem.item;
-        Sprite itemSprite = buttonItem.ItemSprite;
 
-        if (itemSprite)
-        {
-            itemIcon.sprite = itemSprite;
-        }
-        else
-        {
-            itemIcon.gameObject.SetActive(false);
-        }
-
-        priceText.text = sellItem.price.ToString();
+        Fill—heck();
     }
 
     private void OnClickByButton()

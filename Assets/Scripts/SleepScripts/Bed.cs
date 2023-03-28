@@ -9,7 +9,7 @@ public class Bed : OutlineClickableObject
         OnClickOnBed?.Invoke();
     }
 
-    public override void OnExecute()
+    protected override void OnExecute()
     {
         SendClickOnBed();
     }

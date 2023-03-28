@@ -13,7 +13,7 @@ public class StandartObjectClickBehavior : MonoBehaviour, IObjectClickBehavior
                 return;
         }
 
-        clickableObject.OnExecute();
+        clickableObject.Execute();
     }
 
     public bool CheckCompatibilityWork(IWork work)

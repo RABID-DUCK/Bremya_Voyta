@@ -46,7 +46,7 @@ public abstract class OutlineClickableObject : MonoBehaviour, IObjectWithCharact
         _player = player;
     }
 
-    public void Execute()
+    public virtual void Execute()
     {
         if (Enabled)
         {
@@ -54,5 +54,5 @@ public abstract class OutlineClickableObject : MonoBehaviour, IObjectWithCharact
         }
     }
 
-    public abstract void OnExecute();
+    protected abstract void OnExecute();
 }
