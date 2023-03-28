@@ -55,6 +55,8 @@ public class SleepPresenter : SleepModel
         {
             isSleeping = true;
 
+            isTimeSleep = false;
+
             GoSleep(sleepVideo);
 
             worldTimeEventSender.OnSleepTime += IsSleepTime;
