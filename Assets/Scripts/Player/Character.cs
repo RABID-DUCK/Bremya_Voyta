@@ -24,7 +24,8 @@ public class Character : MonoBehaviourPunCallbacks
     [SerializeField]
     private CharacterType characterType;
 
-    private CharacterController controller;
+    private CharacterController characterController;
+    private PlayerController playerController;
 
     public SpawnManager spawnManager;
 
@@ -35,15 +36,21 @@ public class Character : MonoBehaviourPunCallbacks
             Destroy(this);
         }
 
-        controller = gameObject.GetComponent<CharacterController>();
+        characterController = gameObject.GetComponent<CharacterController>();
+        playerController = gameObject.GetComponent<PlayerController>();
     }
 
     public void Teleport(Vector3 cords, Quaternion rotation = new Quaternion())
     {
-        controller.enabled = false;
+        characterController.enabled = false;
         transform.position = cords;
         transform.GetChild(0).rotation = rotation;
-        controller.enabled = true;
+        characterController.enabled = true;
+    }
+
+    public void SetMovement(bool move)
+    {
+        playerController.enabled = move;
     }
 
     public void ReturnHome()
