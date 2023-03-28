@@ -87,4 +87,11 @@ public class SleepDebuffActivator : MonoBehaviour, IObjectWithCharacter
                 break;
         }
     }
+
+    private void OnDestroy()
+    {
+        sleepPresenter.OnAddDebuffToPlayer -= AddDebuff;
+
+        sleepPresenter.OnRemoveDebuffFromPlayer -= ResetDebuff;
+    }
 }
