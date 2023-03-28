@@ -17,6 +17,8 @@ public class WorldTime : MonoBehaviour
 
     public bool isStartTime { get; set; } // Отвечает за включение времени
 
+    private bool isUseDebugTimeProgress = false; // Переменная для теста
+
     private void Start()
     {
         timeProgress = 0f;
@@ -38,13 +40,18 @@ public class WorldTime : MonoBehaviour
     {
         if (isStartTime)
         {
+            if (isUseDebugTimeProgress == true)
+            {
+                Debug.Log(timeProgress);
+            }
+
             if (PhotonNetwork.IsMasterClient)
             {
                 ChengeOfTime();
 
                 Hashtable hashtable = new Hashtable
                 {
-                {"StartTime", timeProgress+0.002f},
+                {"StartTime", timeProgress + 0.002f},
 
                 {"countOfDaysElapsed", countOfDaysElapsed },
 
@@ -108,5 +115,17 @@ public class WorldTime : MonoBehaviour
                 }
             }
         }
+    }
+
+    [ContextMenu("Use debug TimeProgress property")]
+    private void UseDebugTimeProgress()
+    {
+        isUseDebugTimeProgress = true;
+    }
+
+    [ContextMenu("Dont use debug TimeProgress property")]
+    private void DontUseDebugTimeProgress()
+    {
+        isUseDebugTimeProgress = false;
     }
 }

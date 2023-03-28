@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorldTimeEventSender : MonoBehaviourPunCallbacks
@@ -77,6 +78,10 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
 
         OnGetTimeProgress?.Invoke(timeProgress);
         //--------------------------------------//
+
+        RoundingValues(timeProgress, out timeProgress); // Диапазон будет сокращен до 10 000-х знаков после запятой
+
+        //Debug.Log(timeProgress); // Если нужно отследить, какие значения выходят
 
         //------- Сон -------//
         if (isCheckTimeOfDay == false && countOfDaysElapsed < 5 && timeProgress >= 0f && timeProgress <= 0.01f)
@@ -156,5 +161,10 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
             }
             //-------------------------------------------------------//
         }
+    }
+
+    private void RoundingValues(float timeProgress, out float secondTimeProgress)
+    {
+        secondTimeProgress = (float)Math.Round(timeProgress, 4); // Округляет до 4-х знаков после запятой
     }
 }
