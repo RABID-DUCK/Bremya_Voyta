@@ -6,6 +6,7 @@ public class SleepPresenter : SleepModel
 {
     public event Action OnSkipArrow;
     public event Action OnAddDebuffToPlayer;
+    public event Action OnRemoveDebuffFromPlayer;
 
     [SerializeField] private WorldTimeEventSender worldTimeEventSender;
 
@@ -30,11 +31,14 @@ public class SleepPresenter : SleepModel
 
     private void IsSleepTime()
     {
+
         isTimeSleep = true;
 
         isSleeping = false;
 
         ShowEmargencyPanel();
+
+        OnRemoveDebuffFromPlayer?.Invoke();
 
         worldTimeEventSender.OnSleepTime -= IsSleepTime;
     }
