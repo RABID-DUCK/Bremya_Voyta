@@ -41,6 +41,7 @@ public class CitySceneBoot : MonoBehaviour
         if (startDialog)
         {
             dialogPresenter.StartDialog(startDialogData);
+            _player.SetMovement(false);
         }
         else
         {
@@ -68,6 +69,8 @@ public class CitySceneBoot : MonoBehaviour
         virtualCamera.Follow = _player.transform;
         UICoordinator.Subscribe();
         clickEventer.SetObjectsEnabled(true);
+
+        _player.SetMovement(true);
 
         OnEndEducation?.Invoke();
     }

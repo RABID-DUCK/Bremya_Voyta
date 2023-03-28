@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [SerializeField] private AudioSource playerWalckSound;
 
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     private void Awake()
     {
@@ -64,9 +64,5 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         animator.SetBool("walk", (h != 0 || v != 0 || moveDir.normalized.magnitude > 0.001f));
-    }
-    public void WindowSleep()
-    {
-
     }
 }

@@ -1,11 +1,10 @@
 using ExitGames.Client.Photon;
 using Photon.Chat;
 using Photon.Pun;
-using System;
 using TMPro;
 using UnityEngine;
 
-public class ChatManager : MonoBehaviour, IChatClientListener
+public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener
 {
     ChatClient chatClient;
     string userID;
@@ -13,6 +12,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     [SerializeField] TextMeshProUGUI chatText;
     [SerializeField] TMP_InputField textMessage;
     [SerializeField] GameObject chatPanel;
+    // private Character player; #FIX Доделать получение игрока, я пытался так:          
+    //                  player = PhotonNetwork.GetPhotonView(PhotonNetwork.LocalPlayer.ActorNumber).GetComponent<Character>();
 
     public void DebugReturn(DebugLevel level, string message)
     {
@@ -24,7 +25,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         // Debug.Log(state);
     }
 
-    public void OnConnected()
+    void IChatClientListener.OnConnected()
     {
         //chatText.text += "\n Вы подключились к чату!";
         chatClient.Subscribe("G");
@@ -105,6 +106,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void OpenChat()
     {
-        chatPanel.SetActive(chatPanel.activeSelf == true ? false : true);
+        bool invertOpen = chatPanel.activeSelf == true ? false : true;
+        chatPanel.SetActive(invertOpen);
+        // player.SetMovement(!invertOpen); #FIX Расскоменитить при получении игрока.
     }
 }

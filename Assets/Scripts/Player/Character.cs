@@ -1,6 +1,8 @@
 using Ekonomika.Utils;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -25,7 +27,7 @@ public class Character : MonoBehaviourPunCallbacks
     private CharacterType characterType;
 
     private CharacterController characterController;
-    private PlayerController playerController;
+    public PlayerController playerController;
 
     public SpawnManager spawnManager;
 
@@ -48,9 +50,30 @@ public class Character : MonoBehaviourPunCallbacks
         characterController.enabled = true;
     }
 
+    private void StopMoveAnimation()
+    {
+        playerController.animator.SetBool("walk", false);
+    }
+
     public void SetMovement(bool move)
     {
         playerController.enabled = move;
+        if (move == false)
+        {
+            StopMoveAnimation();
+        }
+    }
+
+    public void SetVisibleOtherPlayers(bool visible)
+    {
+        // В разработке
+/*        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        {
+           if (player.Value != PhotonNetwork.LocalPlayer)
+           {
+                PhotonNetwork.GetPhotonView(player.Key).gameObject.layer = visible ? 10 : 0;
+           }
+        }*/
     }
 
     public void ReturnHome()
