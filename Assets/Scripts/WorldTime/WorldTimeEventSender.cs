@@ -118,7 +118,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 OnStartCasinoEvent?.Invoke();
             }
 
-            if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0.8f && timeProgress <= 0.81f)
+            if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0.8f && timeProgress <= 0.01f)
             {
                 OnStopCasinoEvent?.Invoke();
             }
@@ -128,7 +128,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 OnStartCasinoEvent?.Invoke();
             }
 
-            if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0.45f && timeProgress <= 0.46f)
+            if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0.45f && timeProgress <= 0.01f)
             {
                 OnStopCasinoEvent?.Invoke();
             }
