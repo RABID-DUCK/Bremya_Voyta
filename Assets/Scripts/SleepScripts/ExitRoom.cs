@@ -8,7 +8,8 @@ public class ExitRoom : OutlineClickableObject
         {
             Player.ReturnHome();
             CameraSwitch.SwichToMainCamera();
-            Player.gameObject.GetComponent<PlayerController>().enabled = true;
+            Player.SetMovement(true);
+            Player.SetVisibleOtherPlayers(true);
         });
     }
 }

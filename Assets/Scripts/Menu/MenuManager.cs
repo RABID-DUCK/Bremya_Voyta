@@ -131,12 +131,19 @@ public class MenuManager : MonoBehaviourPunCallbacks
     private readonly Regex regex = new Regex("^[a-zA-Zа-яА-Я0-9]*$");
     public void CreateRoom()
     {
+        if (!PhotonNetwork.IsConnectedAndReady)
+        {
+            Error("Нет подключения, попробуйте ещё раз!");
+            return;
+        }
+
         loadingPanel.SetActive(true);
         createRoomPanel.SetActive(false);
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = true;
         roomOptions.MaxPlayers = (byte)data.countPlayersRoom;
+
         if (!string.IsNullOrEmpty(roomInputField.text))
         {
             if (regex.IsMatch(roomInputField.text))
@@ -156,6 +163,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         }
         loadingPanel.SetActive(false);
     }
+
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         CloseCreatePanel();

@@ -27,7 +27,6 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         string nameCharacter = _character.prefabs[_idCh].name;
         GameObject _locPlayer = PhotonNetwork.Instantiate(Path.Combine($"PhotonPrefabs/{_character.name}", $"{nameCharacter}"), new Vector3(0, 7, 0), Quaternion.identity);
 
-
         _locPlayer.AddComponent<AudioListener>();
         Character ch = _locPlayer.GetComponent<Character>();
 

@@ -1,4 +1,5 @@
 using Ekonomika.Utils;
+using Photon.Pun;
 using UnityEngine;
 
 public class House : OutlineClickableObject
@@ -16,7 +17,8 @@ public class House : OutlineClickableObject
             {
                 Player.Teleport(new Vector3(1f, -49.893f, 0.23f));
                 CameraSwitch.SwichHouseCamera();
-                Player.gameObject.GetComponent<PlayerController>().enabled = false;
+                Player.SetMovement(false);
+                Player.SetVisibleOtherPlayers(false);
             });
         }
         else

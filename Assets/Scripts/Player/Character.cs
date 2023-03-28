@@ -25,7 +25,7 @@ public class Character : MonoBehaviourPunCallbacks
     private CharacterType characterType;
 
     private CharacterController characterController;
-    private PlayerController playerController;
+    public PlayerController playerController;
 
     public SpawnManager spawnManager;
 
@@ -48,9 +48,27 @@ public class Character : MonoBehaviourPunCallbacks
         characterController.enabled = true;
     }
 
+    private void StopMoveAnimation()
+    {
+        playerController.animator.SetBool("walk", false);
+    }
+
     public void SetMovement(bool move)
     {
         playerController.enabled = move;
+        if (move == false)
+        {
+            StopMoveAnimation();
+        }
+    }
+
+    public void SetVisibleOtherPlayers(bool visible)
+    {
+        foreach (Player otherPlayer in PhotonNetwork.PlayerListOthers)
+        {
+            GameObject otherPlayerObject = PhotonNetwork.GetPhotonView(otherPlayer.ActorNumber * 1000 + 1).gameObject;
+            otherPlayerObject.SetActive(visible);
+        }
     }
 
     public void ReturnHome()
