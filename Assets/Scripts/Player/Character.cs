@@ -1,8 +1,6 @@
 using Ekonomika.Utils;
 using Photon.Pun;
 using Photon.Realtime;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -66,14 +64,11 @@ public class Character : MonoBehaviourPunCallbacks
 
     public void SetVisibleOtherPlayers(bool visible)
     {
-        // В разработке
-/*        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        foreach (Player otherPlayer in PhotonNetwork.PlayerListOthers)
         {
-           if (player.Value != PhotonNetwork.LocalPlayer)
-           {
-                PhotonNetwork.GetPhotonView(player.Key).gameObject.layer = visible ? 10 : 0;
-           }
-        }*/
+            GameObject otherPlayerObject = PhotonNetwork.GetPhotonView(otherPlayer.ActorNumber * 1000 + 1).gameObject;
+            otherPlayerObject.SetActive(visible);
+        }
     }
 
     public void ReturnHome()

@@ -9,6 +9,7 @@ public class ExitRoom : OutlineClickableObject
             Player.ReturnHome();
             CameraSwitch.SwichToMainCamera();
             Player.SetMovement(true);
+            Player.SetVisibleOtherPlayers(true);
         });
     }
 }
