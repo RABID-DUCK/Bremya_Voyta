@@ -83,7 +83,7 @@ namespace Ekonomika.Work
             instance.OverrideDropItems(ironItemObjectName, min, max);
         }
 
-        public static void ReturnIronMiningDropItems(int min, int max)
+        public static void ReturnIronMiningDropItems()
         {
             instance.ReturnDropItems(ironItemObjectName);
         }
@@ -116,7 +116,7 @@ namespace Ekonomika.Work
             instance.OverrideDropItems(woodItemObjectName, min, max);
         }
 
-        public static void ReturnIronMiningDropItems()
+        public static void ReturnLumberjackDropItems()
         {
             instance.ReturnDropItems(woodItemObjectName);
         }
