@@ -93,7 +93,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
             bool SI3 = false;
             bool SI4 = false;
 
-            while (!SI1)
+            if (!SI1)
             {
                 if (countOfDaysElapsed == 1 && timeProgress > 0.6f && isCheckTimeOfDay)
                 {
@@ -103,7 +103,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 }
             }
 
-            while (!SI2)
+            if (!SI2)
             {
                 if (countOfDaysElapsed == 4 && timeProgress > 0.6f && isCheckTimeOfDay)
                 {
@@ -113,7 +113,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 }
             }
 
-            while (!SI3)
+            if (!SI3)
             {
                 if (countOfDaysElapsed == 2 && timeProgress > 0.95f && isCheckTimeOfDay)
                 {
@@ -123,7 +123,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 }
             }
 
-            while (!SI4)
+            if (!SI4)
             {
                 if (countOfDaysElapsed == 5 && timeProgress > 0.95f && isCheckTimeOfDay)
                 {
@@ -143,7 +143,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
             bool CASINO3 = false;
             bool CASINO4 = false;
 
-            while (!CASINO1)
+            if (!CASINO1)
             {
                 if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0f)
                 {
@@ -153,7 +153,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 }
             }
 
-            while (!CASINO2)
+            if (!CASINO2)
             {
                 if (isCheckTimeOfDay == true && countOfDaysElapsed == 2 && timeProgress >= 0.8f)
                 {
@@ -163,7 +163,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 }
             }
 
-            while (!CASINO3)
+            if (!CASINO3)
             {
                 if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0f)
                 {
@@ -173,7 +173,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 }
             }
 
-            while (!CASINO4)
+            if (!CASINO4)
             {
                 if (isCheckTimeOfDay == true && countOfDaysElapsed == 5 && timeProgress >= 0.45f)
                 {
@@ -191,7 +191,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
             bool TAX1 = false;
             bool TAX2 = false;
 
-            while (!TAX1)
+            if (!TAX1)
             {
                 if (countOfDaysElapsed == 5 && timeProgress > 0.5f && isCheckTimeOfDay == true)
                 {
@@ -201,7 +201,7 @@ public class WorldTimeEventSender : MonoBehaviourPunCallbacks
                 }
             }
 
-            while (!TAX2)
+            if (!TAX2)
             {
                 if (countOfDaysElapsed == 5 && timeProgress > 0.9f && isCheckTimeOfDay == true)
                 {
