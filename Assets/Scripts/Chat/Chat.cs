@@ -1,9 +1,6 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Chat : MonoBehaviour
 {
@@ -14,7 +11,7 @@ public class Chat : MonoBehaviour
 
     public void SendMessage()
     {
-        GetComponent<PhotonView>().RPC("GetMessage", RpcTarget.All, ($"<color={color}>" + PhotonNetwork.NickName + "</color>" + " : "+ InputField.text));
+        GetComponent<PhotonView>().RPC("GetMessage", RpcTarget.All, ($"<color={color}>" + PhotonNetwork.NickName + "</color>" + " : " + InputField.text));
         InputField.text = "";
     }
 

@@ -36,7 +36,7 @@ public class TaxBoxPresenter : TaxBoxModel, IObjectWithCharacter
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "StartTax", "Start" } });
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "Tax", "Start" } });
         }
     }
 
