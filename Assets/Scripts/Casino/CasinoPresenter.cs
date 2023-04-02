@@ -1,6 +1,5 @@
 ﻿using ExitGames.Client.Photon;
 using Photon.Pun;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CasinoPresenter : MonoBehaviourPunCallbacks
@@ -69,6 +68,8 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            casinoView.CloseCasino();
+
             if (isUseSystem)
             {
                 PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "EndCasino", marketController.CalculateProbabilityWinning() ? 1 : 0 } });
@@ -116,5 +117,14 @@ public class CasinoPresenter : MonoBehaviourPunCallbacks
             worldTimeEventSender.OnStartCasinoEvent += ShowCasinoHelloPanel;
             worldTimeEventSender.OnStopCasinoEvent -= CheckingProbabilityWinningMoney;
         }
+    }
+
+    private void OnDestroy()
+    {
+        worldTimeEventSender.OnStartCasinoEvent -= ShowCasinoHelloPanel;
+
+        casinoView.OnClickMinimumRateButton -= GetMinimumRateMoney;
+        casinoView.OnClickAverageRateButton -= GetAvarageRateMoney;
+        casinoView.OnClickMaximumRateButton -= GetMaximumRateMoney;
     }
 }
