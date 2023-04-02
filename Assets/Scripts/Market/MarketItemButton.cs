@@ -29,7 +29,6 @@ public class MarketItemButton : BaseItemDisplayer
 
         playerName.text = onlineSellItem.playerName;
         priceText.text = onlineSellItem.sellItem.price.ToString();
-
     }
 
     private void OnClickByButton()

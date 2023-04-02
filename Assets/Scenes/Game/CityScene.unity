@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1404873623}
-  m_IndirectSpecularColor: {r: 0.16037224, g: 0.20025665, b: 0.27930456, a: 1}
+  m_IndirectSpecularColor: {r: 0.43710327, g: 0.4848175, b: 0.56508553, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6252,7 +6252,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 716363715}
   m_HandleRect: {fileID: 716363714}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13358,7 +13358,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 297049552}
   m_HandleRect: {fileID: 297049551}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -17918,6 +17918,7 @@ MonoBehaviour:
   itemIcon: {fileID: 712650703}
   itemName: {fileID: 0}
   itemCount: {fileID: 854948954}
+  priceText: {fileID: 529160967}
   buyButton: {fileID: 1083953092}
 --- !u!1 &783681143
 GameObject:
@@ -37580,7 +37581,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674516262}
   m_HandleRect: {fileID: 674516261}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -42737,7 +42738,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1205983062}
   m_HandleRect: {fileID: 1205983061}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -43809,7 +43810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4914296321521887337, guid: 28f88d2f10bb146439b02aabd5e6cc38, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000034337027
+      value: 0.00063706614
       objectReference: {fileID: 0}
     - target: {fileID: 5611268842706892093, guid: 28f88d2f10bb146439b02aabd5e6cc38, type: 3}
       propertyPath: m_AnchorMax.x

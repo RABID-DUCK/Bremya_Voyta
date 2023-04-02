@@ -8,6 +8,7 @@ public class ShopItemButton : BaseItemDisplayer
     public Action<Item> OnClick;
 
     [Header("Shop elements")]
+    [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private Button buyButton;
 
     private Item buttonItem = null;
@@ -24,6 +25,7 @@ public class ShopItemButton : BaseItemDisplayer
         SetItemCount(sellItem.count);
 
         buttonItem = sellItem.item;
+        priceText.text = sellItem.price.ToString();
 
         Fill—heck();
     }
