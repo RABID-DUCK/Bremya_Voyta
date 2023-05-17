@@ -89,7 +89,7 @@ public class EndGame : MonoBehaviourPunCallbacks
         }
     }
 
-    private void LoadMenuScene()
+    public void LoadMenuScene()
     {
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.Disconnect();

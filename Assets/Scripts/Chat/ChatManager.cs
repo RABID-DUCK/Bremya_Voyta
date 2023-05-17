@@ -92,7 +92,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener, IObje
     void Update()
     {
         this.chatClient.Service();
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && textMessage.text != "")
         {
             SendButton();
         }
